@@ -14,7 +14,19 @@ public class CardTests {
             new Card(type, action);
         });
 
-        assertEquals("need a card type and an action", exception.getMessage());
+        assertEquals("need a card type and an action!", exception.getMessage());
+    }
+
+    @Test
+    void constructor_NullTypeAndAction_ThrowsIllegalArgumentException() {
+        CardType type = null;
+        Action action =  new Action() {};;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Card(type, action);
+        });
+
+        assertEquals("need a card type!", exception.getMessage());
     }
 }
 
