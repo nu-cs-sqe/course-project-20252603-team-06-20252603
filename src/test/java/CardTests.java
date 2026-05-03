@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CardTests {
@@ -9,9 +10,11 @@ public class CardTests {
         CardType type = null;
         Action action =  null;
 
-        assertThrows(IllegalArgumentException.class, () -> {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             new Card(type, action);
         });
+
+        assertEquals("need a card type and an action", exception.getMessage());
     }
 }
 
