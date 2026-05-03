@@ -6,7 +6,7 @@
     - **State of the system**: fully populated constructor
     - **Expected output**: successful card creation 
 
-- constructor_ValidTypeNullAction_CreatesCard not_done (for cards without actions)
+- constructor_ValidTypeNullAction_CreatesCard done (for cards without actions)
     - **State of the system**: null action but valid card type
     - **Expected output**: successful card creation 
 
@@ -14,7 +14,7 @@
     - **State of the system**: null action and null card type
     - **Expected output**: illegalArgumentException
 
-- constructor_NullTypeAndAction_ThrowsIllegalArgumentException not_done (for cards with actions)
+- constructor_NullTypeAndAction_ThrowsIllegalArgumentException done (for cards with actions)
     - **State of the system**: valid action but null card type
     - **Expected output**: illegalArgumentException
 

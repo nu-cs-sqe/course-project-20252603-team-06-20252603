@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CardTests {
 
@@ -27,6 +26,17 @@ public class CardTests {
         });
 
         assertEquals("need a card type!", exception.getMessage());
+    }
+
+    @Test
+    void constructor_ValidTypeNullAction_CreatesCard() {
+        CardType type = CardType.TEST_TYPE;
+        Action action = null;
+
+        Card card = new Card(type, action);
+
+        assertEquals(CardType.TEST_TYPE, card.getType());
+        assertNull(card.getAction());
     }
 }
 
