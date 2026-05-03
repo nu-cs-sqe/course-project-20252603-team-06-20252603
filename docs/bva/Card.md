@@ -10,7 +10,7 @@
     - **State of the system**: null action but valid card type
     - **Expected output**: successful card creation 
 
-- constructor_NullTypeNullAction_ThrowsIllegalArgumentException not_done (for cards without actions)
+- constructor_NullTypeNullAction_ThrowsIllegalArgumentException done (for cards without actions)
     - **State of the system**: null action and null card type
     - **Expected output**: illegalArgumentException
 
