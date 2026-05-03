@@ -38,5 +38,17 @@ public class CardTests {
         assertEquals(CardType.TEST_TYPE, card.getType());
         assertNull(card.getAction());
     }
+
+    @Test
+    void constructor_ValidTypeAndAction_CreatesCard() {
+        CardType type = CardType.TEST_TYPE;
+        Action action = new Action() {};
+
+        Card card = new Card(type, action);
+
+        assertEquals(CardType.TEST_TYPE, card.getType());
+        assertNotNull(card.getAction());
+        assertEquals(action, card.getAction());
+    }
 }
 
