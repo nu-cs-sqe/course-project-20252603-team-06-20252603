@@ -15,11 +15,18 @@
 # Week 5 (04/26/2026-05/03/2026) (You can change the format to whatever the team likes better)
 **Planning and Progress Tracking**:
 1. [done] Everyone: Design of classes & methods
-2. [not started] Dani: Card class
+2. [60%] Dani: Card class
 3. [not started] Abby: Deck class
-4. [not started] Sharon: Player class
-5. [not started] Audrey & Chris: Game class
+4. [10%] Sharon: Player class
+5. [10%] Audrey & Chris: Game class
 
+# Week 6 (05/03/2026-05/10/2026) (You can change the format to whatever the team likes better)
+**Planning and Progress Tracking**:
+1. [not started] Everyone: Play Exploding Kittens
+2. [60%] Dani: Card class
+3. [not started] Abby: Deck class
+4. [10%] Sharon: Player class
+5. [10%] Audrey & Chris: Game class
 
 # Week X (XX/XX/2026-XX/XX/2026) TEMPLATE (You can change the format to whatever the team likes better)
 **Planning and Progress Tracking**:
