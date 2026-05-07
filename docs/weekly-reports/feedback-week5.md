@@ -34,7 +34,7 @@ Status:
 ### Planning & Progress Evaluation
 | # | Item                                                                                                                                                         |  Status   | Reviewer Notes      | Source Instructions or Resources                                                  |
 |---|--------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------:|---------------------|-----------------------------------------------------------------------------------|
-| 4 | The team documents every week’s planning and progress evaluation professionally. (needed for Letter Grade B)                                                 | ⚠️        | `docs/weekly-reports/report.md` now includes Week 5 and Week 6 updates with ownership and rough progress percentages. It still needs clearer deliverables/acceptance criteria and links to issues/PRs for professional traceability. | Week 4 Wednesday Lecture (Lecture 08), Project grading rubrics                    |
+| 4 | The team documents every week’s planning and progress evaluation professionally. (needed for Letter Grade B)                                                 | ⚠️        | `docs/weekly-reports/report.md` now includes Week 5 updates with ownership and rough progress percentages. It still needs clearer deliverables/acceptance criteria and links to issues/PRs for professional traceability. | Week 4 Wednesday Lecture (Lecture 08), Project grading rubrics                    |
 
 ### Progress & Collaboration
 | # | Item                                                                                                                                                                                   |  Status   | Reviewer Notes      | Source Instructions or Resources                 |
@@ -58,4 +58,3 @@ But if your team wants the reviewer to check any of these for any reasons, pleas
 - Strengths this week: meaningful progress on `Card` implementation, constructor-focused tests, and a class-specific BVA document (`docs/bva/Card.md`).
 - Main next milestone: complete remaining Game Setup classes (Player/Deck/Game) in `main`, then move into one-turn gameplay flow.
 - To improve grading readiness next week: ensure active branches have draft PRs, add richer PR/issue review discussion, and link weekly report items to concrete issues/PRs.
-- Access note: local Java tooling is unavailable in this environment (`JAVA_HOME` not set), so I could not run `gradlew test` locally here; CI run history was used as build evidence.
