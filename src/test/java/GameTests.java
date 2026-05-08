@@ -1,0 +1,14 @@
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class GameTests {
+    @Test
+    public void constructor_ZeroPlayers_IllegalArgumentException() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Game(0);
+        });
+
+    }
+
+}
