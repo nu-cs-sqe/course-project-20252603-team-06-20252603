@@ -8,7 +8,13 @@ public class GameTests {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             new Game(0);
         });
+    }
 
+    @Test
+    public void constructor_OnePlayer_IllegalArgumentException() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Game(1);
+        });
     }
 
 }

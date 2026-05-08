@@ -2,11 +2,11 @@
 
 ### Method under test: Constructor
 
-- constructor_ZeroPlayers_IllegalArgumentException
+- constructor_ZeroPlayers_IllegalArgumentException ( :white_check_mark: )
     - **State of the system**: playerCount = 0
     - **Expected output**: IllegalArgumentException; "Cannot initiate game with less than 2 players"
 
-- constructor_OnePlayer_IllegalArgumentException
+- constructor_OnePlayer_IllegalArgumentException ( :white_check_mark: )
   - **State of the system**: playerCount = 1
   - **Expected output**: IllegalArgumentException; "Cannot initiate game with less than 2 players"
 
