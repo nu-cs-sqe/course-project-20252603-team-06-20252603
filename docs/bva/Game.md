@@ -10,7 +10,7 @@
   - **State of the system**: playerCount = 1
   - **Expected output**: IllegalArgumentException; "Cannot initiate game with less than 2 players"
 
-- constructor_TwoPlayers_CreatesTwoPlayers
+- constructor_TwoPlayers_CreatesTwoPlayers ( :white_check_mark: )
   - **State of the system**: playerCount = 2
   - **Expected output**: players = [Player, Player], deck = [], currentPlayer = null
 

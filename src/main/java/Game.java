@@ -14,5 +14,8 @@ public class Game {
         if (playerCount < MIN_PLAYERS) {
             throw new IllegalArgumentException("Cannot initiate game with less than 2 players");
         }
+        if (playerCount > MAX_PLAYERS) {
+            throw new IllegalArgumentException("Cannot initiate game with more than 5 players");
+        }
     }
 }

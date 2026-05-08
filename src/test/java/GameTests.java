@@ -17,4 +17,11 @@ public class GameTests {
         });
     }
 
+    @Test
+    public void constructor_SixPlayers_ThrowsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Game(6);
+        });
+    }
+
 }
