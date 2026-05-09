@@ -26,11 +26,11 @@ However, you are only required to document Step 4.
     - **State of the system**: [Defuse]
     - **Expected output**: True
   
-- **TC5: hasDefuse_TwoCardswithoutDefuse_False** ( :x: or :white_check_mark: )
+- **TC5: hasDefuse_TwoCardswithoutDefuse_False** ( :white_check_mark: )
     - **State of the system**: [Other, Other]
     - **Expected output**: False
 
-- **TC6: hasDefuse_duplicateDefuse_True** ( :x: or :white_check_mark: )
+- **TC6: hasDefuse_duplicateDefuse_True** ( :white_check_mark: )
   - **State of the system**: [Defuse, Defuse]
   - **Expected output**: True
 
