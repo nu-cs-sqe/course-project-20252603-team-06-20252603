@@ -40,7 +40,7 @@ However, you are only required to document Step 4.
     - **State of the system**: [], Card
     - **Expected output**: [Card]
 
-- **TC8: addCard_1cardAddNewCard_success** ( :x: or :white_check_mark: )
+- **TC8: addCard_1cardAddNewCard_success** ( :white_check_mark: )
     - **State of the system**: [Card], Card1
     - **Expected output**: [Card, Card1]
 

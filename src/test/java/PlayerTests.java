@@ -99,4 +99,22 @@ public class PlayerTests {
         assertEquals(1, player.getCards().size());
         assertTrue(player.getCards().contains(card));
     }
+
+    @Test
+    void addCard_1cardAddNewCard_success() {
+        Player player = new Player("lily");
+
+        Card card1 = EasyMock.createMock(Card.class);
+        EasyMock.replay(card1);
+
+        Card card2 = EasyMock.createMock(Card.class);
+        EasyMock.replay(card2);
+
+        player.addCard(card1);
+        player.addCard(card2);
+
+        assertEquals(2, player.getCards().size());
+        assertTrue(player.getCards().contains(card1));
+        assertTrue(player.getCards().contains(card2));
+    }
 }
