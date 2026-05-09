@@ -1,6 +1,8 @@
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTests {
@@ -116,5 +118,26 @@ public class PlayerTests {
         assertEquals(2, player.getCards().size());
         assertTrue(player.getCards().contains(card1));
         assertTrue(player.getCards().contains(card2));
+    }
+
+    @Test
+    void addCard_2cardDuplicateCards_success() {
+        Player player = new Player("lily");
+
+        Card card1 = EasyMock.createMock(Card.class);
+        EasyMock.replay(card1);
+
+        Card card2 = EasyMock.createMock(Card.class);
+        EasyMock.replay(card2);
+
+        player.addCard(card1);
+        player.addCard(card2);
+        player.addCard(card1);
+
+        List<Card> cards = player.getCards();
+        assertEquals(3, cards.size());
+        assertEquals(card1, cards.get(0));
+        assertEquals(card2, cards.get(1));
+        assertEquals(card1, cards.get(2));
     }
 }

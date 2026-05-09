@@ -44,7 +44,7 @@ However, you are only required to document Step 4.
     - **State of the system**: [Card], Card1
     - **Expected output**: [Card, Card1]
 
-- **TC9: addCard_2cardDuplicateCards_success** ( :x: or :white_check_mark: )
+- **TC9: addCard_2cardDuplicateCards_success** ( :white_check_mark: )
     - **State of the system**: [Card, Card1], Card
     - **Expected output**: [Card, Card1, Card]
 
