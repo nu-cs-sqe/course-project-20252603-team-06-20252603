@@ -12,7 +12,7 @@ However, you are only required to document Step 4.
     - **State of the system**: ""
     - **Expected output**: IllegalArgumentException
 
-- **TC2: Constructor_ValidName_success** ( :x: or :white_check_mark: )
+- **TC2: Constructor_ValidName_success** ( :white_check_mark: )
     - **State of the system**: "lily"
     - **Expected output**: N/A, player successfully created
 
