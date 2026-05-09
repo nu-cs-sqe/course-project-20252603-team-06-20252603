@@ -87,4 +87,16 @@ public class PlayerTests {
 
         assertTrue(player.hasDefuse());
     }
+
+    @Test
+    void addCard_noCards_success() {
+        Player player = new Player("lily");
+
+        Card card = EasyMock.createMock(Card.class);
+        EasyMock.replay(card);
+
+        player.addCard(card);
+        assertEquals(1, player.getCards().size());
+        assertTrue(player.getCards().contains(card));
+    }
 }

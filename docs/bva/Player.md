@@ -36,7 +36,7 @@ However, you are only required to document Step 4.
 
 
 ### Method under test: addCard()
-- **TC7: addCard_noCards_success** ( :x: or :white_check_mark: )
+- **TC7: addCard_noCards_success** ( :white_check_mark: )
     - **State of the system**: [], Card
     - **Expected output**: [Card]
 
