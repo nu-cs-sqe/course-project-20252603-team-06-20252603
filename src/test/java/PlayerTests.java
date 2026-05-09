@@ -6,10 +6,8 @@ public class PlayerTests {
 
     @Test
     void Constructor_nullName_IllegalArgumentException() {
-        String playerName = null;
-
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Player(playerName);
+            new Player(null);
         });
 
         assertEquals("player name can not be null", exception.getMessage());
@@ -17,10 +15,8 @@ public class PlayerTests {
 
     @Test
     void Constructor_EmptyName_IllegalArgumentException() {
-        String playerName = "";
-
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Player(playerName);
+            new Player("");
         });
 
         assertEquals("player name can not be empty", exception.getMessage());
@@ -28,11 +24,17 @@ public class PlayerTests {
 
     @Test
     void Constructor_ValidName_success() {
-        String playerName = "lily";
-        Player player = new Player(playerName);
+        Player player = new Player("lily");
 
         assertEquals("lily", player.getPlayerName());
         assertTrue(player.getCards().isEmpty());
         assertTrue(player.isAlive());
+    }
+
+    @Test
+    void hasDefuse_EmptyCards_False() {
+        Player player = new Player("lily");
+
+        assertFalse(player.hasDefuse());
     }
 }

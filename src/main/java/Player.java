@@ -21,4 +21,8 @@ public class Player {
     public String getPlayerName() { return playerName; }
     public List<Card> getCards() { return cards; }
     public boolean isAlive() { return isAlive; }
+
+    public boolean hasDefuse() {
+        return false;
+    }
 }

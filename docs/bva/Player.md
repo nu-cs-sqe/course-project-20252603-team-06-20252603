@@ -18,7 +18,7 @@ However, you are only required to document Step 4.
 
 
 ### Method under test: hasDefuse()
-- **TC3: hasDefuse_EmptyCards_False** ( :x: or :white_check_mark: )
+- **TC3: hasDefuse_EmptyCards_False** ( :white_check_mark: )
     - **State of the system**: []
     - **Expected output**: False
 
