@@ -15,4 +15,15 @@ public class PlayerTests {
 
         assertEquals("player name can not be null", exception.getMessage());
     }
+
+    @Test
+    void Constructor_EmptyName_IllegalArgumentException() {
+        String Playername = "";
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Player(Playername);
+        });
+
+        assertEquals("player name can not be empty", exception.getMessage());
+    }
 }

@@ -4,11 +4,11 @@ You are encouraged to document your intermediate analysis results for Steps 1-3.
 However, you are only required to document Step 4.
 
 ### Method under test: constructor
-- **TC0: Constructor_nullName_IllegalArgumentException** ( :x: or :white_check_mark: )
+- **TC0: Constructor_nullName_IllegalArgumentException** ( :white_check_mark: )
     - **State of the system**: null
     - **Expected output**: IllegalArgumentException
 
-- **TC1: Constructor_EmptyName_IllegalArgumentException** ( :x: or :white_check_mark: )
+- **TC1: Constructor_EmptyName_IllegalArgumentException** ( :white_check_mark: )
     - **State of the system**: ""
     - **Expected output**: IllegalArgumentException
 
