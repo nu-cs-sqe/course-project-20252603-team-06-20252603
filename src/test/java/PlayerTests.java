@@ -51,4 +51,22 @@ public class PlayerTests {
 
         assertTrue(player.hasDefuse());
     }
+
+    @Test
+    void hasDefuse_TwoCardswithoutDefuse_False() {
+        Player player = new Player("lily");
+
+        Card card1 = EasyMock.createMock(Card.class);
+        EasyMock.expect(card1.getType()).andStubReturn(CardType.TEST_TYPE);
+        EasyMock.replay(card1);
+
+        Card card2 = EasyMock.createMock(Card.class);
+        EasyMock.expect(card2.getType()).andStubReturn(CardType.TEST_TYPE);
+        EasyMock.replay(card2);
+
+        player.addCard(card1);
+        player.addCard(card2);
+
+        assertFalse(player.hasDefuse());
+    }
 }
