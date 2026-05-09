@@ -8,10 +8,10 @@ public class Player {
 
     public Player(String playerName) {
         if (playerName == null) {
-            throw new IllegalArgumentException("player name can not be null");
+            throw new IllegalArgumentException("player name cannot be null");
         }
         if (playerName.isEmpty()) {
-            throw new IllegalArgumentException("player name can not be empty");
+            throw new IllegalArgumentException("player name cannot be empty");
         }
         this.playerName = playerName;
         this.cards = new ArrayList<>();
@@ -23,6 +23,10 @@ public class Player {
     public boolean isAlive() { return isAlive; }
 
     public void addCard(Card card) {
+        if (card == null) {
+            throw new IllegalArgumentException("card cannot be null");
+        }
+
         cards.add(card);
     }
 

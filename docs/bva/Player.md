@@ -48,7 +48,7 @@ However, you are only required to document Step 4.
     - **State of the system**: [Card, Card1], Card
     - **Expected output**: [Card, Card1, Card]
 
-- **TC10: addCard_AddNullCard_IllegalArgumentException** ( :x: or :white_check_mark: )
+- **TC10: addCard_AddNullCard_IllegalArgumentException** ( :white_check_mark: )
     - **State of the system**: [], null
     - **Expected output**: [], IllegalArgumentException
 

@@ -13,7 +13,7 @@ public class PlayerTests {
             new Player(null);
         });
 
-        assertEquals("player name can not be null", exception.getMessage());
+        assertEquals("player name cannot be null", exception.getMessage());
     }
 
     @Test
@@ -22,7 +22,7 @@ public class PlayerTests {
             new Player("");
         });
 
-        assertEquals("player name can not be empty", exception.getMessage());
+        assertEquals("player name cannot be empty", exception.getMessage());
     }
 
     @Test
@@ -139,5 +139,18 @@ public class PlayerTests {
         assertEquals(card1, cards.get(0));
         assertEquals(card2, cards.get(1));
         assertEquals(card1, cards.get(2));
+    }
+
+    @Test
+    void addCard_AddNullCard_IllegalArgumentException() {
+        Player player = new Player("lily");
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            player.addCard(null);
+        });
+
+        assertEquals("card cannot be null", exception.getMessage());
+
+        assertTrue(player.getCards().isEmpty());
     }
 }
