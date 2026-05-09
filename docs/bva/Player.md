@@ -22,7 +22,7 @@ However, you are only required to document Step 4.
     - **State of the system**: []
     - **Expected output**: False
 
-- **TC4: hasDefuse_OneCardwithDefuse_True** ( :x: or :white_check_mark: )
+- **TC4: hasDefuse_OneCardwithDefuse_True** ( :white_check_mark: )
     - **State of the system**: [Defuse]
     - **Expected output**: True
   

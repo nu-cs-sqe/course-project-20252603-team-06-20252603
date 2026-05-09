@@ -22,7 +22,16 @@ public class Player {
     public List<Card> getCards() { return cards; }
     public boolean isAlive() { return isAlive; }
 
+    public void addCard(Card card) {
+        cards.add(card);
+    }
+
     public boolean hasDefuse() {
+        for (Card card : cards) {
+            if (card.getType() == CardType.DEFUSE) {
+                return true;
+            }
+        }
         return false;
     }
 }

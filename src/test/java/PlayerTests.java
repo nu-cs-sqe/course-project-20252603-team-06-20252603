@@ -1,3 +1,4 @@
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,5 +37,18 @@ public class PlayerTests {
         Player player = new Player("lily");
 
         assertFalse(player.hasDefuse());
+    }
+
+    @Test
+    void hasDefuse_OneCardwithDefuse_True() {
+        Player player = new Player("lily");
+
+        Card card = EasyMock.createMock(Card.class);
+        EasyMock.expect(card.getType()).andStubReturn(CardType.DEFUSE);
+        EasyMock.replay(card);
+
+        player.addCard(card);
+
+        assertTrue(player.hasDefuse());
     }
 }
