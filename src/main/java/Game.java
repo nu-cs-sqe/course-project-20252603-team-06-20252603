@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
@@ -17,5 +18,19 @@ public class Game {
         if (playerCount > MAX_PLAYERS) {
             throw new IllegalArgumentException("Cannot initiate game with more than 5 players");
         }
+        this.players = new ArrayList<>();
+        for (int i = 1; i <= playerCount; i++) {
+            players.add(new Player("Player " + i));
+        }
+        this.deck = new Deck();
+        this.currentPlayer = null;
+    }
+
+    public int getPlayerCount() {
+        return players.size();
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
     }
 }

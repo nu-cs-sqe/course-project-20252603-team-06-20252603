@@ -1,3 +1,4 @@
 public enum CardType {
-    TEST_TYPE
+    TEST_TYPE,
+    DEFUSE
 }

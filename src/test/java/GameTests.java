@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTests {
     @Test
@@ -22,6 +22,13 @@ public class GameTests {
         assertThrows(IllegalArgumentException.class, () -> {
             new Game(6);
         });
+    }
+
+    @Test
+    public void constructor_TwoPlayers_CreatesTwoPlayersWithNullCurrentPlayer() {
+        Game game = new Game(2);
+        assertEquals(2, game.getPlayerCount());
+        assertNull(game.getCurrentPlayer());
     }
 
 }
