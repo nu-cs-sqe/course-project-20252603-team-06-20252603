@@ -14,11 +14,11 @@
   - **State of the system**: playerCount = 2
   - **Expected output**: players = [Player, Player], deck = [], currentPlayer = null
 
-- constructor_ThreePlayers_CreatesThreePlayers
+- constructor_ThreePlayers_CreatesThreePlayers ( :white_check_mark: )
   - **State of the system**: playerCount = 3
   - **Expected output**: players = [Player, Player, Player], deck = [], currentPlayer = null
 
-- constructor_FourPlayers_CreatesFourPlayers
+- constructor_FourPlayers_CreatesFourPlayers ( :white_check_mark: )
   - **State of the system**: playerCount = 4
   - **Expected output**: players = [Player, Player, Player, Player], deck = [], currentPlayer = null
 
