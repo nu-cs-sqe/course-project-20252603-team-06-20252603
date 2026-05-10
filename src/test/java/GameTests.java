@@ -31,4 +31,8 @@ public class GameTests {
         assertNull(game.getCurrentPlayer());
     }
 
+    @Test
+    public void constructor_ThreePlayers_CreatesThreePlayers() {
+        assertEquals(3, new Game(3).getPlayerCount());
+    }
 }
