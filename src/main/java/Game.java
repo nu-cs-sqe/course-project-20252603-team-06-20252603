@@ -26,6 +26,26 @@ public class Game {
         this.currentPlayer = null;
     }
 
+    // Package-private: only visible within the same package, used to inject mocks in tests
+    Game(Deck deck, List<Player> players) {
+        this.deck = deck;
+        this.players = new ArrayList<>(players);
+        this.currentPlayer = null;
+    }
+
+    public void setup() {
+        int cardsNeeded = players.size() * CARDS_PER_PLAYER;
+        if (deck.count() < cardsNeeded) {
+            throw new IllegalStateException("Not enough cards in deck to deal starting hands");
+        }
+        for (Player player : players) {
+            player.addCard(deck.drawDefuse());
+            for (int i = 0; i < CARDS_PER_PLAYER; i++) {
+                player.addCard(deck.draw());
+            }
+        }
+    }
+
     public int getPlayerCount() {
         return players.size();
     }

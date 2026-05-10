@@ -32,7 +32,7 @@
 
 ### Method under test: setup()
 
-- setup_TwoPlayers_CorrectCardDistribution
+- setup_TwoPlayers_CorrectCardDistribution ( :white_check_mark: )
   - **State of the system**: playerCount = 2, deck initialized with standard playing cards (excluding kittens and initial defuses)
   - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 14. 1 Exploding Kitten inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
 
