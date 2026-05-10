@@ -40,4 +40,9 @@ public class GameTests {
     public void constructor_FourPlayers_CreatesFourPlayers() {
         assertEquals(4, new Game(4).getPlayerCount());
     }
+
+    @Test
+    public void constructor_FivePlayers_CreatesFivePlayers() {
+        assertEquals(5, new Game(5).getPlayerCount());
+    }
 }
