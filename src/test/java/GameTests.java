@@ -119,4 +119,52 @@ public class GameTests {
 
         EasyMock.verify(mockDeck, mockP1, mockP2, mockP3);
     }
+
+    @Test
+    public void setup_FivePlayers_DealsOneDefuseAndSevenCardsToEachPlayer() {
+        Deck mockDeck = EasyMock.createMock(Deck.class);
+        Player mockP1 = EasyMock.createMock(Player.class);
+        Player mockP2 = EasyMock.createMock(Player.class);
+        Player mockP3 = EasyMock.createMock(Player.class);
+        Player mockP4 = EasyMock.createMock(Player.class);
+        Player mockP5 = EasyMock.createMock(Player.class);
+        Card mockDefuse = EasyMock.createMock(Card.class);
+        Card mockCard = EasyMock.createMock(Card.class);
+
+        EasyMock.expect(mockDeck.count()).andStubReturn(100);
+        EasyMock.expect(mockDeck.drawDefuse()).andReturn(mockDefuse).times(5);
+        EasyMock.expect(mockDeck.draw()).andReturn(mockCard).times(35);
+
+        mockP1.addCard(mockDefuse);
+        EasyMock.expectLastCall().once();
+        mockP1.addCard(mockCard);
+        EasyMock.expectLastCall().times(7);
+        mockP2.addCard(mockDefuse);
+        EasyMock.expectLastCall().once();
+        mockP2.addCard(mockCard);
+        EasyMock.expectLastCall().times(7);
+        mockP3.addCard(mockDefuse);
+        EasyMock.expectLastCall().once();
+        mockP3.addCard(mockCard);
+        EasyMock.expectLastCall().times(7);
+        mockP4.addCard(mockDefuse);
+        EasyMock.expectLastCall().once();
+        mockP4.addCard(mockCard);
+        EasyMock.expectLastCall().times(7);
+        mockP5.addCard(mockDefuse);
+        EasyMock.expectLastCall().once();
+        mockP5.addCard(mockCard);
+        EasyMock.expectLastCall().times(7);
+
+        mockDeck.insert(EasyMock.anyObject(Card.class));
+        EasyMock.expectLastCall().anyTimes();
+        mockDeck.shuffle();
+        EasyMock.expectLastCall().anyTimes();
+
+        EasyMock.replay(mockDeck, mockP1, mockP2, mockP3, mockP4, mockP5, mockDefuse, mockCard);
+
+        new Game(mockDeck, List.of(mockP1, mockP2, mockP3, mockP4, mockP5)).setup();
+
+        EasyMock.verify(mockDeck, mockP1, mockP2, mockP3, mockP4, mockP5);
+    }
 }
