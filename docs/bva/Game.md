@@ -48,8 +48,8 @@
   - **State of the system**: playerCount = 5, deck initialized with standard playing cards (excluding kittens and initial defuses)
   - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 35. 4 Exploding Kittens inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
 
-- setup_InsufficientDeckSize_ThrowsIllegalStateException
-  - **State of the system**: playerCount = 5, initial deck = 40 random cards total
+- setup_InsufficientDeckSize_ThrowsIllegalStateException ( :white_check_mark: ) 
+  - **State of the system**: playerCount = 5, initial deck = 34 random cards total
   - **Expected output**: IllegalStateException; "Not enough cards in deck to deal starting hands"
 
 ### Method under test: runGame()

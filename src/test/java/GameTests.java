@@ -167,4 +167,22 @@ public class GameTests {
 
         EasyMock.verify(mockDeck, mockP1, mockP2, mockP3, mockP4, mockP5);
     }
+
+    @Test
+    public void setup_FivePlayersButNotEnoughCards_IllegalStateException() {
+        Deck mockDeck = EasyMock.createMock(Deck.class);
+        Player mockP1 = EasyMock.createMock(Player.class);
+        Player mockP2 = EasyMock.createMock(Player.class);
+        Player mockP3 = EasyMock.createMock(Player.class);
+        Player mockP4 = EasyMock.createMock(Player.class);
+        Player mockP5 = EasyMock.createMock(Player.class);
+
+        EasyMock.expect(mockDeck.count()).andStubReturn(34);
+
+        EasyMock.replay(mockDeck);
+
+        Exception exception = assertThrows(IllegalStateException.class, () -> {
+            new Game(mockDeck, List.of(mockP1, mockP2, mockP3, mockP4, mockP5)).setup();
+        });
+    }
 }
