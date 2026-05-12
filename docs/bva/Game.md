@@ -54,6 +54,10 @@
 
 ### Method under test: runGame()
 
+- runGame_TwoPlayers_FirstPlayerTakesTurn ( :white_check_mark: )
+  - **State of the system**: playerCount = 2, Player 1 takes a turn, then Player 2 takes a turn.
+    - **Expected output**: Both players still alive. 
+
 - runGame_TwoPlayers_OneDiesImmediately_TerminatesAndDeclaresWinner
   - **State of the system**: playerCount = 2, Player 1 draws an Exploding Kitten without a Defuse
   - **Expected output**: Player 1 status = DEAD. Game loop terminates. Player 2 declared winner

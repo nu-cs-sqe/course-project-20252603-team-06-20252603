@@ -185,4 +185,51 @@ public class GameTests {
             new Game(mockDeck, List.of(mockP1, mockP2, mockP3, mockP4, mockP5)).setup();
         });
     }
+
+    @Test
+    public void runGame_TwoPlayers_FirstPlayerTakesTurn() {
+        Deck mockDeck = EasyMock.createMock(Deck.class);
+        Player mockP1 = EasyMock.createMock(Player.class);
+        Player mockP2 = EasyMock.createMock(Player.class);
+        Card mockDefuse = EasyMock.createMock(Card.class);
+        Card mockCard = EasyMock.createMock(Card.class);
+        Game.Shuffler mockShuffler = EasyMock.createMock(Game.Shuffler.class);
+
+        EasyMock.expect(mockDeck.count()).andStubReturn(100);
+        EasyMock.expect(mockDeck.drawDefuse()).andReturn(mockDefuse).times(2);
+        EasyMock.expect(mockDeck.draw()).andReturn(mockCard).times(14);
+
+        mockP1.addCard(mockDefuse);
+        EasyMock.expectLastCall().once();
+        mockP1.addCard(mockCard);
+        EasyMock.expectLastCall().times(7);
+        mockP2.addCard(mockDefuse);
+        EasyMock.expectLastCall().once();
+        mockP2.addCard(mockCard);
+        EasyMock.expectLastCall().times(7);
+
+        mockDeck.insert(EasyMock.anyObject(Card.class));
+        EasyMock.expectLastCall().anyTimes();
+        mockDeck.shuffle();
+        EasyMock.expectLastCall().anyTimes();
+
+        mockShuffler.shuffle(List.of(mockP1, mockP2));
+        EasyMock.expectLastCall();
+        EasyMock.expect(mockP1.isAlive()).andReturn(true);
+        mockP1.takeTurn();
+        EasyMock.expectLastCall();
+        EasyMock.expect(mockP2.isAlive()).andReturn(true);
+        mockP2.takeTurn();
+        EasyMock.expectLastCall();
+
+        EasyMock.replay(mockDeck, mockP1, mockP2, mockDefuse, mockCard, mockShuffler);
+
+        Game game = new Game(mockDeck, List.of(mockP1, mockP2));
+        game.setup();
+        game.runGame(mockShuffler);
+
+        EasyMock.verify(mockDeck, mockP1, mockP2, mockShuffler);
+
+
+    }
 }
