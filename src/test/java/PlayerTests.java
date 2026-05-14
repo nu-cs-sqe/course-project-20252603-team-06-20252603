@@ -161,4 +161,14 @@ public class PlayerTests {
         player.setLife(false);
         assertFalse(player.isAlive());
     }
+
+    @Test
+    void setLife_DeadtoAlive_IllegalStateException() {
+        Player player = new Player("lily");
+
+        player.setLife(false);
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
+            player.setLife(true);
+        });
+    }
 }

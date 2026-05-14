@@ -57,7 +57,7 @@ However, you are only required to document Step 4.
     - **State of the system**: isAlive: True, input: False
     - **Expected output**: isAlive: False
 
-- **TC12: setLife_DeadtoAlive_IllegalStateException** ( :x: or :white_check_mark: )
+- **TC12: setLife_DeadtoAlive_IllegalStateException** ( :white_check_mark: )
     - **State of the system**: isAlive: False, input: True
     - **Expected output**: IllegalStateException
 

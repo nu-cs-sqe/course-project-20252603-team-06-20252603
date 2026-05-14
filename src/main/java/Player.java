@@ -40,6 +40,10 @@ public class Player {
     }
 
     public void setLife(boolean life) {
+        if (life) {
+            throw new IllegalStateException("cannot resurrect a dead player");
+        }
+
         this.isAlive = false;
     }
 }
