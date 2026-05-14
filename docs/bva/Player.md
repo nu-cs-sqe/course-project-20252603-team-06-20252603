@@ -53,7 +53,7 @@ However, you are only required to document Step 4.
     - **Expected output**: [], IllegalArgumentException
 
 - ### Method under test: setLife()
-- **TC11: setLife_AlivetoDead_Success** ( :x: or :white_check_mark: )
+- **TC11: setLife_AlivetoDead_Success** ( :white_check_mark: )
     - **State of the system**: isAlive: True, input: False
     - **Expected output**: isAlive: False
 

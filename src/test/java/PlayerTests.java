@@ -153,4 +153,12 @@ public class PlayerTests {
 
         assertTrue(player.getCards().isEmpty());
     }
+
+    @Test
+    void setLife_AlivetoDead_Success() {
+        Player player = new Player("lily");
+
+        player.setLife(false);
+        assertFalse(player.isAlive());
+    }
 }
