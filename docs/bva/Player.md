@@ -61,7 +61,7 @@ However, you are only required to document Step 4.
     - **State of the system**: isAlive: False, input: True
     - **Expected output**: IllegalStateException
 
-- **TC13: setLife_AlivetoAlive_SucessNoChange** ( :x: or :white_check_mark: )
+- **TC13: setLife_AlivetoAlive_SucessNoChange** ( :white_check_mark: )
   - **State of the system**: isAlive: True, input: True
   - **Expected output**: isAlive: True
 

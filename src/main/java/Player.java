@@ -39,11 +39,11 @@ public class Player {
         return false;
     }
 
-    public void setLife(boolean life) {
-        if (life) {
+    public void setLife(boolean alive) {
+        if (alive && !isAlive) {
             throw new IllegalStateException("cannot resurrect a dead player");
         }
 
-        this.isAlive = false;
+        this.isAlive = alive;
     }
 }

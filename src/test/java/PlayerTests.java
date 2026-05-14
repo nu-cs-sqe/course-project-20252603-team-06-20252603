@@ -171,4 +171,12 @@ public class PlayerTests {
             player.setLife(true);
         });
     }
+
+    @Test
+    void setLife_AlivetoAlive_SucessNoChange() {
+        Player player = new Player("lily");
+
+        player.setLife(true);
+        assertTrue(player.isAlive());
+    }
 }
