@@ -28,6 +28,16 @@
 4. [10%] Sharon: Player class
 5. [10%] Audrey & Chris: Game class
 
+# Week 7 (05/10/2026-05/17/2026) (You can change the format to whatever the team likes better)
+**Planning and Progress Tracking**:
+1. [finished] Everyone: Play Exploding Kittens
+2. [finished] Dani: Card class setup
+3. [40%] Abby: Deck class setup
+4. [70%] Sharon: Player class setup
+5. [70%] Audrey & Chris: Game class setup
+6. [0%] Everyone: controller class for cards
+
+
 # Week X (XX/XX/2026-XX/XX/2026) TEMPLATE (You can change the format to whatever the team likes better)
 **Planning and Progress Tracking**:
 1. [done] Person: Task (Links to PR)
