@@ -50,5 +50,8 @@ public class CardTests {
         assertNotNull(card.getAction());
         assertEquals(action, card.getAction());
     }
+
+    //moving onto play tests
+
 }
 
