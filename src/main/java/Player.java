@@ -38,4 +38,9 @@ public class Player {
         }
         return false;
     }
+
+    public void takeTurn() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
 }
