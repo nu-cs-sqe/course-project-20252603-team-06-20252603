@@ -84,3 +84,27 @@ output: isalive, hand
 - **TC17: takeTurn_ExplodingKittenNoDefuse_PlayerDies** ( :x: or :white_check_mark: )
     - **State of the system**: hasdefuse: False, card: exploding kitten, isalive: true
     - **Expected output**: isalive: false
+
+- ### Method under test: removeCard()
+input: card (pointer), cards (list)
+output: cards (list)
+
+- **TC18: removeCard_NormalCardOneCard_CardRemoved** ( :x: or :white_check_mark: )
+    - **State of the system**: card: TEST, cards: [TEST]
+    - **Expected output**: cards: []
+
+- **TC19: removeCard_NormalCardTwoCards_CardRemoved** ( :x: or :white_check_mark: )
+    - **State of the system**: card: TEST, cards: [TEST, TEST]
+    - **Expected output**: cards: [TEST]
+
+- **TC20: removeCard_nullCard_IllegalStateException** ( :x: or :white_check_mark: )
+    - **State of the system**: card: null, cards: [TEST]
+    - **Expected output**: IllegalStateException
+
+- **TC21: removeCard_noCards_IllegalStateException** ( :x: or :white_check_mark: )
+    - **State of the system**: card: TEST, cards: []
+    - **Expected output**: IllegalStateException
+
+- **TC22: removeCard_cardNotInCards_IllegalArgumentException** ( :x: or :white_check_mark: )
+    - **State of the system**: card: TEST, cards: [DEFUSE]
+    - **Expected output**: IllegalArgumentException
