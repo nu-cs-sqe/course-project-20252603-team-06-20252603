@@ -1,3 +1,4 @@
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -106,6 +107,19 @@ public class DeckTests {
         assertEquals(34, original_size);
         assertEquals(34, shuffled_size);
         assertEquals(original_cards, shuffled_cards);
+    }
+
+    @Test
+    void insertAtIndex0(){
+        Deck deck = new Deck();
+        int initialSize = deck.count();
+        ArrayList<Card> cards = deck.getCards();
+
+        Card mockCard = EasyMock.createMock(Card.class);
+        deck.insert(mockCard, 0);
+
+        assertEquals(initialSize + 1, deck.count());
+        assertEquals(mockCard, cards.get(0));
     }
 
 }

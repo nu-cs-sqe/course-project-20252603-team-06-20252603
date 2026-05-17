@@ -43,6 +43,10 @@ public class Deck {
         Collections.shuffle(this.cards);
     }
 
+    public void insert(Card card, int location){
+        this.cards.add(location, card);
+    }
+
     public int count(){
         return this.cards.size();
     }

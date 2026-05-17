@@ -34,7 +34,7 @@
     - **Expected Output**: Deck.cards still contains the same 34 cards with no duplicates and no cards lost
 
 ### Method under test: insert(card, location)
-- **TC6: Insert at index 0 ** ( :x: or :white_check_mark: )
+- **TC6: Insert at index 0 ** ( :white_check_mark: )
     - **State of the system**: Deck has N cards; valid card object provided; location = 0
     - **Expected output**: Card is inserted at the front of the deck; deck size becomes N+1
 
