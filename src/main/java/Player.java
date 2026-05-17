@@ -46,4 +46,8 @@ public class Player {
 
         this.isAlive = alive;
     }
+
+    public void takeTurn(Card card) {
+        this.cards.add(card);
+    }
 }

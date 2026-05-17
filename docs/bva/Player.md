@@ -69,7 +69,7 @@ However, you are only required to document Step 4.
 input: hasdefuse, isalive, new card (Exploding kitten or other)
 output: isalive, hand
 
-- **TC14: takeTurn_NormalCard_CardAddedtoHand** ( :x: or :white_check_mark: )
+- **TC14: takeTurn_NormalCard_CardAddedtoHand** ( :white_check_mark: )
     - **State of the system**: hasdefuse: false, card: normal, isalive: true
     - **Expected output**: hasdefuse: false, isalive: true, hand: has new card
 
