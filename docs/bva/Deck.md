@@ -15,7 +15,7 @@
   - **State of the system**: 
   - **Expected output**: A new deck object with no cards
 
-- **TC2: One Card Constructor** ( :x: or :white_check_mark: )
+- **TC2: One Card Constructor** ( :white_check_mark: )
   - **State of the system**:
   - **Expected output**: A new deck object with one CAT_CARD_1 card
 

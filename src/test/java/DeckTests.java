@@ -54,4 +54,11 @@ public class DeckTests {
         assertEquals(0, cards.size());
     }
 
+    @Test
+    void oneCardConstructor(){
+        Deck deck = new Deck(1);
+        ArrayList<Card> cards = deck.getCards();
+
+        assertEquals(1, cards.size());
+    }
 }
