@@ -65,26 +65,6 @@ However, you are only required to document Step 4.
   - **State of the system**: isAlive: True, input: True
   - **Expected output**: isAlive: True
 
-- ### Method under test: takeTurn()
-input: hasdefuse, isalive, new card (Exploding kitten or other)
-output: isalive, hand
-
-- **TC14: takeTurn_NormalCard_CardAddedtoHand** ( :white_check_mark: )
-    - **State of the system**: hasdefuse: false, card: normal, isalive: true
-    - **Expected output**: hasdefuse: false, isalive: true, hand: has new card
-
-- **TC15: takeTurn_ExplodingKittenHas1Defuse_PlayerLives** ( :x: or :white_check_mark: )
-    - **State of the system**: hasdefuse: True (1), card: exploding kitten, isalive: true
-    - **Expected output**: isalive: true, defuse card used (hasdefuse: false)
-
-- **TC16: takeTurn_ExplodingKittenHas2Defuse_PlayerLives** ( :x: or :white_check_mark: )
-    - **State of the system**: hasdefuse: True (2), card: exploding kitten, isalive: true
-    - **Expected output**: isalive: true, defuse card used (hasdefuse: true) (1)
-
-- **TC17: takeTurn_ExplodingKittenNoDefuse_PlayerDies** ( :x: or :white_check_mark: )
-    - **State of the system**: hasdefuse: False, card: exploding kitten, isalive: true
-    - **Expected output**: isalive: false
-
 - ### Method under test: removeCard()
 input: card (pointer), cards (list)
 output: cards (list)
@@ -108,3 +88,31 @@ output: cards (list)
 - **TC22: removeCard_cardNotInCards_IllegalArgumentException** ( :x: or :white_check_mark: )
     - **State of the system**: card: TEST, cards: [DEFUSE]
     - **Expected output**: IllegalArgumentException
+
+- ### Method under test: takeTurn()
+input: card (pointer) (EXPLODING KITTEN or other), hand (list)
+output: isAlive (boolean), hand (list)
+
+- **TC14: takeTurn_NormalCardNoCardsInHand_CardAddedtoHand** ( :x: or :white_check_mark: )
+    - **State of the system**: card: TEST, hand: []
+    - **Expected output**: isAlive: true, hand: [TEST]
+
+- **TC14: takeTurn_NormalCardOneCardInHand_CardAddedtoHand** ( :x: or :white_check_mark: )
+    - **State of the system**: card: TEST, hand: [TEST]
+    - **Expected output**: isAlive: true, hand: [TEST, TEST]
+
+- **TC15: takeTurn_ExplodingKittenHas1Defuse_PlayerLives** ( :x: or :white_check_mark: )
+    - **State of the system**: card: EXPLODING KITTEN, hand: [DEFUSE]
+    - **Expected output**: isAlive: true, hand: []
+
+- **TC16: takeTurn_ExplodingKittenHas2Defuse_PlayerLives** ( :x: or :white_check_mark: )
+    - **State of the system**: card: EXPLODING KITTEN, hand: [DEFUSE, DEFUSE]
+    - **Expected output**: isAlive: true, hand: [DEFUSE]
+
+- **TC17: takeTurn_ExplodingKittenNoDefuse_PlayerDies** ( :x: or :white_check_mark: )
+    - **State of the system**: card: EXPLODING KITTEN, hand: []
+    - **Expected output**: isAlive: false, hand: []
+
+- **TC20: takeTurn_nullCard_IllegalStateException** ( :x: or :white_check_mark: )
+    - **State of the system**: card: null, hand: []
+    - **Expected output**: IllegalStateException
