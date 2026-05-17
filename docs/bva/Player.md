@@ -93,7 +93,7 @@ output: cards (list)
 input: card (pointer) (EXPLODING KITTEN or other), hand (list)
 output: isAlive (boolean), hand (list)
 
-- **TC14: takeTurn_NormalCardNoCardsInHand_CardAddedtoHand** ( :x: or :white_check_mark: )
+- **TC14: takeTurn_NormalCardNoCardsInHand_CardAddedtoHand** ( :white_check_mark: )
     - **State of the system**: card: TEST, hand: []
     - **Expected output**: isAlive: true, hand: [TEST]
 

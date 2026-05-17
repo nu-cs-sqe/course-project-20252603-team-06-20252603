@@ -260,25 +260,17 @@ public class PlayerTests {
     }
 
     @Test
-    void takeTurn_NormalCard_CardAddedtoHand() {
+    void takeTurn_NormalCardNoCardsInHand_CardAddedtoHand() {
         Player player = new Player("lily");
-        Card defuseCard = EasyMock.createMock(Card.class);
-        EasyMock.expect(defuseCard.getType()).andStubReturn(CardType.DEFUSE);
-        EasyMock.replay(defuseCard);
 
-        Card normalCard = EasyMock.createMock(Card.class);
-        EasyMock.expect(normalCard.getType()).andStubReturn(CardType.TEST_TYPE);
-        EasyMock.replay(normalCard);
+        Card card = EasyMock.createMock(Card.class);
+        EasyMock.expect(card.getType()).andStubReturn(CardType.TEST_TYPE);
+        EasyMock.replay(card);
 
-        player.addCard(defuseCard);
+        player.takeTurn(card);
 
-        player.takeTurn(normalCard);
-
-        assertTrue(player.getCards().contains(normalCard));
-        assertTrue(player.hasDefuse());
+        assertEquals(1, player.getCards().size());
+        assertTrue(player.getCards().contains(card));
         assertTrue(player.isAlive());
-
-        assertEquals(2, player.getCards().size());
-        assertEquals(normalCard, player.getCards().get(1));
     }
 }
