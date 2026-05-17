@@ -20,94 +20,90 @@
     - **State of the system**: Deck.cards contains exactly 1 card
     - **Expected Output**: Deck.cards still contains the same 1 card, no exception thrown
 
-- **TC4: Two Cards** ( :x: or :white_check_mark: )
-    - **State of the system**: Deck.cards contains exactly 2 cards
-    - **Expected Output**: Deck.cards still contains the same 2 cards with no duplicates
-
-- **TC5: Standard Deck** ( :x: or :white_check_mark: )
+- **TC4: Standard Deck** ( :x: or :white_check_mark: )
     - **State of the system**: Deck.cards contains 34 cards (post-constructor)
     - **Expected Output**: Deck.cards still contains the same 34 cards with no duplicates and no cards lost
 
-- **TC6: Full Game Deck** ( :x: or :white_check_mark: )
+- **TC5: Full Game Deck** ( :x: or :white_check_mark: )
     - **State of the system**: Deck.cards contains 34 cards plus Exploding Kittens inserted
     - **Expected Output**: Deck.cards still contains the same cards with no duplicates and no cards lost
 
 ### Method under test: insert(card, location)
-- **TC7: Insert at index 0 ** ( :x: or :white_check_mark: )
+- **TC6: Insert at index 0 ** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; valid card object provided; location = 0
     - **Expected output**: Card is inserted at the front of the deck; deck size becomes N+1
 
-- **TC8: Insert at index 1 (just above minimum boundary)** ( :x: or :white_check_mark: )
+- **TC7: Insert at index 1 (just above minimum boundary)** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; valid card object provided; location = 1
     - **Expected output**: Card is inserted at index 1; deck size becomes N+1
 
-- **TC9: Insert at index N (last valid index / maximum boundary)** ( :x: or :white_check_mark: )
+- **TC8: Insert at index N ** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; valid card object provided; location = N (end of list)
     - **Expected output**: Card is appended at index N+1; deck size becomes N+1
 
-- **TC10: Insert at index N-1 (just below maximum boundary)** ( :x: or :white_check_mark: )
+- **TC9: Insert at index N-1 ** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; valid card object provided; location = N-1
     - **Expected output**: Card is inserted at index N-1; deck size becomes N+1
 
-- **TC11: Insert into an empty deck** ( :x: or :white_check_mark: )
+- **TC10: Insert into an empty deck** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has 0 cards; valid card object provided; location = 0
     - **Expected output**: Card is inserted as the only element; deck size becomes 1
 
-- **TC12: Insert a null/None card at a valid location** ( :x: or :white_check_mark: )
+- **TC11: Insert a null/None card at a valid location** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; card = null/None; location = 0
     - **Expected output**: Raises a `ValueError`; deck remains unchanged
 
 ### Method under test: insert(card, location)
-- **TC13: Discard existing card** ( :x: or :white_check_mark: )
+- **TC12: Discard existing card** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; card is present in the deck
     - **Expected output**: Card is removed from the deck; deck size becomes N-1
 
-- **TC14: Discard the only card in the deck** ( :x: or :white_check_mark: )
+- **TC13: Discard the only card in the deck** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has exactly 1 card; card is that card
     - **Expected output**: Card is removed; deck size becomes 0
 
-- **TC15: Discard from an empty deck** (:x: or :white_check_mark: )
+- **TC14: Discard from an empty deck** (:x: or :white_check_mark: )
     - **State of the system**: Deck has 0 cards; any card provided
     - **Expected output**: Raises a `ValueError'; deck remains empty
 
-- **TC16: Discard the first card in the deck** ( :x: or :white_check_mark: )
+- **TC15: Discard the first card in the deck** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; card is at index 0
     - **Expected output**: Card is removed from the front; deck size becomes N-1
 
-- **TC17: Discard the last card in the deck (maximum index boundary)** ( :x: or :white_check_mark: )
+- **TC16: Discard the last card in the deck (maximum index boundary)** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; card is at index N-1
     - **Expected output**: Card is removed from the back; deck size becomes N-1
 
-- **TC18: Discard a card not present in the deck** ( :x: or :white_check_mark: )
+- **TC17: Discard a card not present in the deck** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; provided card does not exist in the deck
     - **Expected output**: Raises a `ValueError`; deck remains unchanged
 
-- **TC19: Discard a null/None card** ( :x: or :white_check_mark: )
+- **TC18: Discard a null/None card** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; card = null/None
     - **Expected output**: Raises a `ValueError`; deck remains unchanged
 
 ### Method under test: peek()
-- **TC20: Peek at a deck with multiple cards** ( :x: or :white_check_mark: )
+- **TC19: Peek at a deck with multiple cards** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards
     - **Expected output**: Returns a list of all N cards; deck remains unchanged
 
-- **TC21: Peek at a deck with exactly one card** ( :x: or :white_check_mark: )
+- **TC20: Peek at a deck with exactly one card** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has exactly 1 card
     - **Expected output**: Returns a list containing that 1 card; deck remains unchanged
 
-- **TC22: Peek at an empty deck** ( :x: or :white_check_mark: )
+- **TC21: Peek at an empty deck** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has 0 cards
     - **Expected output**: Returns an empty list; deck remains unchanged
 
 ### Method under test: count()
-- **TC23: Count an empty deck** ( :x: or :white_check_mark: )
+- **TC22: Count an empty deck** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has 0 cards
     - **Expected output**: Returns 0
 
-- **TC24: Count a deck with exactly one card** ( :x: or :white_check_mark: )
+- **TC23: Count a deck with exactly one card** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has exactly 1 card
     - **Expected output**: Returns 1
 
-- **TC25: Count a deck with exactly two cards** ( :x: or :white_check_mark: )
+- **TC24: Count a deck with exactly two cards** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has exactly 2 cards
     - **Expected output**: Returns 2

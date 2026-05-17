@@ -1,0 +1,36 @@
+import java.util.ArrayList;
+import java.util.Map;
+
+public class Deck {
+    private final ArrayList<Card> cards;
+    private static final Map<CardType, Integer> card_counts = Map.of(
+            // Confirm features w/team
+            CardType.ATTACK, 3,
+            CardType.SKIP, 3,
+            CardType.SEE_THE_FUTURE, 4,
+            CardType.SHUFFLE, 4,
+            CardType.NOPE, 4,
+            CardType.CAT_CARD_1, 4,
+            CardType.CAT_CARD_2, 4,
+            CardType.CAT_CARD_3, 4,
+            CardType.CAT_CARD_4, 4
+    );
+
+    public Deck(){
+        this.cards = new ArrayList<>();
+
+        for (Map.Entry<CardType, Integer> entry : card_counts.entrySet()) {
+            for (int i = 0; i < entry.getValue(); i++) {
+                cards.add(new Card(entry.getKey(),new NoAction()));
+            }
+        }
+    }
+
+    ArrayList<Card> peek(){ // change name
+        return this.cards;
+    }
+
+
+    // shuffle here, Collections.shuffle does it for me
+    // for testing, just make sure all the same cards are still there
+}
