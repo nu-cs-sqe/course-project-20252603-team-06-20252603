@@ -273,4 +273,26 @@ public class PlayerTests {
         assertTrue(player.getCards().contains(card));
         assertTrue(player.isAlive());
     }
+
+    @Test
+    void takeTurn_NormalCardOneCardInHand_CardAddedtoHand() {
+        Player player = new Player("lily");
+
+        Card card1 = EasyMock.createMock(Card.class);
+        EasyMock.expect(card1.getType()).andStubReturn(CardType.TEST_TYPE);
+
+        Card card2 = EasyMock.createMock(Card.class);
+        EasyMock.expect(card2.getType()).andStubReturn(CardType.TEST_TYPE);
+
+        EasyMock.replay(card1, card2);
+
+        player.addCard(card1);
+
+        player.takeTurn(card2);
+
+        assertEquals(2, player.getCards().size());
+        assertTrue(player.getCards().contains(card1));
+        assertTrue(player.getCards().contains(card2));
+        assertTrue(player.isAlive());
+    }
 }

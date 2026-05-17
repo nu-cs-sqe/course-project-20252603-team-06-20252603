@@ -97,7 +97,7 @@ output: isAlive (boolean), hand (list)
     - **State of the system**: card: TEST, hand: []
     - **Expected output**: isAlive: true, hand: [TEST]
 
-- **TC14: takeTurn_NormalCardOneCardInHand_CardAddedtoHand** ( :x: or :white_check_mark: )
+- **TC14: takeTurn_NormalCardOneCardInHand_CardAddedtoHand** ( :white_check_mark: )
     - **State of the system**: card: TEST, hand: [TEST]
     - **Expected output**: isAlive: true, hand: [TEST, TEST]
 
