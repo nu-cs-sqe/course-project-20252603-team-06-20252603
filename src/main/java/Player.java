@@ -51,6 +51,9 @@ public class Player {
         if (card == null) {
             throw new IllegalArgumentException("card cannot be null");
         }
+        if (this.cards.isEmpty()) {
+            throw new IllegalStateException("cannot remove from empty hand");
+        }
 
         this.cards.remove(card);
     }

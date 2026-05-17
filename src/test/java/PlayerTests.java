@@ -226,6 +226,21 @@ public class PlayerTests {
     }
 
     @Test
+    void removeCard_noCards_IllegalStateException() {
+        Player player = new Player("lily");
+
+        Card card = EasyMock.createMock(Card.class);
+        EasyMock.expect(card.getType()).andStubReturn(CardType.TEST_TYPE);
+        EasyMock.replay(card);
+
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
+            player.removeCard(card);
+        });
+
+        assertEquals("cannot remove from empty hand", exception.getMessage());
+    }
+
+    @Test
     void takeTurn_NormalCard_CardAddedtoHand() {
         Player player = new Player("lily");
         Card defuseCard = EasyMock.createMock(Card.class);
