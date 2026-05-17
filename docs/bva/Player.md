@@ -53,8 +53,34 @@ However, you are only required to document Step 4.
     - **Expected output**: [], IllegalArgumentException
 
 - ### Method under test: setLife()
-- TODO: do when implementing one move of game
+- **TC11: setLife_AlivetoDead_Success** ( :white_check_mark: )
+    - **State of the system**: isAlive: True, input: False
+    - **Expected output**: isAlive: False
+
+- **TC12: setLife_DeadtoAlive_IllegalStateException** ( :white_check_mark: )
+    - **State of the system**: isAlive: False, input: True
+    - **Expected output**: IllegalStateException
+
+- **TC13: setLife_AlivetoAlive_SucessNoChange** ( :white_check_mark: )
+  - **State of the system**: isAlive: True, input: True
+  - **Expected output**: isAlive: True
 
 - ### Method under test: takeTurn()
-- TODO: do when implementing one move of game
+input: hasdefuse, isalive, new card (Exploding kitten or other)
+output: isalive, hand
 
+- **TC14: takeTurn_NormalCard_CardAddedtoHand** ( :white_check_mark: )
+    - **State of the system**: hasdefuse: false, card: normal, isalive: true
+    - **Expected output**: hasdefuse: false, isalive: true, hand: has new card
+
+- **TC15: takeTurn_ExplodingKittenHas1Defuse_PlayerLives** ( :x: or :white_check_mark: )
+    - **State of the system**: hasdefuse: True (1), card: exploding kitten, isalive: true
+    - **Expected output**: isalive: true, defuse card used (hasdefuse: false)
+
+- **TC16: takeTurn_ExplodingKittenHas2Defuse_PlayerLives** ( :x: or :white_check_mark: )
+    - **State of the system**: hasdefuse: True (2), card: exploding kitten, isalive: true
+    - **Expected output**: isalive: true, defuse card used (hasdefuse: true) (1)
+
+- **TC17: takeTurn_ExplodingKittenNoDefuse_PlayerDies** ( :x: or :white_check_mark: )
+    - **State of the system**: hasdefuse: False, card: exploding kitten, isalive: true
+    - **Expected output**: isalive: false

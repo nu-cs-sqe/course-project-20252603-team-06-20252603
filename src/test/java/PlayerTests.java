@@ -153,4 +153,53 @@ public class PlayerTests {
 
         assertTrue(player.getCards().isEmpty());
     }
+
+    @Test
+    void setLife_AlivetoDead_Success() {
+        Player player = new Player("lily");
+
+        player.setLife(false);
+        assertFalse(player.isAlive());
+    }
+
+    @Test
+    void setLife_DeadtoAlive_IllegalStateException() {
+        Player player = new Player("lily");
+
+        player.setLife(false);
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
+            player.setLife(true);
+        });
+    }
+
+    @Test
+    void setLife_AlivetoAlive_SucessNoChange() {
+        Player player = new Player("lily");
+
+        player.setLife(true);
+        assertTrue(player.isAlive());
+    }
+
+    @Test
+    void takeTurn_NormalCard_CardAddedtoHand() {
+        Player player = new Player("lily");
+        Card defuseCard = EasyMock.createMock(Card.class);
+        EasyMock.expect(defuseCard.getType()).andStubReturn(CardType.DEFUSE);
+        EasyMock.replay(defuseCard);
+
+        Card normalCard = EasyMock.createMock(Card.class);
+        EasyMock.expect(normalCard.getType()).andStubReturn(CardType.TEST_TYPE);
+        EasyMock.replay(normalCard);
+
+        player.addCard(defuseCard);
+
+        player.takeTurn(normalCard);
+
+        assertTrue(player.getCards().contains(normalCard));
+        assertTrue(player.hasDefuse());
+        assertTrue(player.isAlive());
+
+        assertEquals(2, player.getCards().size());
+        assertEquals(normalCard, player.getCards().get(1));
+    }
 }

@@ -38,4 +38,16 @@ public class Player {
         }
         return false;
     }
+
+    public void setLife(boolean alive) {
+        if (alive && !isAlive) {
+            throw new IllegalStateException("cannot resurrect a dead player");
+        }
+
+        this.isAlive = alive;
+    }
+
+    public void takeTurn(Card card) {
+        this.cards.add(card);
+    }
 }
