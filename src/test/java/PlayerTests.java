@@ -195,6 +195,26 @@ public class PlayerTests {
     }
 
     @Test
+    void removeCard_NormalCardTwoCards_CardRemoved() {
+        Player player = new Player("lily");
+
+        Card card1 = EasyMock.createMock(Card.class);
+        EasyMock.expect(card1.getType()).andStubReturn(CardType.TEST_TYPE);
+
+        Card card2 = EasyMock.createMock(Card.class);
+        EasyMock.expect(card2.getType()).andStubReturn(CardType.TEST_TYPE);
+
+        EasyMock.replay(card1, card2);
+
+        player.addCard(card1);
+        player.addCard(card2);
+        player.removeCard(card1);
+
+        assertEquals(1, player.getCards().size());
+        assertTrue(player.getCards().contains(card2));
+    }
+
+    @Test
     void takeTurn_NormalCard_CardAddedtoHand() {
         Player player = new Player("lily");
         Card defuseCard = EasyMock.createMock(Card.class);

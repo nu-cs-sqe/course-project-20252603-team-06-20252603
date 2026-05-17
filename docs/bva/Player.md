@@ -73,7 +73,7 @@ output: cards (list)
     - **State of the system**: card: TEST, cards: [TEST]
     - **Expected output**: cards: []
 
-- **TC19: removeCard_NormalCardTwoCards_CardRemoved** ( :x: or :white_check_mark: )
+- **TC19: removeCard_NormalCardTwoCards_CardRemoved** ( :white_check_mark: )
     - **State of the system**: card: TEST, cards: [TEST, TEST]
     - **Expected output**: cards: [TEST]
 
