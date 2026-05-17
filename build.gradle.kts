@@ -27,3 +27,7 @@ tasks.compileJava {
 tasks.test {
     useJUnitPlatform()
 }
+
+plugins {
+    checkstyle
+}
