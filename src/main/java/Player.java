@@ -48,6 +48,10 @@ public class Player {
     }
 
     public void removeCard(Card card) {
+        if (card == null) {
+            throw new IllegalArgumentException("card cannot be null");
+        }
+
         this.cards.remove(card);
     }
 

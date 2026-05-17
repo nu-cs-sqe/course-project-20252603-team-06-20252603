@@ -215,6 +215,17 @@ public class PlayerTests {
     }
 
     @Test
+    void removeCard_nullCard_IllegalArgumentException() {
+        Player player = new Player("lily");
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            player.removeCard(null);
+        });
+
+        assertEquals("card cannot be null", exception.getMessage());
+    }
+
+    @Test
     void takeTurn_NormalCard_CardAddedtoHand() {
         Player player = new Player("lily");
         Card defuseCard = EasyMock.createMock(Card.class);
