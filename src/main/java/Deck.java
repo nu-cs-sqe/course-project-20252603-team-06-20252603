@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 
 public class Deck {
@@ -26,11 +27,19 @@ public class Deck {
         }
     }
 
-    ArrayList<Card> peek(){ // change name
+    public Deck(int num_cards){
+        this.cards = new ArrayList<>();
+
+        for (int i = 0; i < num_cards; i++){
+            cards.add(new Card(CardType.CAT_CARD_1, new NoAction()));
+        }
+    }
+
+    ArrayList<Card> getCards(){ // change name
         return this.cards;
     }
 
-
-    // shuffle here, Collections.shuffle does it for me
-    // for testing, just make sure all the same cards are still there
+    public void shuffle(){
+        Collections.shuffle(this.cards);
+    }
 }

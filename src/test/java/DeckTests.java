@@ -12,7 +12,7 @@ public class DeckTests {
     void constructorTest(){
         Deck deck = new Deck();
 
-        ArrayList<Card> cards = deck.peek();
+        ArrayList<Card> cards = deck.getCards();
 
         Map<CardType, Integer> card_counts = new HashMap<>(Map.of(
                 // Confirm features w/team
@@ -44,6 +44,14 @@ public class DeckTests {
         assertEquals(4, card_counts.get(CardType.CAT_CARD_3));
         assertEquals(4, card_counts.get(CardType.CAT_CARD_4));
         assertEquals(34, cards.size());
+    }
+
+    @Test
+    void emptyConstructor(){
+        Deck deck = new Deck(0);
+        ArrayList<Card> cards = deck.getCards();
+
+        assertEquals(0, cards.size());
     }
 
 }

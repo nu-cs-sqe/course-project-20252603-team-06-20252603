@@ -1,9 +1,9 @@
 # BVA Analysis for Deck Class
 
 ### Method under test: constructor
-- **TC1: Default Constructor** ( :x: or :white_check_mark: )
+- **TC1: Default Constructor** ( :white_check_mark: )
     - **State of the system**: 
-    - **Expected output**: A list of 34 total cards with the following types
+    - **Expected output**: A new deck object with a list of 34 total cards with the following types
       * Attack: 3
       * Skip: 3
       * See the Future: 4
@@ -11,8 +11,17 @@
       * Nope: 4
       * Cat Cards: 4 of each × 4 types = 16
 
+- **TC2: Empty Constructor** ( :white_check_mark: )
+  - **State of the system**: 
+  - **Expected output**: A new deck object with no cards
+
+- **TC2: One Card Constructor** ( :x: or :white_check_mark: )
+  - **State of the system**:
+  - **Expected output**: A new deck object with one CAT_CARD_1 card
+
+
 ### Method under test: shuffle()
-- **TC2: Empty Deck** ( :x: or :white_check_mark: )
+- **TC2: Empty Deck** ( :white_check_mark: )
   - **State of the system**: Deck.cards is empty
   - **Expected Output**: 
 
@@ -24,16 +33,12 @@
     - **State of the system**: Deck.cards contains 34 cards (post-constructor)
     - **Expected Output**: Deck.cards still contains the same 34 cards with no duplicates and no cards lost
 
-- **TC5: Full Game Deck** ( :x: or :white_check_mark: )
-    - **State of the system**: Deck.cards contains 34 cards plus Exploding Kittens inserted
-    - **Expected Output**: Deck.cards still contains the same cards with no duplicates and no cards lost
-
 ### Method under test: insert(card, location)
 - **TC6: Insert at index 0 ** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; valid card object provided; location = 0
     - **Expected output**: Card is inserted at the front of the deck; deck size becomes N+1
 
-- **TC7: Insert at index 1 (just above minimum boundary)** ( :x: or :white_check_mark: )
+- **TC7: Insert at index 1 ** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; valid card object provided; location = 1
     - **Expected output**: Card is inserted at index 1; deck size becomes N+1
 
@@ -82,8 +87,8 @@
     - **State of the system**: Deck has N cards; card = null/None
     - **Expected output**: Raises a `ValueError`; deck remains unchanged
 
-### Method under test: peek()
-- **TC19: Peek at a deck with multiple cards** ( :x: or :white_check_mark: )
+### Method under test: getCards()
+- **TC19: Peek at a deck with multiple cards** (:white_check_mark:)
     - **State of the system**: Deck has N cards
     - **Expected output**: Returns a list of all N cards; deck remains unchanged
 
@@ -96,7 +101,7 @@
     - **Expected output**: Returns an empty list; deck remains unchanged
 
 ### Method under test: count()
-- **TC22: Count an empty deck** ( :x: or :white_check_mark: )
+- **TC22: Count an empty deck** ( :white_check_mark: )
     - **State of the system**: Deck has 0 cards
     - **Expected output**: Returns 0
 
