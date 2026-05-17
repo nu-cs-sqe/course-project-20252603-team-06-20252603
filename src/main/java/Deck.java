@@ -42,4 +42,8 @@ public class Deck {
     public void shuffle(){
         Collections.shuffle(this.cards);
     }
+
+    public int count(){
+        return this.cards.size();
+    }
 }

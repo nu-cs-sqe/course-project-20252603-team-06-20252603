@@ -29,7 +29,7 @@
     - **State of the system**: Deck.cards contains exactly 1 card
     - **Expected Output**: Deck.cards still contains the same 1 card, no exception thrown
 
-- **TC4: Standard Deck** ( :x: or :white_check_mark: )
+- **TC4: Default Deck** ( :x: or :white_check_mark: )
     - **State of the system**: Deck.cards contains 34 cards (post-constructor)
     - **Expected Output**: Deck.cards still contains the same 34 cards with no duplicates and no cards lost
 
