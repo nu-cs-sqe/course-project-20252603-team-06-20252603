@@ -78,4 +78,19 @@ public class DeckTests {
         assertEquals(original_cards, shuffled_cards);
     }
 
+    @Test
+    void shuffleOnDeckWithOneCard(){
+        Deck deck = new Deck(1);
+        ArrayList<Card> original_cards = deck.getCards();
+        int original_size = deck.count();
+
+        deck.shuffle();
+        ArrayList<Card> shuffled_cards = deck.getCards();
+        int shuffled_size = deck.count();
+
+        assertEquals(1, original_size);
+        assertEquals(1, shuffled_size);
+        assertEquals(original_cards, shuffled_cards);
+    }
+
 }

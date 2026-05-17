@@ -25,9 +25,9 @@
   - **State of the system**: Deck.cards is empty
   - **Expected Output**: 
 
-- **TC3: Single Card** ( :x: or :white_check_mark: )
+- **TC3: Single Card** ( :white_check_mark: )
     - **State of the system**: Deck.cards contains exactly 1 card
-    - **Expected Output**: Deck.cards still contains the same 1 card, no exception thrown
+    - **Expected Output**: Deck.cards still contains the same 1 card
 
 - **TC4: Default Deck** ( :x: or :white_check_mark: )
     - **State of the system**: Deck.cards contains 34 cards (post-constructor)
@@ -105,10 +105,10 @@
     - **State of the system**: Deck has 0 cards
     - **Expected output**: Returns 0
 
-- **TC23: Count a deck with exactly one card** ( :x: or :white_check_mark: )
+- **TC23: Count a deck with exactly one card** ( :white_check_mark: )
     - **State of the system**: Deck has exactly 1 card
     - **Expected output**: Returns 1
 
-- **TC24: Count a deck with exactly two cards** ( :x: or :white_check_mark: )
-    - **State of the system**: Deck has exactly 2 cards
-    - **Expected output**: Returns 2
+- **TC24: Count a deck with N cards** ( :x: or :white_check_mark: )
+    - **State of the system**: Deck has exactly N cards
+    - **Expected output**: Returns N
