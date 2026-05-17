@@ -85,7 +85,7 @@ output: cards (list)
     - **State of the system**: card: TEST, cards: []
     - **Expected output**: IllegalStateException
 
-- **TC22: removeCard_cardNotInCards_IllegalArgumentException** ( :x: or :white_check_mark: )
+- **TC22: removeCard_cardNotInCards_IllegalArgumentException** ( :white_check_mark: )
     - **State of the system**: card: TEST, cards: [DEFUSE]
     - **Expected output**: IllegalArgumentException
 

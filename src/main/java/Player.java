@@ -54,6 +54,9 @@ public class Player {
         if (this.cards.isEmpty()) {
             throw new IllegalStateException("cannot remove from empty hand");
         }
+        if (!cards.contains(card)) {
+            throw new IllegalArgumentException("card to remove not in hand");
+        }
 
         this.cards.remove(card);
     }

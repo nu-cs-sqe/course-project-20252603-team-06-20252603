@@ -241,6 +241,25 @@ public class PlayerTests {
     }
 
     @Test
+    void removeCard_cardNotInCards_IllegalArgumentException() {
+        Player player = new Player("lily");
+        Card testCard = EasyMock.createMock(Card.class);
+        EasyMock.expect(testCard.getType()).andStubReturn(CardType.TEST_TYPE);
+
+        Card defuseCard = EasyMock.createMock(Card.class);
+        EasyMock.expect(defuseCard.getType()).andStubReturn(CardType.DEFUSE);
+        EasyMock.replay(testCard, defuseCard);
+
+        player.addCard(testCard);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            player.removeCard(defuseCard);
+        });
+
+        assertEquals("card to remove not in hand", exception.getMessage());
+    }
+
+    @Test
     void takeTurn_NormalCard_CardAddedtoHand() {
         Player player = new Player("lily");
         Card defuseCard = EasyMock.createMock(Card.class);
