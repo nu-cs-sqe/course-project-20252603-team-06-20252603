@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DeckTests {
 
     @Test
-    void constructorTest(){
+    void defaultConstructor(){
         Deck deck = new Deck();
 
         ArrayList<Card> cards = deck.getCards();
@@ -90,6 +90,21 @@ public class DeckTests {
 
         assertEquals(1, original_size);
         assertEquals(1, shuffled_size);
+        assertEquals(original_cards, shuffled_cards);
+    }
+
+    @Test
+    void shuffleOnDefaultDeck(){
+        Deck deck = new Deck();
+        ArrayList<Card> original_cards = deck.getCards();
+        int original_size = deck.count();
+
+        deck.shuffle();
+        ArrayList<Card> shuffled_cards = deck.getCards();
+        int shuffled_size = deck.count();
+
+        assertEquals(34, original_size);
+        assertEquals(34, shuffled_size);
         assertEquals(original_cards, shuffled_cards);
     }
 

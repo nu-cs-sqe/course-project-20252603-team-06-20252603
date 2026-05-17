@@ -29,7 +29,7 @@
     - **State of the system**: Deck.cards contains exactly 1 card
     - **Expected Output**: Deck.cards still contains the same 1 card
 
-- **TC4: Default Deck** ( :x: or :white_check_mark: )
+- **TC4: Default Deck** ( :white_check_mark: )
     - **State of the system**: Deck.cards contains 34 cards (post-constructor)
     - **Expected Output**: Deck.cards still contains the same 34 cards with no duplicates and no cards lost
 
@@ -58,7 +58,7 @@
     - **State of the system**: Deck has N cards; card = null/None; location = 0
     - **Expected output**: Raises a `ValueError`; deck remains unchanged
 
-### Method under test: insert(card, location)
+### Method under test: discard(card, location)
 - **TC12: Discard existing card** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; card is present in the deck
     - **Expected output**: Card is removed from the deck; deck size becomes N-1
@@ -109,6 +109,6 @@
     - **State of the system**: Deck has exactly 1 card
     - **Expected output**: Returns 1
 
-- **TC24: Count a deck with N cards** ( :x: or :white_check_mark: )
+- **TC24: Count a deck with N cards** ( :white_check_mark: )
     - **State of the system**: Deck has exactly N cards
     - **Expected output**: Returns N
