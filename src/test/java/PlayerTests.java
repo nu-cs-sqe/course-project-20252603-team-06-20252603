@@ -181,6 +181,20 @@ public class PlayerTests {
     }
 
     @Test
+    void removeCard_NormalCardOneCard_CardRemoved() {
+        Player player = new Player("lily");
+
+        Card card = EasyMock.createMock(Card.class);
+        EasyMock.expect(card.getType()).andStubReturn(CardType.TEST_TYPE);
+        EasyMock.replay(card);
+
+        player.addCard(card);
+        player.removeCard(card);
+
+        assertEquals(0, player.getCards().size());
+    }
+
+    @Test
     void takeTurn_NormalCard_CardAddedtoHand() {
         Player player = new Player("lily");
         Card defuseCard = EasyMock.createMock(Card.class);

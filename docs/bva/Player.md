@@ -69,7 +69,7 @@ However, you are only required to document Step 4.
 input: card (pointer), cards (list)
 output: cards (list)
 
-- **TC18: removeCard_NormalCardOneCard_CardRemoved** ( :x: or :white_check_mark: )
+- **TC18: removeCard_NormalCardOneCard_CardRemoved** ( :white_check_mark: )
     - **State of the system**: card: TEST, cards: [TEST]
     - **Expected output**: cards: []
 

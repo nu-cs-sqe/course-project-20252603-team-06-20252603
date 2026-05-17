@@ -47,6 +47,10 @@ public class Player {
         this.isAlive = alive;
     }
 
+    public void removeCard(Card card) {
+        this.cards.remove(card);
+    }
+
     public void takeTurn(Card card) {
         this.cards.add(card);
     }
