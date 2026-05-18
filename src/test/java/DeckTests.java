@@ -1,7 +1,6 @@
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -68,46 +67,46 @@ public class DeckTests {
     @Test
     void shuffleOnEmptyDeck(){
         Deck deck = new Deck(0);
-        ArrayList<Card> original_cards = deck.getCards();
-        int original_size = deck.count();
+        ArrayList<Card> initialCards = deck.getCards();
+        int initialSize = deck.count();
 
         deck.shuffle();
         ArrayList<Card> shuffled_cards = deck.getCards();
         int shuffled_size = deck.count();
 
-        assertEquals(0, original_size);
+        assertEquals(0, initialSize);
         assertEquals(0, shuffled_size);
-        assertEquals(original_cards, shuffled_cards);
+        assertEquals(initialCards, shuffled_cards);
     }
 
     @Test
     void shuffleOnDeckWithOneCard(){
         Deck deck = new Deck(1);
-        ArrayList<Card> original_cards = deck.getCards();
-        int original_size = deck.count();
+        ArrayList<Card> initialCards = deck.getCards();
+        int initialSize = deck.count();
 
         deck.shuffle();
         ArrayList<Card> shuffled_cards = deck.getCards();
         int shuffled_size = deck.count();
 
-        assertEquals(1, original_size);
+        assertEquals(1, initialSize);
         assertEquals(1, shuffled_size);
-        assertEquals(original_cards, shuffled_cards);
+        assertEquals(initialCards, shuffled_cards);
     }
 
     @Test
     void shuffleOnDefaultDeck(){
         Deck deck = new Deck();
-        ArrayList<Card> original_cards = deck.getCards();
-        int original_size = deck.count();
+        ArrayList<Card> initialCards = deck.getCards();
+        int initialSize = deck.count();
 
         deck.shuffle();
         ArrayList<Card> shuffled_cards = deck.getCards();
         int shuffled_size = deck.count();
 
-        assertEquals(34, original_size);
+        assertEquals(34, initialSize);
         assertEquals(34, shuffled_size);
-        assertTrue(shuffled_cards.containsAll(original_cards));
+        assertTrue(shuffled_cards.containsAll(initialCards));
     }
 
     @Test
@@ -187,8 +186,8 @@ public class DeckTests {
     @Test
     void insertNullCard(){
         Deck deck = new Deck();
-        ArrayList<Card> original_cards = deck.getCards();
-        int original_num_cards = deck.count();
+        ArrayList<Card> initialCards = deck.getCards();
+        int initialSize = deck.count();
 
         assertThrows(IllegalArgumentException.class, () -> {
             deck.insert(null, 0);
@@ -197,8 +196,8 @@ public class DeckTests {
         ArrayList<Card> after_null_insert_cards = deck.getCards();
         int after_null_insert_num_cards = deck.count();
 
-        assertEquals(original_num_cards, after_null_insert_num_cards);
-        assertEquals(original_cards, after_null_insert_cards);
+        assertEquals(initialSize, after_null_insert_num_cards);
+        assertEquals(initialCards, after_null_insert_cards);
     }
 
     @Test
@@ -299,5 +298,11 @@ public class DeckTests {
     void countDeckWithOneCard(){
         Deck deck = new Deck(1);
         assertEquals(1, deck.count());
+    }
+
+    @Test
+    void countEmptyDeck(){
+        Deck deck = new Deck(0);
+        assertEquals(0, deck.count());
     }
 }
