@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("checkstyle")
+    id("com.github.spotbugs") version "6.1.11"
 }
 
 group = "nu.csse.sqe"
@@ -35,4 +36,16 @@ tasks.test {
 
 configure<CheckstyleExtension> {
     toolVersion = "10.12.5"
+}
+
+spotbugs {
+    toolVersion.set("4.9.7")
+    ignoreFailures.set(false)
+}
+
+tasks.withType<com.github.spotbugs.snom.SpotBugsTask>().configureEach {
+    reports {
+        create("html") { required.set(true) }
+        create("xml") { required.set(false) }
+    }
 }
