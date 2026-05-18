@@ -50,11 +50,11 @@
     - **State of the system**: Deck has N cards; valid card object provided; location = N 
     - **Expected output**: Card is appended at index N+1; deck size becomes N+1
 
-- **TC9: Insert at index N-1 ** ( :x: or :white_check_mark: )
+- **TC9: Insert at index N-1 ** ( :white_check_mark: )
     - **State of the system**: Deck has N cards; valid card object provided; location = N-1
     - **Expected output**: Card is inserted at index N-1; deck size becomes N+1
 
-- **TC10: Insert into an empty deck** ( :x: or :white_check_mark: )
+- **TC10: Insert into an empty deck** ( :white_check_mark: )
     - **State of the system**: Deck has 0 cards; valid card object provided; location = 0
     - **Expected output**: Card is inserted as the only element; deck size becomes 1
 

@@ -172,4 +172,15 @@ public class DeckTests {
         assertEquals(mockCard, cards.get(initialSize - 1));
     }
 
+    @Test
+    void insertIntoEmptyDeck(){
+        Deck deck = new Deck(0);
+        ArrayList<Card> cards = deck.getCards();
+
+        Card mockCard = EasyMock.createMock(Card.class);
+        deck.insert(mockCard, 0);
+
+        assertEquals(1, deck.count());
+        assertEquals(mockCard, cards.get(0));
+    }
 }
