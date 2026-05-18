@@ -1,6 +1,7 @@
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -247,5 +248,19 @@ public class DeckTests {
         ArrayList<Card> cards = deck.getCards();
         assertEquals(initialSize - 1, deck.count());
         assertFalse(cards.contains(cardToDiscard));
+    }
+
+    @Test
+    void discardNullCard(){
+        Deck deck = new Deck();
+        ArrayList<Card> initialCards = deck.getCards();
+        int initialSize = deck.count();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            deck.discard(null);
+        });
+
+        assertEquals(initialSize, deck.count());
+        assertEquals(initialCards, deck.getCards());
     }
 }

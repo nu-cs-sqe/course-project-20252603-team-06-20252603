@@ -83,11 +83,11 @@
     - **State of the system**: Deck has N cards; card is at index N-1
     - **Expected output**: Card is removed from the back; deck size becomes N-1
 
-- **TC17: Discard a card not present in the deck** ( :x: or :white_check_mark: )
+- **TC17: Discard a card not present in the deck** ( :white_check_mark: )
     - **State of the system**: Deck has N cards; provided card does not exist in the deck
     - **Expected output**: Raises a `ValueError`; deck remains unchanged
 
-- **TC18: Discard a null card** ( :x: or :white_check_mark: )
+- **TC18: Discard a null card** ( :white_check_mark: )
     - **State of the system**: Deck has N cards; card = null/None
     - **Expected output**: Raises a `ValueError`; deck remains unchanged
 
