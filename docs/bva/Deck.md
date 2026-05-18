@@ -34,7 +34,7 @@
     - **Expected Output**: Deck.cards still contains the same 34 cards with no duplicates and no cards lost
 
 ### Method under test: insert(card, location)
-- **TC9: Insert at index -1 ** ( :x: or :white_check_mark: )
+- **TC9: Insert at index -1 ** ( :white_check_mark: )
   - **State of the system**: Deck has N cards; valid card object provided; location = -1
   - **Expected output**: Raises `IndexOutOfBoundsException`
   
