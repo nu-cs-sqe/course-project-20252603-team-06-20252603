@@ -32,10 +32,14 @@
 **Planning and Progress Tracking**:
 1. [finished] Everyone: Play Exploding Kittens
 2. [finished] Dani: Card class setup
-3. [40%] Abby: Deck class setup
-4. [70%] Sharon: Player class setup
-5. [70%] Audrey & Chris: Game class setup
-6. [0%] Everyone: controller class for cards
+3. [90%] Abby: Deck class setup
+4. [finished] Sharon: Player class setup
+5. [finished, pending PR review] Audrey & Chris: Game class setup
+6. [0%] Abby: Shuffle Controller
+7. [0%] Dani: See The Future Controller
+8. [0%] Chris: Draw From Bottom Controller
+9. [0%] Audrey: Swap Top + Bottom Controller
+10. [0%] Sharon: Defuse/Exploding Kitten Controller
 
 
 # Week X (XX/XX/2026-XX/XX/2026) TEMPLATE (You can change the format to whatever the team likes better)
