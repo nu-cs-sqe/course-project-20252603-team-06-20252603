@@ -225,4 +225,14 @@ public class DeckTests {
         assertEquals(initialSize - 1, deck.count());
         assertFalse(cards.contains(cardToDiscard));
     }
+
+    @Test
+    void discardFromEmptyDeck() {
+        Deck deck = new Deck(0);
+        Card mockCardToDiscard = EasyMock.createMock(Card.class);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            deck.discard(mockCardToDiscard);
+        });
+    }
 }

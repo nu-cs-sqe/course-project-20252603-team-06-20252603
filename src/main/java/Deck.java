@@ -50,6 +50,9 @@ public class Deck {
         if (card == null){
             throw new IllegalArgumentException("Card cannot be null");
         }
+        if (!this.cards.contains(card)){
+            throw new IllegalArgumentException("Card is not in the deck");
+        }
         this.cards.remove(card);
     }
 
