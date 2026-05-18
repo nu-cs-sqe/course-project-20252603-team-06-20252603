@@ -294,4 +294,10 @@ public class DeckTests {
         assertEquals(0, cards.size());
         assertEquals(0, deck.count());
     }
+
+    @Test
+    void countDeckWithOneCard(){
+        Deck deck = new Deck(1);
+        assertEquals(1, deck.count());
+    }
 }
