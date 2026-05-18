@@ -203,7 +203,19 @@ public class DeckTests {
     @Test
     void discardExistingCard() {
         Deck deck = new Deck();
+        int initialSize = deck.count();
 
+        Card cardToDiscard = deck.getCards().get(0);
+        deck.discard(cardToDiscard);
+
+        ArrayList<Card> cards = deck.getCards();
+        assertEquals(initialSize - 1, deck.count());
+        assertFalse(cards.contains(cardToDiscard));
+    }
+
+    @Test
+    void discardOnlyCard() {
+        Deck deck = new Deck(1);
         int initialSize = deck.count();
 
         Card cardToDiscard = deck.getCards().get(0);

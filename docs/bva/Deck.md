@@ -63,17 +63,17 @@
     - **Expected output**: Throws an `IllegalArgumentException`; deck remains unchanged
 
 ### Method under test: discard(card, location)
-- **TC12: Discard existing card** ( :x: or :white_check_mark: )
+- **TC12: Discard existing card** ( :white_check_mark: )
     - **State of the system**: Deck has N cards; card is present in the deck
     - **Expected output**: Card is removed from the deck; deck size becomes N-1
 
-- **TC13: Discard the only card in the deck** ( :x: or :white_check_mark: )
+- **TC13: Discard the only card in the deck** ( :white_check_mark: )
     - **State of the system**: Deck has exactly 1 card; card is that card
     - **Expected output**: Card is removed; deck size becomes 0
 
 - **TC14: Discard from an empty deck** (:x: or :white_check_mark: )
     - **State of the system**: Deck has 0 cards; any card provided
-    - **Expected output**: Raises a `ValueError'; deck remains empty
+    - **Expected output**: Raises a `ValueError`; deck remains empty
 
 - **TC15: Discard the first card in the deck** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; card is at index 0
