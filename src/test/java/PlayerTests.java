@@ -30,12 +30,12 @@ public class PlayerTests {
         Player player = new Player("lily");
 
         assertEquals("lily", player.getPlayerName());
-        assertTrue(player.getCards().isEmpty());
+        assertTrue(player.getHand().isEmpty());
         assertTrue(player.isAlive());
     }
 
     @Test
-    void hasDefuse_EmptyCards_False() {
+    void hasDefuse_EmptyHand_False() {
         Player player = new Player("lily");
 
         assertFalse(player.hasDefuse());
@@ -98,8 +98,8 @@ public class PlayerTests {
         EasyMock.replay(card);
 
         player.addCard(card);
-        assertEquals(1, player.getCards().size());
-        assertTrue(player.getCards().contains(card));
+        assertEquals(1, player.getHand().size());
+        assertTrue(player.getHand().contains(card));
     }
 
     @Test
@@ -115,9 +115,9 @@ public class PlayerTests {
         player.addCard(card1);
         player.addCard(card2);
 
-        assertEquals(2, player.getCards().size());
-        assertTrue(player.getCards().contains(card1));
-        assertTrue(player.getCards().contains(card2));
+        assertEquals(2, player.getHand().size());
+        assertTrue(player.getHand().contains(card1));
+        assertTrue(player.getHand().contains(card2));
     }
 
     @Test
@@ -134,11 +134,11 @@ public class PlayerTests {
         player.addCard(card2);
         player.addCard(card1);
 
-        List<Card> cards = player.getCards();
-        assertEquals(3, cards.size());
-        assertEquals(card1, cards.get(0));
-        assertEquals(card2, cards.get(1));
-        assertEquals(card1, cards.get(2));
+        List<Card> hand = player.getHand();
+        assertEquals(3, hand.size());
+        assertEquals(card1, hand.get(0));
+        assertEquals(card2, hand.get(1));
+        assertEquals(card1, hand.get(2));
     }
 
     @Test
@@ -151,7 +151,7 @@ public class PlayerTests {
 
         assertEquals("card cannot be null", exception.getMessage());
 
-        assertTrue(player.getCards().isEmpty());
+        assertTrue(player.getHand().isEmpty());
     }
 
     @Test
@@ -191,7 +191,7 @@ public class PlayerTests {
         player.addCard(card);
         player.removeCard(card);
 
-        assertEquals(0, player.getCards().size());
+        assertEquals(0, player.getHand().size());
     }
 
     @Test
@@ -210,8 +210,8 @@ public class PlayerTests {
         player.addCard(card2);
         player.removeCard(card1);
 
-        assertEquals(1, player.getCards().size());
-        assertTrue(player.getCards().contains(card2));
+        assertEquals(1, player.getHand().size());
+        assertTrue(player.getHand().contains(card2));
     }
 
     @Test
@@ -241,7 +241,7 @@ public class PlayerTests {
     }
 
     @Test
-    void removeCard_cardNotInCards_IllegalArgumentException() {
+    void removeCard_cardNotInHand_IllegalArgumentException() {
         Player player = new Player("lily");
         Card testCard = EasyMock.createMock(Card.class);
         EasyMock.expect(testCard.getType()).andStubReturn(CardType.TEST_TYPE);
@@ -269,8 +269,8 @@ public class PlayerTests {
 
         player.takeTurn(card);
 
-        assertEquals(1, player.getCards().size());
-        assertTrue(player.getCards().contains(card));
+        assertEquals(1, player.getHand().size());
+        assertTrue(player.getHand().contains(card));
         assertTrue(player.isAlive());
     }
 
@@ -290,9 +290,9 @@ public class PlayerTests {
 
         player.takeTurn(card2);
 
-        assertEquals(2, player.getCards().size());
-        assertTrue(player.getCards().contains(card1));
-        assertTrue(player.getCards().contains(card2));
+        assertEquals(2, player.getHand().size());
+        assertTrue(player.getHand().contains(card1));
+        assertTrue(player.getHand().contains(card2));
         assertTrue(player.isAlive());
     }
 }

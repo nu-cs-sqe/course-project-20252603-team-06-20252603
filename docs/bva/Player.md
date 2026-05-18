@@ -18,7 +18,7 @@ However, you are only required to document Step 4.
 
 
 ### Method under test: hasDefuse()
-- **TC3: hasDefuse_EmptyCards_False** ( :white_check_mark: )
+- **TC3: hasDefuse_EmptyHand_False** ( :white_check_mark: )
     - **State of the system**: []
     - **Expected output**: False
 
@@ -85,7 +85,7 @@ output: cards (list)
     - **State of the system**: card: TEST, cards: []
     - **Expected output**: IllegalStateException
 
-- **TC22: removeCard_cardNotInCards_IllegalArgumentException** ( :white_check_mark: )
+- **TC22: removeCard_cardNotInHand_IllegalArgumentException** ( :white_check_mark: )
     - **State of the system**: card: TEST, cards: [DEFUSE]
     - **Expected output**: IllegalArgumentException
 

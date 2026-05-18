@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Player {
     private final String playerName;
-    private final List<Card> cards;
+    private final List<Card> hand;
     private boolean isAlive;
 
     public Player(String playerName) {
@@ -14,12 +14,12 @@ public class Player {
             throw new IllegalArgumentException("player name cannot be empty");
         }
         this.playerName = playerName;
-        this.cards = new ArrayList<>();
+        this.hand = new ArrayList<>();
         this.isAlive = true;
     }
 
     public String getPlayerName() { return playerName; }
-    public List<Card> getCards() { return cards; }
+    public List<Card> getHand() { return hand; }
     public boolean isAlive() { return isAlive; }
 
     public void addCard(Card card) {
@@ -27,11 +27,11 @@ public class Player {
             throw new IllegalArgumentException("card cannot be null");
         }
 
-        cards.add(card);
+        hand.add(card);
     }
 
     public boolean hasDefuse() {
-        for (Card card : cards) {
+        for (Card card : hand) {
             if (card.getType() == CardType.DEFUSE) {
                 return true;
             }
@@ -51,17 +51,17 @@ public class Player {
         if (card == null) {
             throw new IllegalArgumentException("card cannot be null");
         }
-        if (this.cards.isEmpty()) {
+        if (this.hand.isEmpty()) {
             throw new IllegalStateException("cannot remove from empty hand");
         }
-        if (!cards.contains(card)) {
+        if (!hand.contains(card)) {
             throw new IllegalArgumentException("card to remove not in hand");
         }
 
-        this.cards.remove(card);
+        this.hand.remove(card);
     }
 
     public void takeTurn(Card card) {
-        this.cards.add(card);
+        this.hand.add(card);
     }
 }
