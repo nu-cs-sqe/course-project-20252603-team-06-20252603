@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("checkstyle")
 }
 
 group = "nu.csse.sqe"
@@ -23,10 +24,15 @@ java {
     }
 }
 
+
 tasks.compileJava {
     options.release = 11
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+
+configure<CheckstyleExtension> {
+    toolVersion = "10.12.5"
 }
