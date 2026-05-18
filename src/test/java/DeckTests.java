@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DeckTests {
 
@@ -107,7 +106,7 @@ public class DeckTests {
 
         assertEquals(34, original_size);
         assertEquals(34, shuffled_size);
-        assertEquals(original_cards, shuffled_cards);
+        assertTrue(shuffled_cards.containsAll(original_cards));
     }
 
     @Test
@@ -124,63 +123,80 @@ public class DeckTests {
     void insertAtIndexZero(){
         Deck deck = new Deck();
         int initialSize = deck.count();
-        ArrayList<Card> cards = deck.getCards();
 
         Card mockCard = EasyMock.createMock(Card.class);
         deck.insert(mockCard, 0);
+        ArrayList<Card> cards = deck.getCards();
 
         assertEquals(initialSize + 1, deck.count());
-        assertEquals(mockCard, cards.get(0));
+        assertSame(mockCard, cards.get(0));
     }
 
     @Test
     void insertAtIndexOne(){
         Deck deck = new Deck();
         int initialSize = deck.count();
-        ArrayList<Card> cards = deck.getCards();
 
         Card mockCard = EasyMock.createMock(Card.class);
         deck.insert(mockCard, 1);
+        ArrayList<Card> cards = deck.getCards();
 
         assertEquals(initialSize + 1, deck.count());
-        assertEquals(mockCard, cards.get(1));
+        assertSame(mockCard, cards.get(1));
     }
 
     @Test
     void insertAtIndexN(){
         Deck deck = new Deck();
         int initialSize = deck.count();
-        ArrayList<Card> cards = deck.getCards();
 
         Card mockCard = EasyMock.createMock(Card.class);
         deck.insert(mockCard, initialSize);
+        ArrayList<Card> cards = deck.getCards();
 
         assertEquals(initialSize + 1, deck.count());
-        assertEquals(mockCard, cards.get(initialSize));
+        assertSame(mockCard, cards.get(initialSize));
     }
 
     @Test
     void insertAtIndexNMinusOne(){
         Deck deck = new Deck();
         int initialSize = deck.count();
-        ArrayList<Card> cards = deck.getCards();
 
         Card mockCard = EasyMock.createMock(Card.class);
         deck.insert(mockCard, initialSize - 1);
+        ArrayList<Card> cards = deck.getCards();
 
         assertEquals(initialSize + 1, deck.count());
-        assertEquals(mockCard, cards.get(initialSize - 1));
+        assertSame(mockCard, cards.get(initialSize - 1));
     }
 
     @Test
     void insertIntoEmptyDeck(){
         Deck deck = new Deck(0);
-        ArrayList<Card> cards = deck.getCards();
 
         Card mockCard = EasyMock.createMock(Card.class);
         deck.insert(mockCard, 0);
+        ArrayList<Card> cards = deck.getCards();
 
         assertEquals(1, deck.count());
-        assertEquals(mockCard, cards.get(0));
+        assertSame(mockCard, cards.get(0));
+    }
+
+    @Test
+    void insertNullCard(){
+        Deck deck = new Deck();
+        ArrayList<Card> original_cards = deck.getCards();
+        int original_num_cards = deck.count();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            deck.insert(null, 0);
+        });
+
+        ArrayList<Card> after_null_insert_cards = deck.getCards();
+        int after_null_insert_num_cards = deck.count();
+
+        assertEquals(original_num_cards, after_null_insert_num_cards);
+        assertEquals(original_cards, after_null_insert_cards);
     }
 }

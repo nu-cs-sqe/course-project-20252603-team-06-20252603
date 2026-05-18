@@ -36,7 +36,7 @@ public class Deck {
     }
 
     ArrayList<Card> getCards(){ // change name
-        return this.cards;
+        return new ArrayList<>(cards);
     }
 
     public void shuffle(){
@@ -44,6 +44,9 @@ public class Deck {
     }
 
     public void insert(Card card, int location){
+        if (card == null){
+            throw new IllegalArgumentException("Card cannot be null");
+        }
         this.cards.add(location, card);
     }
 

@@ -58,9 +58,9 @@
     - **State of the system**: Deck has 0 cards; valid card object provided; location = 0
     - **Expected output**: Card is inserted as the only element; deck size becomes 1
 
-- **TC11: Insert a null/None card at a valid location** ( :x: or :white_check_mark: )
+- **TC11: Insert a null card at a valid location** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; card = null/None; location = 0
-    - **Expected output**: Raises a `ValueError`; deck remains unchanged
+    - **Expected output**: Throws an `IllegalArgumentException`; deck remains unchanged
 
 ### Method under test: discard(card, location)
 - **TC12: Discard existing card** ( :x: or :white_check_mark: )
