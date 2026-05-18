@@ -38,7 +38,7 @@
     - **State of the system**: Deck has N cards; valid card object provided; location = 0
     - **Expected output**: Card is inserted at the front of the deck; deck size becomes N+1
 
-- **TC7: Insert at index 1 ** ( :x: or :white_check_mark: )
+- **TC7: Insert at index 1 ** ( :white_check_mark: )
     - **State of the system**: Deck has N cards; valid card object provided; location = 1
     - **Expected output**: Card is inserted at index 1; deck size becomes N+1
 
