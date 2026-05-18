@@ -199,4 +199,18 @@ public class DeckTests {
         assertEquals(original_num_cards, after_null_insert_num_cards);
         assertEquals(original_cards, after_null_insert_cards);
     }
+
+    @Test
+    void discardExistingCard() {
+        Deck deck = new Deck();
+
+        int initialSize = deck.count();
+
+        Card cardToDiscard = deck.getCards().get(0);
+        deck.discard(cardToDiscard);
+
+        ArrayList<Card> cards = deck.getCards();
+        assertEquals(initialSize - 1, deck.count());
+        assertFalse(cards.contains(cardToDiscard));
+    }
 }

@@ -58,7 +58,7 @@
     - **State of the system**: Deck has 0 cards; valid card object provided; location = 0
     - **Expected output**: Card is inserted as the only element; deck size becomes 1
 
-- **TC11: Insert a null card at a valid location** ( :x: or :white_check_mark: )
+- **TC11: Insert a null card at a valid location** ( :white_check_mark: )
     - **State of the system**: Deck has N cards; card = null/None; location = 0
     - **Expected output**: Throws an `IllegalArgumentException`; deck remains unchanged
 
@@ -87,7 +87,7 @@
     - **State of the system**: Deck has N cards; provided card does not exist in the deck
     - **Expected output**: Raises a `ValueError`; deck remains unchanged
 
-- **TC18: Discard a null/None card** ( :x: or :white_check_mark: )
+- **TC18: Discard a null card** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has N cards; card = null/None
     - **Expected output**: Raises a `ValueError`; deck remains unchanged
 

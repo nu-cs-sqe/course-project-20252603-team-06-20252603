@@ -35,10 +35,6 @@ public class Deck {
         }
     }
 
-    ArrayList<Card> getCards(){ // change name
-        return new ArrayList<>(cards);
-    }
-
     public void shuffle(){
         Collections.shuffle(this.cards);
     }
@@ -48,6 +44,17 @@ public class Deck {
             throw new IllegalArgumentException("Card cannot be null");
         }
         this.cards.add(location, card);
+    }
+
+    public void discard(Card card){
+        if (card == null){
+            throw new IllegalArgumentException("Card cannot be null");
+        }
+        this.cards.remove(card);
+    }
+
+    ArrayList<Card> getCards(){ // change name
+        return new ArrayList<>(cards);
     }
 
     public int count(){
