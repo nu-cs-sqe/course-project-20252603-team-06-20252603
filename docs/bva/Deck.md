@@ -92,15 +92,15 @@
     - **Expected output**: Raises a `ValueError`; deck remains unchanged
 
 ### Method under test: getCards()
-- **TC19: Peek at a deck with multiple cards** (:white_check_mark:)
+- **TC19: Get cards from a deck with multiple cards** (:white_check_mark:)
     - **State of the system**: Deck has N cards
     - **Expected output**: Returns a list of all N cards; deck remains unchanged
 
-- **TC20: Peek at a deck with exactly one card** ( :x: or :white_check_mark: )
+- **TC20: Get cards from a deck with exactly one card** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has exactly 1 card
     - **Expected output**: Returns a list containing that 1 card; deck remains unchanged
 
-- **TC21: Peek at an empty deck** ( :x: or :white_check_mark: )
+- **TC21: Get cards from an empty deck** ( :x: or :white_check_mark: )
     - **State of the system**: Deck has 0 cards
     - **Expected output**: Returns an empty list; deck remains unchanged
 
