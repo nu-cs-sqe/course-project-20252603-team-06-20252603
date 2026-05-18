@@ -71,15 +71,15 @@
     - **State of the system**: Deck has exactly 1 card; card is that card
     - **Expected output**: Card is removed; deck size becomes 0
 
-- **TC14: Discard from an empty deck** (:x: or :white_check_mark: )
+- **TC14: Discard from an empty deck** ( :white_check_mark: )
     - **State of the system**: Deck has 0 cards; any card provided
-    - **Expected output**: Raises a `ValueError`; deck remains empty
+    - **Expected output**: Throws an `IllegalArgumentException`; deck remains empty
 
-- **TC15: Discard the first card in the deck** ( :x: or :white_check_mark: )
+- **TC15: Discard the first card in the deck** ( :white_check_mark: )
     - **State of the system**: Deck has N cards; card is at index 0
     - **Expected output**: Card is removed from the front; deck size becomes N-1
 
-- **TC16: Discard the last card in the deck (maximum index boundary)** ( :x: or :white_check_mark: )
+- **TC16: Discard the last card in the deck** ( :white_check_mark: )
     - **State of the system**: Deck has N cards; card is at index N-1
     - **Expected output**: Card is removed from the back; deck size becomes N-1
 

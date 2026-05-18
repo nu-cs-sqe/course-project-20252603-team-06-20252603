@@ -235,4 +235,17 @@ public class DeckTests {
             deck.discard(mockCardToDiscard);
         });
     }
+
+    @Test
+    void discardLastCard() {
+        Deck deck = new Deck();
+        int initialSize = deck.count();
+
+        Card cardToDiscard = deck.getCards().get(initialSize - 1);
+        deck.discard(cardToDiscard);
+
+        ArrayList<Card> cards = deck.getCards();
+        assertEquals(initialSize - 1, deck.count());
+        assertFalse(cards.contains(cardToDiscard));
+    }
 }
