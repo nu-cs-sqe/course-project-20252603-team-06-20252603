@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DeckTests {
 
@@ -110,7 +111,17 @@ public class DeckTests {
     }
 
     @Test
-    void insertAtIndex0(){
+    void insertAtIndexNegativeOne(){
+        Deck deck = new Deck();
+        Card mockCard = EasyMock.createMock(Card.class);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            deck.insert(mockCard, -1);
+        });
+    }
+
+    @Test
+    void insertAtIndexZero(){
         Deck deck = new Deck();
         int initialSize = deck.count();
         ArrayList<Card> cards = deck.getCards();
@@ -123,7 +134,7 @@ public class DeckTests {
     }
 
     @Test
-    void insertAtIndex1(){
+    void insertAtIndexOne(){
         Deck deck = new Deck();
         int initialSize = deck.count();
         ArrayList<Card> cards = deck.getCards();
