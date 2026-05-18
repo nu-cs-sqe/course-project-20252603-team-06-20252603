@@ -284,4 +284,14 @@ public class DeckTests {
         assertEquals(1, cards.size());
         assertEquals(1, deck.count());
     }
+
+    @Test
+    void getCardsOnEmptyDeck(){
+        Deck deck = new Deck(0);
+
+        ArrayList<Card> cards = deck.getCards();
+
+        assertEquals(0, cards.size());
+        assertEquals(0, deck.count());
+    }
 }
