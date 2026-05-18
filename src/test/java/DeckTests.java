@@ -265,7 +265,7 @@ public class DeckTests {
     }
 
     @Test
-    void getCardsOnOneCardDeck(){
+    void getCardsOnMultipleCardDeck(){
         Deck deck = new Deck();
         int initialSize = deck.count();
 
@@ -273,5 +273,15 @@ public class DeckTests {
 
         assertEquals(initialSize, cards.size());
         assertEquals(initialSize, deck.count());
+    }
+
+    @Test
+    void getCardsOnOneCardDeck(){
+        Deck deck = new Deck(1);
+
+        ArrayList<Card> cards = deck.getCards();
+
+        assertEquals(1, cards.size());
+        assertEquals(1, deck.count());
     }
 }
