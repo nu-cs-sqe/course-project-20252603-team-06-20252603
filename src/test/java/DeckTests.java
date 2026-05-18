@@ -135,4 +135,17 @@ public class DeckTests {
         assertEquals(mockCard, cards.get(1));
     }
 
+    @Test
+    void insertAtIndexN(){
+        Deck deck = new Deck();
+        int initialSize = deck.count();
+        ArrayList<Card> cards = deck.getCards();
+
+        Card mockCard = EasyMock.createMock(Card.class);
+        deck.insert(mockCard, initialSize);
+
+        assertEquals(initialSize + 1, deck.count());
+        assertEquals(mockCard, cards.get(initialSize));
+    }
+
 }

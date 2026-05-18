@@ -34,6 +34,10 @@
     - **Expected Output**: Deck.cards still contains the same 34 cards with no duplicates and no cards lost
 
 ### Method under test: insert(card, location)
+- **TC9: Insert at index -1 ** ( :x: or :white_check_mark: )
+  - **State of the system**: Deck has N cards; valid card object provided; location = -1
+  - **Expected output**: Raises `IndexOutOfBoundsException`
+  
 - **TC6: Insert at index 0 ** ( :white_check_mark: )
     - **State of the system**: Deck has N cards; valid card object provided; location = 0
     - **Expected output**: Card is inserted at the front of the deck; deck size becomes N+1
@@ -42,8 +46,8 @@
     - **State of the system**: Deck has N cards; valid card object provided; location = 1
     - **Expected output**: Card is inserted at index 1; deck size becomes N+1
 
-- **TC8: Insert at index N ** ( :x: or :white_check_mark: )
-    - **State of the system**: Deck has N cards; valid card object provided; location = N (end of list)
+- **TC8: Insert at index N ** ( :white_check_mark: )
+    - **State of the system**: Deck has N cards; valid card object provided; location = N 
     - **Expected output**: Card is appended at index N+1; deck size becomes N+1
 
 - **TC9: Insert at index N-1 ** ( :x: or :white_check_mark: )
