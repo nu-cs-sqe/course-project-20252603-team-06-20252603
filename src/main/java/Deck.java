@@ -1,9 +1,11 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public class Deck {
-    private final ArrayList<Card> cards;
+    private final List<Card> cards;
     private static final Map<CardType, Integer> card_counts = Map.of(
             // Confirm features w/team
             CardType.ATTACK, 3,
