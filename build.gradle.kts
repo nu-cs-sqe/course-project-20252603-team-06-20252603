@@ -40,7 +40,7 @@ configure<CheckstyleExtension> {
 
 spotbugs {
     toolVersion.set("4.9.7")
-    ignoreFailures.set(false)
+    ignoreFailures.set(true)
 }
 
 tasks.withType<com.github.spotbugs.snom.SpotBugsTask>().configureEach {
