@@ -1,4 +1,4 @@
-public final class Card {
+public class Card {
     private final CardType type;
 
     public Card(CardType type) {
