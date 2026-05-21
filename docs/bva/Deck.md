@@ -24,7 +24,7 @@
   - **State of the system**: Deck.cards is empty
   - **Expected Output**: 
 
-- **TC5: Single Card** ( :white_check_mark: )
+- **TC5: Deck With One Card** ( :white_check_mark: )
     - **State of the system**: Deck.cards contains exactly 1 card
     - **Expected Output**: Deck.cards still contains the same 1 card
 
@@ -57,61 +57,49 @@
     - **State of the system**: Deck has 0 cards; valid card object provided; location = 0
     - **Expected output**: Card is inserted as the only element; deck size becomes 1
 
-- **TC13: Insert a null card at a valid location** ( :white_check_mark: )
-    - **State of the system**: Deck has N cards; card = null/None; location = 0
-    - **Expected output**: Throws an `IllegalArgumentException`; deck remains unchanged
-
 ### Method under test: discard(card, location)
-- **TC14: Discard existing card** ( :white_check_mark: )
-    - **State of the system**: Deck has N cards; card is present in the deck
-    - **Expected output**: Card is removed from the deck; deck size becomes N-1
-
-- **TC15: Discard the only card in the deck** ( :white_check_mark: )
-    - **State of the system**: Deck has exactly 1 card; card is that card
+- **TC13: Discard the only card in the deck** ( :white_check_mark: )
+    - **State of the system**: Deck has exactly 1 card; card to discard is that card
     - **Expected output**: Card is removed; deck size becomes 0
 
-- **TC16: Discard from an empty deck** ( :white_check_mark: )
+- **TC14: Discard from an empty deck** ( :white_check_mark: )
     - **State of the system**: Deck has 0 cards; any card provided
     - **Expected output**: Throws an `IllegalArgumentException`; deck remains empty
 
-- **TC17: Discard the first card in the deck** ( :white_check_mark: )
-    - **State of the system**: Deck has N cards; card is at index 0
+- **TC15: Discard the first card in the deck** ( :white_check_mark: )
+    - **State of the system**: Deck has N cards; card to discard is at index 0
     - **Expected output**: Card is removed from the front; deck size becomes N-1
 
-- **TC18: Discard the last card in the deck** ( :white_check_mark: )
-    - **State of the system**: Deck has N cards; card is at index N-1
+- **TC16: Discard the last card in the deck** ( :white_check_mark: )
+    - **State of the system**: Deck has N cards; card to discard is at index N-1
     - **Expected output**: Card is removed from the back; deck size becomes N-1
 
-- **TC19: Discard a card not present in the deck** ( :white_check_mark: )
+- **TC17: Discard a card not present in the deck** ( :white_check_mark: )
     - **State of the system**: Deck has N cards; provided card does not exist in the deck
     - **Expected output**: Raises a `ValueError`; deck remains unchanged
 
-- **TC20: Discard a null card** ( :white_check_mark: )
-    - **State of the system**: Deck has N cards; card = null/None
-    - **Expected output**: Raises a `ValueError`; deck remains unchanged
-
 ### Method under test: getCards()
-- **TC21: Get cards from a deck with multiple cards** (:white_check_mark:)
+- **TC18: Get cards from a deck with multiple cards** (:white_check_mark:)
     - **State of the system**: Deck has N cards
     - **Expected output**: Returns a list of all N cards; deck remains unchanged
 
-- **TC22: Get cards from a deck with exactly one card** ( :white_check_mark: )
+- **TC19: Get cards from a deck with exactly one card** ( :white_check_mark: )
     - **State of the system**: Deck has exactly 1 card
     - **Expected output**: Returns a list containing that 1 card; deck remains unchanged
 
-- **TC23: Get cards from an empty deck** ( :white_check_mark: )
+- **TC20: Get cards from an empty deck** ( :white_check_mark: )
     - **State of the system**: Deck has 0 cards
     - **Expected output**: Returns an empty list; deck remains unchanged
 
 ### Method under test: count()
-- **TC24: Count an empty deck** ( :white_check_mark: )
+- **TC21: Count an empty deck** ( :white_check_mark: )
     - **State of the system**: Deck has 0 cards
     - **Expected output**: Returns 0
 
-- **TC25: Count a deck with exactly one card** ( :white_check_mark: )
+- **TC22: Count a deck with exactly one card** ( :white_check_mark: )
     - **State of the system**: Deck has exactly 1 card
     - **Expected output**: Returns 1
 
-- **TC26: Count a deck with N cards** ( :white_check_mark: )
+- **TC23: Count a deck with N cards** ( :white_check_mark: )
     - **State of the system**: Deck has exactly N cards
     - **Expected output**: Returns N

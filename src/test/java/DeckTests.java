@@ -184,36 +184,6 @@ public class DeckTests {
     }
 
     @Test
-    void insertNullCard(){
-        Deck deck = new Deck();
-        ArrayList<Card> initialCards = deck.getCards();
-        int initialSize = deck.count();
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            deck.insert(null, 0);
-        });
-
-        ArrayList<Card> after_null_insert_cards = deck.getCards();
-        int after_null_insert_num_cards = deck.count();
-
-        assertEquals(initialSize, after_null_insert_num_cards);
-        assertEquals(initialCards, after_null_insert_cards);
-    }
-
-    @Test
-    void discardExistingCard() {
-        Deck deck = new Deck();
-        int initialSize = deck.count();
-
-        Card cardToDiscard = deck.getCards().get(0);
-        deck.discard(cardToDiscard);
-
-        ArrayList<Card> cards = deck.getCards();
-        assertEquals(initialSize - 1, deck.count());
-        assertFalse(cards.contains(cardToDiscard));
-    }
-
-    @Test
     void discardOnlyCard() {
         Deck deck = new Deck(1);
         int initialSize = deck.count();
@@ -234,6 +204,20 @@ public class DeckTests {
         assertThrows(IllegalArgumentException.class, () -> {
             deck.discard(mockCardToDiscard);
         });
+        assertEquals(0, deck.count());
+    }
+
+    @Test
+    void discardFirstCard() {
+        Deck deck = new Deck();
+        int initialSize = deck.count();
+
+        Card cardToDiscard = deck.getCards().get(0);
+        deck.discard(cardToDiscard);
+
+        ArrayList<Card> cards = deck.getCards();
+        assertEquals(initialSize - 1, deck.count());
+        assertFalse(cards.contains(cardToDiscard));
     }
 
     @Test
@@ -250,17 +234,16 @@ public class DeckTests {
     }
 
     @Test
-    void discardNullCard(){
+    void discardCardNotInDeck(){
         Deck deck = new Deck();
-        ArrayList<Card> initialCards = deck.getCards();
         int initialSize = deck.count();
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            deck.discard(null);
-        });
+        Card mockCardToDiscard = EasyMock.createMock(Card.class);
 
+        assertThrows(IllegalArgumentException.class, () -> {
+            deck.discard(mockCardToDiscard);
+        });
         assertEquals(initialSize, deck.count());
-        assertEquals(initialCards, deck.getCards());
     }
 
     @Test
@@ -304,5 +287,11 @@ public class DeckTests {
     void countEmptyDeck(){
         Deck deck = new Deck(0);
         assertEquals(0, deck.count());
+    }
+
+    @Test
+    void countDeckWithNCards(){
+        Deck deck = new Deck();
+        assertEquals(34, deck.count());
     }
 }

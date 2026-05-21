@@ -40,16 +40,10 @@ public class Deck {
     }
 
     public void insert(Card card, int location){
-        if (card == null){
-            throw new IllegalArgumentException("Card cannot be null");
-        }
         this.cards.add(location, card);
     }
 
     public void discard(Card card){
-        if (card == null){
-            throw new IllegalArgumentException("Card cannot be null");
-        }
         if (!this.cards.contains(card)){
             throw new IllegalArgumentException("Card is not in the deck");
         }
