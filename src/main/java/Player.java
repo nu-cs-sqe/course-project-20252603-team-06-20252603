@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
+public final class Player {
     private final String playerName;
     private final List<Card> cards;
     private boolean isAlive;
@@ -19,7 +19,7 @@ public class Player {
     }
 
     public String getPlayerName() { return playerName; }
-    public List<Card> getCards() { return cards; }
+    public List<Card> getCards() { return new ArrayList<>(cards); }
     public boolean isAlive() { return isAlive; }
 
     public void addCard(Card card) {
