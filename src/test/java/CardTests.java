@@ -24,5 +24,8 @@ public class CardTests {
 
         assertEquals(CardType.TEST_TYPE, card.getType());
     }
+
+    //moving onto play tests
+
 }
 
