@@ -1,8 +1,13 @@
+import com.github.spotbugs.snom.Confidence
+import com.github.spotbugs.snom.Effort
+
 plugins {
+    application
     id("java")
     id("checkstyle")
     id("com.github.spotbugs") version "6.1.11"
     jacoco
+    id("info.solidsoft.pitest") version "1.15.0"
 }
 
 group = "nu.csse.sqe"
@@ -10,6 +15,10 @@ version = "1.0"
 
 repositories {
     mavenCentral()
+}
+
+application {
+    mainClass = "Code.Main"
 }
 
 dependencies {
@@ -38,6 +47,25 @@ tasks.compileJava {
 tasks.test {
     useJUnitPlatform()
     finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+    finalizedBy(tasks.pitest)
+}
+
+spotbugs {
+    toolVersion.set("4.9.7")
+    ignoreFailures.set(false)
+    showStackTraces.set(true)
+    showProgress.set(true)
+    effort.set(Effort.DEFAULT)
+    reportLevel.set(Confidence.DEFAULT)
+    maxHeapSize.set("1g")
+    extraArgs.addAll("-nested:false")
+}
+
+tasks.withType<com.github.spotbugs.snom.SpotBugsTask>().configureEach {
+    reports {
+        create("html") { required.set(true) }
+        create("xml") { required.set(false) }
+    }
 }
 
 tasks.jacocoTestReport {
@@ -49,18 +77,27 @@ tasks.jacocoTestReport {
     }
 }
 
+tasks.build {
+    dependsOn("pitest")
+}
+
+pitest {
+    targetClasses = setOf("Code.*") //by default "${project.group}.*"
+    targetTests = setOf("Code.*")
+    junit5PluginVersion = "1.2.1"
+    pitestVersion = "1.15.0" //not needed when a default PIT version should be used
+
+    threads = 4
+    outputFormats = setOf("HTML")
+    timestampedReports = false
+    testSourceSets.set(listOf(sourceSets.test.get()))
+    mainSourceSets.set(listOf(sourceSets.main.get()))
+    jvmArgs.set(listOf("-Xmx1024m"))
+    useClasspathFile.set(true) //useful with bigger projects on Windows
+    fileExtensionsToFilter.addAll("xml")
+    exportLineCoverage = true
+}
+
 configure<CheckstyleExtension> {
     toolVersion = "10.12.5"
-}
-
-spotbugs {
-    toolVersion.set("4.9.7")
-    ignoreFailures.set(true)
-}
-
-tasks.withType<com.github.spotbugs.snom.SpotBugsTask>().configureEach {
-    reports {
-        create("html") { required.set(true) }
-        create("xml") { required.set(false) }
-    }
 }
