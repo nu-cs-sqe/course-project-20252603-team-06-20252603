@@ -2,6 +2,7 @@ plugins {
     id("java")
     id("checkstyle")
     id("com.github.spotbugs") version "6.1.11"
+    jacoco
 }
 
 group = "nu.csse.sqe"
@@ -25,6 +26,10 @@ java {
     }
 }
 
+jacoco {
+    toolVersion = "0.8.14"
+    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
+}
 
 tasks.compileJava {
     options.release = 11
@@ -32,6 +37,16 @@ tasks.compileJava {
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
+    }
 }
 
 configure<CheckstyleExtension> {
