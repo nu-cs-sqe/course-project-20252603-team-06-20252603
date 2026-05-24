@@ -1,4 +1,6 @@
-public class Card {
+package Code;
+
+public final class Card {
     private final CardType type;
 
     public Card(CardType type) {
