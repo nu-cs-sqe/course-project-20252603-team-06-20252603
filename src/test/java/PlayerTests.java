@@ -295,4 +295,17 @@ public class PlayerTests {
         player.addCard(card);
         assertEquals(1, player.getHandSize());
     }
+
+    @Test
+    void getHandSize_TwoCards_Two() {
+        Player player = new Player("lily");
+
+        Card card1 = EasyMock.createMock(Card.class);
+        Card card2 = EasyMock.createMock(Card.class);
+        EasyMock.replay(card1, card2);
+
+        player.addCard(card1);
+        player.addCard(card2);
+        assertEquals(2, player.getHandSize());
+    }
 }

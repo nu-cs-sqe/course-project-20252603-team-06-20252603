@@ -114,7 +114,7 @@ output: isAlive (boolean), hand (list)
     - **State of the system**: hand: [TEST]
     - **Expected output**: 1
 
-- **TC10: getHandSize_TwoCards_Two** ( :x: or :white_check_mark: )
+- **TC10: getHandSize_TwoCards_Two** ( :white_check_mark: )
     - **State of the system**: hand: [TEST, TEST2]
     - **Expected output**: 2
 
