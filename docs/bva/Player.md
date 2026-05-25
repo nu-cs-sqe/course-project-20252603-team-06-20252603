@@ -44,7 +44,7 @@ However, you are only required to document Step 4.
     - **Expected output**: [Card, Card1, Card]
 
 - ### Method under test: kill()
-- **TC10: kill_Success** ( :x or :white_check_mark: )
+- **TC10: kill_Success** ( :white_check_mark: )
     - **State of the system**: isAlive: True
     - **Expected output**: isAlive: False
 

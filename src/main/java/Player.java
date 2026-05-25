@@ -23,6 +23,10 @@ public class Player {
         hand.add(card);
     }
 
+    public void kill() {
+        this.isAlive = false;
+    }
+
     public boolean hasDefuse() {
         for (Card card : hand) {
             if (card.getType() == CardType.DEFUSE) {

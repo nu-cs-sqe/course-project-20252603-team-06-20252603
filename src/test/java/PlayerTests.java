@@ -133,6 +133,14 @@ public class PlayerTests {
     }
 
     @Test
+    void kill_Success() {
+        Player player = new Player("lily");
+
+        player.kill();
+        assertFalse(player.isAlive());
+    }
+
+    @Test
     void removeCard_NormalCardOneCard_CardRemoved() {
         Player player = new Player("lily");
 
