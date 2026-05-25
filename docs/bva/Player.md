@@ -123,7 +123,7 @@ output: isAlive (boolean), hand (list)
     - **Expected output**: 2
 
 - ### Method under test: hasCard()
-- **TC10: hasCard_EmptyHand_False** ( :x: or :white_check_mark: )
+- **TC10: hasCard_EmptyHand_False** ( :white_check_mark: )
     - **State of the system**: hand: [], card: TEST
     - **Expected output**: False
 

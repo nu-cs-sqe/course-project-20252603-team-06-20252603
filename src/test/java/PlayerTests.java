@@ -320,4 +320,11 @@ public class PlayerTests {
         player.addCard(card);
         assertEquals(2, player.getHandSize());
     }
+
+    @Test
+    void hasCard_EmptyHand_False() {
+        Player player = new Player("lily");
+
+        assertFalse(player.hasCard(CardType.DEFUSE));
+    }
 }

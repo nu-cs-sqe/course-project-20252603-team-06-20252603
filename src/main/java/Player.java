@@ -64,4 +64,8 @@ public class Player {
     public int getHandSize() {
         return hand.size();
     }
+
+    public boolean hasCard(CardType type) {
+        return false;
+    }
 }
