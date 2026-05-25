@@ -8,15 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PlayerTests {
 
     @Test
-    void Constructor_nullName_IllegalArgumentException() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Player(null);
-        });
-
-        assertEquals("player name cannot be null", exception.getMessage());
-    }
-
-    @Test
     void Constructor_EmptyName_IllegalArgumentException() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             new Player("");
@@ -142,19 +133,6 @@ public class PlayerTests {
     }
 
     @Test
-    void addCard_AddNullCard_IllegalArgumentException() {
-        Player player = new Player("lily");
-
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            player.addCard(null);
-        });
-
-        assertEquals("card cannot be null", exception.getMessage());
-
-        assertTrue(player.getHand().isEmpty());
-    }
-
-    @Test
     void setLife_AlivetoDead_Success() {
         Player player = new Player("lily");
 
@@ -212,17 +190,6 @@ public class PlayerTests {
 
         assertEquals(1, player.getHand().size());
         assertTrue(player.getHand().contains(card2));
-    }
-
-    @Test
-    void removeCard_nullCard_IllegalArgumentException() {
-        Player player = new Player("lily");
-
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            player.removeCard(null);
-        });
-
-        assertEquals("card cannot be null", exception.getMessage());
     }
 
     @Test

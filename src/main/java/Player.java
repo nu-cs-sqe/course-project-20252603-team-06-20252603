@@ -7,9 +7,6 @@ public class Player {
     private boolean isAlive;
 
     public Player(String playerName) {
-        if (playerName == null) {
-            throw new IllegalArgumentException("player name cannot be null");
-        }
         if (playerName.isEmpty()) {
             throw new IllegalArgumentException("player name cannot be empty");
         }
@@ -23,10 +20,6 @@ public class Player {
     public boolean isAlive() { return isAlive; }
 
     public void addCard(Card card) {
-        if (card == null) {
-            throw new IllegalArgumentException("card cannot be null");
-        }
-
         hand.add(card);
     }
 
@@ -48,9 +41,6 @@ public class Player {
     }
 
     public void removeCard(Card card) {
-        if (card == null) {
-            throw new IllegalArgumentException("card cannot be null");
-        }
         if (this.hand.isEmpty()) {
             throw new IllegalStateException("cannot remove from empty hand");
         }
