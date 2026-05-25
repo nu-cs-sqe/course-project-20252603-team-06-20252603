@@ -385,4 +385,21 @@ public class PlayerTests {
         player.addCard(card2);
         assertTrue(player.hasCard(CardType.DEFUSE));
     }
+
+    @Test
+    void hasCard_DuplicateCardsNoMatch_False() {
+        Player player = new Player("lily");
+
+        Card card1 = EasyMock.createMock(Card.class);
+        EasyMock.expect(card1.getType()).andStubReturn(CardType.TEST_TYPE);
+
+        Card card2 = EasyMock.createMock(Card.class);
+        EasyMock.expect(card2.getType()).andStubReturn(CardType.TEST_TYPE);
+
+        EasyMock.replay(card1, card2);
+
+        player.addCard(card1);
+        player.addCard(card2);
+        assertFalse(player.hasCard(CardType.DEFUSE));
+    }
 }
