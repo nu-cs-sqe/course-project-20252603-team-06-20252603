@@ -57,7 +57,7 @@ However, you are only required to document Step 4.
     - **State of the system**: isAlive: False
     - **Expected output**: isAlive: True
 
-- **TC10: revive_IllegalStateException** ( :x or :white_check_mark: )
+- **TC10: revive_IllegalStateException** ( :white_check_mark: )
     - **State of the system**: isAlive: True
     - **Expected output**: IllegalStateException
 

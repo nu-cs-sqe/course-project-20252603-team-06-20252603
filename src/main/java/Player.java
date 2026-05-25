@@ -31,6 +31,9 @@ public class Player {
     }
 
     public void revive() {
+        if (isAlive) {
+            throw new IllegalStateException("cannot revive alive player");
+        }
         isAlive = true;
     }
 

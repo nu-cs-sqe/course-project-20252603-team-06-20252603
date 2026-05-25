@@ -163,6 +163,17 @@ public class PlayerTests {
     }
 
     @Test
+    void revive_IllegalStateException() {
+        Player player = new Player("lily");
+
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
+            player.revive();
+        });
+
+        assertEquals("cannot revive alive player", exception.getMessage());
+    }
+
+    @Test
     void removeCard_NormalCardOneCard_CardRemoved() {
         Player player = new Player("lily");
 
