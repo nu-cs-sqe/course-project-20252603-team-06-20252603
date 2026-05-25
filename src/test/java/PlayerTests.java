@@ -94,7 +94,7 @@ public class PlayerTests {
     }
 
     @Test
-    void addCard_1cardAddNewCard_success() {
+    void addCard_onecardAddNewCard_success() {
         Player player = new Player("lily");
 
         Card card1 = EasyMock.createMock(Card.class);
@@ -112,7 +112,7 @@ public class PlayerTests {
     }
 
     @Test
-    void addCard_2cardDuplicateCards_success() {
+    void addCard_twocardsDuplicateCards_success() {
         Player player = new Player("lily");
 
         Card card1 = EasyMock.createMock(Card.class);
