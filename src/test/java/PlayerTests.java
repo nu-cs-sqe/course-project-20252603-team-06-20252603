@@ -339,4 +339,16 @@ public class PlayerTests {
         player.addCard(card);
         assertTrue(player.hasCard(CardType.DEFUSE));
     }
+
+    @Test
+    void hasCard_OneCardNoMatch_False() {
+        Player player = new Player("lily");
+
+        Card card = EasyMock.createMock(Card.class);
+        EasyMock.expect(card.getType()).andStubReturn(CardType.TEST_TYPE);
+        EasyMock.replay(card);
+
+        player.addCard(card);
+        assertFalse(player.hasCard(CardType.DEFUSE));
+    }
 }
