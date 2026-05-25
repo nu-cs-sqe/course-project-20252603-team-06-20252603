@@ -1,4 +1,5 @@
-import org.easymock.EasyMock;
+package Code;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -45,9 +46,7 @@ public class PlayerTests {
     void hasDefuse_OneCardwithDefuse_True() {
         Player player = new Player("lily");
 
-        Card card = EasyMock.createMock(Card.class);
-        EasyMock.expect(card.getType()).andStubReturn(CardType.DEFUSE);
-        EasyMock.replay(card);
+        Card card = new Card(CardType.DEFUSE);
 
         player.addCard(card);
 
@@ -58,13 +57,9 @@ public class PlayerTests {
     void hasDefuse_TwoCardswithoutDefuse_False() {
         Player player = new Player("lily");
 
-        Card card1 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card1.getType()).andStubReturn(CardType.TEST_TYPE);
-        EasyMock.replay(card1);
+        Card card1 = new Card(CardType.TEST_TYPE);
 
-        Card card2 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card2.getType()).andStubReturn(CardType.TEST_TYPE);
-        EasyMock.replay(card2);
+        Card card2 = new Card(CardType.TEST_TYPE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -76,13 +71,9 @@ public class PlayerTests {
     void hasDefuse_duplicateDefuse_True() {
         Player player = new Player("lily");
 
-        Card card1 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card1.getType()).andStubReturn(CardType.DEFUSE);
-        EasyMock.replay(card1);
+        Card card1 = new Card(CardType.DEFUSE);
 
-        Card card2 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card2.getType()).andStubReturn(CardType.DEFUSE);
-        EasyMock.replay(card2);
+        Card card2 = new Card(CardType.DEFUSE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -94,8 +85,7 @@ public class PlayerTests {
     void addCard_noCards_success() {
         Player player = new Player("lily");
 
-        Card card = EasyMock.createMock(Card.class);
-        EasyMock.replay(card);
+        Card card = new Card(CardType.TEST_TYPE);
 
         player.addCard(card);
         assertEquals(1, player.getCards().size());
@@ -106,11 +96,9 @@ public class PlayerTests {
     void addCard_1cardAddNewCard_success() {
         Player player = new Player("lily");
 
-        Card card1 = EasyMock.createMock(Card.class);
-        EasyMock.replay(card1);
+        Card card1 = new Card(CardType.TEST_TYPE);
 
-        Card card2 = EasyMock.createMock(Card.class);
-        EasyMock.replay(card2);
+        Card card2 = new Card(CardType.TEST_TYPE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -124,11 +112,9 @@ public class PlayerTests {
     void addCard_2cardDuplicateCards_success() {
         Player player = new Player("lily");
 
-        Card card1 = EasyMock.createMock(Card.class);
-        EasyMock.replay(card1);
+        Card card1 = new Card(CardType.TEST_TYPE);
 
-        Card card2 = EasyMock.createMock(Card.class);
-        EasyMock.replay(card2);
+        Card card2 = new Card(CardType.TEST_TYPE);
 
         player.addCard(card1);
         player.addCard(card2);

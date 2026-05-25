@@ -1,3 +1,5 @@
+package Code;
+
 public enum CardType {
     TEST_TYPE,
     EXPLODING_KITTEN,
