@@ -1,4 +1,5 @@
-import org.easymock.EasyMock;
+package Code;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class DeckTests {
                 CardType.CAT_CARD_2, 0,
                 CardType.CAT_CARD_3, 0,
                 CardType.CAT_CARD_4, 0
-            )
+        )
         );
 
         for(int i = 0; i < cards.size(); i++){
@@ -112,10 +113,9 @@ public class DeckTests {
     @Test
     void insertAtIndexNegativeOne(){
         Deck deck = new Deck();
-        Card mockCard = EasyMock.createMock(Card.class);
 
         assertThrows(IndexOutOfBoundsException.class, () -> {
-            deck.insert(mockCard, -1);
+            deck.insert(new Card(CardType.TEST_TYPE), -1);
         });
     }
 
@@ -124,12 +124,12 @@ public class DeckTests {
         Deck deck = new Deck();
         int initialSize = deck.count();
 
-        Card mockCard = EasyMock.createMock(Card.class);
-        deck.insert(mockCard, 0);
+        Card card = new Card(CardType.TEST_TYPE);
+        deck.insert(card, 0);
         ArrayList<Card> cards = deck.getCards();
 
         assertEquals(initialSize + 1, deck.count());
-        assertSame(mockCard, cards.get(0));
+        assertSame(card, cards.get(0));
     }
 
     @Test
@@ -137,12 +137,12 @@ public class DeckTests {
         Deck deck = new Deck();
         int initialSize = deck.count();
 
-        Card mockCard = EasyMock.createMock(Card.class);
-        deck.insert(mockCard, 1);
+        Card card = new Card(CardType.TEST_TYPE);
+        deck.insert(card, 1);
         ArrayList<Card> cards = deck.getCards();
 
         assertEquals(initialSize + 1, deck.count());
-        assertSame(mockCard, cards.get(1));
+        assertSame(card, cards.get(1));
     }
 
     @Test
@@ -150,12 +150,12 @@ public class DeckTests {
         Deck deck = new Deck();
         int initialSize = deck.count();
 
-        Card mockCard = EasyMock.createMock(Card.class);
-        deck.insert(mockCard, initialSize);
+        Card card = new Card(CardType.TEST_TYPE);
+        deck.insert(card, initialSize);
         ArrayList<Card> cards = deck.getCards();
 
         assertEquals(initialSize + 1, deck.count());
-        assertSame(mockCard, cards.get(initialSize));
+        assertSame(card, cards.get(initialSize));
     }
 
     @Test
@@ -163,24 +163,24 @@ public class DeckTests {
         Deck deck = new Deck();
         int initialSize = deck.count();
 
-        Card mockCard = EasyMock.createMock(Card.class);
-        deck.insert(mockCard, initialSize - 1);
+        Card card = new Card(CardType.TEST_TYPE);
+        deck.insert(card, initialSize - 1);
         ArrayList<Card> cards = deck.getCards();
 
         assertEquals(initialSize + 1, deck.count());
-        assertSame(mockCard, cards.get(initialSize - 1));
+        assertSame(card, cards.get(initialSize - 1));
     }
 
     @Test
     void insertIntoEmptyDeck(){
         Deck deck = new Deck(0);
 
-        Card mockCard = EasyMock.createMock(Card.class);
-        deck.insert(mockCard, 0);
+        Card card = new Card(CardType.TEST_TYPE);
+        deck.insert(card, 0);
         ArrayList<Card> cards = deck.getCards();
 
         assertEquals(1, deck.count());
-        assertSame(mockCard, cards.get(0));
+        assertSame(card, cards.get(0));
     }
 
     @Test
@@ -199,10 +199,10 @@ public class DeckTests {
     @Test
     void discardFromEmptyDeck() {
         Deck deck = new Deck(0);
-        Card mockCardToDiscard = EasyMock.createMock(Card.class);
+        Card cardToDiscard= new Card(CardType.TEST_TYPE);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            deck.discard(mockCardToDiscard);
+            deck.discard(cardToDiscard);
         });
         assertEquals(0, deck.count());
     }
@@ -238,10 +238,10 @@ public class DeckTests {
         Deck deck = new Deck();
         int initialSize = deck.count();
 
-        Card mockCardToDiscard = EasyMock.createMock(Card.class);
+        Card cardToDiscard = new Card(CardType.TEST_TYPE);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            deck.discard(mockCardToDiscard);
+            deck.discard(cardToDiscard);
         });
         assertEquals(initialSize, deck.count());
     }
