@@ -104,3 +104,45 @@ output: isAlive (boolean), hand (list)
 - **TC21: takeTurn_ExplodingKittenNoDefuse_PlayerDies** ( :x: or :white_check_mark: )
     - **State of the system**: card: EXPLODING KITTEN, hand: []
     - **Expected output**: isAlive: false, hand: []
+
+- ### Method under test: getHandSize()
+- **TC10: getHandSize_EmptyHand_Zero** ( :x: or :white_check_mark: )
+    - **State of the system**: hand: []
+    - **Expected output**: 0
+
+- **TC10: getHandSize_OneCard_One** ( :x: or :white_check_mark: )
+    - **State of the system**: hand: [TEST]
+    - **Expected output**: 1
+
+- **TC10: getHandSize_TwoCards_Two** ( :x: or :white_check_mark: )
+    - **State of the system**: hand: [TEST, DEFUSE]
+    - **Expected output**: 2
+
+- **TC10: getHandSize_DuplicateCards_Two** ( :x: or :white_check_mark: )
+    - **State of the system**: hand: [TEST, TEST]
+    - **Expected output**: 2
+
+- ### Method under test: hasCard()
+- **TC10: hasCard_EmptyHand_False** ( :x: or :white_check_mark: )
+    - **State of the system**: hand: [], card: TEST
+    - **Expected output**: False
+
+- **TC10: hasCard_OneCardMatch_True** ( :x: or :white_check_mark: )
+    - **State of the system**: hand: [DEFUSE], card: DEFUSE
+    - **Expected output**: True
+
+- **TC10: hasCard_OneCardNoMatch_False** ( :x: or :white_check_mark: )
+    - **State of the system**: hand: [TEST], card: DEFUSE
+    - **Expected output**: False
+
+- **TC10: hasCard_TwoCardsOneMatch_True** ( :x: or :white_check_mark: )
+    - **State of the system**: hand: [TEST, DEFUSE], card: DEFUSE
+    - **Expected output**: True
+
+- **TC10: hasCard_DuplicateCardsMatch_True** ( :x: or :white_check_mark: )
+    - **State of the system**: hand: [DEFUSE, DEFUSE], card: DEFUSE
+    - **Expected output**: True
+
+- **TC10: hasCard_DuplicateCardsNoMatch_False** ( :x: or :white_check_mark: )
+    - **State of the system**: hand: [TEST, TEST], card: DEFUSE
+    - **Expected output**: False
