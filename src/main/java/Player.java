@@ -60,4 +60,8 @@ public class Player {
     public void takeTurn(Card card) {
         hand.add(card);
     }
+
+    public int getHandSize() {
+        return 0;
+    }
 }

@@ -277,4 +277,11 @@ public class PlayerTests {
         assertTrue(player.getHand().contains(card2));
         assertTrue(player.isAlive());
     }
+
+    @Test
+    void getHandSize_EmptyHand_Zero() {
+        Player player = new Player("lily");
+
+        assertEquals(0, player.getHandSize());
+    }
 }

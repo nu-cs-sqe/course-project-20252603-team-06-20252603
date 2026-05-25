@@ -106,7 +106,7 @@ output: isAlive (boolean), hand (list)
     - **Expected output**: isAlive: false, hand: []
 
 - ### Method under test: getHandSize()
-- **TC10: getHandSize_EmptyHand_Zero** ( :x: or :white_check_mark: )
+- **TC10: getHandSize_EmptyHand_Zero** ( :white_check_mark: )
     - **State of the system**: hand: []
     - **Expected output**: 0
 
