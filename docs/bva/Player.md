@@ -139,7 +139,7 @@ output: isAlive (boolean), hand (list)
     - **State of the system**: hand: [TEST, DEFUSE], card: DEFUSE
     - **Expected output**: True
 
-- **TC10: hasCard_DuplicateCardsMatch_True** ( :x: or :white_check_mark: )
+- **TC10: hasCard_DuplicateCardsMatch_True** ( :white_check_mark: )
     - **State of the system**: hand: [DEFUSE, DEFUSE], card: DEFUSE
     - **Expected output**: True
 
