@@ -30,6 +30,10 @@ public class Player {
         isAlive = false;
     }
 
+    public void revive() {
+        isAlive = true;
+    }
+
     public boolean hasDefuse() {
         for (Card card : hand) {
             if (card.getType() == CardType.DEFUSE) {

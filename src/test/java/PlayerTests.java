@@ -154,6 +154,15 @@ public class PlayerTests {
     }
 
     @Test
+    void revive_Success() {
+        Player player = new Player("lily");
+        player.kill();
+
+        player.revive();
+        assertTrue(player.isAlive());
+    }
+
+    @Test
     void removeCard_NormalCardOneCard_CardRemoved() {
         Player player = new Player("lily");
 

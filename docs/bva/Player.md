@@ -53,7 +53,7 @@ However, you are only required to document Step 4.
     - **Expected output**: IllegalStateException
 
 - ### Method under test: revive()
-- **TC10: revive_Success** ( :x or :white_check_mark: )
+- **TC10: revive_Success** ( :white_check_mark: )
     - **State of the system**: isAlive: False
     - **Expected output**: isAlive: True
 
