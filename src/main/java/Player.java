@@ -32,14 +32,6 @@ public class Player {
         return false;
     }
 
-    public void setLife(boolean alive) {
-        if (alive && !isAlive) {
-            throw new IllegalStateException("cannot resurrect a dead player");
-        }
-
-        this.isAlive = alive;
-    }
-
     public void removeCard(Card card) {
         if (this.hand.isEmpty()) {
             throw new IllegalStateException("cannot remove from empty hand");

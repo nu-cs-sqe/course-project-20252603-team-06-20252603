@@ -30,7 +30,6 @@ However, you are only required to document Step 4.
   - **State of the system**: [Defuse, Defuse]
   - **Expected output**: True
 
-
 ### Method under test: addCard()
 - **TC7: addCard_noCards_success** ( :white_check_mark: )
     - **State of the system**: [], Card
@@ -44,18 +43,23 @@ However, you are only required to document Step 4.
     - **State of the system**: [Card, Card1], Card
     - **Expected output**: [Card, Card1, Card]
 
-- ### Method under test: setLife()
-- **TC10: setLife_AlivetoDead_Success** ( :white_check_mark: )
-    - **State of the system**: isAlive: True, input: False
+- ### Method under test: kill()
+- **TC10: kill_Success** ( :x or :white_check_mark: )
+    - **State of the system**: isAlive: True
     - **Expected output**: isAlive: False
 
-- **TC11: setLife_DeadtoAlive_IllegalStateException** ( :white_check_mark: )
-    - **State of the system**: isAlive: False, input: True
+- **TC10: kill_IllegalStateException** ( :x or :white_check_mark: )
+    - **State of the system**: isAlive: False
     - **Expected output**: IllegalStateException
 
-- **TC12: setLife_AlivetoAlive_SucessNoChange** ( :white_check_mark: )
-  - **State of the system**: isAlive: True, input: True
-  - **Expected output**: isAlive: True
+- ### Method under test: revive()
+- **TC10: revive_Success** ( :x or :white_check_mark: )
+    - **State of the system**: isAlive: False
+    - **Expected output**: isAlive: True
+
+- **TC10: revive_IllegalStateException** ( :x or :white_check_mark: )
+    - **State of the system**: isAlive: True
+    - **Expected output**: IllegalStateException
 
 - ### Method under test: removeCard()
 input: card (pointer), cards (list)

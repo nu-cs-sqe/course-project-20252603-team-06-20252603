@@ -133,32 +133,6 @@ public class PlayerTests {
     }
 
     @Test
-    void setLife_AlivetoDead_Success() {
-        Player player = new Player("lily");
-
-        player.setLife(false);
-        assertFalse(player.isAlive());
-    }
-
-    @Test
-    void setLife_DeadtoAlive_IllegalStateException() {
-        Player player = new Player("lily");
-
-        player.setLife(false);
-        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
-            player.setLife(true);
-        });
-    }
-
-    @Test
-    void setLife_AlivetoAlive_SucessNoChange() {
-        Player player = new Player("lily");
-
-        player.setLife(true);
-        assertTrue(player.isAlive());
-    }
-
-    @Test
     void removeCard_NormalCardOneCard_CardRemoved() {
         Player player = new Player("lily");
 
