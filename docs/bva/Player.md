@@ -93,6 +93,7 @@ output: isAlive (boolean), hand (list)
     - **State of the system**: card: TEST, hand: [TEST]
     - **Expected output**: isAlive: true, hand: [TEST, TEST]
 
+***TODO***
 - **TC19: takeTurn_ExplodingKittenHas1Defuse_PlayerLives** ( :x: or :white_check_mark: )
     - **State of the system**: card: EXPLODING KITTEN, hand: [DEFUSE]
     - **Expected output**: isAlive: true, hand: []
