@@ -141,6 +141,19 @@ public class PlayerTests {
     }
 
     @Test
+    void kill_IllegalStateException() {
+        Player player = new Player("lily");
+
+        player.kill();
+
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
+            player.kill();
+        });
+
+        assertEquals("cannot kill dead player", exception.getMessage());
+    }
+
+    @Test
     void removeCard_NormalCardOneCard_CardRemoved() {
         Player player = new Player("lily");
 

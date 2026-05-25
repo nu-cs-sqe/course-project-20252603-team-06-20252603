@@ -24,7 +24,10 @@ public class Player {
     }
 
     public void kill() {
-        this.isAlive = false;
+        if (!isAlive) {
+            throw new IllegalStateException("cannot kill dead player");
+        }
+        isAlive = false;
     }
 
     public boolean hasDefuse() {
@@ -37,17 +40,17 @@ public class Player {
     }
 
     public void removeCard(Card card) {
-        if (this.hand.isEmpty()) {
+        if (hand.isEmpty()) {
             throw new IllegalStateException("cannot remove from empty hand");
         }
         if (!hand.contains(card)) {
             throw new IllegalArgumentException("card to remove not in hand");
         }
 
-        this.hand.remove(card);
+        hand.remove(card);
     }
 
     public void takeTurn(Card card) {
-        this.hand.add(card);
+        hand.add(card);
     }
 }
