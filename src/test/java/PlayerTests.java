@@ -21,7 +21,7 @@ public class PlayerTests {
         Player player = new Player("lily");
 
         assertEquals("lily", player.getPlayerName());
-        assertTrue(player.getHand().isEmpty());
+        assertEquals(0, player.getHandSize());
         assertTrue(player.isAlive());
     }
 
@@ -86,11 +86,12 @@ public class PlayerTests {
         Player player = new Player("lily");
 
         Card card = EasyMock.createMock(Card.class);
+        EasyMock.expect(card.getType()).andStubReturn(CardType.TEST_TYPE);
         EasyMock.replay(card);
 
         player.addCard(card);
-        assertEquals(1, player.getHand().size());
-        assertTrue(player.getHand().contains(card));
+        assertEquals(1, player.getHandSize());
+        assertTrue(player.hasCard(CardType.TEST_TYPE));
     }
 
     @Test
@@ -98,17 +99,19 @@ public class PlayerTests {
         Player player = new Player("lily");
 
         Card card1 = EasyMock.createMock(Card.class);
+        EasyMock.expect(card1.getType()).andStubReturn(CardType.TEST_TYPE);
         EasyMock.replay(card1);
 
         Card card2 = EasyMock.createMock(Card.class);
+        EasyMock.expect(card2.getType()).andStubReturn(CardType.DEFUSE);
         EasyMock.replay(card2);
 
         player.addCard(card1);
         player.addCard(card2);
 
-        assertEquals(2, player.getHand().size());
-        assertTrue(player.getHand().contains(card1));
-        assertTrue(player.getHand().contains(card2));
+        assertEquals(2, player.getHandSize());
+        assertTrue(player.hasCard(CardType.TEST_TYPE));
+        assertTrue(player.hasCard(CardType.DEFUSE));
     }
 
     @Test
@@ -116,20 +119,20 @@ public class PlayerTests {
         Player player = new Player("lily");
 
         Card card1 = EasyMock.createMock(Card.class);
+        EasyMock.expect(card1.getType()).andStubReturn(CardType.TEST_TYPE);
         EasyMock.replay(card1);
 
         Card card2 = EasyMock.createMock(Card.class);
+        EasyMock.expect(card2.getType()).andStubReturn(CardType.DEFUSE);
         EasyMock.replay(card2);
 
         player.addCard(card1);
         player.addCard(card2);
         player.addCard(card1);
 
-        List<Card> hand = player.getHand();
-        assertEquals(3, hand.size());
-        assertEquals(card1, hand.get(0));
-        assertEquals(card2, hand.get(1));
-        assertEquals(card1, hand.get(2));
+        assertEquals(3, player.getHandSize());
+        assertTrue(player.hasCard(CardType.TEST_TYPE));
+        assertTrue(player.hasCard(CardType.DEFUSE));
     }
 
     @Test
@@ -184,7 +187,7 @@ public class PlayerTests {
         player.addCard(card);
         player.removeCard(card);
 
-        assertEquals(0, player.getHand().size());
+        assertEquals(0, player.getHandSize());
     }
 
     @Test
@@ -203,8 +206,8 @@ public class PlayerTests {
         player.addCard(card2);
         player.removeCard(card1);
 
-        assertEquals(1, player.getHand().size());
-        assertTrue(player.getHand().contains(card2));
+        assertEquals(1, player.getHandSize());
+        assertTrue(player.hasCard(CardType.TEST_TYPE));
     }
 
     @Test
@@ -251,8 +254,8 @@ public class PlayerTests {
 
         player.takeTurn(card);
 
-        assertEquals(1, player.getHand().size());
-        assertTrue(player.getHand().contains(card));
+        assertEquals(1, player.getHandSize());
+        assertTrue(player.hasCard(CardType.TEST_TYPE));
         assertTrue(player.isAlive());
     }
 
@@ -272,9 +275,8 @@ public class PlayerTests {
 
         player.takeTurn(card2);
 
-        assertEquals(2, player.getHand().size());
-        assertTrue(player.getHand().contains(card1));
-        assertTrue(player.getHand().contains(card2));
+        assertEquals(2, player.getHandSize());
+        assertTrue(player.hasCard(CardType.TEST_TYPE));
         assertTrue(player.isAlive());
     }
 

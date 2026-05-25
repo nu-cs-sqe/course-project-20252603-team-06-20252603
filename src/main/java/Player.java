@@ -16,7 +16,6 @@ public class Player {
     }
 
     public String getPlayerName() { return playerName; }
-    public List<Card> getHand() { return hand; }
     public boolean isAlive() { return isAlive; }
 
     public void addCard(Card card) {
