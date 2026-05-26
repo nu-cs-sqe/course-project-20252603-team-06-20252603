@@ -51,7 +51,7 @@ public class GameTests {
             "4,28",
             "5,35",
     })
-    public void setup_ValidPlayerCountsAndCardCounts_DealsCardsAndInsertsKittens(int playerCount, int cardCount) {
+    public void setup_ValidPlayerAndCardCounts_DealsCards(int playerCount, int cardCount) {
         Deck mockDeck = EasyMock.createMock(Deck.class);
         List<Player> realPlayers = new ArrayList<>();
 
