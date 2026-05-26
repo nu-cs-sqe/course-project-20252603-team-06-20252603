@@ -73,8 +73,7 @@ public class Game {
 
             Player activePlayer = this.players.get(currentPlayer);
             if (activePlayer.isAlive()) {
-                // TODO: need to implement takeTurn later
-                // activePlayer.takeTurn();
+//                activePlayer.takeTurn();
             }
 
             currentPlayer += 1;

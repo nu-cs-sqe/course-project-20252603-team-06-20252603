@@ -3,6 +3,7 @@ package Code;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
@@ -40,8 +41,17 @@ public class GameTests {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {2, 3, 4, 5})
-    public void setup_ValidPlayerCounts_DealsCardsAndInsertsKittens(int playerCount) {
+    @CsvSource({
+            "2,100",
+            "3,100",
+            "4,100",
+            "5,100",
+            "2,14",
+            "3,21",
+            "4,28",
+            "5,35",
+    })
+    public void setup_ValidPlayerCountsAndCardCounts_DealsCardsAndInsertsKittens(int playerCount, int cardCount) {
         Deck mockDeck = EasyMock.createMock(Deck.class);
         List<Player> realPlayers = new ArrayList<>();
 
@@ -49,7 +59,7 @@ public class GameTests {
             realPlayers.add(new Player("Player " + (i + 1)));
         }
 
-        EasyMock.expect(mockDeck.count()).andStubReturn(100);
+        EasyMock.expect(mockDeck.count()).andStubReturn(cardCount);
 
         mockDeck.insert(EasyMock.anyObject(Card.class), EasyMock.eq(0));
         EasyMock.expectLastCall().times(playerCount - 1);

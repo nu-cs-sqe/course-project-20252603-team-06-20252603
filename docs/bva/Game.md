@@ -50,27 +50,53 @@
 
 ### Method under test: setup()
 
-- setup_TwoPlayers_CorrectCardDistribution ( :white_check_mark: )
-    - **State of the system**: playerCount = 2, deck initialized with standard playing cards (excluding kittens and
+- setup_TwoPlayers_CorrectCardDistribution_PlentyOfCards ( :white_check_mark: )
+    - **State of the system**: playerCount = 2, deck initialized with 100 standard playing cards (excluding kittens and
       initial defuses)
     - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 14. 1
       Exploding Kitten inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
 
-- setup_ThreePlayers_CorrectCardDistribution ( :white_check_mark: )
-    - **State of the system**: playerCount = 3, deck initialized with standard playing cards (excluding kittens and
+- setup_ThreePlayers_CorrectCardDistribution_PlentyOfCards ( :white_check_mark: )
+    - **State of the system**: playerCount = 3, deck initialized with 100 standard playing cards (excluding kittens and
       initial defuses)
     - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 21. 2
       Exploding Kittens inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
 
-- setup_DeckIsShuffled_OrderIsRandomized
-    - **State of the system**: playerCount = 4, deck initialized
-    - **Expected output**: Draw pile and player hands are in a randomized order compared to sequential generation
+- setup_FourPlayers_CorrectCardDistribution_PlentyOfCards ( :white_check_mark: )
+  - **State of the system**: playerCount = 5, deck initialized with 100 standard playing cards (excluding kittens and
+    initial defuses)
+  - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 28. 3
+    Exploding Kittens inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
 
-- setup_FivePlayers_CorrectCardDistribution ( :white_check_mark: )
-    - **State of the system**: playerCount = 5, deck initialized with standard playing cards (excluding kittens and
+- setup_FivePlayers_CorrectCardDistribution_PlentyOfCards ( :white_check_mark: )
+    - **State of the system**: playerCount = 5, deck initialized with 100 standard playing cards (excluding kittens and
       initial defuses)
     - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 35. 4
       Exploding Kittens inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
+
+- setup_TwoPlayers_CorrectCardDistribution_JustEnoughCards ( :white_check_mark: )
+  - **State of the system**: playerCount = 2, deck initialized with 14 standard playing cards (excluding kittens and
+    initial defuses)
+  - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 14. 1
+    Exploding Kitten inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
+
+- setup_ThreePlayers_CorrectCardDistribution_JustEnoughCards ( :white_check_mark: )
+  - **State of the system**: playerCount = 3, deck initialized with 21 standard playing cards (excluding kittens and
+    initial defuses)
+  - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 21. 2
+    Exploding Kittens inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
+
+- setup_FourPlayers_CorrectCardDistribution_JustEnoughCards ( :white_check_mark: )
+  - **State of the system**: playerCount = 5, deck initialized with 28 standard playing cards (excluding kittens and
+    initial defuses)
+  - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 28. 3
+    Exploding Kittens inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
+
+- setup_FivePlayers_CorrectCardDistribution_JustEnoughCards ( :white_check_mark: )
+  - **State of the system**: playerCount = 5, deck initialized with 35 standard playing cards (excluding kittens and
+    initial defuses)
+  - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 35. 4
+    Exploding Kittens inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
 
 - setup_InsufficientDeckSize_ThrowsIllegalStateException ( :white_check_mark: )
     - **State of the system**: playerCount = 5, initial deck = 34 random cards total
