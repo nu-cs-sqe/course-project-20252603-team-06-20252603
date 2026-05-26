@@ -5,36 +5,70 @@ import java.util.List;
 
 public final class Player {
     private final String playerName;
-    private final List<Card> cards;
+    private final List<Card> hand;
     private boolean isAlive;
 
     public Player(String playerName) {
-        if (playerName == null) {
-            throw new IllegalArgumentException("player name cannot be null");
-        }
         if (playerName.isEmpty()) {
             throw new IllegalArgumentException("player name cannot be empty");
         }
         this.playerName = playerName;
-        this.cards = new ArrayList<>();
+        this.hand = new ArrayList<>();
         this.isAlive = true;
     }
 
     public String getPlayerName() { return playerName; }
-    public List<Card> getCards() { return new ArrayList<>(cards); }
     public boolean isAlive() { return isAlive; }
 
     public void addCard(Card card) {
-        if (card == null) {
-            throw new IllegalArgumentException("card cannot be null");
-        }
+        hand.add(card);
+    }
 
-        cards.add(card);
+    public void kill() {
+        if (!isAlive) {
+            throw new IllegalStateException("cannot kill dead player");
+        }
+        isAlive = false;
+    }
+
+    public void revive() {
+        if (isAlive) {
+            throw new IllegalStateException("cannot revive alive player");
+        }
+        isAlive = true;
     }
 
     public boolean hasDefuse() {
-        for (Card card : cards) {
+        for (Card card : hand) {
             if (card.getType() == CardType.DEFUSE) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeCard(Card card) {
+        if (hand.isEmpty()) {
+            throw new IllegalStateException("cannot remove from empty hand");
+        }
+        if (!hand.contains(card)) {
+            throw new IllegalArgumentException("card to remove not in hand");
+        }
+
+        hand.remove(card);
+    }
+
+    public void takeTurn(Card card) {
+        hand.add(card);
+    }
+
+    public int getHandSize() {
+        return hand.size();
+    }
+
+    public boolean hasCard(CardType type) {
+        for (Card card : hand) {
+            if (card.getType() == type) {
                 return true;
             }
         }

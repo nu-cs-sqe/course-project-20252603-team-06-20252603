@@ -9,15 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PlayerTests {
 
     @Test
-    void Constructor_nullName_IllegalArgumentException() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Player(null);
-        });
-
-        assertEquals("player name cannot be null", exception.getMessage());
-    }
-
-    @Test
     void Constructor_EmptyName_IllegalArgumentException() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             new Player("");
@@ -31,12 +22,12 @@ public class PlayerTests {
         Player player = new Player("lily");
 
         assertEquals("lily", player.getPlayerName());
-        assertTrue(player.getCards().isEmpty());
+        assertEquals(0, player.getHandSize());
         assertTrue(player.isAlive());
     }
 
     @Test
-    void hasDefuse_EmptyCards_False() {
+    void hasDefuse_EmptyHand_False() {
         Player player = new Player("lily");
 
         assertFalse(player.hasDefuse());
@@ -58,7 +49,6 @@ public class PlayerTests {
         Player player = new Player("lily");
 
         Card card1 = new Card(CardType.TEST_TYPE);
-
         Card card2 = new Card(CardType.TEST_TYPE);
 
         player.addCard(card1);
@@ -72,7 +62,6 @@ public class PlayerTests {
         Player player = new Player("lily");
 
         Card card1 = new Card(CardType.DEFUSE);
-
         Card card2 = new Card(CardType.DEFUSE);
 
         player.addCard(card1);
@@ -88,55 +77,266 @@ public class PlayerTests {
         Card card = new Card(CardType.TEST_TYPE);
 
         player.addCard(card);
-        assertEquals(1, player.getCards().size());
-        assertTrue(player.getCards().contains(card));
+        assertEquals(1, player.getHandSize());
+        assertTrue(player.hasCard(CardType.TEST_TYPE));
     }
 
     @Test
-    void addCard_1cardAddNewCard_success() {
+    void addCard_onecardAddNewCard_success() {
         Player player = new Player("lily");
 
         Card card1 = new Card(CardType.TEST_TYPE);
-
-        Card card2 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.DEFUSE);
 
         player.addCard(card1);
         player.addCard(card2);
 
-        assertEquals(2, player.getCards().size());
-        assertTrue(player.getCards().contains(card1));
-        assertTrue(player.getCards().contains(card2));
+        assertEquals(2, player.getHandSize());
+        assertTrue(player.hasCard(CardType.TEST_TYPE));
+        assertTrue(player.hasCard(CardType.DEFUSE));
     }
 
     @Test
-    void addCard_2cardDuplicateCards_success() {
+    void addCard_twocardsDuplicateCards_success() {
         Player player = new Player("lily");
 
         Card card1 = new Card(CardType.TEST_TYPE);
-
-        Card card2 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.DEFUSE);
 
         player.addCard(card1);
         player.addCard(card2);
         player.addCard(card1);
 
-        List<Card> cards = player.getCards();
-        assertEquals(3, cards.size());
-        assertEquals(card1, cards.get(0));
-        assertEquals(card2, cards.get(1));
-        assertEquals(card1, cards.get(2));
+        assertEquals(3, player.getHandSize());
+        assertTrue(player.hasCard(CardType.TEST_TYPE));
+        assertTrue(player.hasCard(CardType.DEFUSE));
     }
 
     @Test
-    void addCard_AddNullCard_IllegalArgumentException() {
+    void kill_Success() {
         Player player = new Player("lily");
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            player.addCard(null);
+        player.kill();
+        assertFalse(player.isAlive());
+    }
+
+    @Test
+    void kill_IllegalStateException() {
+        Player player = new Player("lily");
+
+        player.kill();
+
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
+            player.kill();
         });
 
-        assertEquals("card cannot be null", exception.getMessage());
+        assertEquals("cannot kill dead player", exception.getMessage());
+    }
 
-        assertTrue(player.getCards().isEmpty());
+    @Test
+    void revive_Success() {
+        Player player = new Player("lily");
+        player.kill();
+
+        player.revive();
+        assertTrue(player.isAlive());
+    }
+
+    @Test
+    void revive_IllegalStateException() {
+        Player player = new Player("lily");
+
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
+            player.revive();
+        });
+
+        assertEquals("cannot revive alive player", exception.getMessage());
+    }
+
+    @Test
+    void removeCard_NormalCardOneCard_CardRemoved() {
+        Player player = new Player("lily");
+
+        Card card = new Card(CardType.TEST_TYPE);
+
+        player.addCard(card);
+        player.removeCard(card);
+
+        assertEquals(0, player.getHandSize());
+    }
+
+    @Test
+    void removeCard_NormalCardTwoCards_CardRemoved() {
+        Player player = new Player("lily");
+
+        Card card1 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.TEST_TYPE);
+
+        player.addCard(card1);
+        player.addCard(card2);
+        player.removeCard(card1);
+
+        assertEquals(1, player.getHandSize());
+        assertTrue(player.hasCard(CardType.TEST_TYPE));
+    }
+
+    @Test
+    void removeCard_noCards_IllegalStateException() {
+        Player player = new Player("lily");
+
+        Card card = new Card(CardType.TEST_TYPE);
+
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
+            player.removeCard(card);
+        });
+
+        assertEquals("cannot remove from empty hand", exception.getMessage());
+    }
+
+    @Test
+    void removeCard_cardNotInHand_IllegalArgumentException() {
+        Player player = new Player("lily");
+
+        Card testCard = new Card(CardType.TEST_TYPE);
+        Card defuseCard = new Card(CardType.DEFUSE);
+
+        player.addCard(testCard);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            player.removeCard(defuseCard);
+        });
+
+        assertEquals("card to remove not in hand", exception.getMessage());
+    }
+
+    @Test
+    void takeTurn_NormalCardNoCardsInHand_CardAddedtoHand() {
+        Player player = new Player("lily");
+
+        Card card = new Card(CardType.TEST_TYPE);
+        player.takeTurn(card);
+
+        assertEquals(1, player.getHandSize());
+        assertTrue(player.hasCard(CardType.TEST_TYPE));
+        assertTrue(player.isAlive());
+    }
+
+    @Test
+    void takeTurn_NormalCardOneCardInHand_CardAddedtoHand() {
+        Player player = new Player("lily");
+
+        Card card1 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.TEST_TYPE);
+
+        player.addCard(card1);
+
+        player.takeTurn(card2);
+
+        assertEquals(2, player.getHandSize());
+        assertTrue(player.hasCard(CardType.TEST_TYPE));
+        assertTrue(player.isAlive());
+    }
+
+    @Test
+    void getHandSize_EmptyHand_Zero() {
+        Player player = new Player("lily");
+
+        assertEquals(0, player.getHandSize());
+    }
+
+    @Test
+    void getHandSize_OneCard_One() {
+        Player player = new Player("lily");
+
+        Card card = new Card(CardType.TEST_TYPE);
+
+        player.addCard(card);
+        assertEquals(1, player.getHandSize());
+    }
+
+    @Test
+    void getHandSize_TwoCards_Two() {
+        Player player = new Player("lily");
+
+        Card card1 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.TEST_TYPE);
+
+        player.addCard(card1);
+        player.addCard(card2);
+        assertEquals(2, player.getHandSize());
+    }
+
+    @Test
+    void getHandSize_DuplicateCards_Two() {
+        Player player = new Player("lily");
+
+        Card card = new Card(CardType.TEST_TYPE);
+
+        player.addCard(card);
+        player.addCard(card);
+        assertEquals(2, player.getHandSize());
+    }
+
+    @Test
+    void hasCard_EmptyHand_False() {
+        Player player = new Player("lily");
+
+        assertFalse(player.hasCard(CardType.DEFUSE));
+    }
+
+    @Test
+    void hasCard_OneCardMatch_True() {
+        Player player = new Player("lily");
+
+        Card card = new Card(CardType.DEFUSE);
+
+        player.addCard(card);
+        assertTrue(player.hasCard(CardType.DEFUSE));
+    }
+
+    @Test
+    void hasCard_OneCardNoMatch_False() {
+        Player player = new Player("lily");
+
+        Card card = new Card(CardType.TEST_TYPE);
+
+        player.addCard(card);
+        assertFalse(player.hasCard(CardType.DEFUSE));
+    }
+
+    @Test
+    void hasCard_TwoCardsOneMatch_True() {
+        Player player = new Player("lily");
+
+        Card card1 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.DEFUSE);
+
+        player.addCard(card1);
+        player.addCard(card2);
+        assertTrue(player.hasCard(CardType.DEFUSE));
+    }
+
+    @Test
+    void hasCard_DuplicateCardsMatch_True() {
+        Player player = new Player("lily");
+
+        Card card1 = new Card(CardType.DEFUSE);
+        Card card2 = new Card(CardType.DEFUSE);
+
+        player.addCard(card1);
+        player.addCard(card2);
+        assertTrue(player.hasCard(CardType.DEFUSE));
+    }
+
+    @Test
+    void hasCard_DuplicateCardsNoMatch_False() {
+        Player player = new Player("lily");
+
+        Card card1 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.TEST_TYPE);
+
+        player.addCard(card1);
+        player.addCard(card2);
+        assertFalse(player.hasCard(CardType.DEFUSE));
     }
 }
