@@ -74,7 +74,7 @@ public class GameTests {
 
         EasyMock.replay(mockDeck);
 
-        Exception exception = assertThrows(IllegalStateException.class, () -> {
+        assertThrows(IllegalStateException.class, () -> {
             new Game(mockDeck, realPlayers).setup();
         });
     }
