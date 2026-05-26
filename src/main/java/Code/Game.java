@@ -16,14 +16,8 @@ public class Game {
 
     private static final int INDEX_FOR_NO_CURRENT_PLAYER_YET = -1;
 
-    public Game(int playerCount) {
+    Game(int playerCount) {
         this.playersAlive = playerCount;
-        if (playerCount < MIN_PLAYERS) {
-            throw new IllegalArgumentException("Cannot initiate game with less than 2 players");
-        }
-        if (playerCount > MAX_PLAYERS) {
-            throw new IllegalArgumentException("Cannot initiate game with more than 5 players");
-        }
         this.players = new ArrayList<>();
         for (int i = 1; i <= playerCount; i++) {
             players.add(new Player("Player " + i));
@@ -37,6 +31,16 @@ public class Game {
         this.players = new ArrayList<>(players);
         this.currentPlayer = INDEX_FOR_NO_CURRENT_PLAYER_YET;
         this.playersAlive = players.size();
+    }
+
+    public static Game createGame(int playerCount) {
+        if (playerCount < MIN_PLAYERS) {
+            throw new IllegalArgumentException("Cannot initiate game with less than 2 players");
+        }
+        if (playerCount > MAX_PLAYERS) {
+            throw new IllegalArgumentException("Cannot initiate game with more than 5 players");
+        }
+        return new Game(playerCount);
     }
 
     public void setup() {

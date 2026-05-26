@@ -12,24 +12,31 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTests {
     @ParameterizedTest
-    @ValueSource(ints = {0, 1, 6, 7})
-    public void constructor_InvalidPlayerCounts_ThrowsIllegalArgumentException(int playerCount) {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Game(playerCount);
-        });
-    }
-
-    @ParameterizedTest
     @ValueSource(ints = {2, 3, 4, 5})
     public void constructor_ValidPlayerCounts_CreatesCorrectNumberOfPlayers(int playerCount) {
         Game game = new Game(playerCount);
 
         assertEquals(playerCount, game.getPlayerCount());
 
-        // From your original tests, explicitly checking null for the 2-player baseline
-        if (playerCount == 2) {
-            assertNull(game.getCurrentPlayer());
-        }
+        assertNull(game.getCurrentPlayer());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 6, 7})
+    public void createGame_InvalidPlayerCounts_ThrowsIllegalArgumentException(int playerCount) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Game.createGame(playerCount);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {2, 3, 4, 5})
+    public void createGame_ValidPlayerCounts_CreatesCorrectNumberOfPlayers(int playerCount) {
+        Game game = Game.createGame(playerCount);
+
+        assertEquals(playerCount, game.getPlayerCount());
+
+        assertNull(game.getCurrentPlayer());
     }
 
     @ParameterizedTest
