@@ -1,7 +1,9 @@
+package Code;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
+public final class Player {
     private final String playerName;
     private final List<Card> hand;
     private boolean isAlive;

@@ -1,4 +1,5 @@
-import org.easymock.EasyMock;
+package Code;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -36,9 +37,7 @@ public class PlayerTests {
     void hasDefuse_OneCardwithDefuse_True() {
         Player player = new Player("lily");
 
-        Card card = EasyMock.createMock(Card.class);
-        EasyMock.expect(card.getType()).andStubReturn(CardType.DEFUSE);
-        EasyMock.replay(card);
+        Card card = new Card(CardType.DEFUSE);
 
         player.addCard(card);
 
@@ -49,13 +48,8 @@ public class PlayerTests {
     void hasDefuse_TwoCardswithoutDefuse_False() {
         Player player = new Player("lily");
 
-        Card card1 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card1.getType()).andStubReturn(CardType.TEST_TYPE);
-        EasyMock.replay(card1);
-
-        Card card2 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card2.getType()).andStubReturn(CardType.TEST_TYPE);
-        EasyMock.replay(card2);
+        Card card1 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.TEST_TYPE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -67,13 +61,8 @@ public class PlayerTests {
     void hasDefuse_duplicateDefuse_True() {
         Player player = new Player("lily");
 
-        Card card1 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card1.getType()).andStubReturn(CardType.DEFUSE);
-        EasyMock.replay(card1);
-
-        Card card2 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card2.getType()).andStubReturn(CardType.DEFUSE);
-        EasyMock.replay(card2);
+        Card card1 = new Card(CardType.DEFUSE);
+        Card card2 = new Card(CardType.DEFUSE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -85,9 +74,7 @@ public class PlayerTests {
     void addCard_noCards_success() {
         Player player = new Player("lily");
 
-        Card card = EasyMock.createMock(Card.class);
-        EasyMock.expect(card.getType()).andStubReturn(CardType.TEST_TYPE);
-        EasyMock.replay(card);
+        Card card = new Card(CardType.TEST_TYPE);
 
         player.addCard(card);
         assertEquals(1, player.getHandSize());
@@ -98,13 +85,8 @@ public class PlayerTests {
     void addCard_onecardAddNewCard_success() {
         Player player = new Player("lily");
 
-        Card card1 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card1.getType()).andStubReturn(CardType.TEST_TYPE);
-        EasyMock.replay(card1);
-
-        Card card2 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card2.getType()).andStubReturn(CardType.DEFUSE);
-        EasyMock.replay(card2);
+        Card card1 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.DEFUSE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -118,13 +100,8 @@ public class PlayerTests {
     void addCard_twocardsDuplicateCards_success() {
         Player player = new Player("lily");
 
-        Card card1 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card1.getType()).andStubReturn(CardType.TEST_TYPE);
-        EasyMock.replay(card1);
-
-        Card card2 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card2.getType()).andStubReturn(CardType.DEFUSE);
-        EasyMock.replay(card2);
+        Card card1 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.DEFUSE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -180,9 +157,7 @@ public class PlayerTests {
     void removeCard_NormalCardOneCard_CardRemoved() {
         Player player = new Player("lily");
 
-        Card card = EasyMock.createMock(Card.class);
-        EasyMock.expect(card.getType()).andStubReturn(CardType.TEST_TYPE);
-        EasyMock.replay(card);
+        Card card = new Card(CardType.TEST_TYPE);
 
         player.addCard(card);
         player.removeCard(card);
@@ -194,13 +169,8 @@ public class PlayerTests {
     void removeCard_NormalCardTwoCards_CardRemoved() {
         Player player = new Player("lily");
 
-        Card card1 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card1.getType()).andStubReturn(CardType.TEST_TYPE);
-
-        Card card2 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card2.getType()).andStubReturn(CardType.TEST_TYPE);
-
-        EasyMock.replay(card1, card2);
+        Card card1 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.TEST_TYPE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -214,9 +184,7 @@ public class PlayerTests {
     void removeCard_noCards_IllegalStateException() {
         Player player = new Player("lily");
 
-        Card card = EasyMock.createMock(Card.class);
-        EasyMock.expect(card.getType()).andStubReturn(CardType.TEST_TYPE);
-        EasyMock.replay(card);
+        Card card = new Card(CardType.TEST_TYPE);
 
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
             player.removeCard(card);
@@ -228,12 +196,9 @@ public class PlayerTests {
     @Test
     void removeCard_cardNotInHand_IllegalArgumentException() {
         Player player = new Player("lily");
-        Card testCard = EasyMock.createMock(Card.class);
-        EasyMock.expect(testCard.getType()).andStubReturn(CardType.TEST_TYPE);
 
-        Card defuseCard = EasyMock.createMock(Card.class);
-        EasyMock.expect(defuseCard.getType()).andStubReturn(CardType.DEFUSE);
-        EasyMock.replay(testCard, defuseCard);
+        Card testCard = new Card(CardType.TEST_TYPE);
+        Card defuseCard = new Card(CardType.DEFUSE);
 
         player.addCard(testCard);
 
@@ -248,10 +213,7 @@ public class PlayerTests {
     void takeTurn_NormalCardNoCardsInHand_CardAddedtoHand() {
         Player player = new Player("lily");
 
-        Card card = EasyMock.createMock(Card.class);
-        EasyMock.expect(card.getType()).andStubReturn(CardType.TEST_TYPE);
-        EasyMock.replay(card);
-
+        Card card = new Card(CardType.TEST_TYPE);
         player.takeTurn(card);
 
         assertEquals(1, player.getHandSize());
@@ -263,13 +225,8 @@ public class PlayerTests {
     void takeTurn_NormalCardOneCardInHand_CardAddedtoHand() {
         Player player = new Player("lily");
 
-        Card card1 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card1.getType()).andStubReturn(CardType.TEST_TYPE);
-
-        Card card2 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card2.getType()).andStubReturn(CardType.TEST_TYPE);
-
-        EasyMock.replay(card1, card2);
+        Card card1 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.TEST_TYPE);
 
         player.addCard(card1);
 
@@ -291,8 +248,7 @@ public class PlayerTests {
     void getHandSize_OneCard_One() {
         Player player = new Player("lily");
 
-        Card card = EasyMock.createMock(Card.class);
-        EasyMock.replay(card);
+        Card card = new Card(CardType.TEST_TYPE);
 
         player.addCard(card);
         assertEquals(1, player.getHandSize());
@@ -302,9 +258,8 @@ public class PlayerTests {
     void getHandSize_TwoCards_Two() {
         Player player = new Player("lily");
 
-        Card card1 = EasyMock.createMock(Card.class);
-        Card card2 = EasyMock.createMock(Card.class);
-        EasyMock.replay(card1, card2);
+        Card card1 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.TEST_TYPE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -315,8 +270,7 @@ public class PlayerTests {
     void getHandSize_DuplicateCards_Two() {
         Player player = new Player("lily");
 
-        Card card = EasyMock.createMock(Card.class);
-        EasyMock.replay(card);
+        Card card = new Card(CardType.TEST_TYPE);
 
         player.addCard(card);
         player.addCard(card);
@@ -334,9 +288,7 @@ public class PlayerTests {
     void hasCard_OneCardMatch_True() {
         Player player = new Player("lily");
 
-        Card card = EasyMock.createMock(Card.class);
-        EasyMock.expect(card.getType()).andStubReturn(CardType.DEFUSE);
-        EasyMock.replay(card);
+        Card card = new Card(CardType.DEFUSE);
 
         player.addCard(card);
         assertTrue(player.hasCard(CardType.DEFUSE));
@@ -346,9 +298,7 @@ public class PlayerTests {
     void hasCard_OneCardNoMatch_False() {
         Player player = new Player("lily");
 
-        Card card = EasyMock.createMock(Card.class);
-        EasyMock.expect(card.getType()).andStubReturn(CardType.TEST_TYPE);
-        EasyMock.replay(card);
+        Card card = new Card(CardType.TEST_TYPE);
 
         player.addCard(card);
         assertFalse(player.hasCard(CardType.DEFUSE));
@@ -358,13 +308,8 @@ public class PlayerTests {
     void hasCard_TwoCardsOneMatch_True() {
         Player player = new Player("lily");
 
-        Card card1 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card1.getType()).andStubReturn(CardType.TEST_TYPE);
-
-        Card card2 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card2.getType()).andStubReturn(CardType.DEFUSE);
-
-        EasyMock.replay(card1, card2);
+        Card card1 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.DEFUSE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -375,13 +320,8 @@ public class PlayerTests {
     void hasCard_DuplicateCardsMatch_True() {
         Player player = new Player("lily");
 
-        Card card1 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card1.getType()).andStubReturn(CardType.DEFUSE);
-
-        Card card2 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card2.getType()).andStubReturn(CardType.DEFUSE);
-
-        EasyMock.replay(card1, card2);
+        Card card1 = new Card(CardType.DEFUSE);
+        Card card2 = new Card(CardType.DEFUSE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -392,13 +332,8 @@ public class PlayerTests {
     void hasCard_DuplicateCardsNoMatch_False() {
         Player player = new Player("lily");
 
-        Card card1 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card1.getType()).andStubReturn(CardType.TEST_TYPE);
-
-        Card card2 = EasyMock.createMock(Card.class);
-        EasyMock.expect(card2.getType()).andStubReturn(CardType.TEST_TYPE);
-
-        EasyMock.replay(card1, card2);
+        Card card1 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.TEST_TYPE);
 
         player.addCard(card1);
         player.addCard(card2);
