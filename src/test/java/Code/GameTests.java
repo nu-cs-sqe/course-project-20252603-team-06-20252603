@@ -57,7 +57,7 @@ public class GameTests {
         EasyMock.verify(mockDeck);
 
         for (Player p : realPlayers) {
-            assertEquals(8, p.getCards().size(), "Player should have exactly 8 cards");
+            assertEquals(8, p.getHandSize(), "Player should have exactly 8 cards");
             assertTrue(p.hasDefuse(), "Player should have received a Defuse card");
         }
     }
