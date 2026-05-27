@@ -106,6 +106,23 @@ output: isAlive (boolean), hand (list)
     - **State of the system**: card: EXPLODING KITTEN, hand: []
     - **Expected output**: isAlive: false, hand: []
 
+- ### Method under test: getHand()
+- **TC10: getHand_EmptyHand_EmptyList** ( :x: )
+  - **State of the system**: hand: []
+  - **Expected output**: []
+
+- **TC10: getHand_OneCard_ListWithOneCard** ( :x: )
+  - **State of the system**: hand: [TEST]
+  - **Expected output**: [TEST]
+
+- **TC10: getHand_TwoCardsSameType_ListWithTwoCadsSameType** ( :x: )
+  - **State of the system**: hand: [TEST, TEST]
+  - **Expected output**: [TEST, TEST]
+
+- **TC10: getHand_SevenCardsManyTypes_Two** ( :x: )
+  - **State of the system**: hand: [SEE_THE_FUTURE, DEFUSE, SHUFFLE, NOPE, NOPE, SKIP, SHUFFLE]
+  - **Expected output**: [SEE_THE_FUTURE, DEFUSE, SHUFFLE, NOPE, NOPE, SKIP, SHUFFLE]
+
 - ### Method under test: getHandSize()
 - **TC10: getHandSize_EmptyHand_Zero** ( :white_check_mark: )
     - **State of the system**: hand: []
