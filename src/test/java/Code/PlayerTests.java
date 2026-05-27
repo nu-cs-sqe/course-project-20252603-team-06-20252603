@@ -247,6 +247,19 @@ public class PlayerTests {
     }
 
     @Test
+    void getHand_OneCard_ListWithOneCard() {
+        Player player = new Player("lily");
+
+        List<Card> expected = new ArrayList<Card>();
+        Card card = new Card(CardType.TEST_TYPE);
+
+        expected.add(card);
+        player.addCard(card);
+
+        assertEquals(expected, player.getHand());
+    }
+
+    @Test
     void getHandSize_EmptyHand_Zero() {
         Player player = new Player("lily");
 

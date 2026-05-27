@@ -63,7 +63,7 @@ public final class Player {
     }
 
     public ArrayList<Card> getHand() {
-        return new ArrayList<Card>();
+        return new ArrayList<Card>(this.hand);
     }
 
     public int getHandSize() {

@@ -111,7 +111,7 @@ output: isAlive (boolean), hand (list)
   - **State of the system**: hand: []
   - **Expected output**: []
 
-- **TC10: getHand_OneCard_ListWithOneCard** ( :x: )
+- **TC10: getHand_OneCard_ListWithOneCard** ( :white_check_mark: )
   - **State of the system**: hand: [TEST]
   - **Expected output**: [TEST]
 
