@@ -3,6 +3,7 @@ package Code;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -235,6 +236,14 @@ public class PlayerTests {
         assertEquals(2, player.getHandSize());
         assertTrue(player.hasCard(CardType.TEST_TYPE));
         assertTrue(player.isAlive());
+    }
+
+    @Test
+    void getHand_EmptyHand_EmptyList() {
+        Player player = new Player("lily");
+
+        List<Card> expected = new ArrayList<Card>();
+        assertEquals(expected, player.getHand());
     }
 
     @Test
