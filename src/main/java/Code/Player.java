@@ -62,6 +62,12 @@ public final class Player {
         hand.add(card);
     }
 
+    public void printCards() {
+        for (Card card : this.hand) {
+            System.out.println(card.getType().toString());
+        }
+    }
+
     public int getHandSize() {
         return hand.size();
     }
