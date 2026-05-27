@@ -66,6 +66,12 @@ public final class Player {
         return hand.size();
     }
 
+    public void printCards() {
+        for (Card card : this.hand) {
+            System.out.println(card.getType().toString());
+        }
+    }
+
     public boolean hasCard(CardType type) {
         for (Card card : hand) {
             if (card.getType() == type) {
