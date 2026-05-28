@@ -35,7 +35,7 @@
   - **State of the system**: `deck` contains 0 cards; `player` has 0 cards
   - **Expected output**: throws an exception
 
-- **TC10: Draw From Deck With Many Cards** ( :x: )
+- **TC10: Draw From Deck With Many Cards** ( ☑️  )
   - **State of the system**: `deck` contains more than 1 card; `player` has 0 cards
   - **Expected output**: player receives only the top card; deck size decreases by 1
 

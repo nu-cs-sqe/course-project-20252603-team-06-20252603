@@ -103,4 +103,21 @@ public class GameTests {
             game.draw(player, deck);
         });
     }
+
+    @Test
+    public void draw_FromDeckWithManyCards(){
+        Game game = new Game(5);
+
+        Deck deck = new Deck();
+        Card deckTopCard = deck.getCards().get(0);
+        int deckOriginalSize = deck.count();
+
+        Player player = new Player("Test Name");
+        assertEquals(0, player.getHandSize());
+
+        game.draw(player, deck);
+
+        assertTrue(player.hasCard(deckTopCard.getType()));
+        assertEquals(deckOriginalSize - 1, deck.count());
+    }
 }
