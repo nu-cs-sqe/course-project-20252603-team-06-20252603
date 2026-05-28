@@ -80,12 +80,12 @@ public final class Game {
         return this.deck;
     }
 
-    public List<Player> getTotalPlayers(){
-        return this.totalPlayers;
+    public List<Player> getTotalPlayers() {
+        return Collections.unmodifiableList(this.totalPlayers);
     }
 
-    public List<Player> getAlivePlayers(){
-        return this.alivePlayers;
+    public List<Player> getAlivePlayers() {
+        return Collections.unmodifiableList(this.alivePlayers);
     }
 
     public int getTotalPlayerCount() {
