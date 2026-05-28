@@ -146,4 +146,14 @@ public class GameTests {
         game.removeAlivePlayer(playerToRemove);
         assertEquals(1, game.getAlivePlayerCount());
     }
+
+    @Test
+    public void getAlivePlayerCount_LastPlayerRemaining_ReturnsOne() {
+        Game game = new Game(5);
+        for (int i = 0; i < 4; i++) {
+            Player playerToRemove = game.getAlivePlayers().get(0);
+            game.removeAlivePlayer(playerToRemove);
+        }
+        assertEquals(1, game.getAlivePlayerCount());
+    }
 }

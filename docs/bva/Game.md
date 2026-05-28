@@ -57,7 +57,7 @@
   - **State of the system**: one player removed from `alivePlayers`; game created with 2 players
   - **Expected output**: `getAlivePlayerCount() == 1`
 
-- **TC15: Last Player Remaining** ( :x: )
+- **TC15: Last Player Remaining** ( ☑️ )
   - **State of the system**: all but one player eliminated; game created with 5 players
   - **Expected output**: `getAlivePlayerCount() == 1`
 
