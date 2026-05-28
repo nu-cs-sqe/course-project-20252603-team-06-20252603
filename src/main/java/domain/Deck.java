@@ -53,6 +53,12 @@ public class Deck {
         this.cards.remove(card);
     }
 
+    public Card getTopCard(){
+        Card topCard = this.cards.get(0);
+        this.discard(topCard);
+        return topCard;
+    }
+
     ArrayList<Card> getCards(){ // change name
         return new ArrayList<>(cards);
     }

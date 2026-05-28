@@ -21,6 +21,8 @@ public final class Game {
             throw new IllegalArgumentException("Cannot initiate game with more than 5 players");
         }
 
+        this.deck = new Deck();
+
         ArrayList<Player> players = new ArrayList<>();
         for (int i = 1; i <= playerCount; i++) {
             players.add(new Player("Player " + i));
@@ -35,10 +37,11 @@ public final class Game {
             throw new IllegalStateException("Not enough cards in deck to deal starting hands");
         }
 
+        deck.shuffle();
         for (Player player : totalPlayers) {
             player.addCard(new Card(CardType.DEFUSE));
             for (int i = 0; i < NORMAL_CARDS_PER_PLAYER; i++) {
-                player.addCard(new Card(CardType.TEST_TYPE));
+                this.draw(player, this.deck);
             }
         }
 
@@ -46,10 +49,25 @@ public final class Game {
         for (int i = 0; i < kittensNeeded; i++) {
             deck.insert(new Card(CardType.EXPLODING_KITTEN), 0);
         }
-
         deck.shuffle();
     }
 
+    public void draw(Player player, Deck deck){
+        Card cardToDraw = deck.getTopCard();
+        player.addCard(cardToDraw);
+    }
+
+    Deck getDeck(){
+        return this.deck;
+    }
+
+    public List<Player> getTotalPlayers(){
+        return this.totalPlayers;
+    }
+
+    public List<Player> getAlivePlayers(){
+        return this.alivePlayers;
+    }
 
     public int getTotalPlayerCount() {
         return totalPlayers.size();
