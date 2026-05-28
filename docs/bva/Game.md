@@ -80,7 +80,7 @@
   - **State of the system**: game created with 5 players; no eliminations
   - **Expected output**: `alivePlayers` contains 4 players; removed player is no longer present
 
-- **TC20: Remove Player From List With One Player** ( :x: )
+- **TC20: Remove Player From List With One Player** ( ☑️ )
   - **State of the system**: game created with 2 players; one player already eliminated; one player remaining in `alivePlayers`
   - **Expected output**: `alivePlayers` is empty
 

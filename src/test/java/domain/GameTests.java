@@ -188,4 +188,12 @@ public class GameTests {
         assertEquals(4, game.getAlivePlayerCount());
         assertFalse(game.getAlivePlayers().contains(playerToRemove));
     }
+
+    @Test
+    public void removeAlivePlayer_OnePlayer_EmptiesList() {
+        Game game = new Game(2);
+        game.removeAlivePlayer(game.getAlivePlayers().get(0));
+        game.removeAlivePlayer(game.getAlivePlayers().get(0));
+        assertEquals(0, game.getAlivePlayerCount());
+    }
 }
