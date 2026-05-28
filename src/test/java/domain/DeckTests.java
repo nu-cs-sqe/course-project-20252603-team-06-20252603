@@ -267,6 +267,14 @@ public class DeckTests {
     }
 
     @Test
+    void takeTopCardOnEmptyDeck(){
+        Deck deck = new Deck(0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            deck.takeTopCard();
+        });
+    }
+
+    @Test
     void getCardsOnMultipleCardDeck(){
         Deck deck = new Deck();
         int initialSize = deck.count();
