@@ -196,4 +196,15 @@ public class GameTests {
         game.removeAlivePlayer(game.getAlivePlayers().get(0));
         assertEquals(0, game.getAlivePlayerCount());
     }
+
+    @Test
+    public void removeAlivePlayer_EmptyList_ThrowsException() {
+        Game game = new Game(2);
+        game.removeAlivePlayer(game.getAlivePlayers().get(0));
+        game.removeAlivePlayer(game.getAlivePlayers().get(0));
+        Player extraPlayer = new Player("Extra");
+        assertThrows(IllegalArgumentException.class, () -> {
+            game.removeAlivePlayer(extraPlayer);
+        });
+    }
 }

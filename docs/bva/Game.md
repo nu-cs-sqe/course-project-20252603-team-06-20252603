@@ -84,7 +84,7 @@
   - **State of the system**: game created with 2 players; one player already eliminated; one player remaining in `alivePlayers`
   - **Expected output**: `alivePlayers` is empty
 
-- **TC21: Remove Player From Empty List** ( :x: )
+- **TC21: Remove Player From Empty List** ( ☑️ )
   - **State of the system**: all players already eliminated; `alivePlayers` is empty
   - **Expected output**: throws an exception
 
