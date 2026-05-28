@@ -101,7 +101,7 @@
   - **State of the system**: game created with 5 players; one player eliminated; 4 players in `alivePlayers`
   - **Expected output**: `alivePlayers` contains 5 players
 
-- **TC25: Add Player Not In Game** ( :x: )
+- **TC25: Add Player Not In Game** ( ☑️ )
   - **State of the system**: game created with 2 players; player being added was never in `totalPlayers`
   - **Expected output**: throws `IllegalArgumentException`
 
