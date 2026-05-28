@@ -156,4 +156,11 @@ public class GameTests {
         }
         assertEquals(1, game.getAlivePlayerCount());
     }
+
+    @Test
+    public void getTotalPlayers_ThreePlayers_ReturnsAllThreePlayers() {
+        Game game = new Game(2);
+        List<Player> totalPlayers = game.getTotalPlayers();
+        assertEquals(2, totalPlayers.size());
+    }
 }

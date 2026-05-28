@@ -62,9 +62,9 @@
   - **Expected output**: `getAlivePlayerCount() == 1`
 
 ### Method under test: `getTotalPlayers()`
-- **TC16: Returns Correct Players** ( :x: )
-  - **State of the system**: game created with 3 players
-  - **Expected output**: returned list contains exactly the 3 players created at construction
+- **TC16: Returns Correct Players** ( ☑️  )
+  - **State of the system**: game created with 2 players
+  - **Expected output**: returned list contains exactly the 2 players created at construction
 
 ### Method under test: `getAlivePlayers()`
 - **TC17: Returns All Players When None Eliminated** ( :x: )
