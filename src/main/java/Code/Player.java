@@ -62,6 +62,10 @@ public final class Player {
         hand.add(card);
     }
 
+    public ArrayList<Card> getHand() {
+        return new ArrayList<Card>(this.hand);
+    }
+
     public int getHandSize() {
         return hand.size();
     }
