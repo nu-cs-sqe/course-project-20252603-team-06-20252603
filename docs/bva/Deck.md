@@ -19,7 +19,7 @@
   - **State of the system**:
   - **Expected output**: A new deck object with one CAT_CARD_1 card
 
-### Method under test: shuffle()
+### Method under test: `shuffle()`
 - **TC4: Empty Deck** ( :white_check_mark: )
   - **State of the system**: Deck.cards is empty
   - **Expected Output**: 
@@ -32,7 +32,7 @@
     - **State of the system**: Deck.cards contains 34 cards (post-constructor)
     - **Expected Output**: Deck.cards still contains the same 34 cards with no duplicates and no cards lost
 
-### Method under test: insert(card, location)
+### Method under test: `insert(card, location)`
 - **TC7: Insert at index -1 ** ( :white_check_mark: )
   - **State of the system**: Deck has N cards; valid card object provided; location = -1
   - **Expected output**: Raises `IndexOutOfBoundsException`
@@ -57,7 +57,7 @@
     - **State of the system**: Deck has 0 cards; valid card object provided; location = 0
     - **Expected output**: Card is inserted as the only element; deck size becomes 1
 
-### Method under test: discard(card, location)
+### Method under test: `discard(card, location)`
 - **TC13: Discard the only card in the deck** ( :white_check_mark: )
     - **State of the system**: Deck has exactly 1 card; card to discard is that card
     - **Expected output**: Card is removed; deck size becomes 0
@@ -91,7 +91,7 @@
   - **State of the system**: deck contains 0 cards
   - **Expected output**: throws an exception
 
-### Method under test: getCards()
+### Method under test: `getCards()`
 - **TC21: Get cards from a deck with multiple cards** (:white_check_mark:)
     - **State of the system**: Deck has N cards
     - **Expected output**: Returns a list of all N cards; deck remains unchanged
@@ -104,7 +104,7 @@
     - **State of the system**: Deck has 0 cards
     - **Expected output**: Returns an empty list; deck remains unchanged
 
-### Method under test: count()
+### Method under test: `count()`
 - **TC24: Count an empty deck** ( :white_check_mark: )
     - **State of the system**: Deck has 0 cards
     - **Expected output**: Returns 0

@@ -30,8 +30,7 @@ public class DeckTests {
         )
         );
 
-        for(int i = 0; i < cards.size(); i++){
-            Card curr = cards.get(i);
+        for (Card curr : cards) {
             CardType type = curr.getType();
             card_counts.put(type, card_counts.get(type) + 1);
         }
@@ -244,6 +243,16 @@ public class DeckTests {
             deck.discard(cardToDiscard);
         });
         assertEquals(initialSize, deck.count());
+    }
+
+    @Test
+    void takeTopCardOnOneCardDeck(){
+        Deck deck = new Deck(1);
+        ArrayList<Card> cards = deck.getCards();
+        Card topCard = deck.takeTopCard();
+
+        assertEquals(0, deck.count());
+        assertEquals(cards.get(0), topCard);
     }
 
     @Test

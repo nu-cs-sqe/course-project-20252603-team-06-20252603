@@ -1,7 +1,5 @@
 # BVA analysis for Game
 
-### Method under test: Constructor
-
 ### Method under test: `Game(int playerCount)`
 - **TC1: One Below Minimum Players** ( ☑️ )
   - **State of the system**: `playerCount = 1`
