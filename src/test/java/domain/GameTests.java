@@ -13,35 +13,35 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTests {
     @Test
-    public void ConstructorTest_OneBelowMinNumPlayer_ThrowsException() {
+    public void constructorTest_OneBelowMinNumPlayer_ThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> {
             new Game(1);
         });
     }
 
     @Test
-    public void ConstructorTest_MinNumPlayers_MakesGame(){
+    public void constructorTest_MinNumPlayers_MakesGame(){
         Game game = new Game(2);
         assertEquals(2, game.getTotalPlayerCount());
         assertEquals(2, game.getAlivePlayerCount());
     }
 
     @Test
-    public void ConstructorTest_MaxNumPlayers_MakesGame(){
+    public void constructorTest_MaxNumPlayers_MakesGame(){
         Game game = new Game(5);
         assertEquals(5, game.getTotalPlayerCount());
         assertEquals(5, game.getTotalPlayerCount());
     }
 
     @Test
-    public void ConstructorTest_OneAboveMaxNumPlayers_MakesGame(){
+    public void constructorTest_OneAboveMaxNumPlayers_MakesGame(){
         assertThrows(IllegalArgumentException.class, () -> {
             new Game(6);
         });
     }
 
     @Test
-    public void SetupTest_MinimumPlayers_CorrectCardsDealt() {
+    public void setupTest_MinimumPlayers_CorrectCardsDealt() {
         Game game = new Game(2);
         game.setup();
 
