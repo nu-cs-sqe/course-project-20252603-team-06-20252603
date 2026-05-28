@@ -53,7 +53,7 @@
   - **State of the system**: no players eliminated; game created with 2 players
   - **Expected output**: `getAlivePlayerCount() == 2`
 
-- **TC14: One Player Eliminated** ( :x: )
+- **TC14: One Player Eliminated** (  ☑️  )
   - **State of the system**: one player removed from `alivePlayers`; game created with 2 players
   - **Expected output**: `getAlivePlayerCount() == 1`
 
@@ -91,3 +91,20 @@
 - **TC22: Remove Player Not In Alive List** ( :x: )
   - **State of the system**: game created with 2 players; target player already eliminated
   - **Expected output**: throws an exception
+  - 
+### Method under test: `addAlivePlayer(Player player)`
+- **TC23: Add Player Back To List With No Alive Players** ( :x: )
+  - **State of the system**: game created with 2 players; both players eliminated; `alivePlayers` is empty
+  - **Expected output**: `alivePlayers` contains 1 player
+
+- **TC24: Add Player Back To List With Some Alive Players** ( :x: )
+  - **State of the system**: game created with 5 players; one player eliminated; 4 players in `alivePlayers`
+  - **Expected output**: `alivePlayers` contains 5 players
+
+- **TC25: Add Player Not In Game** ( :x: )
+  - **State of the system**: game created with 2 players; player being added was never in `totalPlayers`
+  - **Expected output**: throws `IllegalArgumentException`
+
+- **TC26: Add Player Already Alive** ( :x: )
+  - **State of the system**: game created with 2 players; no eliminations; target player is already in `alivePlayers`
+  - **Expected output**: throws `IllegalArgumentException`

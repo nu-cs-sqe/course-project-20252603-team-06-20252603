@@ -57,6 +57,25 @@ public final class Game {
         player.addCard(cardToDraw);
     }
 
+    public void removeAlivePlayer(Player player) {
+        if (!alivePlayers.contains(player)) {
+            throw new IllegalArgumentException("Player is not in the alive players list");
+        }
+        player.kill();
+        alivePlayers.remove(player);
+    }
+
+    public void addAlivePlayer(Player player){
+        if (!totalPlayers.contains(player)) {
+            throw new IllegalArgumentException("Player not in game");
+        }
+        if (alivePlayers.contains(player)){
+            throw new IllegalArgumentException("Player already alive");
+        }
+        player.revive();
+        alivePlayers.add(player);
+    }
+
     Deck getDeck(){
         return this.deck;
     }

@@ -138,4 +138,12 @@ public class GameTests {
         Game game = new Game(2);
         assertEquals(2, game.getAlivePlayerCount());
     }
+
+    @Test
+    public void getAlivePlayerCount_OnePlayerEliminated_ReturnsOne() {
+        Game game = new Game(2);
+        Player playerToRemove = game.getAlivePlayers().get(0);
+        game.removeAlivePlayer(playerToRemove);
+        assertEquals(1, game.getAlivePlayerCount());
+    }
 }
