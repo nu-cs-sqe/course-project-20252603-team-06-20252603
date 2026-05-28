@@ -276,6 +276,38 @@ public class PlayerTests {
         assertEquals(expected, player.getHand());
     }
 
+    @Test
+    void getHand_SevenCardsManyTypes_ListWithSevenCardsSameOrder() {
+        Player player = new Player("lily");
+
+        List<Card> expected = new ArrayList<Card>();
+        Card seeTheFuture = new Card(CardType.SEE_THE_FUTURE);
+        Card defuse = new Card(CardType.DEFUSE);
+        Card shuffle1 = new Card(CardType.SHUFFLE);
+        Card nope1 = new Card(CardType.NOPE);
+        Card nope2 = new Card(CardType.NOPE);
+        Card skip = new Card(CardType.SKIP);
+        Card shuffle2 = new Card(CardType.SHUFFLE);
+
+        player.addCard(seeTheFuture);
+        player.addCard(defuse);
+        player.addCard(shuffle1);
+        player.addCard(nope1);
+        player.addCard(nope2);
+        player.addCard(skip);
+        player.addCard(shuffle2);
+
+        expected.add(seeTheFuture);
+        expected.add(defuse);
+        expected.add(shuffle1);
+        expected.add(nope1);
+        expected.add(nope2);
+        expected.add(skip);
+        expected.add(shuffle2);
+
+        assertEquals(expected, player.getHand());
+    }
+
 
     @Test
     void getHandSize_EmptyHand_Zero() {

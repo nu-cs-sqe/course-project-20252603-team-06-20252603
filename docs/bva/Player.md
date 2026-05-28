@@ -119,7 +119,7 @@ output: isAlive (boolean), hand (list)
   - **State of the system**: hand: [TEST, TEST]
   - **Expected output**: [TEST, TEST]
 
-- **TC10: getHand_SevenCardsManyTypes_Two** ( :x: )
+- **TC10: getHand_SevenCardsManyTypes_ListWithSevenCardsSameOrder* ( :white_check_mark: )
   - **State of the system**: hand: [SEE_THE_FUTURE, DEFUSE, SHUFFLE, NOPE, NOPE, SKIP, SHUFFLE]
   - **Expected output**: [SEE_THE_FUTURE, DEFUSE, SHUFFLE, NOPE, NOPE, SKIP, SHUFFLE]
 
