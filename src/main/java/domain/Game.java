@@ -33,16 +33,6 @@ public class Game {
         this.playersAlive = players.size();
     }
 
-    public static Game createGame(int playerCount) {
-        if (playerCount < MIN_PLAYERS) {
-            throw new IllegalArgumentException("Cannot initiate game with less than 2 players");
-        }
-        if (playerCount > MAX_PLAYERS) {
-            throw new IllegalArgumentException("Cannot initiate game with more than 5 players");
-        }
-        return new Game(playerCount);
-    }
-
     public void setup() {
         int cardsNeeded = players.size() * NORMAL_CARDS_PER_PLAYER;
         if (deck.count() < cardsNeeded) {
