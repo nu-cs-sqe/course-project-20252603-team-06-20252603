@@ -93,7 +93,7 @@
   - **Expected output**: throws an exception
   - 
 ### Method under test: `addAlivePlayer(Player player)`
-- **TC23: Add Player Back To List With No Alive Players** ( :x: )
+- **TC23: Add Player Back To List With No Alive Players** ( ☑️ )
   - **State of the system**: game created with 2 players; both players eliminated; `alivePlayers` is empty
   - **Expected output**: `alivePlayers` contains 1 player
 

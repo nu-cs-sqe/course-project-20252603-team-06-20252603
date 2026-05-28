@@ -217,4 +217,14 @@ public class GameTests {
             game.removeAlivePlayer(playerToRemove);
         });
     }
+
+    @Test
+    public void addAlivePlayer_NoAlivePlayers_AddsPlayer() {
+        Game game = new Game(2);
+        Player playerToAdd = game.getAlivePlayers().get(0);
+        game.removeAlivePlayer(game.getAlivePlayers().get(0));
+        game.removeAlivePlayer(game.getAlivePlayers().get(0));
+        game.addAlivePlayer(playerToAdd);
+        assertEquals(1, game.getAlivePlayerCount());
+    }
 }
