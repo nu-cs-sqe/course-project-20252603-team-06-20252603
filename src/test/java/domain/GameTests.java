@@ -13,35 +13,35 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTests {
     @Test
-    public void constructorTest_OneBelowMinNumPlayer_ThrowsException() {
+    public void constructor_OneBelowMinNumPlayer_ThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> {
             new Game(1);
         });
     }
 
     @Test
-    public void constructorTest_MinNumPlayers_MakesGame(){
+    public void constructor_MinNumPlayers_MakesGame(){
         Game game = new Game(2);
         assertEquals(2, game.getTotalPlayerCount());
         assertEquals(2, game.getAlivePlayerCount());
     }
 
     @Test
-    public void constructorTest_MaxNumPlayers_MakesGame(){
+    public void constructor_MaxNumPlayers_MakesGame(){
         Game game = new Game(5);
         assertEquals(5, game.getTotalPlayerCount());
-        assertEquals(5, game.getTotalPlayerCount());
+        assertEquals(5, game.getAlivePlayerCount());
     }
 
     @Test
-    public void constructorTest_OneAboveMaxNumPlayers_MakesGame(){
+    public void constructor_OneAboveMaxNumPlayers_MakesGame(){
         assertThrows(IllegalArgumentException.class, () -> {
             new Game(6);
         });
     }
 
     @Test
-    public void setupTest_MinimumPlayers() {
+    public void setup_MinimumNumPlayers() {
         Game game = new Game(2);
         game.setup();
 
@@ -59,7 +59,7 @@ public class GameTests {
     }
 
     @Test
-    public void setupTest_MaximumPlayers(){
+    public void setup_MaximumNumPlayers(){
         Game game = new Game(5);
         game.setup();
 
@@ -74,5 +74,22 @@ public class GameTests {
             }
         }
         assertEquals(4, kittenCount);
+    }
+
+    @Test
+    public void draw_FromDeckWithOneCard(){
+        Game game = new Game(5);
+
+        Deck deck = new Deck(1);
+        Card deckOnlyCard = deck.getCards().get(0);
+        int deckOriginalSize = deck.count();
+
+        Player player = new Player("Test Name");
+        assertEquals(0, player.getHandSize());
+
+        game.draw(player, deck);
+
+        assertTrue(player.hasCard(deckOnlyCard.getType()));
+        assertEquals(deckOriginalSize - 1, deck.count());
     }
 }

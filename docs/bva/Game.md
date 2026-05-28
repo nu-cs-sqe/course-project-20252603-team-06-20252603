@@ -22,12 +22,12 @@
   - **State of the system**: game created with 2 players; default deck
   - **Expected output**: each player has 8 cards (7 normal + 1 DEFUSE); deck contains 1 EXPLODING_KITTEN
 
-- **TC7: Setup With Maximum Players** ( :x: )
+- **TC7: Setup With Maximum Players** ( ☑️ )
   - **State of the system**: game created with 5 players; default deck
   - **Expected output**: each player has 8 cards (7 normal + 1 DEFUSE); deck contains 4 EXPLODING_KITTENs
 
 ### Method under test: `draw(Player player, Deck deck)`
-- **TC8: Draw From Deck With One Card** ( :x: )
+- **TC8: Draw From Deck With One Card** ( ☑️ )
   - **State of the system**: `deck` contains exactly 1 card; `player` has 0 cards
   - **Expected output**: player receives the card; deck is now empty
 

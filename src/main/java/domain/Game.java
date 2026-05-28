@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Collections;
 
 public final class Game {
-    private Deck deck;
-    private List<Player> totalPlayers;
-    private List<Player> alivePlayers;
+    private final Deck deck;
+    private final List<Player> totalPlayers;
+    private final List<Player> alivePlayers;
 
     private static final int MIN_PLAYERS    = 2;
     private static final int MAX_PLAYERS    = 5;
