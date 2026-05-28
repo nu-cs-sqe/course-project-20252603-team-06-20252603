@@ -92,4 +92,15 @@ public class GameTests {
         assertTrue(player.hasCard(deckOnlyCard.getType()));
         assertEquals(deckOriginalSize - 1, deck.count());
     }
+
+    @Test
+    public void draw_FromEmptyDeck(){
+        Game game = new Game(5);
+        Deck deck = new Deck(0);
+        Player player = new Player("Test Name");
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            game.draw(player, deck);
+        });
+    }
 }

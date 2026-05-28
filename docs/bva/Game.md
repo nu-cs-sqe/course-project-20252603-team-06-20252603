@@ -31,7 +31,7 @@
   - **State of the system**: `deck` contains exactly 1 card; `player` has 0 cards
   - **Expected output**: player receives the card; deck is now empty
 
-- **TC9: Draw From Empty Deck** ( :x: )
+- **TC9: Draw From Empty Deck** ( ☑️ )
   - **State of the system**: `deck` contains 0 cards; `player` has 0 cards
   - **Expected output**: throws an exception
 
