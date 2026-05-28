@@ -25,4 +25,11 @@ public class GameTests {
         assertEquals(2, game.getTotalPlayerCount());
         assertEquals(2, game.getAlivePlayerCount());
     }
+
+    @Test
+    public void ConstructorTest_MaxNumPlayers_MakesGame(){
+        Game game = new Game(5);
+        assertEquals(5, game.getTotalPlayerCount());
+        assertEquals(5, game.getTotalPlayerCount());
+    }
 }

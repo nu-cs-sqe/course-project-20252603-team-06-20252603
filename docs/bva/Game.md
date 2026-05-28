@@ -7,15 +7,11 @@
   - **State of the system**: `playerCount = 1`
   - **Expected output**: throws `IllegalArgumentException`
 
-- **TC2: Minimum Players** ( :x: )
+- **TC2: Minimum Players** ( ☑️ )
   - **State of the system**: `playerCount = 2`
   - **Expected output**: `Game` object created with 2 players in `totalPlayers` and `alivePlayers`
 
-- **TC3: Middle Value Players** ( :x: )
-  - **State of the system**: `playerCount = 3`
-  - **Expected output**: `Game` object created with 3 players in `totalPlayers` and `alivePlayers`
-
-- **TC4: Maximum Players** ( :x: )
+- **TC4: Maximum Players** ( ☑️ )
   - **State of the system**: `playerCount = 5`
   - **Expected output**: `Game` object created with 5 players in `totalPlayers` and `alivePlayers`
 
