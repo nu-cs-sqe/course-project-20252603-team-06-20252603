@@ -2,125 +2,98 @@
 
 ### Method under test: Constructor
 
-- constructor_TwoPlayers_CreatesTwoPlayers ( :white_check_mark: )
-    - **State of the system**: playerCount = 2
-    - **Expected output**: players = [Player, Player], deck = [], currentPlayer = null
+### Method under test: `Game(int playerCount)`
+- **TC1: One Below Minimum Players** ( :x: )
+  - **State of the system**: `playerCount = 1`
+  - **Expected output**: throws `IllegalArgumentException`
 
-- constructor_ThreePlayers_CreatesThreePlayers ( :white_check_mark: )
-    - **State of the system**: playerCount = 3
-    - **Expected output**: players = [Player, Player, Player], deck = [], currentPlayer = null
+- **TC2: Minimum Players** ( :x: )
+  - **State of the system**: `playerCount = 2`
+  - **Expected output**: `Game` object created with 2 players in `totalPlayers` and `alivePlayers`
 
-- constructor_FourPlayers_CreatesFourPlayers ( :white_check_mark: )
-    - **State of the system**: playerCount = 4
-    - **Expected output**: players = [Player, Player, Player, Player], deck = [], currentPlayer = null
+- **TC3: Middle Value Players** ( :x: )
+  - **State of the system**: `playerCount = 3`
+  - **Expected output**: `Game` object created with 3 players in `totalPlayers` and `alivePlayers`
 
-- constructor_FivePlayers_CreatesFivePlayers ( :white_check_mark: )
-    - **State of the system**: playerCount = 5
-    - **Expected output**: players = [Player, Player, Player, Player, Player], deck = [], currentPlayer = null
-    - 
-### Method under test: createGame
+- **TC4: Maximum Players** ( :x: )
+  - **State of the system**: `playerCount = 5`
+  - **Expected output**: `Game` object created with 5 players in `totalPlayers` and `alivePlayers`
 
-- createGame_ZeroPlayers_IllegalArgumentException ( :white_check_mark: )
-  - **State of the system**: playerCount = 0
-  - **Expected output**: IllegalArgumentException; "Cannot initiate game with less than 2 players"
+- **TC5: One Above Maximum Players** ( :x: )
+  - **State of the system**: `playerCount = 6`
+  - **Expected output**: throws `IllegalArgumentException`
+  
+### Method under test: `setup()`
+- **TC6: Setup With Minimum Players** ( :x: )
+  - **State of the system**: game created with 2 players; default deck
+  - **Expected output**: each player has 8 cards (7 normal + 1 DEFUSE); deck contains 1 EXPLODING_KITTEN
 
-- createGame_OnePlayer_IllegalArgumentException ( :white_check_mark: )
-  - **State of the system**: playerCount = 1
-  - **Expected output**: IllegalArgumentException; "Cannot initiate game with less than 2 players"
+- **TC7: Setup With Maximum Players** ( :x: )
+  - **State of the system**: game created with 5 players; default deck
+  - **Expected output**: each player has 8 cards (7 normal + 1 DEFUSE); deck contains 4 EXPLODING_KITTENs
 
-- createGame_TwoPlayers_CreatesTwoPlayers ( :white_check_mark: )
-  - **State of the system**: playerCount = 2
-  - **Expected output**: players = [Player, Player], deck = [], currentPlayer = null
+### Method under test: `draw(Player player, Deck deck)`
+- **TC8: Draw From Deck With One Card** ( :x: )
+  - **State of the system**: `deck` contains exactly 1 card; `player` has 0 cards
+  - **Expected output**: player receives the card; deck is now empty
 
-- createGame_ThreePlayers_CreatesThreePlayers ( :white_check_mark: )
-  - **State of the system**: playerCount = 3
-  - **Expected output**: players = [Player, Player, Player], deck = [], currentPlayer = null
+- **TC9: Draw From Empty Deck** ( :x: )
+  - **State of the system**: `deck` contains 0 cards; `player` has 0 cards
+  - **Expected output**: throws an exception
 
-- createGame_FourPlayers_CreatesFourPlayers ( :white_check_mark: )
-  - **State of the system**: playerCount = 4
-  - **Expected output**: players = [Player, Player, Player, Player], deck = [], currentPlayer = null
+- **TC10: Draw From Deck With Many Cards** ( :x: )
+  - **State of the system**: `deck` contains more than 1 card; `player` has 0 cards
+  - **Expected output**: player receives only the top card; deck size decreases by 1
 
-- createGame_FivePlayers_CreatesFivePlayers ( :white_check_mark: )
-  - **State of the system**: playerCount = 5
-  - **Expected output**: players = [Player, Player, Player, Player, Player], deck = [], currentPlayer = null
+### Method under test: `getTotalPlayerCount()`
+- **TC11: Minimum Total Players** ( :x: )
+  - **State of the system**: game created with 2 players
+  - **Expected output**: `getTotalPlayerCount() == 2`
 
-- createGame_SixPlayers_IllegalArgumentException ( :white_check_mark: )
-  - **State of the system**: playerCount = 6
-  - **Expected output**: IllegalArgumentException; "Cannot initiate game with more than 5 players"
+- **TC12: Maximum Total Players** ( :x: )
+  - **State of the system**: game created with 5 players
+  - **Expected output**: `getTotalPlayerCount() == 5`
 
-### Method under test: setup()
+### Method under test: `getAlivePlayerCount()`
+- **TC13: All Players Alive** ( :x: )
+  - **State of the system**: no players eliminated; game created with 2 players
+  - **Expected output**: `getAlivePlayerCount() == 2`
 
-- setup_TwoPlayers_CorrectCardDistribution_PlentyOfCards ( :white_check_mark: )
-    - **State of the system**: playerCount = 2, deck initialized with 100 standard playing cards (excluding kittens and
-      initial defuses)
-    - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 14. 1
-      Exploding Kitten inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
+- **TC14: One Player Eliminated** ( :x: )
+  - **State of the system**: one player removed from `alivePlayers`; game created with 2 players
+  - **Expected output**: `getAlivePlayerCount() == 1`
 
-- setup_ThreePlayers_CorrectCardDistribution_PlentyOfCards ( :white_check_mark: )
-    - **State of the system**: playerCount = 3, deck initialized with 100 standard playing cards (excluding kittens and
-      initial defuses)
-    - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 21. 2
-      Exploding Kittens inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
+- **TC15: Last Player Remaining** ( :x: )
+  - **State of the system**: all but one player eliminated; game created with 5 players
+  - **Expected output**: `getAlivePlayerCount() == 1`
 
-- setup_FourPlayers_CorrectCardDistribution_PlentyOfCards ( :white_check_mark: )
-  - **State of the system**: playerCount = 5, deck initialized with 100 standard playing cards (excluding kittens and
-    initial defuses)
-  - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 28. 3
-    Exploding Kittens inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
+### Method under test: `getTotalPlayers()`
+- **TC16: Returns Correct Players** ( :x: )
+  - **State of the system**: game created with 3 players
+  - **Expected output**: returned list contains exactly the 3 players created at construction
 
-- setup_FivePlayers_CorrectCardDistribution_PlentyOfCards ( :white_check_mark: )
-    - **State of the system**: playerCount = 5, deck initialized with 100 standard playing cards (excluding kittens and
-      initial defuses)
-    - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 35. 4
-      Exploding Kittens inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
+### Method under test: `getAlivePlayers()`
+- **TC17: Returns All Players When None Eliminated** ( :x: )
+  - **State of the system**: game created with 3 players; no eliminations
+  - **Expected output**: returned list contains all 3 players
 
-- setup_TwoPlayers_CorrectCardDistribution_JustEnoughCards ( :white_check_mark: )
-  - **State of the system**: playerCount = 2, deck initialized with 14 standard playing cards (excluding kittens and
-    initial defuses)
-  - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 14. 1
-    Exploding Kitten inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
+- **TC18: Returns Reduced List After Elimination** ( :x: )
+  - **State of the system**: game created with 3 players; one player removed from `alivePlayers`
+  - **Expected output**: returned list contains the 2 remaining players
 
-- setup_ThreePlayers_CorrectCardDistribution_JustEnoughCards ( :white_check_mark: )
-  - **State of the system**: playerCount = 3, deck initialized with 21 standard playing cards (excluding kittens and
-    initial defuses)
-  - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 21. 2
-    Exploding Kittens inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
+### Method under test: `removeAlivePlayer(Player player)`
+- **TC19: Remove Player From List With Many Players** ( :x: )
+  - **State of the system**: game created with 5 players; no eliminations
+  - **Expected output**: `alivePlayers` contains 4 players; removed player is no longer present
 
-- setup_FourPlayers_CorrectCardDistribution_JustEnoughCards ( :white_check_mark: )
-  - **State of the system**: playerCount = 5, deck initialized with 28 standard playing cards (excluding kittens and
-    initial defuses)
-  - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 28. 3
-    Exploding Kittens inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
+- **TC20: Remove Player From List With One Player** ( :x: )
+  - **State of the system**: game created with 2 players; one player already eliminated; one player remaining in `alivePlayers`
+  - **Expected output**: `alivePlayers` is empty
 
-- setup_FivePlayers_CorrectCardDistribution_JustEnoughCards ( :white_check_mark: )
-  - **State of the system**: playerCount = 5, deck initialized with 35 standard playing cards (excluding kittens and
-    initial defuses)
-  - **Expected output**: Each player's hand size = 8 (1 Defuse, 7 random). Remaining deck size decreases by 35. 4
-    Exploding Kittens inserted into draw pile alongside spare Defuses. currentPlayer = Player 1
+- **TC21: Remove Player From Empty List** ( :x: )
+  - **State of the system**: all players already eliminated; `alivePlayers` is empty
+  - **Expected output**: throws an exception
 
-- setup_InsufficientDeckSize_ThrowsIllegalStateException ( :white_check_mark: )
-    - **State of the system**: playerCount = 5, initial deck = 34 random cards total
-    - **Expected output**: IllegalStateException; "Not enough cards in deck to deal starting hands"
-
-### Method under test: runGame()
-
-- runGame_TwoPlayers_FirstPlayerTakesTurn ( :white_check_mark: )
-    - **State of the system**: playerCount = 2, Player 1 takes a turn, then Player 2 takes a turn.
-        - **Expected output**: Both players still alive.
-
-- runGame_TwoPlayers_OneDiesImmediately_TerminatesAndDeclaresWinner
-    - **State of the system**: playerCount = 2, Player 1 draws an Exploding Kitten without a Defuse
-    - **Expected output**: Player 1 status = DEAD. Game loop terminates. Player 2 declared winner
-
-- runGame_ThreePlayers_OneDies_LoopContinues
-    - **State of the system**: playerCount = 3, Player 1 draws an Exploding Kitten without a Defuse
-    - **Expected output**: Player 1 status = DEAD. Game loop continues. Turn advances to Player 2
-
-- runGame_ValidCardPlayed_DelegatesToCorrectController
-    - **State of the system**: playerCount = 4, currentPlayer = Player 1, Player 1 plays an Attack card
-    - **Expected output**: AttackController is instantiated/called. Player 1's turn ends without drawing a card
-
-- runGame_FivePlayers_OneDies_LoopContinues
-    - **State of the system**: playerCount = 5, Player 1 draws an Exploding Kitten without a Defuse
-    - **Expected output**: Player 1 status = DEAD. Game loop continues. Turn advances to Player 2
-
+- **TC22: Remove Player Not In Alive List** ( :x: )
+  - **State of the system**: game created with 2 players; target player already eliminated
+  - **Expected output**: throws an exception
