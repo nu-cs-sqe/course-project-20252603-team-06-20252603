@@ -245,4 +245,13 @@ public class GameTests {
             game.addAlivePlayer(extraPlayer);
         });
     }
+
+    @Test
+    public void addAlivePlayer_PlayerAlreadyAlive_ThrowsException() {
+        Game game = new Game(2);
+        Player alivePlayer = game.getAlivePlayers().get(0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            game.addAlivePlayer(alivePlayer);
+        });
+    }
 }
