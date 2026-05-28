@@ -115,7 +115,7 @@ output: isAlive (boolean), hand (list)
   - **State of the system**: hand: [TEST]
   - **Expected output**: [TEST]
 
-- **TC10: getHand_TwoCardsSameType_ListWithTwoCadsSameType** ( :x: )
+- **TC10: getHand_TwoCardsSameType_ListWithTwoCadsSameType** ( :white_check_mark: )
   - **State of the system**: hand: [TEST, TEST]
   - **Expected output**: [TEST, TEST]
 

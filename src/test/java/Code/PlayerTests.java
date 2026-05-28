@@ -253,11 +253,29 @@ public class PlayerTests {
         List<Card> expected = new ArrayList<Card>();
         Card card = new Card(CardType.TEST_TYPE);
 
-        expected.add(card);
         player.addCard(card);
+        expected.add(card);
 
         assertEquals(expected, player.getHand());
     }
+    @Test
+    void getHand_TwoCardsSameType_ListWithTwoCadsSameType() {
+        Player player = new Player("lily");
+
+        List<Card> expected = new ArrayList<Card>();
+        Card card1 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.TEST_TYPE);
+
+
+        player.addCard(card1);
+        player.addCard(card2);
+
+        expected.add(card1);
+        expected.add(card2);
+
+        assertEquals(expected, player.getHand());
+    }
+
 
     @Test
     void getHandSize_EmptyHand_Zero() {
