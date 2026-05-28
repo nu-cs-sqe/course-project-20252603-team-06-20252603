@@ -122,8 +122,14 @@ public class GameTests {
     }
 
     @Test
-    public void getTotalPlayerCount_MinimumPlayers_ReturnsTwo() {
+    public void getTotalPlayerCount_MinNumPlayers_ReturnsTwo() {
         Game game = new Game(2);
         assertEquals(2, game.getTotalPlayerCount());
+    }
+
+    @Test
+    public void getTotalPlayerCount_MaxNumPlayers_ReturnsFive() {
+        Game game = new Game(5);
+        assertEquals(5, game.getTotalPlayerCount());
     }
 }

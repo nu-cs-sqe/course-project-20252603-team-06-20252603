@@ -44,7 +44,7 @@
   - **State of the system**: game created with 2 players
   - **Expected output**: `getTotalPlayerCount() == 2`
 
-- **TC12: Maximum Total Players** ( :x: )
+- **TC12: Maximum Total Players** ( ☑️ )
   - **State of the system**: game created with 5 players
   - **Expected output**: `getTotalPlayerCount() == 5`
 
