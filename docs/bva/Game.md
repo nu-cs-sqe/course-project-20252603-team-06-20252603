@@ -13,12 +13,12 @@
   - **State of the system**: `playerCount = 5`
   - **Expected output**: `Game` object created with 5 players in `totalPlayers` and `alivePlayers`
 
-- **TC5: One Above Maximum Players** ( :x: )
+- **TC5: One Above Maximum Players** (  ☑️  )
   - **State of the system**: `playerCount = 6`
   - **Expected output**: throws `IllegalArgumentException`
   
 ### Method under test: `setup()`
-- **TC6: Setup With Minimum Players** ( :x: )
+- **TC6: Setup With Minimum Players** (  ☑️  )
   - **State of the system**: game created with 2 players; default deck
   - **Expected output**: each player has 8 cards (7 normal + 1 DEFUSE); deck contains 1 EXPLODING_KITTEN
 

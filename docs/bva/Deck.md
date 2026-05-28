@@ -87,9 +87,9 @@
   - **State of the system**: deck contains more than 1 card
   - **Expected output**: the first card is returned; deck size decreases by 1
 
-- **TC20: Deck Is Empty** ( :white_check_mark: )
-  - **State of the system**: deck contains 0 cards
-  - **Expected output**: throws an exception
+  - **TC20: Deck Is Empty** ( :white_check_mark: )
+    - **State of the system**: deck contains 0 cards
+    - **Expected output**: throws an exception
 
 ### Method under test: `getCards()`
 - **TC21: Get cards from a deck with multiple cards** (:white_check_mark:)

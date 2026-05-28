@@ -11,7 +11,7 @@ public final class Game {
 
     private static final int MIN_PLAYERS    = 2;
     private static final int MAX_PLAYERS    = 5;
-    private static final int NORMAL_CARDS_PER_PLAYER = 7; // + 1 DEFUSE
+    private static final int NORMAL_CARDS_PER_PLAYER = 6; // + 1 DEFUSE
 
     Game(int playerCount) {
         if (playerCount < MIN_PLAYERS) {

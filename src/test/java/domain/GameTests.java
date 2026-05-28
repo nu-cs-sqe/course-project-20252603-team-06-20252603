@@ -41,16 +41,14 @@ public class GameTests {
     }
 
     @Test
-    public void setupTest_MinimumPlayers_CorrectCardsDealt() {
+    public void setupTest_MinimumPlayers() {
         Game game = new Game(2);
         game.setup();
 
-        // each player has 8 cards
         for (Player player : game.getTotalPlayers()) {
-            assertEquals(8, player.getHandSize());
+            assertEquals(7, player.getHandSize());
         }
 
-        // deck contains exactly 1 exploding kitten
         int kittenCount = 0;
         for (Card card : game.getDeck().getCards()) {
             if (card.getType() == CardType.EXPLODING_KITTEN) {
@@ -58,5 +56,23 @@ public class GameTests {
             }
         }
         assertEquals(1, kittenCount);
+    }
+
+    @Test
+    public void setupTest_MaximumPlayers(){
+        Game game = new Game(5);
+        game.setup();
+
+        for (Player player : game.getTotalPlayers()) {
+            assertEquals(7, player.getHandSize());
+        }
+
+        int kittenCount = 0;
+        for (Card card : game.getDeck().getCards()) {
+            if (card.getType() == CardType.EXPLODING_KITTEN) {
+                kittenCount++;
+            }
+        }
+        assertEquals(4, kittenCount);
     }
 }
