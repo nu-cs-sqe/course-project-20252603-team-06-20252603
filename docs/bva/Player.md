@@ -48,16 +48,16 @@ However, you are only required to document Step 4.
     - **State of the system**: isAlive: True
     - **Expected output**: isAlive: False
 
-- **TC10: kill_IllegalStateException** ( :white_check_mark: )
+- **TC11: kill_IllegalStateException** ( :white_check_mark: )
     - **State of the system**: isAlive: False
     - **Expected output**: IllegalStateException
 
 - ### Method under test: revive()
-- **TC10: revive_Success** ( :white_check_mark: )
+- **TC12: revive_Success** ( :white_check_mark: )
     - **State of the system**: isAlive: False
     - **Expected output**: isAlive: True
 
-- **TC10: revive_IllegalStateException** ( :white_check_mark: )
+- **TC13: revive_IllegalStateException** ( :white_check_mark: )
     - **State of the system**: isAlive: True
     - **Expected output**: IllegalStateException
 
@@ -65,19 +65,19 @@ However, you are only required to document Step 4.
 input: card (pointer), cards (list)
 output: cards (list)
 
-- **TC13: removeCard_NormalCardOneCard_CardRemoved** ( :white_check_mark: )
+- **TC14: removeCard_NormalCardOneCard_CardRemoved** ( :white_check_mark: )
     - **State of the system**: card: TEST, cards: [TEST]
     - **Expected output**: cards: []
 
-- **TC14: removeCard_NormalCardTwoCards_CardRemoved** ( :white_check_mark: )
+- **TC15: removeCard_NormalCardTwoCards_CardRemoved** ( :white_check_mark: )
     - **State of the system**: card: TEST, cards: [TEST, TEST]
     - **Expected output**: cards: [TEST]
 
-- **TC15: removeCard_noCards_IllegalStateException** ( :white_check_mark: )
+- **TC16: removeCard_noCards_IllegalStateException** ( :white_check_mark: )
     - **State of the system**: card: TEST, cards: []
     - **Expected output**: IllegalStateException
 
-- **TC16: removeCard_cardNotInHand_IllegalArgumentException** ( :white_check_mark: )
+- **TC17: removeCard_cardNotInHand_IllegalArgumentException** ( :white_check_mark: )
     - **State of the system**: card: TEST, cards: [DEFUSE]
     - **Expected output**: IllegalArgumentException
 
@@ -85,65 +85,82 @@ output: cards (list)
 input: card (pointer) (EXPLODING KITTEN or other), hand (list)
 output: isAlive (boolean), hand (list)
 
-- **TC17: takeTurn_NormalCardNoCardsInHand_CardAddedtoHand** ( :white_check_mark: )
+- **TC18: takeTurn_NormalCardNoCardsInHand_CardAddedtoHand** ( :white_check_mark: )
     - **State of the system**: card: TEST, hand: []
     - **Expected output**: isAlive: true, hand: [TEST]
 
-- **TC18: takeTurn_NormalCardOneCardInHand_CardAddedtoHand** ( :white_check_mark: )
+- **TC19: takeTurn_NormalCardOneCardInHand_CardAddedtoHand** ( :white_check_mark: )
     - **State of the system**: card: TEST, hand: [TEST]
     - **Expected output**: isAlive: true, hand: [TEST, TEST]
 
 ***TODO***
-- **TC19: takeTurn_ExplodingKittenHas1Defuse_PlayerLives** ( :x: or :white_check_mark: )
+- **TC20: takeTurn_ExplodingKittenHas1Defuse_PlayerLives** ( :x: or :white_check_mark: )
     - **State of the system**: card: EXPLODING KITTEN, hand: [DEFUSE]
     - **Expected output**: isAlive: true, hand: []
 
-- **TC20: takeTurn_ExplodingKittenHas2Defuse_PlayerLives** ( :x: or :white_check_mark: )
+- **TC21: takeTurn_ExplodingKittenHas2Defuse_PlayerLives** ( :x: or :white_check_mark: )
     - **State of the system**: card: EXPLODING KITTEN, hand: [DEFUSE, DEFUSE]
     - **Expected output**: isAlive: true, hand: [DEFUSE]
 
-- **TC21: takeTurn_ExplodingKittenNoDefuse_PlayerDies** ( :x: or :white_check_mark: )
+- **TC22: takeTurn_ExplodingKittenNoDefuse_PlayerDies** ( :x: or :white_check_mark: )
     - **State of the system**: card: EXPLODING KITTEN, hand: []
     - **Expected output**: isAlive: false, hand: []
 
+- ### Method under test: getHand()
+- **TC23: getHand_EmptyHand_EmptyList** ( :white_check_mark: )
+  - **State of the system**: hand: []
+  - **Expected output**: []
+
+- **TC24: getHand_OneCard_ListWithOneCard** ( :white_check_mark: )
+  - **State of the system**: hand: [TEST]
+  - **Expected output**: [TEST]
+
+- **TC25: getHand_TwoCardsSameType_ListWithTwoCadsSameType** ( :white_check_mark: )
+  - **State of the system**: hand: [TEST, TEST]
+  - **Expected output**: [TEST, TEST]
+
+- **TC26: getHand_SevenCardsManyTypes_ListWithSevenCardsSameOrder* ( :white_check_mark: )
+  - **State of the system**: hand: [SEE_THE_FUTURE, DEFUSE, SHUFFLE, NOPE, NOPE, SKIP, SHUFFLE]
+  - **Expected output**: [SEE_THE_FUTURE, DEFUSE, SHUFFLE, NOPE, NOPE, SKIP, SHUFFLE]
+
 - ### Method under test: getHandSize()
-- **TC10: getHandSize_EmptyHand_Zero** ( :white_check_mark: )
+- **TC27: getHandSize_EmptyHand_Zero** ( :white_check_mark: )
     - **State of the system**: hand: []
     - **Expected output**: 0
 
-- **TC10: getHandSize_OneCard_One** ( :white_check_mark: )
+- **TC28: getHandSize_OneCard_One** ( :white_check_mark: )
     - **State of the system**: hand: [TEST]
     - **Expected output**: 1
 
-- **TC10: getHandSize_TwoCards_Two** ( :white_check_mark: )
+- **TC29: getHandSize_TwoCards_Two** ( :white_check_mark: )
     - **State of the system**: hand: [TEST, TEST2]
     - **Expected output**: 2
 
-- **TC10: getHandSize_DuplicateCards_Two** ( :white_check_mark: )
+- **TC30: getHandSize_DuplicateCards_Two** ( :white_check_mark: )
     - **State of the system**: hand: [TEST, TEST]
     - **Expected output**: 2
 
 - ### Method under test: hasCard()
-- **TC10: hasCard_EmptyHand_False** ( :white_check_mark: )
+- **TC31: hasCard_EmptyHand_False** ( :white_check_mark: )
     - **State of the system**: hand: [], card: TEST
     - **Expected output**: False
 
-- **TC10: hasCard_OneCardMatch_True** ( :white_check_mark: )
+- **TC32: hasCard_OneCardMatch_True** ( :white_check_mark: )
     - **State of the system**: hand: [DEFUSE], card: DEFUSE
     - **Expected output**: True
 
-- **TC10: hasCard_OneCardNoMatch_False** ( :white_check_mark: )
+- **TC33: hasCard_OneCardNoMatch_False** ( :white_check_mark: )
     - **State of the system**: hand: [TEST], card: DEFUSE
     - **Expected output**: False
 
-- **TC10: hasCard_TwoCardsOneMatch_True** ( :white_check_mark: )
+- **TC34: hasCard_TwoCardsOneMatch_True** ( :white_check_mark: )
     - **State of the system**: hand: [TEST, DEFUSE], card: DEFUSE
     - **Expected output**: True
 
-- **TC10: hasCard_DuplicateCardsMatch_True** ( :white_check_mark: )
+- **TC35: hasCard_DuplicateCardsMatch_True** ( :white_check_mark: )
     - **State of the system**: hand: [DEFUSE, DEFUSE], card: DEFUSE
     - **Expected output**: True
 
-- **TC10: hasCard_DuplicateCardsNoMatch_False** ( :white_check_mark: )
+- **TC36: hasCard_DuplicateCardsNoMatch_False** ( :white_check_mark: )
     - **State of the system**: hand: [TEST, TEST], card: DEFUSE
     - **Expected output**: False

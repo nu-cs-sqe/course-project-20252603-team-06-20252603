@@ -3,6 +3,7 @@ package Code;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -236,6 +237,77 @@ public class PlayerTests {
         assertTrue(player.hasCard(CardType.TEST_TYPE));
         assertTrue(player.isAlive());
     }
+
+    @Test
+    void getHand_EmptyHand_EmptyList() {
+        Player player = new Player("lily");
+
+        List<Card> expected = new ArrayList<Card>();
+        assertEquals(expected, player.getHand());
+    }
+
+    @Test
+    void getHand_OneCard_ListWithOneCard() {
+        Player player = new Player("lily");
+
+        List<Card> expected = new ArrayList<Card>();
+        Card card = new Card(CardType.TEST_TYPE);
+
+        player.addCard(card);
+        expected.add(card);
+
+        assertEquals(expected, player.getHand());
+    }
+    @Test
+    void getHand_TwoCardsSameType_ListWithTwoCadsSameType() {
+        Player player = new Player("lily");
+
+        List<Card> expected = new ArrayList<Card>();
+        Card card1 = new Card(CardType.TEST_TYPE);
+        Card card2 = new Card(CardType.TEST_TYPE);
+
+
+        player.addCard(card1);
+        player.addCard(card2);
+
+        expected.add(card1);
+        expected.add(card2);
+
+        assertEquals(expected, player.getHand());
+    }
+
+    @Test
+    void getHand_SevenCardsManyTypes_ListWithSevenCardsSameOrder() {
+        Player player = new Player("lily");
+
+        List<Card> expected = new ArrayList<Card>();
+        Card seeTheFuture = new Card(CardType.SEE_THE_FUTURE);
+        Card defuse = new Card(CardType.DEFUSE);
+        Card shuffle1 = new Card(CardType.SHUFFLE);
+        Card nope1 = new Card(CardType.NOPE);
+        Card nope2 = new Card(CardType.NOPE);
+        Card skip = new Card(CardType.SKIP);
+        Card shuffle2 = new Card(CardType.SHUFFLE);
+
+        player.addCard(seeTheFuture);
+        player.addCard(defuse);
+        player.addCard(shuffle1);
+        player.addCard(nope1);
+        player.addCard(nope2);
+        player.addCard(skip);
+        player.addCard(shuffle2);
+
+        expected.add(seeTheFuture);
+        expected.add(defuse);
+        expected.add(shuffle1);
+        expected.add(nope1);
+        expected.add(nope2);
+        expected.add(skip);
+        expected.add(shuffle2);
+
+        assertEquals(expected, player.getHand());
+    }
+
 
     @Test
     void getHandSize_EmptyHand_Zero() {
