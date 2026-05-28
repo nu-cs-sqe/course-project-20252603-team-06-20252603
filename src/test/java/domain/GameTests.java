@@ -207,4 +207,14 @@ public class GameTests {
             game.removeAlivePlayer(extraPlayer);
         });
     }
+
+    @Test
+    public void removeAlivePlayer_PlayerNotInAliveList_ThrowsException() {
+        Game game = new Game(2);
+        Player playerToRemove = game.getAlivePlayers().get(0);
+        game.removeAlivePlayer(playerToRemove);
+        assertThrows(IllegalArgumentException.class, () -> {
+            game.removeAlivePlayer(playerToRemove);
+        });
+    }
 }

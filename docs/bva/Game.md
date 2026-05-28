@@ -88,7 +88,7 @@
   - **State of the system**: all players already eliminated; `alivePlayers` is empty
   - **Expected output**: throws an exception
 
-- **TC22: Remove Player Not In Alive List** ( :x: )
+- **TC22: Remove Player Not In Alive List** (  ☑️ )
   - **State of the system**: game created with 2 players; target player already eliminated
   - **Expected output**: throws an exception
   - 
