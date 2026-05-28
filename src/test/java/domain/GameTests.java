@@ -120,4 +120,10 @@ public class GameTests {
         assertTrue(player.hasCard(deckTopCard.getType()));
         assertEquals(deckOriginalSize - 1, deck.count());
     }
+
+    @Test
+    public void getTotalPlayerCount_MinimumPlayers_ReturnsTwo() {
+        Game game = new Game(2);
+        assertEquals(2, game.getTotalPlayerCount());
+    }
 }

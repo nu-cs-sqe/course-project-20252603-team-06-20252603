@@ -40,7 +40,7 @@
   - **Expected output**: player receives only the top card; deck size decreases by 1
 
 ### Method under test: `getTotalPlayerCount()`
-- **TC11: Minimum Total Players** ( :x: )
+- **TC11: Minimum Total Players** ( ☑️ )
   - **State of the system**: game created with 2 players
   - **Expected output**: `getTotalPlayerCount() == 2`
 
