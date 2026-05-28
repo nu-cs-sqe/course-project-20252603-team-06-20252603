@@ -97,7 +97,7 @@
   - **State of the system**: game created with 2 players; both players eliminated; `alivePlayers` is empty
   - **Expected output**: `alivePlayers` contains 1 player
 
-- **TC24: Add Player Back To List With Some Alive Players** ( :x: )
+- **TC24: Add Player Back To List With Some Alive Players** ( ☑️ )
   - **State of the system**: game created with 5 players; one player eliminated; 4 players in `alivePlayers`
   - **Expected output**: `alivePlayers` contains 5 players
 

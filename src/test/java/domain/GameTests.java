@@ -227,4 +227,13 @@ public class GameTests {
         game.addAlivePlayer(playerToAdd);
         assertEquals(1, game.getAlivePlayerCount());
     }
+
+    @Test
+    public void addAlivePlayer_SomeAlivePlayers_AddsPlayer() {
+        Game game = new Game(5);
+        Player playerToAdd = game.getAlivePlayers().get(0);
+        game.removeAlivePlayer(playerToAdd);
+        game.addAlivePlayer(playerToAdd);
+        assertEquals(5, game.getAlivePlayerCount());
+    }
 }
