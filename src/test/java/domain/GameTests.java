@@ -179,4 +179,13 @@ public class GameTests {
         List<Player> alivePlayers = game.getAlivePlayers();
         assertEquals(4, alivePlayers.size());
     }
+
+    @Test
+    public void removeAlivePlayer_ManyPlayers_RemovesPlayer() {
+        Game game = new Game(5);
+        Player playerToRemove = game.getAlivePlayers().get(0);
+        game.removeAlivePlayer(playerToRemove);
+        assertEquals(4, game.getAlivePlayerCount());
+        assertFalse(game.getAlivePlayers().contains(playerToRemove));
+    }
 }
