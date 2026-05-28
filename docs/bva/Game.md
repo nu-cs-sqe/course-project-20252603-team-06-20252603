@@ -67,13 +67,13 @@
   - **Expected output**: returned list contains exactly the 2 players created at construction
 
 ### Method under test: `getAlivePlayers()`
-- **TC17: Returns All Players When None Eliminated** ( :x: )
-  - **State of the system**: game created with 3 players; no eliminations
-  - **Expected output**: returned list contains all 3 players
+- **TC17: Returns All Players When None Eliminated** ( ☑️ )
+  - **State of the system**: game created with 5 players; no eliminations
+  - **Expected output**: returned list contains all 5 players
 
 - **TC18: Returns Reduced List After Elimination** ( :x: )
-  - **State of the system**: game created with 3 players; one player removed from `alivePlayers`
-  - **Expected output**: returned list contains the 2 remaining players
+  - **State of the system**: game created with 5 players; one player removed from `alivePlayers`
+  - **Expected output**: returned list contains the 5 remaining players
 
 ### Method under test: `removeAlivePlayer(Player player)`
 - **TC19: Remove Player From List With Many Players** ( :x: )

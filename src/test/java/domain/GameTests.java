@@ -163,4 +163,11 @@ public class GameTests {
         List<Player> totalPlayers = game.getTotalPlayers();
         assertEquals(2, totalPlayers.size());
     }
+
+    @Test
+    public void getAlivePlayers_NoPlayersEliminated_ReturnsAllPlayers() {
+        Game game = new Game(5);
+        List<Player> alivePlayers = game.getAlivePlayers();
+        assertEquals(5, alivePlayers.size());
+    }
 }
