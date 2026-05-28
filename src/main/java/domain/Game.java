@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-public class Game {
+public final class Game {
     private Deck deck;
     private List<Player> players;
     private int currentPlayer;
@@ -17,20 +17,9 @@ public class Game {
     private static final int INDEX_FOR_NO_CURRENT_PLAYER_YET = -1;
 
     Game(int playerCount) {
-        this.playersAlive = playerCount;
-        this.players = new ArrayList<>();
-        for (int i = 1; i <= playerCount; i++) {
-            players.add(new Player("Player " + i));
+        if (playerCount < MIN_PLAYERS) {
+            throw new IllegalArgumentException("Cannot initiate game with less than 2 players");
         }
-        this.deck = new Deck();
-        this.currentPlayer = INDEX_FOR_NO_CURRENT_PLAYER_YET;
-    }
-
-    Game(Deck deck, List<Player> players) {
-        this.deck = deck;
-        this.players = new ArrayList<>(players);
-        this.currentPlayer = INDEX_FOR_NO_CURRENT_PLAYER_YET;
-        this.playersAlive = players.size();
     }
 
     public void setup() {

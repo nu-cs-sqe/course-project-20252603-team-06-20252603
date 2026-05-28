@@ -12,5 +12,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTests {
-
+    @Test
+    public void ConstructorTest_OneBelowMinPlayer_ThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Game(1);
+        });
+    }
 }
