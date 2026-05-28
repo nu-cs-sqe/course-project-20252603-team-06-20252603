@@ -79,11 +79,11 @@
     - **Expected output**: Raises a `ValueError`; deck remains unchanged
 
 ### Method under test: `takeTopCard()`
-- **TC18: Deck Has One Card** ( :x: )
+- **TC18: Deck Has One Card** ( :white_check_mark: )
   - **State of the system**: deck contains exactly 1 card
   - **Expected output**: that card is returned; deck is now empty
 
-- **TC19: Deck Has Many Cards** ( :x: )
+- **TC19: Deck Has Many Cards** ( :white_check_mark: )
   - **State of the system**: deck contains more than 1 card
   - **Expected output**: the first card is returned; deck size decreases by 1
 

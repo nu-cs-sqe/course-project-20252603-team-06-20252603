@@ -256,6 +256,17 @@ public class DeckTests {
     }
 
     @Test
+    void takeTopCardOnMultipleCardDeck(){
+        Deck deck = new Deck();
+        ArrayList<Card> cards = deck.getCards();
+        int originalSize = deck.count();
+        Card topCard = deck.takeTopCard();
+
+        assertEquals(originalSize - 1, deck.count());
+        assertEquals(cards.get(0), topCard);
+    }
+
+    @Test
     void getCardsOnMultipleCardDeck(){
         Deck deck = new Deck();
         int initialSize = deck.count();
