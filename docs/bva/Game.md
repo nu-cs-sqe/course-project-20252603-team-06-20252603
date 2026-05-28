@@ -49,7 +49,7 @@
   - **Expected output**: `getTotalPlayerCount() == 5`
 
 ### Method under test: `getAlivePlayerCount()`
-- **TC13: All Players Alive** ( :x: )
+- **TC13: All Players Alive** (  ☑️ )
   - **State of the system**: no players eliminated; game created with 2 players
   - **Expected output**: `getAlivePlayerCount() == 2`
 

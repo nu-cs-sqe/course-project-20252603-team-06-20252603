@@ -132,4 +132,10 @@ public class GameTests {
         Game game = new Game(5);
         assertEquals(5, game.getTotalPlayerCount());
     }
+
+    @Test
+    public void getAlivePlayerCount_NoPlayersEliminated_ReturnsTwo() {
+        Game game = new Game(2);
+        assertEquals(2, game.getAlivePlayerCount());
+    }
 }
