@@ -17,6 +17,9 @@ public final class Game {
         if (playerCount < MIN_PLAYERS) {
             throw new IllegalArgumentException("Cannot initiate game with less than 2 players");
         }
+        if (playerCount > MAX_PLAYERS) {
+            throw new IllegalArgumentException("Cannot initiate game with more than 5 players");
+        }
 
         ArrayList<Player> players = new ArrayList<>();
         for (int i = 1; i <= playerCount; i++) {

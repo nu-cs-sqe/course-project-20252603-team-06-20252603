@@ -32,4 +32,11 @@ public class GameTests {
         assertEquals(5, game.getTotalPlayerCount());
         assertEquals(5, game.getTotalPlayerCount());
     }
+
+    @Test
+    public void ConstructorTest_OneAboveMaxNumPlayers_MakesGame(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Game(6);
+        });
+    }
 }
