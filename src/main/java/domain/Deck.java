@@ -53,7 +53,7 @@ public class Deck {
         this.cards.remove(card);
     }
 
-    public Card getTopCard(){
+    public Card takeTopCard(){
         Card topCard = this.cards.get(0);
         this.discard(topCard);
         return topCard;

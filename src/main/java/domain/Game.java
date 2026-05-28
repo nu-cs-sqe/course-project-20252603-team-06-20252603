@@ -53,7 +53,7 @@ public final class Game {
     }
 
     public void draw(Player player, Deck deck){
-        Card cardToDraw = deck.getTopCard();
+        Card cardToDraw = deck.takeTopCard();
         player.addCard(cardToDraw);
     }
 

@@ -78,28 +78,41 @@
     - **State of the system**: Deck has N cards; provided card does not exist in the deck
     - **Expected output**: Raises a `ValueError`; deck remains unchanged
 
+### Method under test: `takeTopCard()`
+- **TC18: Deck Has One Card** ( :x: )
+  - **State of the system**: deck contains exactly 1 card
+  - **Expected output**: that card is returned; deck is now empty
+
+- **TC19: Deck Has Many Cards** ( :x: )
+  - **State of the system**: deck contains more than 1 card
+  - **Expected output**: the first card is returned; deck size decreases by 1
+
+- **TC20: Deck Is Empty** ( :x: )
+  - **State of the system**: deck contains 0 cards
+  - **Expected output**: throws an exception
+
 ### Method under test: getCards()
-- **TC18: Get cards from a deck with multiple cards** (:white_check_mark:)
+- **TC21: Get cards from a deck with multiple cards** (:white_check_mark:)
     - **State of the system**: Deck has N cards
     - **Expected output**: Returns a list of all N cards; deck remains unchanged
 
-- **TC19: Get cards from a deck with exactly one card** ( :white_check_mark: )
+- **TC22: Get cards from a deck with exactly one card** ( :white_check_mark: )
     - **State of the system**: Deck has exactly 1 card
     - **Expected output**: Returns a list containing that 1 card; deck remains unchanged
 
-- **TC20: Get cards from an empty deck** ( :white_check_mark: )
+- **TC23: Get cards from an empty deck** ( :white_check_mark: )
     - **State of the system**: Deck has 0 cards
     - **Expected output**: Returns an empty list; deck remains unchanged
 
 ### Method under test: count()
-- **TC21: Count an empty deck** ( :white_check_mark: )
+- **TC24: Count an empty deck** ( :white_check_mark: )
     - **State of the system**: Deck has 0 cards
     - **Expected output**: Returns 0
 
-- **TC22: Count a deck with exactly one card** ( :white_check_mark: )
+- **TC25: Count a deck with exactly one card** ( :white_check_mark: )
     - **State of the system**: Deck has exactly 1 card
     - **Expected output**: Returns 1
 
-- **TC23: Count a deck with N cards** ( :white_check_mark: )
+- **TC26: Count a deck with N cards** ( :white_check_mark: )
     - **State of the system**: Deck has exactly N cards
     - **Expected output**: Returns N
