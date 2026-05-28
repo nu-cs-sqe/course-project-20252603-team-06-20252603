@@ -1,4 +1,4 @@
-package Code;
+package domain;
 
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;

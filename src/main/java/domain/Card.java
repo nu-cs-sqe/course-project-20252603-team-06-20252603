@@ -1,4 +1,4 @@
-package Code;
+package domain;
 
 public final class Card {
     private final CardType type;

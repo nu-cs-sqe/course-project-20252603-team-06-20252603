@@ -1,4 +1,4 @@
-package Code;
+package domain;
 
 public enum CardType {
     TEST_TYPE,
