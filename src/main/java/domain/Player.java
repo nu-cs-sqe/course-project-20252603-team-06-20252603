@@ -1,4 +1,4 @@
-package Code;
+package domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +60,10 @@ public final class Player {
 
     public void takeTurn(Card card) {
         hand.add(card);
+    }
+
+    public ArrayList<Card> getHand() {
+        return new ArrayList<Card>(this.hand);
     }
 
     public int getHandSize() {
