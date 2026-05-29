@@ -1,4 +1,4 @@
-package Code;
+package domain;
 
 public interface Action {
 }
