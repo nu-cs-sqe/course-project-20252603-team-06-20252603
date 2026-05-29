@@ -1,5 +1,8 @@
 package Code;
 
+import domain.Game;
+import domain.Player;
+
 import java.util.Optional;
 
 public interface CardController {
