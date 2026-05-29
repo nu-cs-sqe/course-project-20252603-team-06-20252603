@@ -1,7 +1,4 @@
-package Code;
-
-import domain.Game;
-import domain.Player;
+package domain;
 
 import java.util.Optional;
 
