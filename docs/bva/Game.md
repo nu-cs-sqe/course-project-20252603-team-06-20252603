@@ -74,12 +74,7 @@
 - **TC17: Returns Reduced List After Elimination** ( ☑️ )
   - **State of the system**: game created with 5 players; one player removed from `alivePlayers`
   - **Expected output**: returned list contains the 4 remaining players
-
-### Method under test: `removeAlivePlayer(Player player)`
-- **TC18: Remove Player From List With Many Players** ( ☑️  )
-  - **State of the system**: game created with 5 players; no eliminations
-  - **Expected output**: `alivePlayers` contains 4 players; removed player is no longer present
-
+       
 - **TC19: Remove Player From List With One Player** ( ☑️ )
   - **State of the system**: game created with 2 players; one player already eliminated; one player remaining in `alivePlayers`
   - **Expected output**: `alivePlayers` is empty
