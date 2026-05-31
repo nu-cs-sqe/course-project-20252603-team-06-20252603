@@ -17,7 +17,7 @@ public class GameControllerTests {
     }
 
     @Test
-    void setCurrentPlayerIndex_InvalidIndex_ThrowsIllegalArgumentException() {
+    void setCurrentPlayerIndex_InvalidIndexBelowMinimum_ThrowsIllegalArgumentException() {
         Game game = new Game(3);
         GameController controller = new GameController(game);
         int invalidIndex = -1;
