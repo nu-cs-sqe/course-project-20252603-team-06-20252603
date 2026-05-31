@@ -33,7 +33,7 @@ public class GameControllerTests {
     }
 
     @Test
-    void setCurrentPlayerIndex_InvalidIndexAboveMaximumThrowsIllegalArgumentException() {
+    void setCurrentPlayerIndex_InvalidIndexAboveMaximum_ThrowsIllegalArgumentException() {
         Game game = new Game(3);
         GameController controller = new GameController(game);
         int invalidIndex = 3;
@@ -46,5 +46,16 @@ public class GameControllerTests {
         String actualMessage = exception.getMessage();
 
         assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    void setCurrentPlayerIndex_ValidIndexAtMinimum_SetsCurrentPlayerIndexAsInput() {
+        Game game = new Game(3);
+        GameController controller = new GameController(game);
+        int validMinIndex = 0;
+
+        controller.setCurrentPlayerIndex(validMinIndex);
+
+        assertEquals(validMinIndex, controller.getCurrentPlayerIndex());
     }
 }
