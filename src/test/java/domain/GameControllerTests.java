@@ -31,4 +31,20 @@ public class GameControllerTests {
 
         assertEquals(expectedMessage, actualMessage);
     }
+
+    @Test
+    void setCurrentPlayerIndex_InvalidIndexAboveMaximumThrowsIllegalArgumentException() {
+        Game game = new Game(3);
+        GameController controller = new GameController(game);
+        int invalidIndex = 3;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.setCurrentPlayerIndex(invalidIndex);
+        });
+
+        String expectedMessage = "Invalid player index: " + invalidIndex;
+        String actualMessage = exception.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
+    }
 }
