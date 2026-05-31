@@ -16,9 +16,9 @@
 
 - **TC4: index at minimum possible boundary, 0 ( x )
   - **State of the system**: alivePlayer list is initialized
-  - **Expected output**: this.currentPlayerIndex is updated to current_player_index, and this.currentPlayer is updated to alivePlayers[current_player_index] (aka the first player in the list)
+  - **Expected output**: this.currentPlayerIndex is updated to current_player_index
 
 - **TC5: index at maximum possible boundary, alivePlayers.size() - 1 ( x )
   - **State of the system**: alivePlayer list is initialized
-  - **Expected output**: this.currentPlayerIndex is updated to current_player_index, and this.currentPlayer is updated to alivePlayers[current_player_index] (aka the last player in the list)
+  - **Expected output**: this.currentPlayerIndex is updated to current_player_index
 

@@ -58,4 +58,15 @@ public class GameControllerTests {
 
         assertEquals(validMinIndex, controller.getCurrentPlayerIndex());
     }
+
+    @Test
+    void setCurrentPlayerIndex_ValidIndexAtMaximum_SetsCurrentPlayerIndexAsInput() {
+        Game game = new Game(3);
+        GameController controller = new GameController(game);
+        int validMaxIndex = controller.getGame().getAlivePlayerCount() - 1;
+
+        controller.setCurrentPlayerIndex(validMaxIndex);
+
+        assertEquals(validMaxIndex, controller.getCurrentPlayerIndex());
+    }
 }
