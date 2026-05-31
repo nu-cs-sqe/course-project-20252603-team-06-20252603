@@ -14,11 +14,11 @@
   - **State of the system**: alivePlayer list is initialized
   - **Expected output**: IllegalArgumentException
 
-- **TC4: index at minimum possible boundary, 0 ( x )
+- **TC4: index at minimum possible boundary, 0 ( ☑️ )
   - **State of the system**: alivePlayer list is initialized
   - **Expected output**: this.currentPlayerIndex is updated to current_player_index
 
-- **TC5: index at maximum possible boundary, alivePlayers.size() - 1 ( x )
+- **TC5: index at maximum possible boundary, alivePlayers.size() - 1 (☑️ )
   - **State of the system**: alivePlayer list is initialized
   - **Expected output**: this.currentPlayerIndex is updated to current_player_index
 
