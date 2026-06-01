@@ -8,7 +8,7 @@ public class GameController {
         this.game = game;
     }
 
-    public Game getGame() { // trivial setter so no BVA needed
+    public Game getGame() {
         return this.game;
     }
 
