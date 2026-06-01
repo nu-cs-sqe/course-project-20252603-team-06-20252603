@@ -12,12 +12,12 @@ public class GameController {
         return this.game;
     }
 
-    public void setCurrentPlayerIndex(int current_player_index) {
-        if (current_player_index < 0 || current_player_index >= this.game.getAlivePlayerCount()) {
-            throw new IllegalArgumentException("Invalid player index: " + current_player_index);
+    public void setCurrentPlayerIndex(int currentPlayerIndex) {
+        if (currentPlayerIndex < 0 || currentPlayerIndex >= this.game.getAlivePlayerCount()) {
+            throw new IllegalArgumentException("Invalid player index: " + currentPlayerIndex);
         }
 
-        this.currentPlayerIndex = current_player_index;
+        this.currentPlayerIndex = currentPlayerIndex;
     }
 
     public int getCurrentPlayerIndex() { // simple getter so no BVA needed
