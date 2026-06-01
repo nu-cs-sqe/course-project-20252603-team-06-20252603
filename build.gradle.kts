@@ -82,8 +82,8 @@ tasks.build {
 }
 
 pitest {
-    targetClasses = setOf("Code.*") //by default "${project.group}.*"
-    targetTests = setOf("Code.*")
+    targetClasses = setOf("domain.*") //by default "${project.group}.*"
+    targetTests = setOf("domain.*")
     junit5PluginVersion = "1.2.1"
     pitestVersion = "1.15.0" //not needed when a default PIT version should be used
 

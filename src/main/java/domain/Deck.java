@@ -1,4 +1,4 @@
-package Code;
+package domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,6 +51,15 @@ public class Deck {
             throw new IllegalArgumentException("Card is not in the deck");
         }
         this.cards.remove(card);
+    }
+
+    public Card takeTopCard(){
+        if (this.cards.size() == 0){
+            throw new IllegalArgumentException("Cannot take a top card when no cards in deck.");
+        }
+        Card topCard = this.cards.get(0);
+        this.discard(topCard);
+        return topCard;
     }
 
     ArrayList<Card> getCards(){ // change name
