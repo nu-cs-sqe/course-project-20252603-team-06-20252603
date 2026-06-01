@@ -3,8 +3,6 @@
     - **State of the system**: an initialized game object with more than 0 alive players is passed into the constructor
     - **Expected output**: GameController is successfully initialized with the game input as this.game `
 
-## caveat: do we need to check the case where we pass something null into GameController? check w/ prof
-
 ### Method under test: `setCurrentPlayerIndex(int current_player_index)`
 - **TC2: Invalid index is passed in (just under the minimum boundary, so -1) ( ☑️ )
   - **State of the system**: alivePlayer list is initialized
@@ -21,4 +19,46 @@
 - **TC5: index at maximum possible boundary, alivePlayers.size() - 1 (☑️ )
   - **State of the system**: alivePlayer list is initialized
   - **Expected output**: this.currentPlayerIndex is updated to current_player_index
+
+### Method under test: `setNextPlayerIndex(int newNextPlayerIndex)`
+- **TC6: set next player index to invalid negative index** ( x )
+  - **State of the system**: `game.alivePlayers.size() = 5`, `this.nextPlayerIndex = 0`, `newNextPlayerIndex = -1`
+  - **Expected output**: `IllegalArgumentException` ("invalid next index")
+
+- **TC7: set next player index to lower bound of list** ( x )
+  - **State of the system**: `game.alivePlayers.size() = 5`, `this.nextPlayerIndex = 3`, `newNextPlayerIndex = 0`
+  - **Expected output**: `this.nextPlayerIndex` is updated to `0`
+
+- **TC8: set next player index to middle of list** ( x )
+  - **State of the system**: `game.alivePlayers.size() = 5`, `this.nextPlayerIndex = 0`, `newNextPlayerIndex = 2`
+  - **Expected output**: `this.nextPlayerIndex` is updated to `2`
+
+- **TC9: set next player index to upper bound of list** ( x )
+  - **State of the system**: `game.alivePlayers.size() = 5`, `this.nextPlayerIndex = 2`, `newNextPlayerIndex = 4`
+  - **Expected output**: `this.nextPlayerIndex` is updated to `4`
+
+- **TC10: set next player index to illegal index above upper bound of list** ( x )
+  - **State of the system**: `game.alivePlayers.size() = 5`, `this.nextPlayerIndex = 4`, `newNextPlayerIndex = 5`
+  - **Expected output**: `IllegalArgumentException` ("invalid next index")
+
+### Method under test: `setPlayerOrder(List<Player> playerOrder)`
+- **TC11: set order to an illegally empty list** ( x )
+  - **State of the system**: `game.alivePlayers.size() = 5`, `playerOrder.size() = 0`
+  - **Expected output**: `IllegalArgumentException` ("list size doesn’t match alivePlayer")
+
+- **TC12: set order to a list matching size of alivePlayers (Lower Bound Size 2)** ( x )
+  - **State of the system**: `game.alivePlayers.size() = 2`, `playerOrder.size() = 2`
+  - **Expected output**: `game.alivePlayers` is updated to match the exact order of `playerOrder`
+
+- **TC13: set order to a list shorter than alivePlayers** ( x )
+  - **State of the system**: `game.alivePlayers.size() = 4`, `playerOrder.size() = 3`
+  - **Expected output**: `IllegalArgumentException` ("list size doesn’t match alivePlayer")
+
+- **TC14: set order to a list matching size of alivePlayers (Upper Bound Size 5)** ( x )
+  - **State of the system**: `game.alivePlayers.size() = 5`, `playerOrder.size() = 5`
+  - **Expected output**: `game.alivePlayers` is updated to match the exact order of `playerOrder`
+
+- **TC15: set order to a list longer than alivePlayers** ( x )
+  - **State of the system**: `game.alivePlayers.size() = 2`, `playerOrder.size() = 4`
+  - **Expected output**: `IllegalArgumentException` ("list size doesn’t match alivePlayer")
 
