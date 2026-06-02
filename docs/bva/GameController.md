@@ -87,7 +87,7 @@
   - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1],  initiator = player1,target = player1`
   - **Expected output**: return = true
 
-- **TC: invalid pair of cat cards**
+- **TC: invalid pair of cat cards** ( :white-check-mark: )
   - **State of the system**: `cards = [CAT_CARD_2, CAT_CARD_1]`, initiator = player1
   - **Expected output**: return = false
 
