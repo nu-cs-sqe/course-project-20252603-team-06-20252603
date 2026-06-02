@@ -41,6 +41,11 @@ public class GameController {
                                                                                CardType.CAT_CARD_4));
             return !catCardTypes.contains(cards.get(0).getType());
         }
+
+        if (cards.size() == 2) {
+            return target.isPresent();
+        }
+
         return true;
     }
 }
