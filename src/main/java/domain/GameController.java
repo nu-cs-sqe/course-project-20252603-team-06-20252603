@@ -28,6 +28,9 @@ public class GameController {
     }
 
     public boolean isValidMove(ArrayList<Card> cards, Player initiator, Optional<Player> target) {
-        return false;
+        if (cards.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 }

@@ -67,7 +67,7 @@
   - **State of the system**: `cards = []`, initiator = player1
   - **Expected output**: return = false
 
-- **TC: valid single card**
+- **TC: valid single card** ( :white-check-mark: )
   - **State of the system**: `cards = [SKIP]`, initiator = player1
   - **Expected output**: return = true
 
