@@ -175,4 +175,20 @@ public class GameControllerTests {
         assertFalse(controller.isValidMove(cards, player1, Optional.of(player2)));
     }
 
+    @Test
+    void isValidMove_ValidTripleOfCatCards_ReturnsTrue() {
+        Game game = new Game(2);
+        GameController controller = new GameController(game);
+        Player player1 = game.getAlivePlayers().get(0);
+        Player player2 = game.getAlivePlayers().get(1);
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new Card(CardType.CAT_CARD_1));
+        cards.add(new Card(CardType.CAT_CARD_1));
+        cards.add(new Card(CardType.CAT_CARD_1));
+
+        assertTrue(controller.isValidMove(cards, player1, Optional.of(player2)));
+    }
+
+
 }

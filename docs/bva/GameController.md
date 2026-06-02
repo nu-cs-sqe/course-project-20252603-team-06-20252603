@@ -95,7 +95,7 @@
   - **State of the system**: `cards = [SKIP, SKIP]`, initiator = player1
   - **Expected output**: return = false
 
-- **TC: valid triple of cat cards**
+- **TC: valid triple of cat cards** ( :white-check-mark: )
   - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1, CAT_CARD_1], initiator = player1, target = player2`
   - **Expected output**: return = true
 
