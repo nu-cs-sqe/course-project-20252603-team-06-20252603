@@ -3,7 +3,7 @@
     - **State of the system**: game.deck has no cards left, initiator = player1
     - **Expected output**: IllegalStateException, "no cards left in deck"
 
-- **TC2: draw when deck has only one card** ( :x: )
+- **TC2: draw when deck has only one card** ( :white-check-mark: )
     - **State of the system**: game.deck has 1 card, initiator = player 1
     - **Expected output**: game.deck is now an empty deck, player 1 has one more card now
 
