@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class DrawFromBottomController implements CardController {
-    public Optional<List<Card>> executeCardAction(Game game, Player initiator, Optional<Player> target) {
+    public Optional<List<Card>> executeCardAction(Game game, Player user, Optional<Player> target){
         if (game.getDeck().getCards().isEmpty()) {
             throw new IllegalArgumentException("no cards left in deck");
         }
@@ -16,7 +16,7 @@ public class DrawFromBottomController implements CardController {
         Card bottomCard = gameDeckCards.get(deckSize - 1);
         game.getDeck().discard(bottomCard);
 
-        initiator.addCard(bottomCard);
+        user.addCard(bottomCard);
 
         return Optional.empty();
     }
