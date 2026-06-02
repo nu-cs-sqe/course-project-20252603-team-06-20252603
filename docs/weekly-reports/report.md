@@ -58,3 +58,18 @@
 12. [finished] Abby: Implement Code Coverage (jacoco)
 13. [10%] Everyone: Implement Integration Testing
 14. [10%] Everyone: Implement i18n
+
+# Week 9 (05/24/2026-05/30/2026)
+**Planning and Progress Tracking**:
+1. [finished] Sharon: Player class setup
+2. [finished] Abby, Audrey & Chris: Game class setup
+3. [finished] Card controller interface: Sharon
+4. [50%] Game Controller: Dani, Audrey, & Chris
+5. [20%] Abby: Shuffle Controller
+6. [20%] Dani: See The Future Controller
+7. [20%] Chris: Draw From Bottom Controller
+8. [20%] Audrey: Swap Top + Bottom Controller
+9. [20%] Sharon: Defuse/Exploding Kitten Controller
+10. [10%] Everyone: Implement Integration Testing
+11. [10%] Everyone: Implement i18n
+
