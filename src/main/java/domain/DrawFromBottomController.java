@@ -1,6 +1,7 @@
 package domain;
 
 import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,9 +10,13 @@ public class DrawFromBottomController implements CardController {
         if (game.getDeck().getCards().isEmpty()) {
             throw new IllegalArgumentException("no cards left in deck");
         }
+        ArrayList<Card> gameDeckCards = game.getDeck().getCards();
+        int deckSize = gameDeckCards.size();
 
-        initiator.addCard(game.getDeck().takeTopCard());
+        Card bottomCard = gameDeckCards.get(deckSize - 1);
+        game.getDeck().discard(bottomCard);
 
+        initiator.addCard(bottomCard);
 
         return Optional.empty();
     }

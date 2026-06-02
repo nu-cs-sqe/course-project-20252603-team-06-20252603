@@ -57,4 +57,33 @@ public class DrawFromBottomControllerTests {
 
     }
 
+    @Test
+    public void executeCardAction_DrawFromDeckFifteenCards_CardMovedToPlayer() {
+        Game game = new Game(2);
+        Player player1 = game.getTotalPlayers().get(0);
+
+        assertEquals(new ArrayList<Card>(), player1.getHand());
+
+        for (int i = 0; i < 19; i++) {
+            game.getDeck().takeTopCard();
+        }
+
+        ArrayList<Card> gameDeckCards = game.getDeck().getCards();
+        assertEquals(15, gameDeckCards.size());
+        Card lastCard = gameDeckCards.get(gameDeckCards.size() - 1);
+
+        DrawFromBottomController controller = new DrawFromBottomController();
+
+        controller.executeCardAction(game, player1, Optional.empty());
+
+        ArrayList<Card> expectedHand = new ArrayList<Card>();
+        expectedHand.add(lastCard);
+        ArrayList<Card> expectedDeckCards = gameDeckCards;
+        expectedDeckCards.remove(gameDeckCards.size() - 1);
+
+        assertEquals(expectedDeckCards, game.getDeck().getCards());
+        assertEquals(expectedHand, player1.getHand());
+
+    }
+
 }
