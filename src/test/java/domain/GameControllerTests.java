@@ -161,4 +161,18 @@ public class GameControllerTests {
         assertFalse(controller.isValidMove(cards, player1, Optional.of(player2)));
     }
 
+    @Test
+    void isValidMove_InvalidPairOfNonCatCards_ReturnsFalse() {
+        Game game = new Game(2);
+        GameController controller = new GameController(game);
+        Player player1 = game.getAlivePlayers().get(0);
+        Player player2 = game.getAlivePlayers().get(1);
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new Card(CardType.SKIP));
+        cards.add(new Card(CardType.SKIP));
+
+        assertFalse(controller.isValidMove(cards, player1, Optional.of(player2)));
+    }
+
 }

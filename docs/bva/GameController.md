@@ -91,8 +91,8 @@
   - **State of the system**: `cards = [CAT_CARD_2, CAT_CARD_1]`, initiator = player1
   - **Expected output**: return = false
 
-- **TC: invalid pair of non-cat cards**
-  - **State of the system**: `cards = [SKIP, SHUFFLE]`, initiator = player1
+- **TC: invalid pair of non-cat cards** ( :white-check-mark: )
+  - **State of the system**: `cards = [SKIP, SKIP]`, initiator = player1
   - **Expected output**: return = false
 
 - **TC: valid triple of cat cards**
@@ -108,7 +108,7 @@
   - **Expected output**: return = false
 
 - **TC: invalid triple of non-cat cards**
-  - **State of the system**: `cards = [SEE_THE_FUTURE, SHUFFLE, SKIP], initiator = player1`
+  - **State of the system**: `cards = [SKIP, SKIP, SKIP], initiator = player1`
   - **Expected output**: return = false
 
 - **TC: four cards (too many cards)**
