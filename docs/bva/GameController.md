@@ -99,7 +99,7 @@
   - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1, CAT_CARD_1], initiator = player1, target = player2`
   - **Expected output**: return = true
 
-- **TC: valid triple of cat cards but no target**
+- **TC: valid triple of cat cards but no target** ( :white-check-mark: )
   - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_3, CAT_CARD_2], initiator = player1`
   - **Expected output**: return = false
 

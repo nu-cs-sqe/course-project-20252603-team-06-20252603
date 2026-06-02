@@ -53,6 +53,15 @@ public class GameController {
             return catCardTypes.contains(card1Type) && card1Type.equals(card2Type);
         }
 
+        else if (cards.size() == 3) {
+            if (target.isEmpty() || target.get().equals(initiator)) {
+                return false;
+            }
+            CardType card1Type = cards.get(0).getType();
+            CardType card2Type = cards.get(1).getType();
+            return catCardTypes.contains(card1Type) && card1Type.equals(card2Type);
+        }
+
         return true;
     }
 }
