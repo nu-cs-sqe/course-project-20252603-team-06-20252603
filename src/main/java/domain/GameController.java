@@ -1,5 +1,8 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 public class GameController {
     private Game game;
     private int currentPlayerIndex;
@@ -22,5 +25,9 @@ public class GameController {
 
     public int getCurrentPlayerIndex() { // simple getter so no BVA needed
         return this.currentPlayerIndex;
+    }
+
+    public boolean isValidMove(ArrayList<Card> cards, Player initiator, Optional<Player> target) {
+        return false;
     }
 }

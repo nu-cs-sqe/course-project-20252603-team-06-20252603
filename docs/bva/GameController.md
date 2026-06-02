@@ -63,7 +63,7 @@
   - **Expected output**: `IllegalArgumentException` ("list size doesn’t match alivePlayer")
 
 ### Method under test: `isValidMove(List<Card> cards, Player initiator, Optional<Player> target)`
-- **TC: empty card list**
+- **TC: empty card list** ( :white-check-mark: )
   - **State of the system**: `cards = []`, initiator = player1
   - **Expected output**: return = false
 

@@ -2,7 +2,9 @@ package domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -69,4 +71,16 @@ public class GameControllerTests {
 
         assertEquals(validMaxIndex, controller.getCurrentPlayerIndex());
     }
+
+    @Test
+    void isValidMove_EmptyCards_ReturnsFalse() {
+        Game game = new Game(2);
+        GameController controller = new GameController(game);
+        Player player1 = game.getAlivePlayers().get(0);
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+
+        assertFalse(controller.isValidMove(cards, player1, Optional.empty()));
+    }
+
 }
