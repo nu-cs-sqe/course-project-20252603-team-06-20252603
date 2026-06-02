@@ -43,7 +43,7 @@ public class GameController {
         }
 
         if (cards.size() == 2) {
-            return target.isPresent();
+            return target.isPresent() && !target.get().equals(initiator);
         }
 
         return true;
