@@ -62,3 +62,56 @@
   - **State of the system**: `game.alivePlayers.size() = 2`, `playerOrder.size() = 4`
   - **Expected output**: `IllegalArgumentException` ("list size doesn’t match alivePlayer")
 
+### Method under test: `isValidMove(List<Card> cards, Player initiator, Optional<Player> target)`
+- **TC: empty card list**
+  - **State of the system**: `cards = []`, initiator = player1
+  - **Expected output**: return = false
+
+- **TC: valid single card**
+  - **State of the system**: `cards = [SKIP]`, initiator = player1
+  - **Expected output**: return = true
+
+- **TC: invalid single card (cat)**
+  - **State of the system**: `cards = [CAT_CARD_1]`, initiator = player1
+  - **Expected output**: return = false
+
+- **TC: valid pair of cat cards**
+  - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1], initiator = player1, target = player2`
+  - **Expected output**: return = true
+
+- **TC: valid pair of cat cards, but without target**
+  - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1],  initiator = player1`
+  - **Expected output**: return = true
+
+- **TC: valid pair of cat cards, but targeting self**
+  - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1],  initiator = player1,target = player1`
+  - **Expected output**: return = true
+
+- **TC: invalid pair of cat cards**
+  - **State of the system**: `cards = [CAT_CARD_2, CAT_CARD_1]`, initiator = player1
+  - **Expected output**: return = false
+
+- **TC: invalid pair of non-cat cards**
+  - **State of the system**: `cards = [SKIP, SHUFFLE]`, initiator = player1
+  - **Expected output**: return = false
+
+- **TC: valid triple of cat cards**
+  - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1, CAT_CARD_1], initiator = player1, target = player2`
+  - **Expected output**: return = true
+
+- **TC: valid triple of cat cards but no target**
+  - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_3, CAT_CARD_2], initiator = player1`
+  - **Expected output**: return = false
+
+- **TC: invalid triple of cat cards**
+  - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_3, CAT_CARD_2], initiator = player1, target = player2`
+  - **Expected output**: return = false
+
+- **TC: invalid triple of non-cat cards**
+  - **State of the system**: `cards = [SEE_THE_FUTURE, SHUFFLE, SKIP], initiator = player1`
+  - **Expected output**: return = false
+
+- **TC: four cards (too many cards)**
+  - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_3, CAT_CARD_2, shuffle], initiator = player1`
+
+
