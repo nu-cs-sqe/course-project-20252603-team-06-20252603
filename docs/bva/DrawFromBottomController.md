@@ -1,5 +1,5 @@
 ### Method under test: `executeCardAction()`
-- **TC1: draw when deck is empty** ( :x: )
+- **TC1: draw when deck is empty** ( :white-check-mark: )
     - **State of the system**: game.deck has no cards left, initiator = player1
     - **Expected output**: IllegalStateException, "no cards left in deck"
 
