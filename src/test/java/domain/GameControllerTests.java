@@ -95,4 +95,16 @@ public class GameControllerTests {
         assertTrue(controller.isValidMove(cards, player1, Optional.empty()));
     }
 
+    @Test
+    void isValidMove_InvalidSingleCatCard_ReturnsFalse() {
+        Game game = new Game(2);
+        GameController controller = new GameController(game);
+        Player player1 = game.getAlivePlayers().get(0);
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new Card(CardType.CAT_CARD_1));
+
+        assertFalse(controller.isValidMove(cards, player1, Optional.empty()));
+    }
+
 }

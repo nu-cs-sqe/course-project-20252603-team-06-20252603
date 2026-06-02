@@ -71,7 +71,7 @@
   - **State of the system**: `cards = [SKIP]`, initiator = player1
   - **Expected output**: return = true
 
-- **TC: invalid single card (cat)**
+- **TC: invalid single card (cat)** ( :white-check-mark: )
   - **State of the system**: `cards = [CAT_CARD_1]`, initiator = player1
   - **Expected output**: return = false
 

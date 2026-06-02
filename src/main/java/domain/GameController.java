@@ -1,6 +1,8 @@
 package domain;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class GameController {
@@ -30,6 +32,14 @@ public class GameController {
     public boolean isValidMove(ArrayList<Card> cards, Player initiator, Optional<Player> target) {
         if (cards.isEmpty()) {
             return false;
+        }
+
+        if (cards.size() == 1) {
+            ArrayList<CardType> catCardTypes = new ArrayList<CardType>(List.of(CardType.CAT_CARD_1,
+                                                                               CardType.CAT_CARD_2,
+                                                                               CardType.CAT_CARD_3,
+                                                                               CardType.CAT_CARD_4));
+            return !catCardTypes.contains(cards.get(0).getType());
         }
         return true;
     }
