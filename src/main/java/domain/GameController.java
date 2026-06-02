@@ -38,22 +38,16 @@ public class GameController {
 
         if (cards.isEmpty()) {
             return false;
-        }
-
-        else if (cards.size() == 1) {
+        } else if (cards.size() == 1) {
             return !catCardTypes.contains(cards.get(0).getType());
-        }
-
-        else if (cards.size() == 2) {
+        } else if (cards.size() == 2) {
             if (target.isEmpty() || target.get().equals(initiator)) {
                 return false;
             }
             CardType card1Type = cards.get(0).getType();
             CardType card2Type = cards.get(1).getType();
             return catCardTypes.contains(card1Type) && card1Type.equals(card2Type);
-        }
-
-        else if (cards.size() == 3) {
+        } else if (cards.size() == 3) {
             if (target.isEmpty() || target.get().equals(initiator)) {
                 return false;
             }
@@ -61,8 +55,8 @@ public class GameController {
             CardType card2Type = cards.get(1).getType();
             CardType card3Type = cards.get(2).getType();
             return catCardTypes.contains(card1Type) && card1Type.equals(card2Type) && card1Type.equals(card3Type);
+        } else {
+            return false;
         }
-
-        return true;
     }
 }

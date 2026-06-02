@@ -232,5 +232,20 @@ public class GameControllerTests {
         assertFalse(controller.isValidMove(cards, player1, Optional.empty()));
     }
 
+    @Test
+    void isValidMove_TooManyCards_ReturnsFalse() {
+        Game game = new Game(2);
+        GameController controller = new GameController(game);
+        Player player1 = game.getAlivePlayers().get(0);
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new Card(CardType.CAT_CARD_1));
+        cards.add(new Card(CardType.CAT_CARD_3));
+        cards.add(new Card(CardType.CAT_CARD_2));
+        cards.add(new Card(CardType.SHUFFLE));
+
+        assertFalse(controller.isValidMove(cards, player1, Optional.empty()));
+    }
+
 
 }

@@ -111,7 +111,7 @@
   - **State of the system**: `cards = [SKIP, SKIP, SKIP], initiator = player1`
   - **Expected output**: return = false
 
-- **TC: four cards (too many cards)**
+- **TC: four cards (too many cards)** ( :white-check-mark: )
   - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_3, CAT_CARD_2, shuffle], initiator = player1`
 
 
