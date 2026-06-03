@@ -10,11 +10,11 @@
     - **State of the system**: Deck contains exactly 3 cards
     - **Expected output**: A new list containing all 3 cards is returned. The original Deck remains completely unchanged.
   
-- **TC3: Deck With Two Cards ( x )
+- **TC3: Deck With Two Cards ( :white_check_mark: )
     - **State of the system**: Deck contains exactly 2 cards
     - **Expected output**: A new list containing all 2 cards is returned. The original Deck remains completely unchanged.
 
-- **TC4: Deck With One Card ( x )
+- **TC4: Deck With One Card ( :white_check_mark: )
     - **State of the system**: Deck contains exactly 1 cards
     - **Expected output**: A new list containing the only card is returned. The original Deck remains completely unchanged.
 

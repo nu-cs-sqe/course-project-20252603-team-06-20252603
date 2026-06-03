@@ -13,8 +13,9 @@ public class SeeTheFutureCardController implements CardController {
             cardsToReturn.add(cards.get(1));
             cardsToReturn.add(cards.get(2));
         } else {
-            cardsToReturn.add(cards.get(0));
-            cardsToReturn.add(cards.get(1));
+            for (int i = 0; i < game.getDeck().getCards().size(); i++) {
+                cardsToReturn.add(cards.get(i));
+            }
         }
         return Optional.of(cardsToReturn);
     }
