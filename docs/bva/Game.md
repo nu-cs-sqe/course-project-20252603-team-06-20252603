@@ -1,6 +1,6 @@
 # BVA analysis for Game
 
-### Method under test: `Game(int playerCount)`
+### Method under test: `createGame(int playerCount)`
 - **TC1: One Below Minimum Players** ( ☑️ )
   - **State of the system**: `playerCount = 1`
   - **Expected output**: throws `IllegalArgumentException`
