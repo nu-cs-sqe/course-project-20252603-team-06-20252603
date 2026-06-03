@@ -66,4 +66,32 @@ public class SeeTheFutureCardControllerTests {
         assertEquals(game.getDeck().getCards().get(1).getType(), topThree.get(1).getType());
         assertEquals(game.getDeck().getCards().get(2).getType(), topThree.get(2).getType());
     }
+
+    @Test
+    public void executeCardAction_TwoCardsInDeck_ReturnsListOfTopTwo() {
+        Game game = new Game(2);
+        game.setup();
+
+        while (game.getDeck().count() > 2) {
+            game.getDeck().takeTopCard();
+        }
+
+        assertEquals(2, game.getDeck().count());
+
+        int initialDeckSize = game.getDeck().count();
+        Player initiator = game.getAlivePlayers().get(0);
+        SeeTheFutureCardController controller = new SeeTheFutureCardController();
+
+        Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
+
+        assertTrue(result.isPresent(), "Controller should return an Optional containing the cards");
+
+        List<Card> topTwo = result.get();
+        assertEquals(2, topTwo.size(), "Should return exactly 2 cards");
+
+        assertEquals(initialDeckSize, game.getDeck().count(), "Original deck size must remain unchanged");
+
+        assertEquals(game.getDeck().getCards().get(0).getType(), topTwo.get(0).getType());
+        assertEquals(game.getDeck().getCards().get(1).getType(), topTwo.get(1).getType());
+    }
 }
