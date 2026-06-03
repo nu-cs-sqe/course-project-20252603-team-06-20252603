@@ -10,9 +10,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SeeTheFutureCardControllerTests {
     @Test
-    public void executeCardAction_moreThanThreeCardsInDeck_ReturnsListOfTopThree() {
+    public void executeCardAction_FourCardsInDeck_ReturnsListOfTopThree() {
         Game game = new Game(2);
         game.setup();
+
+        while (game.getDeck().count() > 4) {
+            game.getDeck().takeTopCard();
+        }
+
+        assertEquals(4, game.getDeck().count());
 
         int initialDeckSize = game.getDeck().count();
         Player initiator = game.getAlivePlayers().get(0);

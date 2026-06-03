@@ -2,8 +2,8 @@
 
 ### Method under test: executeCardAction
 
-- **TC1: Deck With More Than Three Cards ( :white_check_mark: )
-    - **State of the system**: Deck contains 4 or more cards
+- **TC1: Deck With Four cards (one more than the boundary) ( :white_check_mark: )
+    - **State of the system**: Deck contains 4 cards
     - **Expected output**: A new list containing exactly the top 3 cards from the deck is returned. The original Deck remains completely unchanged (size and order).
 
 - **TC2: Deck With Exactly Three Cards ( x )
