@@ -96,7 +96,7 @@ public class SeeTheFutureCardControllerTests {
     }
 
     @Test
-    public void executeCardAction_OneInDeck_ReturnsListOfTopOne() {
+    public void executeCardAction_OneCardInDeck_ReturnsListOfTopOne() {
         Game game = new Game(2);
         game.setup();
 
@@ -120,5 +120,31 @@ public class SeeTheFutureCardControllerTests {
         assertEquals(initialDeckSize, game.getDeck().count(), "Original deck size must remain unchanged");
 
         assertEquals(game.getDeck().getCards().get(0).getType(), topOne.get(0).getType());
+    }
+
+    @Test
+    public void executeCardAction_emptyDeck_ReturnsEmptyList() {
+        Game game = new Game(2);
+        game.setup();
+
+        while (game.getDeck().count() > 0) {
+            game.getDeck().takeTopCard();
+        }
+
+        assertEquals(0, game.getDeck().count(), "Pre-condition: Deck must be completely empty");
+
+        int initialDeckSize = game.getDeck().count();
+        Player initiator = game.getAlivePlayers().get(0);
+        SeeTheFutureCardController controller = new SeeTheFutureCardController();
+
+        Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
+
+        assertTrue(result.isPresent(), "Controller should return an Optional (even if the list inside is empty)");
+
+        List<Card> returnedCards = result.get();
+
+        assertTrue(returnedCards.isEmpty(), "Should return an empty list when the deck has 0 cards");
+
+        assertEquals(initialDeckSize, game.getDeck().count(), "Original deck size must remain unchanged");
     }
 }
