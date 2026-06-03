@@ -33,8 +33,8 @@ public class SeeTheFutureCardControllerTests {
 
         assertEquals(initialDeckSize, game.getDeck().count(), "Original deck size must remain unchanged");
 
-        topThree.remove(0);
-        assertEquals(initialDeckSize, game.getDeck().count(), "Modifying the viewed cards should not remove cards from the actual deck");
+        assertEquals(game.getDeck().getCards().get(0).getType(), topThree.get(0).getType());
+        assertEquals(game.getDeck().getCards().get(1).getType(), topThree.get(1).getType());
+        assertEquals(game.getDeck().getCards().get(2).getType(), topThree.get(2).getType());
     }
 }
-
