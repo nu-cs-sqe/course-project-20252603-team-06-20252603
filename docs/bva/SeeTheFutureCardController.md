@@ -18,6 +18,6 @@
     - **State of the system**: Deck contains exactly 1 cards
     - **Expected output**: A new list containing the only card is returned. The original Deck remains completely unchanged.
 
-- **TC5: Deck With No Cards ( x )
+- **TC5: Deck With No Cards ( :white_check_mark: )
     - **State of the system**: Deck contains no cards at all
     - **Expected output**: An empty new list is returned (should i error here? thoughts?)
