@@ -110,4 +110,22 @@ public class ExplodingKittenControllerTests {
 
         EasyMock.verify(userInput);
     }
+
+    @Test
+    public void executeCardAction_noDefuseTwoCards_playerKilled() {
+        Game game = new Game(2);
+        Player initiator = game.getTotalPlayers().get(0);
+        initiator.addCard(new Card(CardType.ATTACK));
+        initiator.addCard(new Card(CardType.SKIP));
+
+        UserInput userInput = new UserInput();
+
+        ExplodingKittenController controller = new ExplodingKittenController(userInput);
+        controller.executeCardAction(game, initiator, Optional.empty());
+
+        assertFalse(initiator.isAlive());
+        assertEquals(2, initiator.getHandSize());
+        assertTrue(initiator.hasCard(CardType.ATTACK));
+        assertTrue(initiator.hasCard(CardType.SKIP));
+    }
 }
