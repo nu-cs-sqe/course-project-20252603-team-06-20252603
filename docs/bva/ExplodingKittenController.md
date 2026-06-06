@@ -8,7 +8,7 @@ output: Optional.empty() (Optional<List<Card>>)
 - BOOLEAN: initiator.isAlive
 - LIST: initiator.getHand()
 
-- **TC1: executeCardAction_noDefuseEmptyHand_playerKilled ** ( :x: or :white_check_mark: )
+- **TC1: executeCardAction_noDefuseEmptyHand_playerKilled ** ( :white_check_mark: )
     - **State of the system**: hand: []
     - **Expected output**: initiator.isAlive(): false, initiator.getHand(): []
 
