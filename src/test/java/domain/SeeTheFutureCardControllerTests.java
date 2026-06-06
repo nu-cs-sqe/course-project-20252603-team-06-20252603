@@ -26,7 +26,7 @@ public class SeeTheFutureCardControllerTests {
 
         Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
 
-        assertTrue(result.isPresent(), "Controller should return an Optional containing the cards");
+        assertTrue(result.isPresent());
 
         List<Card> topThree = result.get();
         assertEquals(3, topThree.size(), "Should return exactly 3 cards");
@@ -55,12 +55,12 @@ public class SeeTheFutureCardControllerTests {
 
         Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
 
-        assertTrue(result.isPresent(), "Controller should return an Optional containing the cards");
+        assertTrue(result.isPresent());
 
         List<Card> topThree = result.get();
-        assertEquals(3, topThree.size(), "Should return exactly 3 cards");
+        assertEquals(3, topThree.size());
 
-        assertEquals(initialDeckSize, game.getDeck().count(), "Original deck size must remain unchanged");
+        assertEquals(initialDeckSize, game.getDeck().count());
 
         assertEquals(game.getDeck().getCards().get(0).getType(), topThree.get(0).getType());
         assertEquals(game.getDeck().getCards().get(1).getType(), topThree.get(1).getType());
@@ -84,12 +84,12 @@ public class SeeTheFutureCardControllerTests {
 
         Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
 
-        assertTrue(result.isPresent(), "Controller should return an Optional containing the cards");
+        assertTrue(result.isPresent());
 
         List<Card> topTwo = result.get();
-        assertEquals(2, topTwo.size(), "Should return exactly 2 cards");
+        assertEquals(2, topTwo.size());
 
-        assertEquals(initialDeckSize, game.getDeck().count(), "Original deck size must remain unchanged");
+        assertEquals(initialDeckSize, game.getDeck().count());
 
         assertEquals(game.getDeck().getCards().get(0).getType(), topTwo.get(0).getType());
         assertEquals(game.getDeck().getCards().get(1).getType(), topTwo.get(1).getType());
@@ -112,12 +112,12 @@ public class SeeTheFutureCardControllerTests {
 
         Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
 
-        assertTrue(result.isPresent(), "Controller should return an Optional containing the cards");
+        assertTrue(result.isPresent());
 
         List<Card> topOne = result.get();
-        assertEquals(1, topOne.size(), "Should return exactly 2 cards");
+        assertEquals(1, topOne.size());
 
-        assertEquals(initialDeckSize, game.getDeck().count(), "Original deck size must remain unchanged");
+        assertEquals(initialDeckSize, game.getDeck().count());
 
         assertEquals(game.getDeck().getCards().get(0).getType(), topOne.get(0).getType());
     }
@@ -131,7 +131,7 @@ public class SeeTheFutureCardControllerTests {
             game.getDeck().takeTopCard();
         }
 
-        assertEquals(0, game.getDeck().count(), "Pre-condition: Deck must be completely empty");
+        assertEquals(0, game.getDeck().count());
 
         int initialDeckSize = game.getDeck().count();
         Player initiator = game.getAlivePlayers().get(0);
@@ -139,12 +139,12 @@ public class SeeTheFutureCardControllerTests {
 
         Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
 
-        assertTrue(result.isPresent(), "Controller should return an Optional (even if the list inside is empty)");
+        assertTrue(result.isPresent());
 
         List<Card> returnedCards = result.get();
 
-        assertTrue(returnedCards.isEmpty(), "Should return an empty list when the deck has 0 cards");
+        assertTrue(returnedCards.isEmpty());
 
-        assertEquals(initialDeckSize, game.getDeck().count(), "Original deck size must remain unchanged");
+        assertEquals(initialDeckSize, game.getDeck().count());
     }
 }
