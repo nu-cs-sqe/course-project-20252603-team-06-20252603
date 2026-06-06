@@ -12,7 +12,7 @@ output: Optional.empty() (Optional<List<Card>>)
     - **State of the system**: hand: []
     - **Expected output**: initiator.isAlive(): false, initiator.getHand(): []
 
-- **TC2: executeCardAction_oneDefuseOneCard_playerLivesEmptyHand ** ( :x: or :white_check_mark: )
+- **TC2: executeCardAction_oneDefuseOneCard_playerLivesEmptyHand ** ( :white_check_mark: )
     - **State of the system**: hand: [DEFUSE]
     - **Expected output**: initiator.isAlive(): true, initiator.getHand(): []
 
