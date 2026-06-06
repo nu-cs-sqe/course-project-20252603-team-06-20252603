@@ -14,32 +14,32 @@ public class ExplodingKittenControllerTests {
     @Test
     void executeCardAction_noDefuseEmptyHand_playerKilled() {
         Game game = new Game(2);
-        Player initiator = game.getTotalPlayers().get(0);
+        Player user = game.getTotalPlayers().get(0);
 
         UserInput userInput = new UserInput();
 
         ExplodingKittenController controller = new ExplodingKittenController(userInput);
-        controller.executeCardAction(game, initiator, Optional.empty());
+        controller.executeCardAction(game, user, Optional.empty());
 
-        assertFalse(initiator.isAlive());
-        assertEquals(new ArrayList<>(), initiator.getHand());
+        assertFalse(user.isAlive());
+        assertEquals(new ArrayList<>(), user.getHand());
     }
 
     @Test
     public void executeCardAction_oneDefuseOneCard_playerLivesEmptyHand() {
         Game game = new Game(2);
-        Player initiator = game.getTotalPlayers().get(0);
-        initiator.addCard(new Card(CardType.DEFUSE));
+        Player user = game.getTotalPlayers().get(0);
+        user.addCard(new Card(CardType.DEFUSE));
 
         UserInput userInput = EasyMock.createMock(UserInput.class);
         EasyMock.expect(userInput.getInsertPosition(game.getDeck().count())).andStubReturn(0);
         EasyMock.replay(userInput);
 
         ExplodingKittenController controller = new ExplodingKittenController(userInput);
-        controller.executeCardAction(game, initiator, Optional.empty());
+        controller.executeCardAction(game, user, Optional.empty());
 
-        assertTrue(initiator.isAlive());
-        assertEquals(new ArrayList<>(), initiator.getHand());
+        assertTrue(user.isAlive());
+        assertEquals(new ArrayList<>(), user.getHand());
 
         EasyMock.verify(userInput);
     }
@@ -47,20 +47,20 @@ public class ExplodingKittenControllerTests {
     @Test
     public void executeCardAction_twoDefuses_playerLivesOneDefuse() {
         Game game = new Game(2);
-        Player initiator = game.getTotalPlayers().get(0);
-        initiator.addCard(new Card(CardType.DEFUSE));
-        initiator.addCard(new Card(CardType.DEFUSE));
+        Player user = game.getTotalPlayers().get(0);
+        user.addCard(new Card(CardType.DEFUSE));
+        user.addCard(new Card(CardType.DEFUSE));
 
         UserInput userInput = EasyMock.createMock(UserInput.class);
         EasyMock.expect(userInput.getInsertPosition(game.getDeck().count())).andStubReturn(0);
         EasyMock.replay(userInput);
 
         ExplodingKittenController controller = new ExplodingKittenController(userInput);
-        controller.executeCardAction(game, initiator, Optional.empty());
+        controller.executeCardAction(game, user, Optional.empty());
 
-        assertTrue(initiator.isAlive());
-        assertEquals(1, initiator.getHandSize());
-        assertTrue(initiator.hasDefuse());
+        assertTrue(user.isAlive());
+        assertEquals(1, user.getHandSize());
+        assertTrue(user.hasDefuse());
 
         EasyMock.verify(userInput);
     }
@@ -68,21 +68,21 @@ public class ExplodingKittenControllerTests {
     @Test
     public void executeCardAction_lastCardDefuseTwoCards_playerLivesOneCard() {
         Game game = new Game(2);
-        Player initiator = game.getTotalPlayers().get(0);
-        initiator.addCard(new Card(CardType.ATTACK));
-        initiator.addCard(new Card(CardType.DEFUSE));
+        Player user = game.getTotalPlayers().get(0);
+        user.addCard(new Card(CardType.ATTACK));
+        user.addCard(new Card(CardType.DEFUSE));
 
         UserInput userInput = EasyMock.createMock(UserInput.class);
         EasyMock.expect(userInput.getInsertPosition(game.getDeck().count())).andStubReturn(0);
         EasyMock.replay(userInput);
 
         ExplodingKittenController controller = new ExplodingKittenController(userInput);
-        controller.executeCardAction(game, initiator, Optional.empty());
+        controller.executeCardAction(game, user, Optional.empty());
 
-        assertTrue(initiator.isAlive());
-        assertFalse(initiator.hasDefuse());
-        assertEquals(1, initiator.getHandSize());
-        assertTrue(initiator.hasCard(CardType.ATTACK));
+        assertTrue(user.isAlive());
+        assertFalse(user.hasDefuse());
+        assertEquals(1, user.getHandSize());
+        assertTrue(user.hasCard(CardType.ATTACK));
 
         EasyMock.verify(userInput);
     }
@@ -90,23 +90,23 @@ public class ExplodingKittenControllerTests {
     @Test
     public void executeCardAction_firstCardDefuseThreeCards_playerLivesOneCard() {
         Game game = new Game(2);
-        Player initiator = game.getTotalPlayers().get(0);
-        initiator.addCard(new Card(CardType.DEFUSE));
-        initiator.addCard(new Card(CardType.ATTACK));
-        initiator.addCard(new Card(CardType.SKIP));
+        Player user = game.getTotalPlayers().get(0);
+        user.addCard(new Card(CardType.DEFUSE));
+        user.addCard(new Card(CardType.ATTACK));
+        user.addCard(new Card(CardType.SKIP));
 
         UserInput userInput = EasyMock.createMock(UserInput.class);
         EasyMock.expect(userInput.getInsertPosition(game.getDeck().count())).andStubReturn(0);
         EasyMock.replay(userInput);
 
         ExplodingKittenController controller = new ExplodingKittenController(userInput);
-        controller.executeCardAction(game, initiator, Optional.empty());
+        controller.executeCardAction(game, user, Optional.empty());
 
-        assertTrue(initiator.isAlive());
-        assertFalse(initiator.hasDefuse());
-        assertEquals(2, initiator.getHandSize());
-        assertTrue(initiator.hasCard(CardType.ATTACK));
-        assertTrue(initiator.hasCard(CardType.SKIP));
+        assertTrue(user.isAlive());
+        assertFalse(user.hasDefuse());
+        assertEquals(2, user.getHandSize());
+        assertTrue(user.hasCard(CardType.ATTACK));
+        assertTrue(user.hasCard(CardType.SKIP));
 
         EasyMock.verify(userInput);
     }
@@ -114,18 +114,18 @@ public class ExplodingKittenControllerTests {
     @Test
     public void executeCardAction_noDefuseTwoCards_playerKilled() {
         Game game = new Game(2);
-        Player initiator = game.getTotalPlayers().get(0);
-        initiator.addCard(new Card(CardType.ATTACK));
-        initiator.addCard(new Card(CardType.SKIP));
+        Player user = game.getTotalPlayers().get(0);
+        user.addCard(new Card(CardType.ATTACK));
+        user.addCard(new Card(CardType.SKIP));
 
         UserInput userInput = new UserInput();
 
         ExplodingKittenController controller = new ExplodingKittenController(userInput);
-        controller.executeCardAction(game, initiator, Optional.empty());
+        controller.executeCardAction(game, user, Optional.empty());
 
-        assertFalse(initiator.isAlive());
-        assertEquals(2, initiator.getHandSize());
-        assertTrue(initiator.hasCard(CardType.ATTACK));
-        assertTrue(initiator.hasCard(CardType.SKIP));
+        assertFalse(user.isAlive());
+        assertEquals(2, user.getHandSize());
+        assertTrue(user.hasCard(CardType.ATTACK));
+        assertTrue(user.hasCard(CardType.SKIP));
     }
 }
