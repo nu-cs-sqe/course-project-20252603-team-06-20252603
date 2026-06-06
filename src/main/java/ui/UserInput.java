@@ -1,12 +1,13 @@
 package ui;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class UserInput {
     private final Scanner scanner;
 
     public UserInput() {
-        this.scanner = new Scanner(System.in);
+        this.scanner = new Scanner(System.in, StandardCharsets.UTF_8);
     }
 
     public int getInsertPosition(int deckSize) {
