@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-public final class Game {
+public class Game {
     private final Deck deck;
     private final List<Player> totalPlayers;
     private final List<Player> alivePlayers;
@@ -94,6 +94,10 @@ public final class Game {
 
     public int getAlivePlayerCount() {
         return alivePlayers.size();
+    }
+
+    @Override
+    protected final void finalize() {
     }
 }
 
