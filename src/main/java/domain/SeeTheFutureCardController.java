@@ -10,7 +10,7 @@ public class SeeTheFutureCardController implements CardController {
     private static final int SECOND_CARD = 1;
     private static final int THIRD_CARD = 2;
 
-    public Optional<List<Card>> executeCardAction(Game game, Player initiator, Optional<Player> target) {
+    public Optional<List<Card>> executeCardAction(Game game, Player user, Optional<Player> target) {
         List<Card> cardsToReturn = new ArrayList<>();
         List<Card> cards = game.getDeck().getCards();
         int deckSize = cards.size();
