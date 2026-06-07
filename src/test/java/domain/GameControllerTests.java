@@ -163,6 +163,18 @@ public class GameControllerTests {
         assertEquals(expected.getClass(), controller.getControllerType(card).getClass());
     }
 
+    @Test
+    void getControllerType_Defuse() {
+        Game game = new Game(2);
+        GameController controller = new GameController(game);
+
+        Card card = new Card(CardType.DEFUSE);
+
+        CardController expected = new DefuseCardController();
+
+        assertEquals(expected.getClass(), controller.getControllerType(card).getClass());
+    }
+
 
     @Test
     void isValidMove_EmptyCards_ReturnsFalse() {

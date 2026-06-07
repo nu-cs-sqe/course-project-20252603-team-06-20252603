@@ -51,6 +51,7 @@ public class GameController {
     public CardController getControllerType(Card card) {
         Map<CardType, CardController> cardToControllerMap = new EnumMap<>(CardType.class);
         cardToControllerMap.put(CardType.ATTACK, new AttackCardController());
+        cardToControllerMap.put(CardType.DEFUSE, new DefuseCardController());
 
         if (cardToControllerMap.containsKey(card.getType())) {
             return cardToControllerMap.get(card.getType());

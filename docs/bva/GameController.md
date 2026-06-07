@@ -67,11 +67,11 @@
   - **State of the system**: `card = TEST_TYPE`
   - **Expected output**: IllegalArgumentException, "invalid test type"
 
-- **TC: attack**
+- **TC: attack** ( :white-check-mark: )
   - **State of the system**: `card = ATTACK`
   - **Expected output**: attackController
 
-- **TC: defuse**
+- **TC: defuse** ( :white-check-mark: )
   - **State of the system**: `card = DEFUSE`
   - **Expected output**: defuseController
 
