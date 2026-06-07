@@ -199,6 +199,17 @@ public class GameControllerTests {
         assertEquals(expected.getClass(), controller.getControllerType(card).getClass());
     }
 
+    @Test
+    void getControllerType_Skip() {
+        Game game = new Game(2);
+        GameController controller = new GameController(game);
+
+        Card card = new Card(CardType.SKIP);
+
+        CardController expected = new SkipCardController();
+
+        assertEquals(expected.getClass(), controller.getControllerType(card).getClass());
+    }
 
     @Test
     void isValidMove_EmptyCards_ReturnsFalse() {

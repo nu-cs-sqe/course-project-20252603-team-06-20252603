@@ -55,6 +55,8 @@ public class GameController {
         cardToControllerMap.put(CardType.SEE_THE_FUTURE, new SeeTheFutureCardController());
         cardToControllerMap.put(CardType.SHUFFLE, new ShuffleCardController());
 
+        cardToControllerMap.put(CardType.SKIP, new SkipCardController());
+
         if (cardToControllerMap.containsKey(card.getType())) {
             return cardToControllerMap.get(card.getType());
         }

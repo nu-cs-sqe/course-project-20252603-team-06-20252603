@@ -83,7 +83,7 @@
   - **State of the system**: `card = SHUFFLE`
   - **Expected output**: shuffleController
 
-- **TC: skip**
+- **TC: skip** ( :white-check-mark: )
   - **State of the system**: `card = SKIP`
   - **Expected output**: skipController
 
