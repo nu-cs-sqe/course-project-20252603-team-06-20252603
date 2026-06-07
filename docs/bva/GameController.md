@@ -67,36 +67,48 @@
   - **State of the system**: `card = TEST_TYPE`
   - **Expected output**: IllegalArgumentException, "invalid test type"
 
-- **TC: attack**
+- **TC: attack** ( :white-check-mark: )
   - **State of the system**: `card = ATTACK`
   - **Expected output**: attackController
 
-- **TC: defuse**
+- **TC: defuse** ( :white-check-mark: )
   - **State of the system**: `card = DEFUSE`
   - **Expected output**: defuseController
 
-- **TC: see the future**
+- **TC: see the future** ( :white-check-mark: )
   - **State of the system**: `card = SEE_THE_FUTURE`
   - **Expected output**: seeTheFutureController
 
-- **TC: shuffle**
+- **TC: shuffle** ( :white-check-mark: )
   - **State of the system**: `card = SHUFFLE`
   - **Expected output**: shuffleController
 
-- **TC: skip**
+- **TC: skip** ( :white-check-mark: )
   - **State of the system**: `card = SKIP`
   - **Expected output**: skipController
 
-- **TC: nope**
+- **TC: nope** ( :white-check-mark: )
   - **State of the system**: `card = NOPE`
   - **Expected output**: nopeController
 
-- **TC: draw from bottom**
+- **TC: draw from bottom** ( :white-check-mark: )
   - **State of the system**: `card = DRAW_FROM_BOTTOM`
   - **Expected output**: drawFromBottomController
 
-- **TC: cat cards**
+- **TC: cat card 1** ( :white-check-mark: )
   - **State of the system**: `card = CAT_CARD_1`
+  - **Expected output**: catCardController
+
+- **TC: cat card 2** ( :white-check-mark: )
+  - **State of the system**: `card = CAT_CARD_2`
+  - **Expected output**: catCardController
+
+- **TC: cat card 3** ( :white-check-mark: )
+  - **State of the system**: `card = CAT_CARD_3`
+  - **Expected output**: catCardController
+
+- **TC: cat card 4** ( :white-check-mark: )
+  - **State of the system**: `card = CAT_CARD_4`
   - **Expected output**: catCardController
 
 ### Method under test: `isTargetValid()`
