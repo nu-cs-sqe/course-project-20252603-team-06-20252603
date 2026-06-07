@@ -8,6 +8,7 @@ import java.util.Optional;
 public class GameController {
     private Game game;
     private int currentPlayerIndex;
+    private int nextPlayerIndex;
 
     GameController(Game game) {
         this.game = game;
@@ -27,6 +28,10 @@ public class GameController {
 
     public int getCurrentPlayerIndex() { // simple getter so no BVA needed
         return this.currentPlayerIndex;
+    }
+
+    public void setNextPlayerIndex(int newNextPlayerIndex) {
+        throw new IllegalArgumentException("invalid next index");
     }
 
     public CardController getControllerType(Card card) {

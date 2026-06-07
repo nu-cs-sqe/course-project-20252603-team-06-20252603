@@ -73,6 +73,18 @@ public class GameControllerTests {
     }
 
     @Test
+    void setNextPlayerIndex_InvalidNegativeIndex_ThrowsIllegalArgumentException() {
+        Game game = new Game(5);
+        GameController controller = new GameController(game);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.setNextPlayerIndex(-1);
+        });
+
+        assertEquals("invalid next index", exception.getMessage());
+    }
+
+    @Test
     void getControllerType_InvalidTestType_IllegalArgumentException() {
         Game game = new Game(2);
         GameController controller = new GameController(game);
