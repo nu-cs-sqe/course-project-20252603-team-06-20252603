@@ -154,11 +154,11 @@
 
 
 ### Method under test: `advanceTurn()`
-- **TC: Standard Turn Advance** ( :x: )
+- **TC: Standard Turn Advance** (:white-check-mark:)
   - **State of the system**: `alivePlayers` size = 4. `current` points to index 1, `next` points to index 2.
   - **Expected output**: `current` becomes index 2, `next` becomes index 3.
 
-- **TC: Next Player Hits Upper Boundary** ( :x: )
+- **TC: Next Player Hits Upper Boundary** (:white-check-mark:))
   - **State of the system**: `alivePlayers` size = 4. `current` points to index 2, `next` points to index 3.
   - **Expected output**: `current` becomes index 3. `next` wraps around and becomes index 0.
 

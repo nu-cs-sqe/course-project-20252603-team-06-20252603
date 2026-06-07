@@ -51,8 +51,8 @@ public class GameController {
     }
 
     public void advanceTurn() {
-        this.nextPlayerIndex = 3;
-        this.currentPlayerIndex = 2;
+        this.currentPlayerIndex = this.nextPlayerIndex;
+        this.nextPlayerIndex = (this.currentPlayerIndex + 1) % this.game.getAlivePlayerCount();
     }
 
     public boolean isValidMove(ArrayList<Card> cards, Player initiator, Optional<Player> target) {
