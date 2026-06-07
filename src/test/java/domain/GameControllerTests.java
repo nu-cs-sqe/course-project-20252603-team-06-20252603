@@ -231,6 +231,22 @@ public class GameControllerTests {
         EasyMock.verify(mockCard);
     }
 
+    @Test
+    void cardsAllMatchingCatCards_AllMatchingCatCards_ReturnsTrue() {
+        GameController controller = new GameController(null);
+        Card mockCard = EasyMock.createMock(Card.class);
+        EasyMock.expect(mockCard.getType()).andReturn(CardType.CAT_CARD_1).anyTimes();
+        EasyMock.replay(mockCard);
+
+        ArrayList<Card> cards = new ArrayList<>();
+        cards.add(mockCard);
+        cards.add(mockCard);
+        cards.add(mockCard);
+
+        assertTrue(controller.cardsAllMatchingCatCards(cards));
+
+        EasyMock.verify(mockCard);
+    }
 
 
     @Test
