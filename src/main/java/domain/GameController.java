@@ -60,8 +60,10 @@ public class GameController {
     }
 
     public boolean cardsAllMatchingCatCards(ArrayList<Card> cards){
-        Card firstCard = cards.get(0);
-        CardType type = firstCard.getType();
+        CardType firstType = cards.get(0).getType();
+        if (!firstType.canHaveTarget()){
+            return false;
+        }
         return true;
     }
 
