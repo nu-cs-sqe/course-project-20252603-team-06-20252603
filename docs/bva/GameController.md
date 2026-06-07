@@ -118,7 +118,7 @@
     - **State of the system**: `cards = []`
     - **Expected output**: `IndexOutOfBoundsException`
 
-- **TC: SingleCatCard_ReturnsTrue** ( :x: )
+- **TC: SingleCatCard_ReturnsTrue** ( ☑️ )
     - **State of the system**: `cards = [CAT_CARD_1]`
     - **Expected output**: `true`
 

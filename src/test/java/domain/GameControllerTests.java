@@ -201,6 +201,20 @@ public class GameControllerTests {
     }
 
 
+    @Test
+    void cardsAllMatchingCatCards_SingleCatCard_ReturnsTrue() {
+        GameController controller = new GameController(null);
+        Card mockCard = EasyMock.createMock(Card.class);
+        EasyMock.expect(mockCard.getType()).andReturn(CardType.CAT_CARD_1);
+        EasyMock.replay(mockCard);
+
+        ArrayList<Card> cards = new ArrayList<>();
+        cards.add(mockCard);
+
+        assertTrue(controller.cardsAllMatchingCatCards(cards));
+
+        EasyMock.verify(mockCard);
+    }
 
     @Test
     void isValidMove_EmptyCards_ReturnsFalse() {

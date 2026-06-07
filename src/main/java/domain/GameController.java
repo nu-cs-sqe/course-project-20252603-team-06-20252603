@@ -60,7 +60,9 @@ public class GameController {
     }
 
     public boolean cardsAllMatchingCatCards(ArrayList<Card> cards){
-        throw new IndexOutOfBoundsException();
+        Card firstCard = cards.get(0);
+        CardType type = firstCard.getType();
+        return true;
     }
 
     public boolean isValidMove(ArrayList<Card> cards, Player initiator, Optional<Player> target) {
