@@ -265,6 +265,25 @@ public class GameControllerTests {
         EasyMock.verify(mockCard);
     }
 
+    @Test
+    void cardsAllMatchingCatCards_MismatchAfterMatch_ReturnsFalse() {
+        GameController controller = new GameController(null);
+        Card mockCatCard = EasyMock.createMock(Card.class);
+        Card mockSkipCard = EasyMock.createMock(Card.class);
+        EasyMock.expect(mockCatCard.getType()).andReturn(CardType.CAT_CARD_1).anyTimes();
+        EasyMock.expect(mockSkipCard.getType()).andReturn(CardType.SKIP).anyTimes();
+        EasyMock.replay(mockCatCard, mockSkipCard);
+
+        ArrayList<Card> cards = new ArrayList<>();
+        cards.add(mockCatCard);
+        cards.add(mockCatCard);
+        cards.add(mockSkipCard);
+
+        assertFalse(controller.cardsAllMatchingCatCards(cards));
+
+        EasyMock.verify(mockCatCard, mockSkipCard);
+    }
+
 
 
     @Test
