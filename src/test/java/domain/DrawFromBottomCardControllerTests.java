@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DrawFromBottomControllerTests {
+public class DrawFromBottomCardControllerTests {
 
     @Test
     public void executeCardAction_DrawFromEmptyDeck_IllegalStateException() {
@@ -21,7 +21,7 @@ public class DrawFromBottomControllerTests {
 
         assertEquals(0, game.getDeck().getCards().size());
 
-        DrawFromBottomController controller = new DrawFromBottomController();
+        DrawFromBottomCardController controller = new DrawFromBottomCardController();
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             controller.executeCardAction(game, player1, Optional.empty());
@@ -44,7 +44,7 @@ public class DrawFromBottomControllerTests {
         assertEquals(1, game.getDeck().getCards().size());
         Card remainingCard = game.getDeck().getCards().get(0);
 
-        DrawFromBottomController controller = new DrawFromBottomController();
+        DrawFromBottomCardController controller = new DrawFromBottomCardController();
 
         controller.executeCardAction(game, player1, Optional.empty());
 
@@ -72,7 +72,7 @@ public class DrawFromBottomControllerTests {
         assertEquals(15, gameDeckCards.size());
         Card lastCard = gameDeckCards.get(gameDeckCards.size() - 1);
 
-        DrawFromBottomController controller = new DrawFromBottomController();
+        DrawFromBottomCardController controller = new DrawFromBottomCardController();
 
         controller.executeCardAction(game, player1, Optional.empty());
 

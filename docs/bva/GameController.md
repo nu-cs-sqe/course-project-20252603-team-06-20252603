@@ -91,7 +91,7 @@
   - **State of the system**: `card = NOPE`
   - **Expected output**: nopeController
 
-- **TC: draw from bottom**
+- **TC: draw from bottom** ( :white-check-mark: )
   - **State of the system**: `card = DRAW_FROM_BOTTOM`
   - **Expected output**: drawFromBottomController
 

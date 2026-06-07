@@ -56,6 +56,8 @@ public class GameController {
         cardToControllerMap.put(CardType.SHUFFLE, new ShuffleCardController());
         cardToControllerMap.put(CardType.SKIP, new SkipCardController());
         cardToControllerMap.put(CardType.NOPE, new NopeCardController());
+        cardToControllerMap.put(CardType.DRAW_FROM_BOTTOM, new DrawFromBottomCardController());
+
 
         if (cardToControllerMap.containsKey(card.getType())) {
             return cardToControllerMap.get(card.getType());
