@@ -247,8 +247,17 @@ public class GameControllerTests {
         assertEquals(expected.getClass(), controller.getControllerType(card).getClass());
     }
 
+    @Test
+    void getControllerType_CatCardTwo() {
+        Game game = new Game(2);
+        GameController controller = new GameController(game);
 
+        Card card = new Card(CardType.CAT_CARD_2);
 
+        CardController expected = new CatCardController();
+
+        assertEquals(expected.getClass(), controller.getControllerType(card).getClass());
+    }
 
     @Test
     void isValidMove_EmptyCards_ReturnsFalse() {
