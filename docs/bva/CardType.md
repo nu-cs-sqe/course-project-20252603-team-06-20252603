@@ -14,7 +14,7 @@
     - **State of the system**: `CardType = CAT_CARD_3`
     - **Expected output**: `true`
 
-- **TC4: CatCard4_ReturnsTrue** ( :x: )
+- **TC4: CatCard4_ReturnsTrue** ( ☑️ )
     - **State of the system**: `CardType = CAT_CARD_4`
     - **Expected output**: `true`
 
