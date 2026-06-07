@@ -3,6 +3,8 @@ package domain;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.EnumMap;
 import java.util.Optional;
 
 public class GameController {
@@ -47,6 +49,13 @@ public class GameController {
     }
 
     public CardController getControllerType(Card card) {
+        Map<CardType, CardController> cardToControllerMap = new EnumMap<>(CardType.class);
+        cardToControllerMap.put(CardType.ATTACK, new AttackCardController());
+
+        if (cardToControllerMap.containsKey(card.getType())) {
+            return cardToControllerMap.get(card.getType());
+        }
+
         throw new IllegalArgumentException("invalid test type");
     }
 
