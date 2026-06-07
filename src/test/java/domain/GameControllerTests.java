@@ -369,4 +369,26 @@ public class GameControllerTests {
 
         verify(mockGame);
     }
+
+    @Test
+    void advanceTurn_CurrentIsIndex3_CurrentIsIndex0AndNextIsIndex1() {
+        Game mockGame = mock(Game.class);
+
+        expect(mockGame.getAlivePlayerCount()).andReturn(4).anyTimes();
+        replay(mockGame);
+
+        GameController controller = new GameController(mockGame);
+
+        controller.setCurrentPlayerIndex(3);
+        controller.setNextPlayerIndex(0);
+
+        controller.advanceTurn();
+
+        assertEquals(0, controller.getCurrentPlayerIndex(),
+                "Current player should advance to index 0");
+        assertEquals(1, controller.getNextPlayerIndex(),
+                "Next player should advance to index ");
+
+        verify(mockGame);
+    }
 }
