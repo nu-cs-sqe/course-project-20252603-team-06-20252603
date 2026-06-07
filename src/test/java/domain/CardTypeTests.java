@@ -28,4 +28,10 @@ public class CardTypeTests {
         CardType type = CardType.CAT_CARD_4;
         assertTrue(type.canHaveTarget());
     }
+
+    @Test
+    public void  NonCatCard_ReturnsFalse(){
+        CardType type = CardType.SKIP;
+        assertFalse(type.canHaveTarget());
+    }
 }

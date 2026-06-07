@@ -15,6 +15,6 @@ public enum CardType {
     CAT_CARD_4;
 
     public boolean canHaveTarget(){
-        return true;
+        return this == CAT_CARD_1 || this == CAT_CARD_2 || this == CAT_CARD_3 || this == CAT_CARD_4;
     }
 }

@@ -18,6 +18,6 @@
     - **State of the system**: `CardType = CAT_CARD_4`
     - **Expected output**: `true`
 
-- **TC5: NonCatCard_ReturnsFalse** ( :x: )
+- **TC5: NonCatCard_ReturnsFalse** ( ☑️ )
     - **State of the system**: `CardType = SKIP`
     - **Expected output**: `false`
