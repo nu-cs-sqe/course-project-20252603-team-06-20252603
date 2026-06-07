@@ -130,7 +130,7 @@
     - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1, CAT_CARD_1]`
     - **Expected output**: `true`
 
-- **TC: AllNonCatCards_ReturnsFalse** ( :x: )
+- **TC: AllNonCatCards_ReturnsFalse** ( ☑️ )
     - **State of the system**: `cards = [SKIP, SKIP, SKIP]`
     - **Expected output**: `false`
 
