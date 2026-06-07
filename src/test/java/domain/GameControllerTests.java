@@ -95,6 +95,16 @@ public class GameControllerTests {
     }
 
     @Test
+    void setNextPlayerIndex_MiddleOfList_SetsNextPlayerIndex() {
+        Game game = new Game(5);
+        GameController controller = new GameController(game);
+
+        controller.setNextPlayerIndex(2);
+
+        assertEquals(2, controller.getNextPlayerIndex());
+    }
+
+    @Test
     void getControllerType_InvalidTestType_IllegalArgumentException() {
         Game game = new Game(2);
         GameController controller = new GameController(game);

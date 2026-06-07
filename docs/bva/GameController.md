@@ -29,7 +29,7 @@
   - **State of the system**: `game.alivePlayers.size() = 5`, `this.nextPlayerIndex = 3`, `newNextPlayerIndex = 0`
   - **Expected output**: `this.nextPlayerIndex` is updated to `0`
 
-- **TC8: set next player index to middle of list** ( x )
+- **TC8: set next player index to middle of list** ( :white-check-mark: )
   - **State of the system**: `game.alivePlayers.size() = 5`, `this.nextPlayerIndex = 0`, `newNextPlayerIndex = 2`
   - **Expected output**: `this.nextPlayerIndex` is updated to `2`
 
