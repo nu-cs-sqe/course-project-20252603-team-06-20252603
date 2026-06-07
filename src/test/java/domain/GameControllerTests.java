@@ -126,6 +126,19 @@ public class GameControllerTests {
     }
 
     @Test
+    void setPlayerOrder_IllegallyEmptyList_ThrowsIllegalArgumentException() {
+        Game game = new Game(5);
+        GameController controller = new GameController(game);
+        List<Player> emptyOrder = new ArrayList<>();
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.setPlayerOrder(emptyOrder);
+        });
+
+        assertEquals("list size doesn’t match alivePlayer", exception.getMessage());
+    }
+
+    @Test
     void getControllerType_InvalidTestType_IllegalArgumentException() {
         Game game = new Game(2);
         GameController controller = new GameController(game);

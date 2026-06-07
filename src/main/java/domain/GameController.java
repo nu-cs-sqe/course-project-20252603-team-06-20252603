@@ -42,6 +42,10 @@ public class GameController {
         return this.nextPlayerIndex;
     }
 
+    public void setPlayerOrder(List<Player> playerOrder) {
+        throw new IllegalArgumentException("list size doesn’t match alivePlayer");
+    }
+
     public CardController getControllerType(Card card) {
         throw new IllegalArgumentException("invalid test type");
     }

@@ -42,7 +42,7 @@
   - **Expected output**: `IllegalArgumentException` ("invalid next index")
 
 ### Method under test: `setPlayerOrder(List<Player> playerOrder)`
-- **TC11: set order to an illegally empty list** ( x )
+- **TC11: set order to an illegally empty list** ( :white-check-mark: )
   - **State of the system**: `game.alivePlayers.size() = 5`, `playerOrder.size() = 0`
   - **Expected output**: `IllegalArgumentException` ("list size doesn’t match alivePlayer")
 
