@@ -138,7 +138,7 @@
     - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1, SKIP]`
     - **Expected output**: `false`
 
-- **TC: MatchAfterMismatch_ReturnsFalse** ( :x: )
+- **TC: MatchAfterMismatch_ReturnsFalse** ( ☑️ )
     - **State of the system**: `cards = [SKIP, CAT_CARD_1, CAT_CARD_1]`
     - **Expected output**: `false`
 
