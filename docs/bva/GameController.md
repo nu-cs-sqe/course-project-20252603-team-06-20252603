@@ -95,8 +95,20 @@
   - **State of the system**: `card = DRAW_FROM_BOTTOM`
   - **Expected output**: drawFromBottomController
 
-- **TC: cat cards**
+- **TC: cat card 1** ( :white-check-mark: )
   - **State of the system**: `card = CAT_CARD_1`
+  - **Expected output**: catCardController
+
+- **TC: cat card 2**
+  - **State of the system**: `card = CAT_CARD_2`
+  - **Expected output**: catCardController
+
+- **TC: cat card 3**
+  - **State of the system**: `card = CAT_CARD_3`
+  - **Expected output**: catCardController
+
+- **TC: cat card 4**
+  - **State of the system**: `card = CAT_CARD_4`
   - **Expected output**: catCardController
 
 
