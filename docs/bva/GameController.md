@@ -99,11 +99,11 @@
   - **State of the system**: `card = CAT_CARD_1`
   - **Expected output**: catCardController
 
-- **TC: cat card 2**
+- **TC: cat card 2** ( :white-check-mark: )
   - **State of the system**: `card = CAT_CARD_2`
   - **Expected output**: catCardController
 
-- **TC: cat card 3**
+- **TC: cat card 3** ( :white-check-mark: )
   - **State of the system**: `card = CAT_CARD_3`
   - **Expected output**: catCardController
 
