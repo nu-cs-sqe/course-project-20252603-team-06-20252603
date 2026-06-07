@@ -79,7 +79,7 @@
   - **State of the system**: `card = SEE_THE_FUTURE`
   - **Expected output**: seeTheFutureController
 
-- **TC: shuffle**
+- **TC: shuffle** ( :white-check-mark: )
   - **State of the system**: `card = SHUFFLE`
   - **Expected output**: shuffleController
 

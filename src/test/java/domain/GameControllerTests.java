@@ -187,6 +187,18 @@ public class GameControllerTests {
         assertEquals(expected.getClass(), controller.getControllerType(card).getClass());
     }
 
+    @Test
+    void getControllerType_Shuffle() {
+        Game game = new Game(2);
+        GameController controller = new GameController(game);
+
+        Card card = new Card(CardType.SHUFFLE);
+
+        CardController expected = new ShuffleCardController();
+
+        assertEquals(expected.getClass(), controller.getControllerType(card).getClass());
+    }
+
 
     @Test
     void isValidMove_EmptyCards_ReturnsFalse() {
