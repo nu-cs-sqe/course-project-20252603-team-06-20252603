@@ -2,7 +2,7 @@
 
 ### Method under test: `canHaveTarget()`
 
-- **TC1: CatCard1_ReturnsTrue** ( :x: )
+- **TC1: CatCard1_ReturnsTrue** ( ☑️ )
     - **State of the system**: `CardType = CAT_CARD_1`
     - **Expected output**: `true`
 

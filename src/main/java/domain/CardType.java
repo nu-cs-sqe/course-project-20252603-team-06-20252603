@@ -12,5 +12,9 @@ public enum CardType {
     CAT_CARD_1,
     CAT_CARD_2,
     CAT_CARD_3,
-    CAT_CARD_4
+    CAT_CARD_4;
+
+    public boolean canHaveTarget(){
+        return true;
+    }
 }
