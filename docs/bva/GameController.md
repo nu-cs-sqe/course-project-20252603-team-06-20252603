@@ -170,6 +170,6 @@
   - **State of the system**: `alivePlayers` size = 2. `current` points to index 0, `next` points to index 1.
   - **Expected output**: `current` becomes index 1. `next` wraps around to index 0.
 
-- **TC: Absolute Maximum Boundary** ( :x )
+- **TC: Absolute Maximum Boundary** ( :white-check-mark: )
   - **State of the system**: `alivePlayers` size = `MAX_PLAYERS`. `current` = `MAX_PLAYERS - 1`, `next` = 0.
   - **Expected output**: `current` becomes index 0, `next` becomes index 1.
