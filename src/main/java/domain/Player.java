@@ -3,7 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Player {
+public class Player {
     private final String playerName;
     private final List<Card> hand;
     private boolean isAlive;

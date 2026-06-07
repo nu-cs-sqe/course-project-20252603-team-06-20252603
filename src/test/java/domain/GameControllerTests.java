@@ -1,5 +1,6 @@
 package domain;
 
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -150,6 +151,20 @@ public class GameControllerTests {
             controller.getControllerType(card);
         });
     }
+
+    @Test
+    void isTargetValid_CatCard1AndValidTarget_ReturnsTrue() {
+        GameController controller = new GameController(null);
+        Player initiator = EasyMock.createMock(Player.class);
+        Player target = EasyMock.createMock(Player.class);
+
+        EasyMock.replay(initiator, target);
+
+        assertTrue(controller.isTargetValid(CardType.CAT_CARD_1, initiator, Optional.of(target)));
+
+        EasyMock.verify(initiator, target);
+    }
+
 
     @Test
     void isValidMove_EmptyCards_ReturnsFalse() {

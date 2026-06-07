@@ -55,6 +55,10 @@ public class GameController {
         this.nextPlayerIndex = (this.currentPlayerIndex + 1) % this.game.getAlivePlayerCount();
     }
 
+    public boolean isTargetValid(CardType type, Player initiator, Optional<Player> target){
+        return true;
+    }
+
     public boolean isValidMove(ArrayList<Card> cards, Player initiator, Optional<Player> target) {
         ArrayList<CardType> catCardTypes = new ArrayList<CardType>(List.of(
                 CardType.CAT_CARD_1,
