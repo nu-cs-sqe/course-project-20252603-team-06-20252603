@@ -56,7 +56,7 @@ public class GameController {
     }
 
     public boolean isTargetValid(CardType type, Player initiator, Optional<Player> target){
-        return true;
+        return type.canHaveTarget();
     }
 
     public boolean isValidMove(ArrayList<Card> cards, Player initiator, Optional<Player> target) {
