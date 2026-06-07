@@ -20,7 +20,7 @@ output: Optional.empty() (Optional<List<Card>>)
     - **State of the system**: hand: [DEFUSE, DEFUSE]
     - **Expected output**: initiator.isAlive(): true, initiator.getHand(): [DEFUSE]
 
-- **TC4: executeCardAction_lastCardDefuseTwoCards_playerLivesOneCard ** ( :x: or :white_check_mark: )
+- **TC4: executeCardAction_lastCardDefuseTwoCards_playerLivesOneCard ** ( :white_check_mark: )
     - **State of the system**: hand: [ATTACK, DEFUSE]
     - **Expected output**: initiator.isAlive(): true, initiator.getHand(): [ATTACK]
 

@@ -18,7 +18,12 @@ public class ExplodingKittenController implements CardController {
             return Optional.empty();
         }
 
-        user.removeCard(user.getHand().get(0));
+        for (Card card : user.getHand()) {
+            if (card.getType() == CardType.DEFUSE) {
+                user.removeCard(card);
+                break;
+            }
+        }
 
         int position = userInput.getInsertPosition(game.getDeck().count());
         game.getDeck().insert(new Card(CardType.EXPLODING_KITTEN), position);
@@ -26,4 +31,3 @@ public class ExplodingKittenController implements CardController {
         return Optional.empty();
     }
 }
-
