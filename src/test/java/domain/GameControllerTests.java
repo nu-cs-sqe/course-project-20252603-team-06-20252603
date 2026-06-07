@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.easymock.EasyMock.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -325,5 +326,25 @@ public class GameControllerTests {
         assertFalse(controller.isValidMove(cards, player1, Optional.empty()));
     }
 
+    @Test
+    void advanceTurn_CurrentIsIndex1_CurrentIsIndex2AndNextIsIndex3() {
+        Game mockGame = mock(Game.class);
 
+        expect(mockGame.getAlivePlayerCount()).andReturn(4).anyTimes();
+        replay(mockGame);
+
+        GameController controller = new GameController(mockGame);
+
+        controller.setCurrentPlayerIndex(1);
+        controller.setNextPlayerIndex(2);
+
+        controller.advanceTurn();
+
+        assertEquals(2, controller.getCurrentPlayerIndex(),
+                "Current player should advance to index 2");
+        assertEquals(3, controller.getNextPlayerIndex(),
+                "Next player should advance to index 3");
+
+        verify(mockGame);
+    }
 }

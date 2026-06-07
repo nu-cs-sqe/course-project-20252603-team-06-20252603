@@ -153,3 +153,27 @@
   - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_3, CAT_CARD_2, shuffle], initiator = player1`
 
 
+### Method under test: `advanceTurn()`
+- **TC: Standard Turn Advance** ( :x: )
+  - **State of the system**: `alivePlayers` size = 4. `current` points to index 1, `next` points to index 2.
+  - **Expected output**: `current` becomes index 2, `next` becomes index 3.
+
+- **TC: Next Player Hits Upper Boundary** ( :x: )
+  - **State of the system**: `alivePlayers` size = 4. `current` points to index 2, `next` points to index 3.
+  - **Expected output**: `current` becomes index 3. `next` wraps around and becomes index 0.
+
+- **TC: Current Player Hits Upper Boundary** ( :x: )
+  - **State of the system**: `alivePlayers` size = 4. `current` points to index 3, `next` points to index 0.
+  - **Expected output**: `current` becomes index 0. `next` becomes index 1.
+
+- **TC: Minimum Players Toggle** ( :x: )
+  - **State of the system**: `alivePlayers` size = 2. `current` points to index 0, `next` points to index 1.
+  - **Expected output**: `current` becomes index 1. `next` wraps around to index 0.
+
+- **TC: Single Player Remaining** ( :x: )
+  - **State of the system**: `alivePlayers` size = 1. `current` points to index 0, `next` points to index 0.
+  - **Expected output**: `current` remains index 0, `next` wraps around to index 0.
+
+- **TC: Absolute Maximum Boundary** ( :x )
+  - **State of the system**: `alivePlayers` size = `MAX_PLAYERS`. `current` = `MAX_PLAYERS - 1`, `next` = 0.
+  - **Expected output**: `current` becomes index 0, `next` becomes index 1.

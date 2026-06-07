@@ -50,12 +50,18 @@ public class GameController {
         throw new IllegalArgumentException("invalid test type");
     }
 
+    public void advanceTurn() {
+        this.nextPlayerIndex = 3;
+        this.currentPlayerIndex = 2;
+    }
+
     public boolean isValidMove(ArrayList<Card> cards, Player initiator, Optional<Player> target) {
         ArrayList<CardType> catCardTypes = new ArrayList<CardType>(List.of(
                 CardType.CAT_CARD_1,
                 CardType.CAT_CARD_2,
                 CardType.CAT_CARD_3,
                 CardType.CAT_CARD_4));
+
 
         if (cards.isEmpty()) {
             return false;
