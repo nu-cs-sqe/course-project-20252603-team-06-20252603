@@ -31,7 +31,15 @@ public class GameController {
     }
 
     public void setNextPlayerIndex(int newNextPlayerIndex) {
-        throw new IllegalArgumentException("invalid next index");
+        if (newNextPlayerIndex < 0) {
+            throw new IllegalArgumentException("invalid next index");
+        }
+
+        this.nextPlayerIndex = newNextPlayerIndex;
+    }
+
+    public int getNextPlayerIndex() {
+        return this.nextPlayerIndex;
     }
 
     public CardController getControllerType(Card card) {

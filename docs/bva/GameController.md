@@ -25,7 +25,7 @@
   - **State of the system**: `game.alivePlayers.size() = 5`, `this.nextPlayerIndex = 0`, `newNextPlayerIndex = -1`
   - **Expected output**: `IllegalArgumentException` ("invalid next index")
 
-- **TC7: set next player index to lower bound of list** ( x )
+- **TC7: set next player index to lower bound of list** ( :white-check-mark: )
   - **State of the system**: `game.alivePlayers.size() = 5`, `this.nextPlayerIndex = 3`, `newNextPlayerIndex = 0`
   - **Expected output**: `this.nextPlayerIndex` is updated to `0`
 
