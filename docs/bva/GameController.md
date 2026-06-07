@@ -87,7 +87,7 @@
   - **State of the system**: `card = SKIP`
   - **Expected output**: skipController
 
-- **TC: nope**
+- **TC: nope** ( :white-check-mark: )
   - **State of the system**: `card = NOPE`
   - **Expected output**: nopeController
 

@@ -54,8 +54,8 @@ public class GameController {
         cardToControllerMap.put(CardType.DEFUSE, new DefuseCardController());
         cardToControllerMap.put(CardType.SEE_THE_FUTURE, new SeeTheFutureCardController());
         cardToControllerMap.put(CardType.SHUFFLE, new ShuffleCardController());
-
         cardToControllerMap.put(CardType.SKIP, new SkipCardController());
+        cardToControllerMap.put(CardType.NOPE, new NopeCardController());
 
         if (cardToControllerMap.containsKey(card.getType())) {
             return cardToControllerMap.get(card.getType());
