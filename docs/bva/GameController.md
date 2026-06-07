@@ -112,6 +112,40 @@
     - **State of the system**: `CardType = CAT_CARD_1`, `target = Optional.of(player1)`, `initiator = player1`
     - **Expected output**: `false`
 
+### Method under test: `cardsAllMatchingCatCards()`
+
+- **TC: EmptyList_ThrowsException** ( :x: )
+    - **State of the system**: `cards = []`
+    - **Expected output**: `IndexOutOfBoundsException`
+
+- **TC: SingleCatCard_ReturnsTrue** ( :x: )
+    - **State of the system**: `cards = [CAT_CARD_1]`
+    - **Expected output**: `true`
+
+- **TC: SingleNonCatCard_ReturnsFalse** ( :x: )
+    - **State of the system**: `cards = [SKIP]`
+    - **Expected output**: `false`
+
+- **TC: AllMatchingCatCards_ReturnsTrue** ( :x: )
+    - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1, CAT_CARD_1]`
+    - **Expected output**: `true`
+
+- **TC: AllNonCatCards_ReturnsFalse** ( :x: )
+    - **State of the system**: `cards = [SKIP, SKIP, SKIP]`
+    - **Expected output**: `false`
+
+- **TC: MismatchAfterMatch_ReturnsFalse** ( :x: )
+    - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1, SKIP]`
+    - **Expected output**: `false`
+
+- **TC: MatchAfterMismatch_ReturnsFalse** ( :x: )
+    - **State of the system**: `cards = [SKIP, CAT_CARD_1, CAT_CARD_1]`
+    - **Expected output**: `false`
+
+- **TC: MismatchAtLast_ReturnsFalse** ( :x: )
+    - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1, CAT_CARD_2]`
+    - **Expected output**: `false`
+
 ### Method under test: `isValidMove(List<Card> cards, Player initiator, Optional<Player> target)`
 - **TC: empty card list** ( :white-check-mark: )
   - **State of the system**: `cards = []`, initiator = player1
