@@ -26,7 +26,7 @@ public class GameController {
         this.currentPlayerIndex = currentPlayerIndex;
     }
 
-    public int getCurrentPlayerIndex() { // simple getter so no BVA needed
+    public int getCurrentPlayerIndex() { 
         return this.currentPlayerIndex;
     }
 

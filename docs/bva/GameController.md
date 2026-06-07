@@ -99,6 +99,34 @@
   - **State of the system**: `card = CAT_CARD_1`
   - **Expected output**: catCardController
 
+### Method under test: `isTargetValid()`
+- **TC: CatCard1_ValidTarget_ReturnsTrue** ( :x: )
+    - **State of the system**: `CardType = CAT_CARD_1`, `target = Optional.of(player2)`, `initiator = player1`
+    - **Expected output**: `true`
+
+- **TC: CatCard2_ValidTarget_ReturnsTrue** ( :x: )
+    - **State of the system**: `CardType = CAT_CARD_2`, `target = Optional.of(player2)`, `initiator = player1`
+    - **Expected output**: `true`
+
+- **TC: CatCard3_ValidTarget_ReturnsTrue** ( :x: )
+    - **State of the system**: `CardType = CAT_CARD_3`, `target = Optional.of(player2)`, `initiator = player1`
+    - **Expected output**: `true`
+
+- **TC: CatCard4_ValidTarget_ReturnsTrue** ( :x: )
+    - **State of the system**: `CardType = CAT_CARD_4`, `target = Optional.of(player2)`, `initiator = player1`
+    - **Expected output**: `true`
+
+- **TC: NonCatCard_ValidTarget_ReturnsFalse** ( :x: )
+    - **State of the system**: `CardType = SKIP`, `target = Optional.of(player2)`, `initiator = player1`
+    - **Expected output**: `false`
+
+- **TC: CatCard1_NoTarget_ReturnsFalse** ( :x: )
+    - **State of the system**: `CardType = CAT_CARD_1`, `target = Optional.empty()`, `initiator = player1`
+    - **Expected output**: `false`
+
+- **TC: CatCard1_TargetIsSelf_ReturnsFalse** ( :x: )
+    - **State of the system**: `CardType = CAT_CARD_1`, `target = Optional.of(player1)`, `initiator = player1`
+    - **Expected output**: `false`
 
 ### Method under test: `isValidMove(List<Card> cards, Player initiator, Optional<Player> target)`
 - **TC: empty card list** ( :white-check-mark: )
