@@ -31,7 +31,7 @@ public class GameController {
     }
 
     public void setNextPlayerIndex(int newNextPlayerIndex) {
-        if (newNextPlayerIndex < 0) {
+        if (newNextPlayerIndex < 0 || newNextPlayerIndex >= this.game.getAlivePlayerCount()) {
             throw new IllegalArgumentException("invalid next index");
         }
 
