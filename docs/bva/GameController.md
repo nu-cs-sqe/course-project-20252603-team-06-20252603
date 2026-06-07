@@ -33,7 +33,7 @@
   - **State of the system**: `game.alivePlayers.size() = 5`, `this.nextPlayerIndex = 0`, `newNextPlayerIndex = 2`
   - **Expected output**: `this.nextPlayerIndex` is updated to `2`
 
-- **TC9: set next player index to upper bound of list** ( x )
+- **TC9: set next player index to upper bound of list** ( :white-check-mark: )
   - **State of the system**: `game.alivePlayers.size() = 5`, `this.nextPlayerIndex = 2`, `newNextPlayerIndex = 4`
   - **Expected output**: `this.nextPlayerIndex` is updated to `4`
 
