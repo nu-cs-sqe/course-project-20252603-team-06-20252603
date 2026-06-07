@@ -21,17 +21,17 @@ public class SeeTheFutureCardControllerTests {
         assertEquals(4, game.getDeck().count());
 
         int initialDeckSize = game.getDeck().count();
-        Player initiator = game.getAlivePlayers().get(0);
+        Player user = game.getAlivePlayers().get(0);
         SeeTheFutureCardController controller = new SeeTheFutureCardController();
 
-        Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
 
         assertTrue(result.isPresent());
 
         List<Card> topThree = result.get();
-        assertEquals(3, topThree.size(), "Should return exactly 3 cards");
+        assertEquals(3, topThree.size());
 
-        assertEquals(initialDeckSize, game.getDeck().count(), "Original deck size must remain unchanged");
+        assertEquals(initialDeckSize, game.getDeck().count());
 
         assertEquals(game.getDeck().getCards().get(0).getType(), topThree.get(0).getType());
         assertEquals(game.getDeck().getCards().get(1).getType(), topThree.get(1).getType());
@@ -50,10 +50,10 @@ public class SeeTheFutureCardControllerTests {
         assertEquals(3, game.getDeck().count());
 
         int initialDeckSize = game.getDeck().count();
-        Player initiator = game.getAlivePlayers().get(0);
+        Player user = game.getAlivePlayers().get(0);
         SeeTheFutureCardController controller = new SeeTheFutureCardController();
 
-        Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
 
         assertTrue(result.isPresent());
 
@@ -79,10 +79,10 @@ public class SeeTheFutureCardControllerTests {
         assertEquals(2, game.getDeck().count());
 
         int initialDeckSize = game.getDeck().count();
-        Player initiator = game.getAlivePlayers().get(0);
+        Player user = game.getAlivePlayers().get(0);
         SeeTheFutureCardController controller = new SeeTheFutureCardController();
 
-        Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
 
         assertTrue(result.isPresent());
 
@@ -107,10 +107,10 @@ public class SeeTheFutureCardControllerTests {
         assertEquals(1, game.getDeck().count());
 
         int initialDeckSize = game.getDeck().count();
-        Player initiator = game.getAlivePlayers().get(0);
+        Player user = game.getAlivePlayers().get(0);
         SeeTheFutureCardController controller = new SeeTheFutureCardController();
 
-        Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
 
         assertTrue(result.isPresent());
 
@@ -134,10 +134,10 @@ public class SeeTheFutureCardControllerTests {
         assertEquals(0, game.getDeck().count());
 
         int initialDeckSize = game.getDeck().count();
-        Player initiator = game.getAlivePlayers().get(0);
+        Player user = game.getAlivePlayers().get(0);
         SeeTheFutureCardController controller = new SeeTheFutureCardController();
 
-        Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
 
         assertTrue(result.isPresent());
 
