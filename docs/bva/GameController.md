@@ -21,7 +21,7 @@
   - **Expected output**: this.currentPlayerIndex is updated to current_player_index
 
 ### Method under test: `setNextPlayerIndex(int newNextPlayerIndex)`
-- **TC6: set next player index to invalid negative index** ( x )
+- **TC6: set next player index to invalid negative index** ( :white-check-mark: )
   - **State of the system**: `game.alivePlayers.size() = 5`, `this.nextPlayerIndex = 0`, `newNextPlayerIndex = -1`
   - **Expected output**: `IllegalArgumentException` ("invalid next index")
 
