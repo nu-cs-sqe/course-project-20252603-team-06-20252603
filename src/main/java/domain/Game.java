@@ -95,6 +95,10 @@ public class Game {
     public int getAlivePlayerCount() {
         return alivePlayers.size();
     }
+
+    @Override
+    protected final void finalize() {
+    }
 }
 
 
