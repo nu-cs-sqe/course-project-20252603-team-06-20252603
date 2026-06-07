@@ -75,7 +75,7 @@
   - **State of the system**: `card = DEFUSE`
   - **Expected output**: defuseController
 
-- **TC: see the future**
+- **TC: see the future** ( :white-check-mark: )
   - **State of the system**: `card = SEE_THE_FUTURE`
   - **Expected output**: seeTheFutureController
 

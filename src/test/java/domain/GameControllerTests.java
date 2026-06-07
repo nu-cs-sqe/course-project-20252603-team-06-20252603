@@ -175,6 +175,18 @@ public class GameControllerTests {
         assertEquals(expected.getClass(), controller.getControllerType(card).getClass());
     }
 
+    @Test
+    void getControllerType_SeeTheFuture() {
+        Game game = new Game(2);
+        GameController controller = new GameController(game);
+
+        Card card = new Card(CardType.SEE_THE_FUTURE);
+
+        CardController expected = new SeeTheFutureCardController();
+
+        assertEquals(expected.getClass(), controller.getControllerType(card).getClass());
+    }
+
 
     @Test
     void isValidMove_EmptyCards_ReturnsFalse() {
