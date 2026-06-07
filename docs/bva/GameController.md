@@ -63,6 +63,10 @@
   - **Expected output**: `IllegalArgumentException` ("list size doesn’t match alivePlayer")
 
 ### Method under test: `getControllerType(Card card)`
+- **TC: invalid test type** ( :white-check-mark: )
+  - **State of the system**: `card = TEST_TYPE`
+  - **Expected output**: IllegalArgumentException, "invalid test type"
+
 - **TC: attack**
   - **State of the system**: `card = ATTACK`
   - **Expected output**: attackController

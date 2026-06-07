@@ -29,6 +29,10 @@ public class GameController {
         return this.currentPlayerIndex;
     }
 
+    public CardController getControllerType(Card card) {
+        throw new IllegalArgumentException("invalid test type");
+    }
+
     public boolean isValidMove(ArrayList<Card> cards, Player initiator, Optional<Player> target) {
         ArrayList<CardType> catCardTypes = new ArrayList<CardType>(List.of(
                 CardType.CAT_CARD_1,

@@ -73,6 +73,18 @@ public class GameControllerTests {
     }
 
     @Test
+    void getControllerType_InvalidTestType_IllegalArgumentException() {
+        Game game = new Game(2);
+        GameController controller = new GameController(game);
+
+        Card card = new Card(CardType.TEST_TYPE);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            controller.getControllerType(card);
+        });
+    }
+
+    @Test
     void isValidMove_EmptyCards_ReturnsFalse() {
         Game game = new Game(2);
         GameController controller = new GameController(game);
