@@ -160,7 +160,7 @@ public class GameControllerTests {
 
         EasyMock.replay(initiator, target);
 
-        assertTrue(controller.isTargetValid(CardType.CAT_CARD_1, initiator, Optional.of(target)));
+        assertTrue(controller.isTargetValid(CardType.CAT_CARD_1, initiator, target));
 
         EasyMock.verify(initiator, target);
     }
@@ -173,9 +173,21 @@ public class GameControllerTests {
 
         EasyMock.replay(initiator, target);
 
-        assertFalse(controller.isTargetValid(CardType.SKIP, initiator, Optional.of(target)));
+        assertFalse(controller.isTargetValid(CardType.SKIP, initiator, target));
 
         EasyMock.verify(initiator, target);
+    }
+
+    @Test
+    void isTargetValid_CatCardTargetIsSelf_ReturnsFalse(){
+        GameController controller = new GameController(null);
+        Player initiator = EasyMock.createMock(Player.class);
+
+        EasyMock.replay(initiator);
+
+        assertFalse(controller.isTargetValid(CardType.CAT_CARD_1, initiator, initiator));
+
+        EasyMock.verify(initiator);
     }
 
 

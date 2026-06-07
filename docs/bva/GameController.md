@@ -104,19 +104,11 @@
     - **State of the system**: `CardType = CAT_CARD_1`, `target = Optional.of(player2)`, `initiator = player1`
     - **Expected output**: `true`
 
-- **TC: NonCatCard_ValidTarget_ReturnsFalse** ( :x: )
+- **TC: NonCatCard_ValidTarget_ReturnsFalse** ( ☑️ )
     - **State of the system**: `CardType = SKIP`, `target = Optional.of(player2)`, `initiator = player1`
     - **Expected output**: `false`
 
-- **TC: NullCardType_ValidTarget_ThrowsOrReturnsFalse** ( :x: )
-    - **State of the system**: `CardType = null`, `target = Optional.of(player2)`, `initiator = player1`
-    - **Expected output**: `NullPointerException` or `false`
-
-- **TC: CatCard_NoTarget_ReturnsFalse** ( :x: )
-    - **State of the system**: `CardType = CAT_CARD_1`, `target = Optional.empty()`, `initiator = player1`
-    - **Expected output**: `false`
-
-- **TC: CatCard_TargetIsSelf_ReturnsFalse** ( :x: )
+- **TC: CatCard_TargetIsSelf_ReturnsFalse** ( ☑️ )
     - **State of the system**: `CardType = CAT_CARD_1`, `target = Optional.of(player1)`, `initiator = player1`
     - **Expected output**: `false`
 

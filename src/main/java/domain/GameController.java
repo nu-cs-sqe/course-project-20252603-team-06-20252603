@@ -55,8 +55,8 @@ public class GameController {
         this.nextPlayerIndex = (this.currentPlayerIndex + 1) % this.game.getAlivePlayerCount();
     }
 
-    public boolean isTargetValid(CardType type, Player initiator, Optional<Player> target){
-        return type.canHaveTarget();
+    public boolean isTargetValid(CardType type, Player initiator, Player target){
+        return type.canHaveTarget() && target != initiator;
     }
 
     public boolean isValidMove(ArrayList<Card> cards, Player initiator, Optional<Player> target) {
