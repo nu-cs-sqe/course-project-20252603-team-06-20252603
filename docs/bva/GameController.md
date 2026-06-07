@@ -62,6 +62,40 @@
   - **State of the system**: `game.alivePlayers.size() = 2`, `playerOrder.size() = 4`
   - **Expected output**: `IllegalArgumentException` ("list size doesn’t match alivePlayer")
 
+### Method under test: `getControllerType(Card card)`
+- **TC: attack**
+  - **State of the system**: `card = ATTACK`
+  - **Expected output**: attackController
+
+- **TC: defuse**
+  - **State of the system**: `card = DEFUSE`
+  - **Expected output**: defuseController
+
+- **TC: see the future**
+  - **State of the system**: `card = SEE_THE_FUTURE`
+  - **Expected output**: seeTheFutureController
+
+- **TC: shuffle**
+  - **State of the system**: `card = SHUFFLE`
+  - **Expected output**: shuffleController
+
+- **TC: skip**
+  - **State of the system**: `card = SKIP`
+  - **Expected output**: skipController
+
+- **TC: nope**
+  - **State of the system**: `card = NOPE`
+  - **Expected output**: nopeController
+
+- **TC: draw from bottom**
+  - **State of the system**: `card = DRAW_FROM_BOTTOM`
+  - **Expected output**: drawFromBottomController
+
+- **TC: cat cards**
+  - **State of the system**: `card = CAT_CARD_1`
+  - **Expected output**: catCardController
+
+
 ### Method under test: `isValidMove(List<Card> cards, Player initiator, Optional<Player> target)`
 - **TC: empty card list** ( :white-check-mark: )
   - **State of the system**: `cards = []`, initiator = player1
