@@ -17,4 +17,9 @@ public class CardTypeTests {
         assertTrue(type.canHaveTarget());
     }
 
+    @Test
+    public void CAT_CARD_3_ReturnsTrue(){
+        CardType type = CardType.CAT_CARD_3;
+        assertTrue(type.canHaveTarget());
+    }
 }

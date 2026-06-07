@@ -10,7 +10,7 @@
     - **State of the system**: `CardType = CAT_CARD_2`
     - **Expected output**: `true`
 
-- **TC3: CatCard3_ReturnsTrue** ( :x: )
+- **TC3: CatCard3_ReturnsTrue** ( ☑️ )
     - **State of the system**: `CardType = CAT_CARD_3`
     - **Expected output**: `true`
 
