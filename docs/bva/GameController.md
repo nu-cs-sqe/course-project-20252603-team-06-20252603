@@ -142,7 +142,7 @@
     - **State of the system**: `cards = [SKIP, CAT_CARD_1, CAT_CARD_1]`
     - **Expected output**: `false`
 
-- **TC: MismatchAtLast_ReturnsFalse** ( :x: )
+- **TC: MismatchAtLast_ReturnsFalse** ( ☑️ )
     - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1, CAT_CARD_2]`
     - **Expected output**: `false`
 
