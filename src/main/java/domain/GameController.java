@@ -59,6 +59,10 @@ public class GameController {
         return type.canHaveTarget() && target != initiator;
     }
 
+    public boolean cardsAllMatchingCatCards(ArrayList<Card> cards){
+        throw new IndexOutOfBoundsException();
+    }
+
     public boolean isValidMove(ArrayList<Card> cards, Player initiator, Optional<Player> target) {
         ArrayList<CardType> catCardTypes = new ArrayList<CardType>(List.of(
                 CardType.CAT_CARD_1,

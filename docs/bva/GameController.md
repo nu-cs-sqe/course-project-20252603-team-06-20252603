@@ -114,7 +114,7 @@
 
 ### Method under test: `cardsAllMatchingCatCards()`
 
-- **TC: EmptyList_ThrowsException** ( :x: )
+- **TC: EmptyList_ThrowsException** ( ☑️ )
     - **State of the system**: `cards = []`
     - **Expected output**: `IndexOutOfBoundsException`
 

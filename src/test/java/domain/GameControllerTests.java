@@ -190,6 +190,17 @@ public class GameControllerTests {
         EasyMock.verify(initiator);
     }
 
+    @Test
+    void cardsAllMatchingCatCards_EmptyList_ThrowsIndexOutOfBoundsException() {
+        GameController controller = new GameController(null);
+        ArrayList<Card> cards = new ArrayList<>();
+
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            controller.cardsAllMatchingCatCards(cards);
+        });
+    }
+
+
 
     @Test
     void isValidMove_EmptyCards_ReturnsFalse() {
