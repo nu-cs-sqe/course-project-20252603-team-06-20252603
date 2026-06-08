@@ -9,7 +9,7 @@ output: Optional.empty() (Optional<List<Card>>)
 - LIST: initiator.getHand()
 - LIST: target.getHand()
 
-- **TC1: executeCardAction_targetOneCard_cardGiven** ( :x: or :white-check-mark: )
+- **TC1: executeCardAction_targetOneCard_cardGiven** ( :white-check-mark: )
     - **State of the system**: initiator.getHand(): [], target.getHand(): [ATTACK], CARD: ATTACK
     - **Expected output**: initiator.getHand(): [ATTACK], target.getHand(): []
 
