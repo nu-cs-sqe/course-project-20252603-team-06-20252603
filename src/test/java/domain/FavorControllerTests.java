@@ -191,4 +191,32 @@ public class FavorControllerTests {
 
         EasyMock.verify(userInput);
     }
+
+    @Test
+    void executeCardAction_cardNotInTarget_illegalArgumentException() {
+        Game game = new Game(2);
+        Player initiator = game.getTotalPlayers().get(0);
+        Player target = game.getTotalPlayers().get(1);
+        Card attack = new Card(CardType.ATTACK);
+        Card defuse = new Card(CardType.DEFUSE);
+        target.addCard(attack);
+
+        UserInput userInput = EasyMock.createMock(UserInput.class);
+        EasyMock.expect(userInput.getCardToGive(target.getHand())).andReturn(defuse);
+        EasyMock.replay(userInput);
+
+        FavorController controller = new FavorController(userInput);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.executeCardAction(game, initiator, Optional.of(target));
+        });
+
+        assertEquals("card to remove not in hand", exception.getMessage());
+
+        assertEquals(0, initiator.getHandSize());
+        assertEquals(1, target.getHandSize());
+        assertTrue(target.hasCard(CardType.ATTACK));
+
+        EasyMock.verify(userInput);
+    }
 }

@@ -37,7 +37,7 @@ output: Optional.empty() (Optional<List<Card>>)
     - **State of the system**: user.getHand(): [DEFUSE, SKIP], target.getHand(): [ATTACK], CARD: ATTACK
     - **Expected output**: user.getHand(): [DEFUSE, SKIP, ATTACK], target.getHand(): []
 
-- **TC8: executeCardAction_cardNotInTarget_illegalArgumentException** ( :x: or :white-check-mark: )
+- **TC8: executeCardAction_cardNotInTarget_illegalArgumentException** ( :white-check-mark: )
     - **State of the system**: user.getHand(): [], target.getHand(): [ATTACK], CARD: DEFUSE
     - **Expected output**: illegalArgumentException, user.getHand(): [], target.getHand(): [ATTACK]
 
