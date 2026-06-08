@@ -29,7 +29,7 @@ output: Optional.empty() (Optional<List<Card>>)
     - **State of the system**: user.getHand(): [], target.getHand(): [SKIP, ATTACK, DEFUSE], CARD: SKIP
     - **Expected output**: user.getHand(): [SKIP], target.getHand(): [ATTACK, DEFUSE]
 
-- **TC6: executeCardAction_targetLastCard_cardGiven** ( :x: or :white-check-mark: )
+- **TC6: executeCardAction_targetLastCard_cardGiven** ( :white-check-mark: )
     - **State of the system**: user.getHand(): [], target.getHand(): [SKIP, ATTACK, DEFUSE], CARD: DEFUSE
     - **Expected output**: user.getHand(): [DEFUSE], target.getHand(): [SKIP, ATTACK]
 
