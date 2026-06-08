@@ -21,7 +21,7 @@ output: Optional.empty() (Optional<List<Card>>)
     - **State of the system**: initiator.getHand(): [], target.getHand(): [ATTACK, ATTACK], CARD: ATTACK
     - **Expected output**: initiator.getHand(): [ATTACK], target.getHand(): [ATTACK]
 
-- **TC4: executeCardAction_initiatorDuplicateCards_cardGiven** ( :x: or :white-check-mark: )
+- **TC4: executeCardAction_initiatorDuplicateCards_cardGiven** ( :white-check-mark: )
     - **State of the system**: initiator.getHand(): [ATTACK], target.getHand(): [ATTACK], CARD: ATTACK
     - **Expected output**: initiator.getHand(): [ATTACK, ATTACK], target.getHand(): []
 
