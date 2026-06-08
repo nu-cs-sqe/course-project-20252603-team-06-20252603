@@ -13,7 +13,7 @@ output: Optional.empty() (Optional<List<Card>>)
     - **State of the system**: initiator.getHand(): [], target.getHand(): [ATTACK], CARD: ATTACK
     - **Expected output**: initiator.getHand(): [ATTACK], target.getHand(): []
 
-- **TC2: executeCardAction_targetTwoCards_cardGiven** ( :x: or :white-check-mark: )
+- **TC2: executeCardAction_targetTwoCards_cardGiven** ( :white-check-mark: )
     - **State of the system**: initiator.getHand(): [], target.getHand(): [ATTACK, SKIP], CARD: ATTACK
     - **Expected output**: initiator.getHand(): [ATTACK], target.getHand(): [SKIP]
 
