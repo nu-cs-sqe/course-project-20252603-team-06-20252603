@@ -107,4 +107,32 @@ public class FavorControllerTests {
 
         EasyMock.verify(userInput);
     }
+
+    @Test
+    void executeCardAction_targetFirstCard_cardGiven() {
+        Game game = new Game(2);
+        Player initiator = game.getTotalPlayers().get(0);
+        Player target = game.getTotalPlayers().get(1);
+        Card skip = new Card(CardType.SKIP);
+        Card attack = new Card(CardType.ATTACK);
+        Card defuse = new Card(CardType.DEFUSE);
+        target.addCard(skip);
+        target.addCard(attack);
+        target.addCard(defuse);
+
+        UserInput userInput = EasyMock.createMock(UserInput.class);
+        EasyMock.expect(userInput.getCardToGive(target.getHand())).andReturn(skip);
+        EasyMock.replay(userInput);
+
+        FavorController controller = new FavorController(userInput);
+        controller.executeCardAction(game, initiator, Optional.of(target));
+
+        assertEquals(1, initiator.getHandSize());
+        assertTrue(initiator.hasCard(CardType.SKIP));
+        assertEquals(2, target.getHandSize());
+        assertTrue(target.hasCard(CardType.ATTACK));
+        assertTrue(target.hasCard(CardType.DEFUSE));
+
+        EasyMock.verify(userInput);
+    }
 }

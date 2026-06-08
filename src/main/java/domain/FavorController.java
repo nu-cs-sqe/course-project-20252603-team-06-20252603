@@ -12,11 +12,11 @@ public class FavorController implements CardController {
     }
 
     public Optional<List<Card>> executeCardAction(Game game, Player user, Optional<Player> target) {
-        userInput.getCardToGive(target.get().getHand());
+        Player t = target.get();
+        Card card = userInput.getCardToGive(t.getHand());
 
-        user.addCard(new Card(CardType.ATTACK));
-        Card first = target.get().getHand().get(0);
-        target.get().removeCard(first);
+        t.removeCard(card);
+        user.addCard(card);
 
         return Optional.empty();
     }
