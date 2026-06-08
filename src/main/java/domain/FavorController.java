@@ -11,10 +11,10 @@ public class FavorController implements CardController {
         this.userInput = userInput;
     }
 
-    public Optional<List<Card>> executeCardAction(Game game, Player initiator, Optional<Player> target) {
+    public Optional<List<Card>> executeCardAction(Game game, Player user, Optional<Player> target) {
         userInput.getCardToGive(target.get().getHand());
 
-        initiator.addCard(new Card(CardType.ATTACK));
+        user.addCard(new Card(CardType.ATTACK));
         Card first = target.get().getHand().get(0);
         target.get().removeCard(first);
 

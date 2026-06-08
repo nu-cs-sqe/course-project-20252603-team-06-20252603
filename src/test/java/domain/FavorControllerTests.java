@@ -13,7 +13,7 @@ public class FavorControllerTests {
     @Test
     void executeCardAction_targetOneCard_cardGiven() {
         Game game = new Game(2);
-        Player initiator = game.getTotalPlayers().get(0);
+        Player user = game.getTotalPlayers().get(0);
         Player target = game.getTotalPlayers().get(1);
         Card attack = new Card(CardType.ATTACK);
         target.addCard(attack);
@@ -23,10 +23,10 @@ public class FavorControllerTests {
         EasyMock.replay(userInput);
 
         FavorController controller = new FavorController(userInput);
-        controller.executeCardAction(game, initiator, Optional.of(target));
+        controller.executeCardAction(game, user, Optional.of(target));
 
-        assertEquals(1, initiator.getHandSize());
-        assertTrue(initiator.hasCard(CardType.ATTACK));
+        assertEquals(1, user.getHandSize());
+        assertTrue(user.hasCard(CardType.ATTACK));
         assertEquals(0, target.getHandSize());
 
         EasyMock.verify(userInput);
@@ -35,7 +35,7 @@ public class FavorControllerTests {
     @Test
     void executeCardAction_targetTwoCards_cardGiven() {
         Game game = new Game(2);
-        Player initiator = game.getTotalPlayers().get(0);
+        Player user = game.getTotalPlayers().get(0);
         Player target = game.getTotalPlayers().get(1);
         Card attack = new Card(CardType.ATTACK);
         Card skip = new Card(CardType.SKIP);
@@ -47,10 +47,10 @@ public class FavorControllerTests {
         EasyMock.replay(userInput);
 
         FavorController controller = new FavorController(userInput);
-        controller.executeCardAction(game, initiator, Optional.of(target));
+        controller.executeCardAction(game, user, Optional.of(target));
 
-        assertEquals(1, initiator.getHandSize());
-        assertTrue(initiator.hasCard(CardType.ATTACK));
+        assertEquals(1, user.getHandSize());
+        assertTrue(user.hasCard(CardType.ATTACK));
         assertEquals(1, target.getHandSize());
         assertTrue(target.hasCard(CardType.SKIP));
 
@@ -60,7 +60,7 @@ public class FavorControllerTests {
     @Test
     void executeCardAction_targetDuplicateCards_cardGiven() {
         Game game = new Game(2);
-        Player initiator = game.getTotalPlayers().get(0);
+        Player user = game.getTotalPlayers().get(0);
         Player target = game.getTotalPlayers().get(1);
         Card attack1 = new Card(CardType.ATTACK);
         Card attack2 = new Card(CardType.ATTACK);
@@ -72,10 +72,10 @@ public class FavorControllerTests {
         EasyMock.replay(userInput);
 
         FavorController controller = new FavorController(userInput);
-        controller.executeCardAction(game, initiator, Optional.of(target));
+        controller.executeCardAction(game, user, Optional.of(target));
 
-        assertEquals(1, initiator.getHandSize());
-        assertTrue(initiator.hasCard(CardType.ATTACK));
+        assertEquals(1, user.getHandSize());
+        assertTrue(user.hasCard(CardType.ATTACK));
         assertEquals(1, target.getHandSize());
         assertTrue(target.hasCard(CardType.ATTACK));
 
@@ -83,13 +83,13 @@ public class FavorControllerTests {
     }
 
     @Test
-    void executeCardAction_initiatorDuplicateCards_cardGiven() {
+    void executeCardAction_userDuplicateCards_cardGiven() {
         Game game = new Game(2);
-        Player initiator = game.getTotalPlayers().get(0);
+        Player user = game.getTotalPlayers().get(0);
         Player target = game.getTotalPlayers().get(1);
-        Card initiatorAttack = new Card(CardType.ATTACK);
+        Card userAttack = new Card(CardType.ATTACK);
         Card targetAttack = new Card(CardType.ATTACK);
-        initiator.addCard(initiatorAttack);
+        user.addCard(userAttack);
         target.addCard(targetAttack);
 
         UserInput userInput = EasyMock.createMock(UserInput.class);
@@ -97,10 +97,10 @@ public class FavorControllerTests {
         EasyMock.replay(userInput);
 
         FavorController controller = new FavorController(userInput);
-        controller.executeCardAction(game, initiator, Optional.of(target));
+        controller.executeCardAction(game, user, Optional.of(target));
 
-        assertEquals(2, initiator.getHandSize());
-        for (Card card : initiator.getHand()) {
+        assertEquals(2, user.getHandSize());
+        for (Card card : user.getHand()) {
             assertEquals(CardType.ATTACK, card.getType());
         }
         assertEquals(0, target.getHandSize());
