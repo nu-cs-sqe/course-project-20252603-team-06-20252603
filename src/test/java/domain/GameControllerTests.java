@@ -443,6 +443,24 @@ public class GameControllerTests {
     }
 
     @Test
+    void playerHasCards_TwoDifferentCardsAndHaveBothInHand_ReturnTrue() {
+        Game game = new Game(2);
+        GameController controller = new GameController(game);
+        Player player = game.getAlivePlayers().get(0);
+
+        player.addCard(new Card(CardType.CAT_CARD_4));
+        player.addCard(new Card(CardType.SEE_THE_FUTURE));
+        player.addCard(new Card(CardType.SHUFFLE));
+        player.addCard(new Card(CardType.SKIP));
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new Card(CardType.SKIP));
+        cards.add(new Card(CardType.CAT_CARD_4));
+
+        assertTrue(controller.playerHasCards(player, cards));;
+    }
+
+    @Test
     void isValidMove_EmptyCards_ReturnsFalse() {
         Game game = new Game(2);
         GameController controller = new GameController(game);
