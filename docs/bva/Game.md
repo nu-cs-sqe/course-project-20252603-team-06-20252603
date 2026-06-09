@@ -1,23 +1,26 @@
 # BVA analysis for Game
 
 ### Method under test: `Game(int playerCount)`
+#### Suite A: Invalid Boundaries (Expected: `IllegalArgumentException`)
 - **TC1: One Below Minimum Players** ( ☑️ )
   - **State of the system**: `playerCount = 1`
   - **Expected output**: throws `IllegalArgumentException`
 
-- **TC2: Minimum Players** ( ☑️ )
+- **TC2: One Above Maximum Players** (  ☑️  )
+  - **State of the system**: `playerCount = 6`
+  - **Expected output**: throws `IllegalArgumentException`
+
+#### Suite B: Valid Boundaries (Expected: `Game` object created)
+- **TC3: Minimum Players** ( ☑️ )
   - **State of the system**: `playerCount = 2`
   - **Expected output**: `Game` object created with 2 players in `totalPlayers` and `alivePlayers`
 
-- **TC3: Maximum Players** ( ☑️ )
+- **TC4: Maximum Players** ( ☑️ )
   - **State of the system**: `playerCount = 5`
   - **Expected output**: `Game` object created with 5 players in `totalPlayers` and `alivePlayers`
-
-- **TC4: One Above Maximum Players** (  ☑️  )
-  - **State of the system**: `playerCount = 6`
-  - **Expected output**: throws `IllegalArgumentException`
   
 ### Method under test: `setup()`
+#### Suite A: Valid Setup Configurations
 - **TC5: Setup With Minimum Players** (  ☑️  )
   - **State of the system**: game created with 2 players; default deck
   - **Expected output**: each player has 7 cards (6 normal + 1 DEFUSE); deck contains 1 EXPLODING_KITTEN
@@ -27,19 +30,22 @@
   - **Expected output**: each player has 7 cards (6 normal + 1 DEFUSE); deck contains 4 EXPLODING_KITTENs
 
 ### Method under test: `draw(Player player, Deck deck)`
+#### Suite A: Valid Deck Sizes
 - **TC7: Draw From Deck With One Card** ( ☑️ )
   - **State of the system**: `deck` contains exactly 1 card; `player` has 0 cards
   - **Expected output**: player receives the card; deck is now empty
 
-- **TC8: Draw From Empty Deck** ( ☑️ )
+- **TC8: Draw From Deck With Many Cards** ( ☑️  )
+  - **State of the system**: `deck` contains 20 cards; `player` has 0 cards
+  - **Expected output**: player receives only the top card; deck size decreases by 1
+
+#### Suite B: Invalid States
+- **TC9: Draw From Empty Deck** ( ☑️ )
   - **State of the system**: `deck` contains 0 cards; `player` has 0 cards
   - **Expected output**: throws an exception
 
-- **TC9: Draw From Deck With Many Cards** ( ☑️  )
-  - **State of the system**: `deck` contains more than 1 card; `player` has 0 cards
-  - **Expected output**: player receives only the top card; deck size decreases by 1
-
 ### Method under test: `getTotalPlayerCount()`
+#### Suite A: Boundary Checks
 - **TC10: Minimum Total Players** ( ☑️ )
   - **State of the system**: game created with 2 players
   - **Expected output**: `getTotalPlayerCount() == 2`
@@ -49,7 +55,8 @@
   - **Expected output**: `getTotalPlayerCount() == 5`
 
 ### Method under test: `getAlivePlayerCount()`
-- **TC12: All Players Alive** (  ☑️ )
+#### Suite A: Elimination Boundaries
+- **TC12: All Players Alive (No Players Eliminated)** (  ☑️ )
   - **State of the system**: no players eliminated; game created with 2 players
   - **Expected output**: `getAlivePlayerCount() == 2`
 
@@ -62,6 +69,7 @@
   - **Expected output**: `getAlivePlayerCount() == 1`
 
 ### Method under test: `getTotalPlayers()`
+#### Suite A: Boundary Checks
 - **TC15: Returns Correct Players When Minimum Players** ( ☑️  )
   - **State of the system**: game created with 2 players
   - **Expected output**: returned list contains exactly the 2 players created at construction
