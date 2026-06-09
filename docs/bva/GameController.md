@@ -158,6 +158,48 @@
     - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1, CAT_CARD_2]`
     - **Expected output**: `false`
 
+### Method under test: `playerHasCards(PLayer initiator, List<Card> cards)`
+- **TC: empty card list** ( :x: )
+  - **State of the system**: `cards = [], initiator hand: [CAT_CARD_1, SKIP]`
+  - **Expected output**: IllegalArgumentException, "cards list cannot be empty"
+
+- **TC: card list has one card, in initiator's hand** ( :x: )
+  - **State of the system**: `cards = [CAT_CARD_1], initiator hand: [CAT_CARD_1, SKIP]`
+  - **Expected output**: return = true
+
+- **TC: card list has one card, NOT in initiator's hand** ( :x: )
+  - **State of the system**: `cards = [CAT_CARD_2], initiator hand: [CAT_CARD_1, SKIP]`
+  - **Expected output**: return = false
+
+- **TC: card list has one card, initiator's hand is empty** ( :x: )
+  - **State of the system**: `cards = [CAT_CARD_2], initiator hand: []`
+  - **Expected output**: return = false
+
+- **TC: card list has two same cards, initiator hand only has one of those cards** ( :x: )
+  - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1], initiator hand: [CAT_CARD_1]`
+  - **Expected output**: return = false
+
+- **TC: card list has two same cards, initiator hand has both** ( :x: )
+  - **State of the system**: `cards = [CAT_CARD_2, CAT_CARD_2], initiator hand: [CAT_CARD_2, CAT_CARD_2]`
+  - **Expected output**: return = true
+
+- **TC: card list has two different cards, initiator hand has only one** ( :x: )
+  - **State of the system**: `cards = [CAT_CARD_2, SKIP], initiator hand: [CAT_CARD_2, SHUFFLE]`
+  - **Expected output**: return = false
+
+- **TC: card list has two different cards, initiator hand has neither** ( :x: )
+  - **State of the system**: `cards = [CAT_CARD_2, SKIP], initiator hand: [SEE_THE_FUTURE, SHUFFLE]`
+  - **Expected output**: return = false
+
+- **TC: card list has three different cards, initiator hand has only one** ( :x: )
+  - **State of the system**: `cards = [CAT_CARD_3, CAT_CARD_2, CAT_CARD_4], initiator hand: [CAT_CARD_3]`
+  - **Expected output**: return = false
+
+- **TC: card list has three same cards, initiator hand has all three** ( :x: )
+  - **State of the system**: ```cards = [CAT_CARD_4, CAT_CARD_4, CAT_CARD_4], 
+ initiator hand: [CAT_CARD_4, ATTACK, CAT_CARD_4, CAT_CARD_4, SHUFFLE, SKIP]```
+  - **Expected output**: return = false
+
 ### Method under test: `isValidMove(List<Card> cards, Player initiator, Optional<Player> target)`
 - **TC: empty card list** ( :white-check-mark: )
   - **State of the system**: `cards = []`, initiator = player1
