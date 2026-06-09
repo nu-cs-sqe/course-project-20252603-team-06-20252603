@@ -93,16 +93,11 @@ public class GameTests {
         assertEquals(deckOriginalSize - 1, deck.count());
     }
 
-    @Test
-    public void getTotalPlayerCount_MinNumPlayers_ReturnsTwo() {
-        Game game = new Game(2);
-        assertEquals(2, game.getTotalPlayerCount());
-    }
-
-    @Test
-    public void getTotalPlayerCount_MaxNumPlayers_ReturnsFive() {
-        Game game = new Game(5);
-        assertEquals(5, game.getTotalPlayerCount());
+    @ParameterizedTest
+    @ValueSource(ints = {2, 5})
+    public void getTotalPlayerCount_ValidBounds_ReturnsCorrectCount(int playerCount) {
+        Game game = new Game(playerCount);
+        assertEquals(playerCount, game.getTotalPlayerCount());
     }
 
     @Test
