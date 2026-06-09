@@ -91,6 +91,20 @@ public class GameController {
         if (cards.isEmpty()) {
             throw new IllegalArgumentException("cards list cannot be empty");
         }
+        ArrayList<Card> hand = initiator.getHand();
+        ArrayList<CardType> handTypes = new ArrayList<CardType>();
+
+        for (Card card : hand) {
+            handTypes.add(card.getType());
+        }
+
+        for (Card card : cards) {
+            CardType cardType = card.getType();
+            if (!handTypes.remove(cardType)) {
+                return false;
+            }
+        }
+
         return true;
     }
 

@@ -167,7 +167,7 @@
   - **State of the system**: `cards = [CAT_CARD_1], initiator hand: [CAT_CARD_1, SKIP]`
   - **Expected output**: return = true
 
-- **TC: card list has one card, NOT in initiator's hand** ( :x: )
+- **TC: card list has one card, NOT in initiator's hand** ( :white_check_mark: )
   - **State of the system**: `cards = [CAT_CARD_2], initiator hand: [CAT_CARD_1, SKIP]`
   - **Expected output**: return = false
 
