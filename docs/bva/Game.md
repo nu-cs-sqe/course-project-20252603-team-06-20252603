@@ -20,11 +20,11 @@
 ### Method under test: `setup()`
 - **TC5: Setup With Minimum Players** (  ☑️  )
   - **State of the system**: game created with 2 players; default deck
-  - **Expected output**: each player has 8 cards (7 normal + 1 DEFUSE); deck contains 1 EXPLODING_KITTEN
+  - **Expected output**: each player has 7 cards (6 normal + 1 DEFUSE); deck contains 1 EXPLODING_KITTEN
 
 - **TC6: Setup With Maximum Players** ( ☑️ )
   - **State of the system**: game created with 5 players; default deck
-  - **Expected output**: each player has 8 cards (7 normal + 1 DEFUSE); deck contains 4 EXPLODING_KITTENs
+  - **Expected output**: each player has 7 cards (6 normal + 1 DEFUSE); deck contains 4 EXPLODING_KITTENs
 
 ### Method under test: `draw(Player player, Deck deck)`
 - **TC7: Draw From Deck With One Card** ( ☑️ )
