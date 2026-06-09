@@ -199,10 +199,10 @@
   - **State of the system**: `cards = [CAT_CARD_3, CAT_CARD_2, CAT_CARD_4], initiator hand: [CAT_CARD_3]`
   - **Expected output**: return = false
 
-- **TC: card list has three same cards, initiator hand has all three** ( :x: )
+- **TC: card list has three same cards, initiator hand has all three** ( :white_check_mark: )
   - **State of the system**: ```cards = [CAT_CARD_4, CAT_CARD_4, CAT_CARD_4], 
  initiator hand: [CAT_CARD_4, ATTACK, CAT_CARD_4, CAT_CARD_4, SHUFFLE, SKIP]```
-  - **Expected output**: return = false
+  - **Expected output**: return = true
 
 ### Method under test: `isValidMove(List<Card> cards, Player initiator, Optional<Player> target)`
 - **TC: empty card list** ( :white-check-mark: )
