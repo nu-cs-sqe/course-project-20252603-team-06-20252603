@@ -33,7 +33,8 @@ public class GameTests {
             "2, 1",
             "5, 4"
     })
-    public void setup_ValidNumPlayers_DealsCorrectCardsAndKittens(int playerCount, int expectedKittens) {
+    public void setup_ValidNumPlayers_DealsCorrectCardsAndKittens(
+            int playerCount, int expectedKittens) {
         Game game = new Game(playerCount);
         game.setup();
 
