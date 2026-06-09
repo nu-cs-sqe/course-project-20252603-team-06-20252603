@@ -1,10 +1,12 @@
 package ui;
 
 import domain.Card;
+import domain.CardType;
 import domain.Game;
 import domain.Player;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
@@ -15,6 +17,7 @@ public class Main {
         int playerCount = promptPlayerCount();
 
         // TODO: Game constructor is package-private — needs to be made public
+        // TODO: replace Game with GameController once merged
         // Game game = new Game(playerCount);
         // game.setup();
         // runGameLoop(game);
@@ -34,14 +37,11 @@ public class Main {
     }
 
     private static void runGameLoop(Game game) {
-        List<Player> players = game.getAlivePlayers();
-        int currentIndex = 0;
-
         while (game.getAlivePlayerCount() > 1) {
-            players = game.getAlivePlayers();
-            Player current = players.get(currentIndex % players.size());
+            List<Player> players = game.getAlivePlayers();
+            // TODO: replace currentPlayer lookup with gameController.getCurrentPlayer()
+            Player current = players.get(0);
             takeTurn(game, current);
-            currentIndex++;
         }
 
         System.out.println("\n" + game.getAlivePlayers().get(0).getPlayerName() + " wins!");
@@ -49,24 +49,32 @@ public class Main {
 
     private static void takeTurn(Game game, Player player) {
         System.out.println("\n--- " + player.getPlayerName() + "'s turn ---");
-        displayHand(player);
-        System.out.println("(p) Play a card   (d) Draw a card");
+        CardType lastPlayed = null;
 
-        String choice = scanner.nextLine().trim().toLowerCase();
-        if (choice.equals("p")) {
-            playCard(game, player);
-        } else {
-            // TODO: game.getDeck() is package-private — needs to be exposed for drawing
-            // game.draw(player, game.getDeck());
-            System.out.println(player.getPlayerName() + " drew a card.");
+        while (true) {
+            displayHand(player);
+            System.out.println("(p) Play a card   (e) End turn");
+            String choice = scanner.nextLine().trim().toLowerCase();
+
+            if (choice.equals("p")) {
+                lastPlayed = playCard(game, player);
+            } else {
+                if (lastPlayed != CardType.SKIP && lastPlayed != CardType.ATTACK) {
+                    // TODO: draw a card
+                    // game.draw(player, game.getDeck());
+                    System.out.println(player.getPlayerName() + " drew a card.");
+                }
+                // TODO: gameController.advanceTurn();
+                return;
+            }
         }
     }
 
-    private static void playCard(Game game, Player player) {
+    private static CardType playCard(Game game, Player player) {
         List<Card> hand = player.getHand();
         if (hand.isEmpty()) {
-            System.out.println("No cards to play — drawing instead.");
-            return;
+            System.out.println("No cards to play.");
+            return null;
         }
 
         for (int i = 0; i < hand.size(); i++) {
@@ -78,19 +86,21 @@ public class Main {
             int idx = Integer.parseInt(scanner.nextLine().trim()) - 1;
             if (idx < 0 || idx >= hand.size()) {
                 System.out.println("Invalid choice.");
-                return;
+                return null;
             }
             Card card = hand.get(idx);
             // TODO: route to the appropriate CardController based on card.getType()
-            System.out.println("Played: " + card.getType());
-            // Optional<List<Card>> result = controller.executeCardAction(...);
+            // Optional<List<Card>> result = CONTROLLERS.get(card.getType()).executeCardAction(game, player, Optional.empty());
             // displayResult(result);
+            System.out.println("Played: " + card.getType());
+            return card.getType();
         } catch (NumberFormatException e) {
             System.out.println("Invalid input.");
+            return null;
         }
     }
 
-    private static void displayResult(java.util.Optional<java.util.List<Card>> result) {
+    private static void displayResult(Optional<List<Card>> result) {
         if (result.isEmpty()) return;
         System.out.println("Result:");
         for (Card c : result.get()) {
