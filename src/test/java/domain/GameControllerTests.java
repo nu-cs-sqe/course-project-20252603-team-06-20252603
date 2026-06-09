@@ -417,10 +417,10 @@ public class GameControllerTests {
         Player player = game.getAlivePlayers().get(0);
 
         player.addCard(new Card(CardType.CAT_CARD_2));
-        player.addCard(new Card(CardType.SKIP));
+        player.addCard(new Card(CardType.SHUFFLE));
 
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new Card(CardType.SHUFFLE));
+        cards.add(new Card(CardType.SKIP));
         cards.add(new Card(CardType.CAT_CARD_2));
 
         assertFalse(controller.playerHasCards(player, cards));;
@@ -432,12 +432,12 @@ public class GameControllerTests {
         GameController controller = new GameController(game);
         Player player = game.getAlivePlayers().get(0);
 
-        player.addCard(new Card(CardType.CAT_CARD_2));
-        player.addCard(new Card(CardType.SKIP));
+        player.addCard(new Card(CardType.SHUFFLE));
+        player.addCard(new Card(CardType.SEE_THE_FUTURE));
 
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new Card(CardType.SHUFFLE));
-        cards.add(new Card(CardType.SEE_THE_FUTURE));
+        cards.add(new Card(CardType.CAT_CARD_2));
+        cards.add(new Card(CardType.SKIP));
 
         assertFalse(controller.playerHasCards(player, cards));;
     }
