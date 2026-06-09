@@ -187,7 +187,7 @@
   - **State of the system**: `cards = [CAT_CARD_2, SKIP], initiator hand: [CAT_CARD_2, SHUFFLE]`
   - **Expected output**: return = false
 
-- **TC: card list has two different cards, initiator hand has neither** ( :x: )
+- **TC: card list has two different cards, initiator hand has neither** ( :white_check_mark: )
   - **State of the system**: `cards = [CAT_CARD_2, SKIP], initiator hand: [SEE_THE_FUTURE, SHUFFLE]`
   - **Expected output**: return = false
 
