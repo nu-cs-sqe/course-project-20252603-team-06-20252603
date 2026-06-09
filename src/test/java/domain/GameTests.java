@@ -100,28 +100,21 @@ public class GameTests {
         assertEquals(playerCount, game.getTotalPlayerCount());
     }
 
-    @Test
-    public void getAlivePlayerCount_NoPlayersEliminated_ReturnsTwo() {
-        Game game = new Game(2);
-        assertEquals(2, game.getAlivePlayerCount());
-    }
+    @ParameterizedTest
+    @CsvSource({
+            "2, 0, 2",
+            "2, 1, 1",
+            "5, 4, 1"
+    })
+    public void getAlivePlayerCount_AfterEliminations_ReturnsCount(
+            int initialPlayers, int eliminations, int expectedRemaining) {
+        Game game = new Game(initialPlayers);
 
-    @Test
-    public void getAlivePlayerCount_OnePlayerEliminated_ReturnsOne() {
-        Game game = new Game(2);
-        Player playerToRemove = game.getAlivePlayers().get(0);
-        game.removeAlivePlayer(playerToRemove);
-        assertEquals(1, game.getAlivePlayerCount());
-    }
-
-    @Test
-    public void getAlivePlayerCount_LastPlayerRemaining_ReturnsOne() {
-        Game game = new Game(5);
-        for (int i = 0; i < 4; i++) {
-            Player playerToRemove = game.getAlivePlayers().get(0);
-            game.removeAlivePlayer(playerToRemove);
+        for (int i = 0; i < eliminations; i++) {
+            game.removeAlivePlayer(game.getAlivePlayers().get(0));
         }
-        assertEquals(1, game.getAlivePlayerCount());
+
+        assertEquals(expectedRemaining, game.getAlivePlayerCount());
     }
 
     @Test
