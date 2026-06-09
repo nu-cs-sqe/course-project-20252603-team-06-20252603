@@ -28,40 +28,24 @@ public class GameTests {
         assertEquals(validCount, game.getAlivePlayerCount());
     }
 
-    @Test
-    public void setup_MinimumNumPlayers() {
-        Game game = new Game(2);
+    @ParameterizedTest
+    @CsvSource({
+            "2, 1",
+            "5, 4"
+    })
+    public void setup_ValidNumPlayers_DealsCorrectCardsAndKittens(int playerCount, int expectedKittens) {
+        Game game = new Game(playerCount);
         game.setup();
 
         for (Player player : game.getTotalPlayers()) {
             assertEquals(7, player.getHandSize());
         }
 
-        int kittenCount = 0;
-        for (Card card : game.getDeck().getCards()) {
-            if (card.getType() == CardType.EXPLODING_KITTEN) {
-                kittenCount++;
-            }
-        }
-        assertEquals(1, kittenCount);
-    }
+        long actualKittens = game.getDeck().getCards().stream()
+                .filter(card -> card.getType() == CardType.EXPLODING_KITTEN)
+                .count();
 
-    @Test
-    public void setup_MaximumNumPlayers(){
-        Game game = new Game(5);
-        game.setup();
-
-        for (Player player : game.getTotalPlayers()) {
-            assertEquals(7, player.getHandSize());
-        }
-
-        int kittenCount = 0;
-        for (Card card : game.getDeck().getCards()) {
-            if (card.getType() == CardType.EXPLODING_KITTEN) {
-                kittenCount++;
-            }
-        }
-        assertEquals(4, kittenCount);
+        assertEquals(expectedKittens, actualKittens);
     }
 
     @Test
