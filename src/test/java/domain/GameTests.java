@@ -12,10 +12,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTests {
-    @Test
-    public void constructor_OneBelowMinNumPlayer_ThrowsException() {
+    @ParameterizedTest
+    @ValueSource(ints = {1, 6})
+    public void constructor_InvalidPlayerCount_ThrowsException(int invalidCount) {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Game(1);
+            new Game(invalidCount);
         });
     }
 
@@ -31,13 +32,6 @@ public class GameTests {
         Game game = new Game(5);
         assertEquals(5, game.getTotalPlayerCount());
         assertEquals(5, game.getAlivePlayerCount());
-    }
-
-    @Test
-    public void constructor_OneAboveMaxNumPlayers_MakesGame(){
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Game(6);
-        });
     }
 
     @Test
