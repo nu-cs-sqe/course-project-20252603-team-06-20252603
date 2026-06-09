@@ -163,7 +163,7 @@
   - **State of the system**: `cards = [], initiator hand: [CAT_CARD_1, SKIP]`
   - **Expected output**: IllegalArgumentException, "cards list cannot be empty"
 
-- **TC: card list has one card, in initiator's hand** ( :x: )
+- **TC: card list has one card, in initiator's hand** ( :white_check_mark: )
   - **State of the system**: `cards = [CAT_CARD_1], initiator hand: [CAT_CARD_1, SKIP]`
   - **Expected output**: return = true
 
