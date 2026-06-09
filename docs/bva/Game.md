@@ -92,32 +92,34 @@
 - **TC19: Returns Unmodifiable List** ( ☑️ )
   - **State of the system**: game created with 5 players
   - **Expected output**: attempting to `.clear()` the returned list throws `UnsupportedOperationException`
-       
-- **TC19: Remove Player From List With One Player** ( ☑️ )
+
+### Method under test: `removeAlivePlayer(Player player)`
+#### Suite A: Valid Removals
+- **TC20: Remove Player From List With One Player** ( ☑️ )
   - **State of the system**: game created with 2 players; one player already eliminated; one player remaining in `alivePlayers`
   - **Expected output**: `alivePlayers` is empty
 
-- **TC20: Remove Player From Empty List** ( ☑️ )
+- **TC21: Remove Player From Empty List** ( ☑️ )
   - **State of the system**: all players already eliminated; `alivePlayers` is empty
   - **Expected output**: throws an exception
 
-- **TC21: Remove Player Not In Alive List** (  ☑️ )
+- **TC22: Remove Player Not In Alive List** (  ☑️ )
   - **State of the system**: game created with 2 players; target player already eliminated
   - **Expected output**: throws an exception
-  - 
+  
 ### Method under test: `addAlivePlayer(Player player)`
-- **TC22: Add Player Back To List With No Alive Players** ( ☑️ )
+- **TC23: Add Player Back To List With No Alive Players** ( ☑️ )
   - **State of the system**: game created with 2 players; both players eliminated; `alivePlayers` is empty
   - **Expected output**: `alivePlayers` contains 1 player
 
-- **TC23: Add Player Back To List With Some Alive Players** ( ☑️ )
+- **TC24: Add Player Back To List With Some Alive Players** ( ☑️ )
   - **State of the system**: game created with 5 players; one player eliminated; 4 players in `alivePlayers`
   - **Expected output**: `alivePlayers` contains 5 players
 
-- **TC24: Add Player Not In Game** ( ☑️ )
+- **TC25: Add Player Not In Game** ( ☑️ )
   - **State of the system**: game created with 2 players; player being added was never in `totalPlayers`
   - **Expected output**: throws `IllegalArgumentException`
 
-- **TC25: Add Player Already Alive** ( ☑️ )
+- **TC26: Add Player Already Alive** ( ☑️ )
   - **State of the system**: game created with 2 players; no eliminations; target player is already in `alivePlayers`
   - **Expected output**: throws `IllegalArgumentException`
