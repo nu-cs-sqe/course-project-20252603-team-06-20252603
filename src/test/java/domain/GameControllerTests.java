@@ -380,6 +380,21 @@ public class GameControllerTests {
     }
 
     @Test
+    void playerHasCards_TwoSameCardsButOnlyHaveOneInHand_ReturnFalse() {
+        Game game = new Game(2);
+        GameController controller = new GameController(game);
+        Player player = game.getAlivePlayers().get(0);
+
+        player.addCard(new Card(CardType.CAT_CARD_1));
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new Card(CardType.CAT_CARD_1));
+        cards.add(new Card(CardType.CAT_CARD_1));
+
+        assertFalse(controller.playerHasCards(player, cards));;
+    }
+
+    @Test
     void isValidMove_EmptyCards_ReturnsFalse() {
         Game game = new Game(2);
         GameController controller = new GameController(game);

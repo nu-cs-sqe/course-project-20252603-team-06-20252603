@@ -175,7 +175,7 @@
   - **State of the system**: `cards = [CAT_CARD_2], initiator hand: []`
   - **Expected output**: return = false
 
-- **TC: card list has two same cards, initiator hand only has one of those cards** ( :x: )
+- **TC: card list has two same cards, initiator hand only has one of those cards** ( :white_check_mark: )
   - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1], initiator hand: [CAT_CARD_1]`
   - **Expected output**: return = false
 
