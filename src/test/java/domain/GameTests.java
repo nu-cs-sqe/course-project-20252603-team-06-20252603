@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GameTests {
     @ParameterizedTest
     @ValueSource(ints = {1, 6})
-    public void constructor_InvalidPlayerCount_ThrowsException(int invalidCount) {
+    void constructor_InvalidPlayerCount_ThrowsException(int invalidCount) {
         assertThrows(IllegalArgumentException.class, () -> {
             new Game(invalidCount);
         });
@@ -22,7 +22,7 @@ public class GameTests {
 
     @ParameterizedTest
     @ValueSource(ints = {2, 5})
-    public void constructor_ValidPlayerCount_MakesGame(int validCount) {
+    void constructor_ValidPlayerCount_MakesGame(int validCount) {
         Game game = new Game(validCount);
         assertEquals(validCount, game.getTotalPlayerCount());
         assertEquals(validCount, game.getAlivePlayerCount());
@@ -33,7 +33,7 @@ public class GameTests {
             "2, 1",
             "5, 4"
     })
-    public void setup_ValidNumPlayers_DealsCorrectCardsAndKittens(
+    void setup_ValidNumPlayers_DealsCorrectCardsAndKittens(
             int playerCount, int expectedKittens) {
         Game game = new Game(playerCount);
         game.setup();
@@ -50,7 +50,7 @@ public class GameTests {
     }
 
     @Test
-    public void draw_FromDeckWithOneCard(){
+    void draw_FromDeckWithOneCard(){
         Game game = new Game(5);
 
         Deck deck = new Deck(1);
@@ -67,7 +67,7 @@ public class GameTests {
     }
 
     @Test
-    public void draw_FromEmptyDeck(){
+    void draw_FromEmptyDeck(){
         Game game = new Game(5);
         Deck deck = new Deck(0);
         Player player = new Player("Test Name");
@@ -78,7 +78,7 @@ public class GameTests {
     }
 
     @Test
-    public void draw_FromDeckWithManyCards(){
+    void draw_FromDeckWithManyCards(){
         Game game = new Game(5);
 
         Deck deck = new Deck();
@@ -96,7 +96,7 @@ public class GameTests {
 
     @ParameterizedTest
     @ValueSource(ints = {2, 5})
-    public void getTotalPlayerCount_ValidBounds_ReturnsCorrectCount(int playerCount) {
+    void getTotalPlayerCount_ValidBounds_ReturnsCorrectCount(int playerCount) {
         Game game = new Game(playerCount);
         assertEquals(playerCount, game.getTotalPlayerCount());
     }
@@ -107,7 +107,7 @@ public class GameTests {
             "2, 1, 1",
             "5, 4, 1"
     })
-    public void getAlivePlayerCount_AfterEliminations_ReturnsCount(
+    void getAlivePlayerCount_AfterEliminations_ReturnsCount(
             int initialPlayers, int eliminations, int expectedRemaining) {
         Game game = new Game(initialPlayers);
 
@@ -119,21 +119,21 @@ public class GameTests {
     }
 
     @Test
-    public void getTotalPlayers_ThreePlayers_ReturnsAllThreePlayers() {
+    void getTotalPlayers_ThreePlayers_ReturnsAllThreePlayers() {
         Game game = new Game(2);
         List<Player> totalPlayers = game.getTotalPlayers();
         assertEquals(2, totalPlayers.size());
     }
 
     @Test
-    public void getAlivePlayers_NoPlayersEliminated_ReturnsAllPlayers() {
+    void getAlivePlayers_NoPlayersEliminated_ReturnsAllPlayers() {
         Game game = new Game(5);
         List<Player> alivePlayers = game.getAlivePlayers();
         assertEquals(5, alivePlayers.size());
     }
 
     @Test
-    public void getAlivePlayers_OnePlayerEliminated_ReturnsFourPlayers() {
+    void getAlivePlayers_OnePlayerEliminated_ReturnsFourPlayers() {
         Game game = new Game(5);
         Player playerToRemove = game.getAlivePlayers().get(0);
         game.removeAlivePlayer(playerToRemove);
@@ -142,7 +142,7 @@ public class GameTests {
     }
 
     @Test
-    public void removeAlivePlayer_ManyPlayers_RemovesPlayer() {
+    void removeAlivePlayer_ManyPlayers_RemovesPlayer() {
         Game game = new Game(5);
         Player playerToRemove = game.getAlivePlayers().get(0);
         game.removeAlivePlayer(playerToRemove);
@@ -151,7 +151,7 @@ public class GameTests {
     }
 
     @Test
-    public void removeAlivePlayer_OnePlayer_EmptiesList() {
+    void removeAlivePlayer_OnePlayer_EmptiesList() {
         Game game = new Game(2);
         game.removeAlivePlayer(game.getAlivePlayers().get(0));
         game.removeAlivePlayer(game.getAlivePlayers().get(0));
@@ -159,7 +159,7 @@ public class GameTests {
     }
 
     @Test
-    public void removeAlivePlayer_EmptyList_ThrowsException() {
+    void removeAlivePlayer_EmptyList_ThrowsException() {
         Game game = new Game(2);
         game.removeAlivePlayer(game.getAlivePlayers().get(0));
         game.removeAlivePlayer(game.getAlivePlayers().get(0));
@@ -170,7 +170,7 @@ public class GameTests {
     }
 
     @Test
-    public void removeAlivePlayer_PlayerNotInAliveList_ThrowsException() {
+    void removeAlivePlayer_PlayerNotInAliveList_ThrowsException() {
         Game game = new Game(2);
         Player playerToRemove = game.getAlivePlayers().get(0);
         game.removeAlivePlayer(playerToRemove);
@@ -180,7 +180,7 @@ public class GameTests {
     }
 
     @Test
-    public void addAlivePlayer_NoAlivePlayers_AddsPlayer() {
+    void addAlivePlayer_NoAlivePlayers_AddsPlayer() {
         Game game = new Game(2);
         Player playerToAdd = game.getAlivePlayers().get(0);
         game.removeAlivePlayer(game.getAlivePlayers().get(0));
@@ -190,7 +190,7 @@ public class GameTests {
     }
 
     @Test
-    public void addAlivePlayer_SomeAlivePlayers_AddsPlayer() {
+    void addAlivePlayer_SomeAlivePlayers_AddsPlayer() {
         Game game = new Game(5);
         Player playerToAdd = game.getAlivePlayers().get(0);
         game.removeAlivePlayer(playerToAdd);
@@ -199,7 +199,7 @@ public class GameTests {
     }
 
     @Test
-    public void addAlivePlayer_PlayerNotInGame_ThrowsException() {
+    void addAlivePlayer_PlayerNotInGame_ThrowsException() {
         Game game = new Game(2);
         Player extraPlayer = new Player("Extra");
         assertThrows(IllegalArgumentException.class, () -> {
@@ -208,7 +208,7 @@ public class GameTests {
     }
 
     @Test
-    public void addAlivePlayer_PlayerAlreadyAlive_ThrowsException() {
+    void addAlivePlayer_PlayerAlreadyAlive_ThrowsException() {
         Game game = new Game(2);
         Player alivePlayer = game.getAlivePlayers().get(0);
         assertThrows(IllegalArgumentException.class, () -> {
