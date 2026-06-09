@@ -20,18 +20,12 @@ public class GameTests {
         });
     }
 
-    @Test
-    public void constructor_MinNumPlayers_MakesGame(){
-        Game game = new Game(2);
-        assertEquals(2, game.getTotalPlayerCount());
-        assertEquals(2, game.getAlivePlayerCount());
-    }
-
-    @Test
-    public void constructor_MaxNumPlayers_MakesGame(){
-        Game game = new Game(5);
-        assertEquals(5, game.getTotalPlayerCount());
-        assertEquals(5, game.getAlivePlayerCount());
+    @ParameterizedTest
+    @ValueSource(ints = {2, 5})
+    public void constructor_ValidPlayerCount_MakesGame(int validCount) {
+        Game game = new Game(validCount);
+        assertEquals(validCount, game.getTotalPlayerCount());
+        assertEquals(validCount, game.getAlivePlayerCount());
     }
 
     @Test
