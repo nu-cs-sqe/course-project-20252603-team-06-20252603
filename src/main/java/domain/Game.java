@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-public class Game {
+public final class Game {
     private final Deck deck;
     private final List<Player> totalPlayers;
     private final List<Player> alivePlayers;
