@@ -171,7 +171,7 @@
   - **State of the system**: `cards = [CAT_CARD_2], initiator hand: [CAT_CARD_1, SKIP]`
   - **Expected output**: return = false
 
-- **TC: card list has one card, initiator's hand is empty** ( :x: )
+- **TC: card list has one card, initiator's hand is empty** ( :white_check_mark: )
   - **State of the system**: `cards = [CAT_CARD_2], initiator hand: []`
   - **Expected output**: return = false
 
