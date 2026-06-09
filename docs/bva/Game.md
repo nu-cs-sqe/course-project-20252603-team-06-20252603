@@ -71,11 +71,11 @@
   - **Expected output**: returned list contains exactly the 5 players created at construction
 
 ### Method under test: `getAlivePlayers()`
-- **TC16: Returns All Players When None Eliminated** ( ☑️ )
+- **TC17: Returns All Players When None Eliminated** ( ☑️ )
   - **State of the system**: game created with 5 players; no eliminations
   - **Expected output**: returned list contains all 5 players
 
-- **TC17: Returns Reduced List After Elimination** ( ☑️ )
+- **TC18: Returns Reduced List After Elimination** ( ☑️ )
   - **State of the system**: game created with 5 players; one player removed from `alivePlayers`
   - **Expected output**: returned list contains the 4 remaining players
        
