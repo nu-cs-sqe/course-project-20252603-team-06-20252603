@@ -79,6 +79,7 @@
   - **Expected output**: returned list contains exactly the 5 players created at construction
 
 ### Method under test: `getAlivePlayers()`
+#### Suite A: List Size Boundaries
 - **TC17: Returns All Players When None Eliminated** ( ☑️ )
   - **State of the system**: game created with 5 players; no eliminations
   - **Expected output**: returned list contains all 5 players
