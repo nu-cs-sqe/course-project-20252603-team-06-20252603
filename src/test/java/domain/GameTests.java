@@ -49,21 +49,18 @@ public class GameTests {
         assertEquals(expectedKittens, actualKittens);
     }
 
-    @Test
-    void draw_FromDeckWithOneCard(){
+    @ParameterizedTest
+    @ValueSource(ints = {1, 20})
+    void draw_FromValidDeck_UpdatesHandAndDeck(int deckSize) {
         Game game = new Game(5);
-
-        Deck deck = new Deck(1);
-        Card deckOnlyCard = deck.getCards().get(0);
-        int deckOriginalSize = deck.count();
-
+        Deck deck = new Deck(deckSize);
+        Card topCard = deck.getCards().get(0);
         Player player = new Player("Test Name");
-        assertEquals(0, player.getHandSize());
 
         game.draw(player, deck);
 
-        assertTrue(player.hasCard(deckOnlyCard.getType()));
-        assertEquals(deckOriginalSize - 1, deck.count());
+        assertTrue(player.hasCard(topCard.getType()));
+        assertEquals(deckSize - 1, deck.count());
     }
 
     @Test
@@ -75,23 +72,6 @@ public class GameTests {
         assertThrows(IllegalArgumentException.class, () -> {
             game.draw(player, deck);
         });
-    }
-
-    @Test
-    void draw_FromDeckWithManyCards(){
-        Game game = new Game(5);
-
-        Deck deck = new Deck();
-        Card deckTopCard = deck.getCards().get(0);
-        int deckOriginalSize = deck.count();
-
-        Player player = new Player("Test Name");
-        assertEquals(0, player.getHandSize());
-
-        game.draw(player, deck);
-
-        assertTrue(player.hasCard(deckTopCard.getType()));
-        assertEquals(deckOriginalSize - 1, deck.count());
     }
 
     @ParameterizedTest
