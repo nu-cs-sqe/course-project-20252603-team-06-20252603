@@ -205,7 +205,7 @@ public class GameControllerTests {
     void cardsAllMatchingCatCards_SingleCatCard_ReturnsTrue() {
         GameController controller = new GameController(null);
         Card mockCard = EasyMock.createMock(Card.class);
-        EasyMock.expect(mockCard.getType()).andReturn(CardType.CAT_CARD_1);
+        EasyMock.expect(mockCard.getType()).andReturn(CardType.CAT_CARD_1).anyTimes();
         EasyMock.replay(mockCard);
 
         ArrayList<Card> cards = new ArrayList<>();
