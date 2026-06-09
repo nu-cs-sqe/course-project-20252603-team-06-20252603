@@ -123,6 +123,14 @@ public class GameTests {
     }
 
     @Test
+    void getAlivePlayers_ReturnsUnmodifiableList() {
+        Game game = new Game(5);
+        List<Player> players = game.getAlivePlayers();
+
+        assertThrows(UnsupportedOperationException.class, players::clear);
+    }
+
+    @Test
     void removeAlivePlayer_ManyPlayers_RemovesPlayer() {
         Game game = new Game(5);
         Player playerToRemove = game.getAlivePlayers().get(0);

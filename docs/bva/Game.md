@@ -87,6 +87,11 @@
 - **TC18: Returns Reduced List After Elimination** ( ☑️ )
   - **State of the system**: game created with 5 players; one player removed from `alivePlayers`
   - **Expected output**: returned list contains the 4 remaining players
+
+#### Suite B: Encapsulation Checks
+- **TC19: Returns Unmodifiable List** ( ☑️ )
+  - **State of the system**: game created with 5 players
+  - **Expected output**: attempting to `.clear()` the returned list throws `UnsupportedOperationException`
        
 - **TC19: Remove Player From List With One Player** ( ☑️ )
   - **State of the system**: game created with 2 players; one player already eliminated; one player remaining in `alivePlayers`
