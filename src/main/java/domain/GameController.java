@@ -87,6 +87,10 @@ public class GameController {
         return true;
     }
 
+    public boolean playerHasCards(Player initiator, ArrayList<Card> cards) {
+        throw new IllegalArgumentException("cards list cannot be empty");
+    }
+
     public boolean isValidMove(ArrayList<Card> cards, Player initiator, Optional<Player> target) {
         ArrayList<CardType> catCardTypes = new ArrayList<CardType>(List.of(
                 CardType.CAT_CARD_1,

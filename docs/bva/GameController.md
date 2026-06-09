@@ -158,8 +158,8 @@
     - **State of the system**: `cards = [CAT_CARD_1, CAT_CARD_1, CAT_CARD_2]`
     - **Expected output**: `false`
 
-### Method under test: `playerHasCards(PLayer initiator, List<Card> cards)`
-- **TC: empty card list** ( :x: )
+### Method under test: `playerHasCards(Player initiator, List<Card> cards)`
+- **TC: empty card list** ( :white_check_mark: )
   - **State of the system**: `cards = [], initiator hand: [CAT_CARD_1, SKIP]`
   - **Expected output**: IllegalArgumentException, "cards list cannot be empty"
 

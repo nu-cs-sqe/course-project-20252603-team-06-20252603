@@ -322,6 +322,21 @@ public class GameControllerTests {
         EasyMock.verify(mockCatCard1, mockCatCard2);
     }
 
+    @Test
+    void playerHasCards_EmptyCards_IllegalArgumentException() {
+        Game game = new Game(2);
+        GameController controller = new GameController(game);
+        Player player = game.getAlivePlayers().get(0);
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.playerHasCards(player, cards);
+        });
+
+        assertEquals("cards list cannot be empty",exception.getMessage());
+    }
+
 
     @Test
     void isValidMove_EmptyCards_ReturnsFalse() {
