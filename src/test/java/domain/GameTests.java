@@ -98,11 +98,11 @@ public class GameTests {
         assertEquals(expectedRemaining, game.getAlivePlayerCount());
     }
 
-    @Test
-    void getTotalPlayers_ThreePlayers_ReturnsAllThreePlayers() {
-        Game game = new Game(2);
-        List<Player> totalPlayers = game.getTotalPlayers();
-        assertEquals(2, totalPlayers.size());
+    @ParameterizedTest
+    @ValueSource(ints = {2, 5})
+    void getTotalPlayers_ValidBounds_ReturnsCorrectListSize(int count) {
+        Game game = new Game(count);
+        assertEquals(count, game.getTotalPlayers().size());
     }
 
     @Test

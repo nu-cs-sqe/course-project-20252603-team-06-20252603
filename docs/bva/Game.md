@@ -62,9 +62,13 @@
   - **Expected output**: `getAlivePlayerCount() == 1`
 
 ### Method under test: `getTotalPlayers()`
-- **TC15: Returns Correct Players** ( ☑️  )
+- **TC15: Returns Correct Players When Minimum Players** ( ☑️  )
   - **State of the system**: game created with 2 players
   - **Expected output**: returned list contains exactly the 2 players created at construction
+
+- **TC16: Returns Correct Players When Maximum Players** ( ☑️  )
+  - **State of the system**: game created with 5 players
+  - **Expected output**: returned list contains exactly the 5 players created at construction
 
 ### Method under test: `getAlivePlayers()`
 - **TC16: Returns All Players When None Eliminated** ( ☑️ )
