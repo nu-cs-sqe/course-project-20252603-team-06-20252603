@@ -146,4 +146,36 @@ public class DrawTwoControllerTests {
 
         EasyMock.verify(mockGame, mockInitiator, mockDeck);
     }
+
+    @Test
+    public void executeCardAction_twoCardDeckTwoCardHand_cardsDrawn() {
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockInitiator = EasyMock.createMock(Player.class);
+        Deck mockDeck = EasyMock.createMock(Deck.class);
+
+        Card defuse1 = new Card(CardType.DEFUSE);
+        Card defuse2 = new Card(CardType.DEFUSE);
+        Card skip = new Card(CardType.SKIP);
+        Card explodingKitten = new Card(CardType.EXPLODING_KITTEN);
+
+        EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
+        EasyMock.expect(mockDeck.count()).andReturn(2);
+        EasyMock.expect(mockDeck.takeTopCard()).andReturn(skip);
+        EasyMock.expect(mockDeck.takeTopCard()).andReturn(explodingKitten);
+
+        mockInitiator.addCard(skip);
+        EasyMock.expectLastCall().once();
+        mockInitiator.addCard(explodingKitten);
+        EasyMock.expectLastCall().once();
+
+        EasyMock.replay(mockGame, mockInitiator, mockDeck);
+
+        DrawTwoController controller = new DrawTwoController();
+        Optional<List<Card>> result = controller.executeCardAction(
+                mockGame, mockInitiator, Optional.empty());
+
+        assertTrue(result.isEmpty());
+
+        EasyMock.verify(mockGame, mockInitiator, mockDeck);
+    }
 }
