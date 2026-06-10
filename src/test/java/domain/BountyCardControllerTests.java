@@ -76,4 +76,24 @@ public class BountyCardControllerTests {
     assertTrue(result.isEmpty());
     EasyMock.verify(game, user, other);
 }
+
+@Test
+public void executeCardAction_MultipleOtherPlayersAllZeroCards_ReturnsEmpty() {
+    Game game = EasyMock.createMock(Game.class);
+    Player user = EasyMock.createMock(Player.class);
+    Player other1 = EasyMock.createMock(Player.class);
+    Player other2 = EasyMock.createMock(Player.class);
+
+    EasyMock.expect(game.getAlivePlayers()).andReturn(List.of(user, other1, other2));
+    EasyMock.expect(other1.getHandSize()).andReturn(0);
+    EasyMock.expect(other2.getHandSize()).andReturn(0);
+
+    EasyMock.replay(game, user, other1, other2);
+
+    BountyCardController controller = new BountyCardController();
+    Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
+
+    assertTrue(result.isEmpty());
+    EasyMock.verify(game, user, other1, other2);
+}
 }
