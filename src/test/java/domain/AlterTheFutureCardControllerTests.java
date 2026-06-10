@@ -339,5 +339,35 @@ public class AlterTheFutureCardControllerTests {
         assertTrue(result.isEmpty());
         EasyMock.verify(game, user, deck);
     }
+    @Test
+    public void executeCardAction_MoreThanThreeDeckCards_OnlyTopThreeReordered() {
+        AlterTheFutureCardController controller = new AlterTheFutureCardController(
+            cards -> new ArrayList<>(List.of(cards.get(2), cards.get(1), cards.get(0)))
+        );
+        Game game = EasyMock.createMock(Game.class);
+        Player user = EasyMock.createMock(Player.class);
+        Deck deck = EasyMock.createMock(Deck.class);
+        Card cardA = new Card(CardType.CAT_CARD_1);
+        Card cardB = new Card(CardType.CAT_CARD_2);
+        Card cardC = new Card(CardType.CAT_CARD_3);
+        Card cardD = new Card(CardType.CAT_CARD_4);
+        Card cardE = new Card(CardType.SKIP);
+
+        EasyMock.expect(game.getDeck()).andReturn(deck);
+        EasyMock.expect(deck.getCards()).andReturn(new ArrayList<>(List.of(cardA, cardB, cardC, cardD, cardE)));
+        deck.discard(cardA);
+        deck.discard(cardB);
+        deck.discard(cardC);
+        deck.insert(cardC, 0);
+        deck.insert(cardB, 1);
+        deck.insert(cardA, 2);
+
+        EasyMock.replay(game, user, deck);
+
+        Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
+
+        assertTrue(result.isEmpty());
+        EasyMock.verify(game, user, deck);
+    }
 }
 
