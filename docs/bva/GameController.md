@@ -50,7 +50,7 @@
   - **State of the system**: alivePlayer list is initialized, newCurrentPlayerTurnsLeft = 0
   - **Expected output**: this.currentPlayerTurnsLeft = 0
 
-- **TC: Turn count at amount above minimum possible boundary
+- **TC: Turn count at amount above minimum possible boundary ( :white-check-mark: )
   - **State of the system**: alivePlayer list is initialized, newCurrentPlayerTurnsLeft = 4
   - **Expected output**: this.currentPlayerTurnsLeft = 4
 
@@ -64,8 +64,8 @@
   - **Expected output**: this.NextPlayerTurnsLeft = 0
 
 - **TC: Turn count at amount above minimum possible boundary
-  - **State of the system**: alivePlayer list is initialized, newNextPlayerTurnsLeft = 4
-  - **Expected output**: this.NextPlayerTurnsLeft = 4
+  - **State of the system**: alivePlayer list is initialized, newNextPlayerTurnsLeft = 7
+  - **Expected output**: this.NextPlayerTurnsLeft = 7
 
 ### Method under test: `setPlayerOrder(List<Player> playerOrder)`
 - **TC11: set order to an illegally empty list** ( :white-check-mark: )
