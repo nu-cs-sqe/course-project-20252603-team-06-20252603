@@ -7,7 +7,7 @@
     - **State of the system**: deck has 1 card
     - **Expected output**: list with that 1 card returned
 
-- **TC3: deck has 2 cards** ( :x: )
+- **TC3: deck has 2 cards** ( :white-check-mark: )
     - **State of the system**: deck has 2 cards
     - **Expected output**: list with those 2 cards returned
 
