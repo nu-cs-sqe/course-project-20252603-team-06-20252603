@@ -32,6 +32,6 @@ output: Optional.empty() (Optional<List<Card>>)
     - **State of the system**: hand: [DEFUSE, DEFUSE], deck: [SKIP, EXPLODING_KITTEN]
     - **Expected output**: hand: [DEFUSE, DEFUSE, SKIP, EXPLODING_KITTEN], deck: []
 
-- **TC7: executeCardAction_fullDeckEmptyHand_cardsDrawn ** ( :x: or :white_check_mark: )
+- **TC7: executeCardAction_fullDeckEmptyHand_cardsDrawn ** ( :white_check_mark: )
     - **State of the system**: hand: [], deck: [SKIP, DEFUSE, ATTACK ... SKIP] (28 cards total for 2 players)
     - **Expected output**: hand: [SKIP, DEFUSE], deck: [ATTACK ... SKIP]
