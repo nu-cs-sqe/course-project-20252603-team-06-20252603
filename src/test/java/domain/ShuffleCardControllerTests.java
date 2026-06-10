@@ -49,4 +49,24 @@ public class ShuffleCardControllerTests {
         EasyMock.verify(game, deck, initiator);
     }
 
+    @Test
+    public void executeCardAction_OnDeckWithManyCards(){
+        Game game = EasyMock.createMock(Game.class);
+        Deck deck = EasyMock.createMock(Deck.class);
+        Player initiator = EasyMock.createMock(Player.class);
+
+        EasyMock.expect(game.getDeck()).andReturn(deck);
+        EasyMock.expect(deck.count()).andReturn(15);
+        deck.shuffle();
+
+        EasyMock.replay(game, deck, initiator);
+
+        ShuffleCardController controller = new ShuffleCardController();
+        Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
+
+        assertTrue(result.isEmpty());
+
+        EasyMock.verify(game, deck, initiator);
+    }
+
 }
