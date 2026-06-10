@@ -36,5 +36,11 @@ public class AlterTheFutureCardController implements CardController {
     }
 
     void applyReorder(Deck deck, List<Card> original, List<Card> reordered) {
+        for (Card card : original) {
+            deck.discard(card);
+        }
+        for (int i = 0; i < reordered.size(); i++) {
+            deck.insert(reordered.get(i), i);
+        }
     }
 }
