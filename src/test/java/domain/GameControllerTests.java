@@ -880,7 +880,7 @@ public class GameControllerTests {
     }
 
     @Test
-    void advanceTurn_5PlayersMaxBoundary_CurrentIsIndex4AndNextIsIndex0() {
+    void advanceTurn_MaxPlayersNextTurns10_CurrentIndex4NextIndex0TurnsMovedFromNextToCurrent() {
         Game mockGame = mock(Game.class);
 
         expect(mockGame.getAlivePlayerCount()).andReturn(5).anyTimes();
