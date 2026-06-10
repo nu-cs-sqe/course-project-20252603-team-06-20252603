@@ -97,7 +97,7 @@ public class GameController {
     public void advanceTurn() {
         this.currentPlayerIndex = this.nextPlayerIndex;
         this.nextPlayerIndex = (this.currentPlayerIndex + 1) % this.game.getAlivePlayerCount();
-        this.currentPlayerTurnsLeft = 1;
+        this.currentPlayerTurnsLeft = this.nextPlayerTurnsLeft;
         this.nextPlayerTurnsLeft = 1;
     }
 

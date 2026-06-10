@@ -796,7 +796,7 @@ public class GameControllerTests {
     }
 
     @Test
-    void advanceTurn_CurrentIsIndex2_CurrentIsIndex3AndNextIsIndex0() {
+    void advanceTurn_CurrentIndex2NextTurns2_CurrentIndex3NextIndex0TurnsMovedFromNextToCurrent() {
         Game mockGame = mock(Game.class);
 
         expect(mockGame.getAlivePlayerCount()).andReturn(4).anyTimes();
@@ -806,6 +806,8 @@ public class GameControllerTests {
 
         controller.setCurrentPlayerIndex(2);
         controller.setNextPlayerIndex(3);
+        controller.setCurrentPlayerTurnsLeft(0);
+        controller.setNextPlayerTurnsLeft(2);
 
         controller.advanceTurn();
 
@@ -813,6 +815,10 @@ public class GameControllerTests {
                 "Current player should advance to index 3");
         assertEquals(0, controller.getNextPlayerIndex(),
                 "Next player should advance to index 0");
+        assertEquals(2, controller.getCurrentPlayerTurnsLeft(),
+                "Current player moves less should now be 2");
+        assertEquals(1, controller.getNextPlayerTurnsLeft(),
+                "Next player moves less should be reset to 1");
 
         verify(mockGame);
     }
