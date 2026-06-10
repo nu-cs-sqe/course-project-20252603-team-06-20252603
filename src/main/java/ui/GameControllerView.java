@@ -1,0 +1,36 @@
+package ui;
+
+import domain.Card;
+import domain.Player;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class GameControllerView {
+    private final Scanner scanner;
+
+    public GameControllerView() {
+        this.scanner = new Scanner(System.in);
+    }
+
+    public void displayCurrentPlayerAndCardsInHand(Player player) {
+        System.out.printf("Current Player: %s%n", player.getPlayerName());
+        System.out.println("You have these cards in your hand:");
+        ArrayList<Card> hand = player.getHand();
+        for (int i = 0; i < hand.size();  i++) {
+            Card card = hand.get(i);
+            System.out.printf("%d | %s%n", i, card.getType());
+        }
+    }
+
+    public void displayInvalidChoice(String userChoice) {
+        System.out.printf("\"%s\" is not a valid choice. Please try again.%n", userChoice);
+    }
+
+    public String getCardChoiceOrDraw() {
+        System.out.println("Enter the number before the card to play the card");
+        System.out.println("numbers separated by commas to play multiple cards at once (e.g. 0,2,5)");
+        System.out.println("or d to draw a card and end turn");
+        return scanner.nextLine();
+    }
+}

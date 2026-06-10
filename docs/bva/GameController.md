@@ -279,7 +279,7 @@
   - **Expected output**: `current` becomes index 0, `next` becomes index 1.
 
 ### Method under test: `takeTurn()`
-- **TC: input is empty, invalid choice**
+- **TC: input is empty, invalid choice** ( :white-check-mark: )
   - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "", `currentPlayerTurnsLeft` = 1
   - **Expected output**: function to output invalid choice is called
 

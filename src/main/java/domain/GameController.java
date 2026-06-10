@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.EnumMap;
 import java.util.Optional;
 
+import ui.GameControllerView;
+
 public class GameController {
     private Game game;
     private int currentPlayerIndex;
@@ -122,6 +124,14 @@ public class GameController {
         } else {
             return false;
         }
+    }
+
+    public void takeTurn(GameControllerView controllerView) {
+        Player currentPlayer = game.getAlivePlayers().get(currentPlayerIndex);
+
+        controllerView.displayCurrentPlayerAndCardsInHand(currentPlayer);
+        String userChoice = controllerView.getCardChoiceOrDraw();
+        controllerView.displayInvalidChoice(userChoice);
     }
 
 }

@@ -10,6 +10,8 @@ import java.util.Optional;
 import static org.easymock.EasyMock.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import ui.GameControllerView;
+
 
 public class GameControllerTests {
     @Test
@@ -166,7 +168,7 @@ public class GameControllerTests {
     }
 
     @Test
-    void isTargetValid_NonCatCardAndValidTarget_ReturnsFalse(){
+    void isTargetValid_NonCatCardAndValidTarget_ReturnsFalse() {
         GameController controller = new GameController(null);
         Player initiator = EasyMock.createMock(Player.class);
         Player target = EasyMock.createMock(Player.class);
@@ -179,7 +181,7 @@ public class GameControllerTests {
     }
 
     @Test
-    void isTargetValid_CatCardTargetIsSelf_ReturnsFalse(){
+    void isTargetValid_CatCardTargetIsSelf_ReturnsFalse() {
         GameController controller = new GameController(null);
         Player initiator = EasyMock.createMock(Player.class);
 
@@ -334,7 +336,7 @@ public class GameControllerTests {
             controller.playerHasCards(player, cards);
         });
 
-        assertEquals("cards list cannot be empty",exception.getMessage());
+        assertEquals("cards list cannot be empty", exception.getMessage());
     }
 
     @Test
@@ -349,7 +351,8 @@ public class GameControllerTests {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new Card(CardType.CAT_CARD_1));
 
-        assertTrue(controller.playerHasCards(player, cards));;
+        assertTrue(controller.playerHasCards(player, cards));
+        ;
     }
 
     @Test
@@ -364,7 +367,8 @@ public class GameControllerTests {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new Card(CardType.CAT_CARD_2));
 
-        assertFalse(controller.playerHasCards(player, cards));;
+        assertFalse(controller.playerHasCards(player, cards));
+        ;
     }
 
     @Test
@@ -376,7 +380,8 @@ public class GameControllerTests {
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new Card(CardType.CAT_CARD_2));
 
-        assertFalse(controller.playerHasCards(player, cards));;
+        assertFalse(controller.playerHasCards(player, cards));
+        ;
     }
 
     @Test
@@ -391,7 +396,8 @@ public class GameControllerTests {
         cards.add(new Card(CardType.CAT_CARD_1));
         cards.add(new Card(CardType.CAT_CARD_1));
 
-        assertFalse(controller.playerHasCards(player, cards));;
+        assertFalse(controller.playerHasCards(player, cards));
+        ;
     }
 
     @Test
@@ -407,7 +413,8 @@ public class GameControllerTests {
         cards.add(new Card(CardType.CAT_CARD_2));
         cards.add(new Card(CardType.CAT_CARD_2));
 
-        assertTrue(controller.playerHasCards(player, cards));;
+        assertTrue(controller.playerHasCards(player, cards));
+        ;
     }
 
     @Test
@@ -423,7 +430,8 @@ public class GameControllerTests {
         cards.add(new Card(CardType.SKIP));
         cards.add(new Card(CardType.CAT_CARD_2));
 
-        assertFalse(controller.playerHasCards(player, cards));;
+        assertFalse(controller.playerHasCards(player, cards));
+        ;
     }
 
     @Test
@@ -439,7 +447,8 @@ public class GameControllerTests {
         cards.add(new Card(CardType.CAT_CARD_2));
         cards.add(new Card(CardType.SKIP));
 
-        assertFalse(controller.playerHasCards(player, cards));;
+        assertFalse(controller.playerHasCards(player, cards));
+        ;
     }
 
     @Test
@@ -457,7 +466,8 @@ public class GameControllerTests {
         cards.add(new Card(CardType.SKIP));
         cards.add(new Card(CardType.CAT_CARD_4));
 
-        assertTrue(controller.playerHasCards(player, cards));;
+        assertTrue(controller.playerHasCards(player, cards));
+        ;
     }
 
     @Test
@@ -473,7 +483,8 @@ public class GameControllerTests {
         cards.add(new Card(CardType.CAT_CARD_2));
         cards.add(new Card(CardType.CAT_CARD_4));
 
-        assertFalse(controller.playerHasCards(player, cards));;
+        assertFalse(controller.playerHasCards(player, cards));
+        ;
     }
 
     @Test
@@ -495,7 +506,8 @@ public class GameControllerTests {
         cards.add(new Card(CardType.CAT_CARD_4));
         cards.add(new Card(CardType.CAT_CARD_4));
 
-        assertTrue(controller.playerHasCards(player, cards));;
+        assertTrue(controller.playerHasCards(player, cards));
+        ;
     }
 
     @Test
@@ -789,5 +801,35 @@ public class GameControllerTests {
                 "Next player should advance to index 0");
 
         verify(mockGame);
+    }
+
+    @Test
+    void takeTurn_emptyInput_invalidOutputFunction() {
+        int currentPlayerIndex = 0;
+        String mockUserChoice = "";
+
+        Game mockGame = mock(Game.class);
+        Player mockPlayer1 = mock(Player.class);
+        ArrayList<Player> mockAlivePlayers = mock(ArrayList.class);
+        GameControllerView mockControllerView = EasyMock.createMock(GameControllerView.class);
+
+        expect(mockGame.getAlivePlayerCount()).andReturn(2);
+        expect(mockGame.getAlivePlayers()).andReturn(mockAlivePlayers);
+        expect(mockAlivePlayers.get(currentPlayerIndex)).andReturn(mockPlayer1);
+        mockControllerView.displayCurrentPlayerAndCardsInHand(mockPlayer1);
+        expectLastCall();
+        expect(mockControllerView.getCardChoiceOrDraw()).andReturn(mockUserChoice);
+        mockControllerView.displayInvalidChoice(mockUserChoice);
+        expectLastCall();
+
+        replay(mockGame, mockAlivePlayers, mockControllerView, mockPlayer1);
+
+        GameController controller = new GameController(mockGame);
+        controller.setCurrentPlayerIndex(currentPlayerIndex);
+        controller.takeTurn(mockControllerView);
+
+        verify(mockGame, mockAlivePlayers, mockControllerView, mockPlayer1);
+
+
     }
 }
