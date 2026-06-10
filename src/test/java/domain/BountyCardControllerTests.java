@@ -3,6 +3,7 @@ package domain;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,9 @@ public class BountyCardControllerTests {
         Player user = EasyMock.createMock(Player.class);
         Player other = EasyMock.createMock(Player.class);
 
+        EasyMock.expect(game.getAlivePlayers()).andReturn(List.of(user, other));
+        EasyMock.expect(other.getHandSize()).andReturn(0);
+
         EasyMock.replay(game, user, other);
 
         BountyCardController controller = new BountyCardController();
@@ -23,5 +27,27 @@ public class BountyCardControllerTests {
 
         assertTrue(result.isEmpty());
         EasyMock.verify(game, user, other);
+    }
+
+    @Test
+    public void executeCardAction_OneOtherPlayerOneCard_StealsCard() {
+    Game game = EasyMock.createMock(Game.class);
+    Player user = EasyMock.createMock(Player.class);
+    Player other = EasyMock.createMock(Player.class);
+    Card card = new Card(CardType.CAT_CARD_1);
+
+    EasyMock.expect(game.getAlivePlayers()).andReturn(List.of(user, other));
+    EasyMock.expect(other.getHandSize()).andReturn(1);
+    EasyMock.expect(other.getHand()).andReturn(new ArrayList<>(List.of(card)));
+    other.removeCard(card);
+    user.addCard(card);
+
+    EasyMock.replay(game, user, other);
+
+    BountyCardController controller = new BountyCardController();
+    Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
+
+    assertTrue(result.isEmpty());
+    EasyMock.verify(game, user, other);
     }
 }
