@@ -14,6 +14,11 @@ public class AlterTheFutureCardController implements CardController {
     }
 
     public Optional<List<Card>> executeCardAction(Game game, Player user, Optional<Player> target) {
+        Deck deck = game.getDeck();
+        List<Card> top = getTopCards(deck);
+        List<Card> reordered = reorderFunction.apply(top);
+        validateReorder(top, reordered);
+        applyReorder(deck, top, reordered);
         return Optional.empty();
     }
 

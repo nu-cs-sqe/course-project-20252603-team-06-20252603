@@ -251,14 +251,38 @@ public class AlterTheFutureCardControllerTests {
         AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
         Game game = EasyMock.createMock(Game.class);
         Player user = EasyMock.createMock(Player.class);
+        Deck deck = EasyMock.createMock(Deck.class);
 
-        EasyMock.replay(game, user);
+        EasyMock.expect(game.getDeck()).andReturn(deck);
+        EasyMock.expect(deck.getCards()).andReturn(new ArrayList<>());
+
+        EasyMock.replay(game, user, deck);
 
         Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
 
         assertTrue(result.isEmpty());
-        EasyMock.verify(game, user);
+        EasyMock.verify(game, user, deck);
     }
 
+    @Test
+    public void executeCardAction_OneDeckCard_ReturnsEmpty() {
+        AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
+        Game game = EasyMock.createMock(Game.class);
+        Player user = EasyMock.createMock(Player.class);
+        Deck deck = EasyMock.createMock(Deck.class);
+        Card cardA = new Card(CardType.CAT_CARD_1);
+
+        EasyMock.expect(game.getDeck()).andReturn(deck);
+        EasyMock.expect(deck.getCards()).andReturn(new ArrayList<>(List.of(cardA)));
+        deck.discard(cardA);
+        deck.insert(cardA, 0);
+
+        EasyMock.replay(game, user, deck);
+
+        Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
+
+        assertTrue(result.isEmpty());
+        EasyMock.verify(game, user, deck);
+    }
 }
 
