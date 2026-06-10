@@ -28,6 +28,15 @@ public class GameControllerView {
         System.out.printf("\"%s\" is not a valid choice. Please try again.%n", userChoice);
     }
 
+    public void displayInvalidMove(ArrayList<Card> cardsPlayed) {
+        ArrayList<String> cardsList = new ArrayList<String>();
+        for (Card card : cardsPlayed) {
+            cardsList.add(card.getType().toString());
+        }
+        String cardsString = String.join(", ",cardsList);
+        System.out.printf("%s is not a valid move. Please try again.%n", cardsString);
+    }
+
     public String getCardChoiceOrDraw() {
         System.out.println("Enter the number before the card to play the card;");
         System.out.println("numbers separated by commas to play multiple cards (e.g. 0,2,5);");

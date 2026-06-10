@@ -973,4 +973,43 @@ public class GameControllerTests {
 
         verify(mockGame, mockPlayer, mockAlivePlayers, mockDeck, mockControllerView);
     }
+
+    @Test
+    void takeTurn_InputIsSingleCatCard_CallsDisplayInvalidMove() {
+        int currentPlayerIndex = 0;
+        String mockUserChoice = "1";
+
+        Game mockGame = mock(Game.class);
+        Player mockPlayer = mock(Player.class);
+        ArrayList<Player> mockAlivePlayers = mock(ArrayList.class);
+        ArrayList<Card> mockHand = mock(ArrayList.class);
+        Card mockCatCard = mock(Card.class);
+        GameControllerView mockControllerView = mock(GameControllerView.class);
+
+        expect(mockGame.getAlivePlayerCount()).andReturn(2);
+        expect(mockGame.getAlivePlayers()).andReturn(mockAlivePlayers);
+        expect(mockAlivePlayers.get(currentPlayerIndex)).andReturn(mockPlayer);
+
+        mockControllerView.displayCurrentPlayerAndCardsInHand(mockPlayer);
+        expectLastCall();
+
+        expect(mockControllerView.getCardChoiceOrDraw()).andReturn(mockUserChoice);
+
+        expect(mockPlayer.getHand()).andReturn(mockHand);
+        expect(mockHand.get(1)).andReturn(mockCatCard);
+
+        mockControllerView.displayInvalidMove(isA(ArrayList.class));
+        expectLastCall();
+
+        replay(mockGame, mockPlayer, mockAlivePlayers, mockHand, mockCatCard, mockControllerView);
+
+        GameController controller = new GameController(mockGame);
+        controller.setCurrentPlayerIndex(currentPlayerIndex);
+        controller.setCurrentPlayerTurnsLeft(1);
+
+        controller.takeTurn(mockControllerView);
+
+        assertEquals(1, controller.getCurrentPlayerTurnsLeft());
+        verify(mockGame, mockPlayer, mockAlivePlayers, mockHand, mockCatCard, mockControllerView);
+    }
 }

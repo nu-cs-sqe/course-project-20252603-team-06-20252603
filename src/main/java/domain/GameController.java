@@ -161,7 +161,15 @@ public class GameController {
             game.draw(currentPlayer, game.getDeck());
             this.currentPlayerTurnsLeft--;
         } else {
-            controllerView.displayInvalidChoice(userChoice);
+            try {
+                int cardIndex = Integer.parseInt(userChoice);
+                ArrayList<Card> cardsPlayed = new ArrayList<>();
+                cardsPlayed.add(currentPlayer.getHand().get(cardIndex));
+
+                controllerView.displayInvalidMove(cardsPlayed);
+            } catch (NumberFormatException e) {
+                controllerView.displayInvalidChoice(userChoice);
+            }
         }
     }
 
