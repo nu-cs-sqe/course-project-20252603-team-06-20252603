@@ -114,7 +114,7 @@ public class DeckTests {
         Deck deck = new Deck();
 
         assertThrows(IndexOutOfBoundsException.class, () -> {
-            deck.insert(new Card(CardType.TEST_TYPE), -1);
+            deck.insert(Card.createCard(CardType.TEST_TYPE), -1);
         });
     }
 
@@ -123,7 +123,7 @@ public class DeckTests {
         Deck deck = new Deck();
         int initialSize = deck.count();
 
-        Card card = new Card(CardType.TEST_TYPE);
+        Card card = Card.createCard(CardType.TEST_TYPE);
         deck.insert(card, 0);
         ArrayList<Card> cards = deck.getCards();
 
@@ -136,7 +136,7 @@ public class DeckTests {
         Deck deck = new Deck();
         int initialSize = deck.count();
 
-        Card card = new Card(CardType.TEST_TYPE);
+        Card card = Card.createCard(CardType.TEST_TYPE);
         deck.insert(card, 1);
         ArrayList<Card> cards = deck.getCards();
 
@@ -149,7 +149,7 @@ public class DeckTests {
         Deck deck = new Deck();
         int initialSize = deck.count();
 
-        Card card = new Card(CardType.TEST_TYPE);
+        Card card = Card.createCard(CardType.TEST_TYPE);
         deck.insert(card, initialSize);
         ArrayList<Card> cards = deck.getCards();
 
@@ -162,7 +162,7 @@ public class DeckTests {
         Deck deck = new Deck();
         int initialSize = deck.count();
 
-        Card card = new Card(CardType.TEST_TYPE);
+        Card card = Card.createCard(CardType.TEST_TYPE);
         deck.insert(card, initialSize - 1);
         ArrayList<Card> cards = deck.getCards();
 
@@ -174,7 +174,7 @@ public class DeckTests {
     void insertIntoEmptyDeck(){
         Deck deck = new Deck(0);
 
-        Card card = new Card(CardType.TEST_TYPE);
+        Card card = Card.createCard(CardType.TEST_TYPE);
         deck.insert(card, 0);
         ArrayList<Card> cards = deck.getCards();
 
@@ -198,7 +198,7 @@ public class DeckTests {
     @Test
     void discardFromEmptyDeck() {
         Deck deck = new Deck(0);
-        Card cardToDiscard= new Card(CardType.TEST_TYPE);
+        Card cardToDiscard= Card.createCard(CardType.TEST_TYPE);
 
         assertThrows(IllegalArgumentException.class, () -> {
             deck.discard(cardToDiscard);
@@ -237,7 +237,7 @@ public class DeckTests {
         Deck deck = new Deck();
         int initialSize = deck.count();
 
-        Card cardToDiscard = new Card(CardType.TEST_TYPE);
+        Card cardToDiscard = Card.createCard(CardType.TEST_TYPE);
 
         assertThrows(IllegalArgumentException.class, () -> {
             deck.discard(cardToDiscard);
