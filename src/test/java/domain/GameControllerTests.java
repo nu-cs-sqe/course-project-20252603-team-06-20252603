@@ -192,6 +192,18 @@ public class GameControllerTests {
     }
 
     @Test
+    void setNextPlayerTurnsLeft_SevenTurnsLeft_SetsNextPlayerTurnsLeft() {
+        int newNextPlayerTurnsLeft = 7;
+
+        Game mockGame = mock(Game.class);
+        GameController controller = new GameController(mockGame);
+
+        controller.setNextPlayerTurnsLeft(newNextPlayerTurnsLeft);
+
+        assertEquals(newNextPlayerTurnsLeft, controller.getNextPlayerTurnsLeft());
+    }
+
+    @Test
     void setPlayerOrder_IllegallyEmptyList_ThrowsIllegalArgumentException() {
         Game game = new Game(5);
         GameController controller = new GameController(game);

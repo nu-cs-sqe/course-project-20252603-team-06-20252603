@@ -63,7 +63,7 @@
   - **State of the system**: alivePlayer list is initialized, newNextPlayerTurnsLeft = 0
   - **Expected output**: this.NextPlayerTurnsLeft = 0
 
-- **TC: Turn count at amount above minimum possible boundary
+- **TC: Turn count at amount above minimum possible boundary ( :white-check-mark: )
   - **State of the system**: alivePlayer list is initialized, newNextPlayerTurnsLeft = 7
   - **Expected output**: this.NextPlayerTurnsLeft = 7
 
