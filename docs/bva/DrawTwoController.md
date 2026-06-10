@@ -12,7 +12,7 @@ output: Optional.empty() (Optional<List<Card>>)
     - **State of the system**: hand: [], deck: []
     - **Expected output**: IllegalArgumentException
 
-- **TC2: executeCardAction_oneCardDeckEmptyHand_IllegalArgumentException ** ( :x: or :white_check_mark: )
+- **TC2: executeCardAction_oneCardDeckEmptyHand_IllegalArgumentException ** ( :white_check_mark: )
     - **State of the system**: hand: [], deck: [EXPLODING_KITTEN]
     - **Expected output**: IllegalArgumentException
 
