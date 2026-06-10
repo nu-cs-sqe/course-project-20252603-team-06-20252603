@@ -24,6 +24,7 @@ public class AlterTheFutureCardController implements CardController {
     }
 
     void validateReorder(List<Card> original, List<Card> reordered) {
+        throw new IllegalArgumentException("Reordered list must have the same number of cards");
     }
 
     void applyReorder(Deck deck, List<Card> original, List<Card> reordered) {

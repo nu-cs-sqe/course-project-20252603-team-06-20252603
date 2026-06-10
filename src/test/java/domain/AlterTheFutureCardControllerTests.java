@@ -2,6 +2,7 @@ package domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,5 +76,20 @@ public class AlterTheFutureCardControllerTests {
         assertEquals(expectedFirst, result.get(0));
         assertEquals(expectedSecond, result.get(1));
         assertEquals(expectedThird, result.get(2));
+    }
+
+    @Test
+    public void validateReorder_ReorderedHasFewerCards_ThrowsIllegalArgumentException() {
+        AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
+        Card card1 = new Card(CardType.CAT_CARD_1);
+        Card card2 = new Card(CardType.CAT_CARD_2);
+        Card card3 = new Card(CardType.CAT_CARD_3);
+
+        List<Card> original = new ArrayList<>(List.of(card1, card2, card3));
+        List<Card> reordered = new ArrayList<>(List.of(card1, card2));
+
+        assertThrows(IllegalArgumentException.class, () ->
+            controller.validateReorder(original, reordered)
+        );
     }
 }
