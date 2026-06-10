@@ -121,4 +121,39 @@ public void executeCardAction_MultipleOtherPlayersSomeZeroSomeOneCard_StealsFrom
     EasyMock.verify(game, user, other1, other2);
 }
 
+@Test
+public void executeCardAction_MultipleOtherPlayersAllWithCards_StealsFromEach() {
+    Game game = EasyMock.createMock(Game.class);
+    Player user = EasyMock.createMock(Player.class);
+    Player other1 = EasyMock.createMock(Player.class);
+    Player other2 = EasyMock.createMock(Player.class);
+
+    ArrayList<Card> hand1 = new ArrayList<>();
+    hand1.add(new Card(CardType.CAT_CARD_1));
+    hand1.add(new Card(CardType.CAT_CARD_1));
+
+    ArrayList<Card> hand2 = new ArrayList<>();
+    hand2.add(new Card(CardType.CAT_CARD_2));
+    hand2.add(new Card(CardType.CAT_CARD_2));
+    hand2.add(new Card(CardType.CAT_CARD_2));
+
+    EasyMock.expect(game.getAlivePlayers()).andReturn(List.of(user, other1, other2));
+    EasyMock.expect(other1.getHandSize()).andReturn(2);
+    EasyMock.expect(other1.getHand()).andReturn(hand1);
+    other1.removeCard(EasyMock.isA(Card.class));
+    user.addCard(EasyMock.isA(Card.class));
+    EasyMock.expect(other2.getHandSize()).andReturn(3);
+    EasyMock.expect(other2.getHand()).andReturn(hand2);
+    other2.removeCard(EasyMock.isA(Card.class));
+    user.addCard(EasyMock.isA(Card.class));
+
+    EasyMock.replay(game, user, other1, other2);
+
+    BountyCardController controller = new BountyCardController();
+    Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
+
+    assertTrue(result.isEmpty());
+    EasyMock.verify(game, user, other1, other2);
+}
+
 }
