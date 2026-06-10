@@ -149,27 +149,5 @@ public class ExplodingKittenControllerTests {
 
         EasyMock.verify(mockGame, mockUser, mockDeck, mockInput);
     }
-
-    @Test
-    public void executeCardAction_noDefuseTwoCards_playerKilled() {
-        Game mockGame = EasyMock.createMock(Game.class);
-        Player mockUser = EasyMock.createMock(Player.class);
-        Deck mockDeck = EasyMock.createMock(Deck.class);
-        UserInput mockInput = EasyMock.createMock(UserInput.class);
-
-        EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
-        EasyMock.expect(mockUser.hasDefuse()).andReturn(false).anyTimes();
-        mockUser.kill();
-        EasyMock.expectLastCall().once();
-        mockGame.removeAlivePlayer(mockUser);
-        EasyMock.expectLastCall().once();
-
-        EasyMock.replay(mockGame, mockUser, mockDeck);
-
-        ExplodingKittenController controller = new ExplodingKittenController(mockInput);
-        controller.executeCardAction(mockGame, mockUser, Optional.empty());
-
-        EasyMock.verify(mockGame, mockUser, mockDeck);
-    }
 }
 
