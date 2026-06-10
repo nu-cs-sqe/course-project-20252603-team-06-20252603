@@ -2,8 +2,6 @@
 
 ### Method under test: `executeCardAction()`
 
-The targeted attack ends the initiator's turn without drawing and forces the target player to take 2 turns. A target is required.
-
 - **TC1: target is empty** ( :x: )
     - **State of the system**: initiator = player1, target = Optional.empty()
     - **Expected output**: IllegalArgumentException is thrown. Game state is unchanged.
