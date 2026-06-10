@@ -9,6 +9,8 @@ import java.util.Optional;
 
 import ui.GameControllerView;
 
+import javax.swing.text.html.Option;
+
 public class GameController {
     private Game game;
     private int currentPlayerIndex;
@@ -166,7 +168,16 @@ public class GameController {
                 ArrayList<Card> cardsPlayed = new ArrayList<>();
                 cardsPlayed.add(currentPlayer.getHand().get(cardIndex));
 
-                controllerView.displayInvalidMove(cardsPlayed);
+                if (isValidMove(cardsPlayed, currentPlayer, Optional.empty())) {
+                    CardController cardController = getControllerType(cardsPlayed.get(0));
+                    cardController.executeCardAction(this.game, currentPlayer, Optional.empty());
+
+                    for (Card card : cardsPlayed) {
+                        currentPlayer.removeCard(card);
+                    }
+                } else {
+                    controllerView.displayInvalidMove(cardsPlayed);
+                }
             } catch (NumberFormatException e) {
                 controllerView.displayInvalidChoice(userChoice);
             } catch (IndexOutOfBoundsException e) {
@@ -174,5 +185,7 @@ public class GameController {
             }
         }
     }
+
+
 
 }
