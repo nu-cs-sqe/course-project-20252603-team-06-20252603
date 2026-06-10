@@ -169,6 +169,8 @@ public class GameController {
                 controllerView.displayInvalidMove(cardsPlayed);
             } catch (NumberFormatException e) {
                 controllerView.displayInvalidChoice(userChoice);
+            } catch (IndexOutOfBoundsException e) {
+                controllerView.displayInvalidIndex(userChoice);
             }
         }
     }

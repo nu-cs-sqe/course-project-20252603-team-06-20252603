@@ -34,7 +34,11 @@ public class GameControllerView {
             cardsList.add(card.getType().toString());
         }
         String cardsString = String.join(", ",cardsList);
-        System.out.printf("%s is not a valid move. Please try again.%n", cardsString);
+        System.out.printf("\"%s\" is not a valid move. Please try again.%n", cardsString);
+    }
+
+    public void displayInvalidIndex(String userChoice) {
+        System.out.printf("%s is not a valid card position. Please try again.%n", userChoice);
     }
 
     public String getCardChoiceOrDraw() {

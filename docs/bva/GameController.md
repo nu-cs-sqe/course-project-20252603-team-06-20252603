@@ -321,9 +321,9 @@
   - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "1", `currentPlayerTurnsLeft` = 1
   - **Expected output**: function to output invalid move is called
 
-- **TC: input is cat card and a non-cat card, invalid move**
-  - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "0,1", `currentPlayerTurnsLeft` = 1
-  - **Expected output**: function to output invalid move is called
+- **TC: input is an out of bound index, invalid index** ( :white-check-mark: )
+  - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "5", `currentPlayerTurnsLeft` = 1
+  - **Expected output**: function to output invalid index is called
 
 - **TC: input is a non-cat card that doesn't alter game state, play card and currentPlayerTurnsLeft isn't reduced, card removed from hand**
   - **State of the System**: `currentPlayer`'s hand: `[SEE_THE_FUTURE, CAT_CARD_1]`, `userChoice` = "0", `currentPlayerTurnsLeft` = 1
@@ -336,6 +336,10 @@
 - **TC: input is a non-cat card that immediately ends turn, play card and currentPlayerTurnsLeft is reduced, card removed from hand**
   - **State of the System**: `currentPlayer`'s hand: `[CAT_CARD_1, DRAW_FROM_BOTTOM, SKIP]`, `userChoice` = "2", `currentPlayerTurnsLeft` = 2
   - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 1
+
+- **TC: input is cat card and a non-cat card, invalid move**
+  - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "0,1", `currentPlayerTurnsLeft` = 1
+  - **Expected output**: function to output invalid move is called
 
 - **TC: input is a pair of cat cards, play cards, currentPlayerTurnsLeft is not reduced, cards removed from hand, game state changed**
   - **State of the System**: `currentPlayer`'s hand: `[CAT_CARD_1, DRAW_FROM_BOTTOM, CAT_CARD_1, SKIP]`, `userChoice` = "0,2", `currentPlayerTurnsLeft` = 2
