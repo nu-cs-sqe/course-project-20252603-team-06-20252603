@@ -3,6 +3,7 @@ package ui;
 import domain.Card;
 import domain.Player;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,7 +11,7 @@ public class GameControllerView {
     private final Scanner scanner;
 
     public GameControllerView() {
-        this.scanner = new Scanner(System.in);
+        this.scanner = new Scanner(System.in, StandardCharsets.UTF_8);
     }
 
     public void displayCurrentPlayerAndCardsInHand(Player player) {
@@ -28,8 +29,8 @@ public class GameControllerView {
     }
 
     public String getCardChoiceOrDraw() {
-        System.out.println("Enter the number before the card to play the card");
-        System.out.println("numbers separated by commas to play multiple cards at once (e.g. 0,2,5)");
+        System.out.println("Enter the number before the card to play the card;");
+        System.out.println("numbers separated by commas to play multiple cards (e.g. 0,2,5);");
         System.out.println("or d to draw a card and end turn");
         return scanner.nextLine();
     }
