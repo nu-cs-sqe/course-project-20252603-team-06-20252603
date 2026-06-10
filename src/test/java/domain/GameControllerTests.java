@@ -196,7 +196,7 @@ public class GameControllerTests {
         ArrayList<Card> cards = new ArrayList<>();
 
         assertThrows(IndexOutOfBoundsException.class, () -> {
-            controller.cardsAllMatchingCatCards(cards);
+            Boolean result = controller.cardsAllMatchingCatCards(cards);
         });
     }
 
