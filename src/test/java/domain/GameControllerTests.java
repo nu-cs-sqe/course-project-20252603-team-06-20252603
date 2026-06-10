@@ -768,7 +768,7 @@ public class GameControllerTests {
     }
 
     @Test
-    void advanceTurn_CurrentIsIndex1_CurrentIsIndex2AndNextIsIndex3() {
+    void advanceTurn_CurrentIndex1NextTurns1_CurrentIndex2NextIndex3TurnsMovedFromNextToCurrent() {
         Game mockGame = mock(Game.class);
 
         expect(mockGame.getAlivePlayerCount()).andReturn(4).anyTimes();
@@ -778,6 +778,8 @@ public class GameControllerTests {
 
         controller.setCurrentPlayerIndex(1);
         controller.setNextPlayerIndex(2);
+        controller.setCurrentPlayerTurnsLeft(0);
+        controller.setNextPlayerTurnsLeft(1);
 
         controller.advanceTurn();
 
@@ -785,12 +787,16 @@ public class GameControllerTests {
                 "Current player should advance to index 2");
         assertEquals(3, controller.getNextPlayerIndex(),
                 "Next player should advance to index 3");
+        assertEquals(1, controller.getCurrentPlayerTurnsLeft(),
+                "Current player moves less should now be 1");
+        assertEquals(1, controller.getNextPlayerTurnsLeft(),
+                "Next player moves less should be reset to 1");
 
         verify(mockGame);
     }
 
     @Test
-    void advanceTurn_CurrentIsIndex2_CurrentIsIndex3AndNextIsIndex0() {
+    void advanceTurn_CurrentIndex2NextTurns2_CurrentIndex3NextIndex0TurnsMovedFromNextToCurrent() {
         Game mockGame = mock(Game.class);
 
         expect(mockGame.getAlivePlayerCount()).andReturn(4).anyTimes();
@@ -800,6 +806,8 @@ public class GameControllerTests {
 
         controller.setCurrentPlayerIndex(2);
         controller.setNextPlayerIndex(3);
+        controller.setCurrentPlayerTurnsLeft(0);
+        controller.setNextPlayerTurnsLeft(2);
 
         controller.advanceTurn();
 
@@ -807,12 +815,16 @@ public class GameControllerTests {
                 "Current player should advance to index 3");
         assertEquals(0, controller.getNextPlayerIndex(),
                 "Next player should advance to index 0");
+        assertEquals(2, controller.getCurrentPlayerTurnsLeft(),
+                "Current player moves less should now be 2");
+        assertEquals(1, controller.getNextPlayerTurnsLeft(),
+                "Next player moves less should be reset to 1");
 
         verify(mockGame);
     }
 
     @Test
-    void advanceTurn_CurrentIsIndex3_CurrentIsIndex0AndNextIsIndex1() {
+    void advanceTurn_CurrentIndex3NextTurns3_CurrentIndex0NextIndex1TurnsMovedFromNextToCurrent() {
         Game mockGame = mock(Game.class);
 
         expect(mockGame.getAlivePlayerCount()).andReturn(4).anyTimes();
@@ -822,6 +834,8 @@ public class GameControllerTests {
 
         controller.setCurrentPlayerIndex(3);
         controller.setNextPlayerIndex(0);
+        controller.setCurrentPlayerTurnsLeft(0);
+        controller.setNextPlayerTurnsLeft(3);
 
         controller.advanceTurn();
 
@@ -829,12 +843,16 @@ public class GameControllerTests {
                 "Current player should advance to index 0");
         assertEquals(1, controller.getNextPlayerIndex(),
                 "Next player should advance to index 1");
+        assertEquals(3, controller.getCurrentPlayerTurnsLeft(),
+                "Current player moves less should now be 2");
+        assertEquals(1, controller.getNextPlayerTurnsLeft(),
+                "Next player moves less should be reset to 1");
 
         verify(mockGame);
     }
 
     @Test
-    void advanceTurn_MinimumNumOfPlayers_CurrentIsIndex0AndNextIsIndex1() {
+    void advanceTurn_MinPlayerCountNextTurns1_CurrentIndex0NextIndex1TurnsMovedFromNextToCurrent() {
         Game mockGame = mock(Game.class);
 
         expect(mockGame.getAlivePlayerCount()).andReturn(2).anyTimes();
@@ -844,6 +862,8 @@ public class GameControllerTests {
 
         controller.setCurrentPlayerIndex(0);
         controller.setNextPlayerIndex(1);
+        controller.setCurrentPlayerTurnsLeft(0);
+        controller.setNextPlayerTurnsLeft(1);
 
         controller.advanceTurn();
 
@@ -851,12 +871,16 @@ public class GameControllerTests {
                 "Current player should advance to index 1");
         assertEquals(0, controller.getNextPlayerIndex(),
                 "Next player should advance to index 0");
+        assertEquals(1, controller.getCurrentPlayerTurnsLeft(),
+                "Current player moves less should now be 1");
+        assertEquals(1, controller.getNextPlayerTurnsLeft(),
+                "Next player moves less should be reset to 1");
 
         verify(mockGame);
     }
 
     @Test
-    void advanceTurn_5PlayersMaxBoundary_CurrentIsIndex4AndNextIsIndex0() {
+    void advanceTurn_MaxPlayersNextTurns10_CurrentIndex4NextIndex0TurnsMovedFromNextToCurrent() {
         Game mockGame = mock(Game.class);
 
         expect(mockGame.getAlivePlayerCount()).andReturn(5).anyTimes();
@@ -1106,7 +1130,8 @@ public class GameControllerTests {
         mockPlayer.removeCard(mockSeeTheFutureCard);
         expectLastCall();
 
-        replay(mockGame, mockPlayer, mockSeeTheFutureCard, mockCatCard, mockCardController, mockControllerView);
+        replay(mockGame, mockPlayer, mockSeeTheFutureCard, mockCatCard,
+                mockCardController, mockControllerView);
 
         controller.setCurrentPlayerIndex(currentPlayerIndex);
         controller.setCurrentPlayerTurnsLeft(1);
@@ -1114,7 +1139,8 @@ public class GameControllerTests {
         controller.takeTurn(mockControllerView);
 
         assertEquals(1, controller.getCurrentPlayerTurnsLeft());
-        verify(mockGame, mockPlayer, mockSeeTheFutureCard, mockCatCard, mockCardController, mockControllerView);
+        verify(mockGame, mockPlayer, mockSeeTheFutureCard, mockCatCard,
+                mockCardController, mockControllerView);
     }
 
     @Test
@@ -1185,7 +1211,8 @@ public class GameControllerTests {
         assertEquals(1, controller.getCurrentPlayerTurnsLeft(), "Turns left should remain 1");
 
         assertEquals(3, realHand.size(), "Hand size should remain 3");
-        assertTrue(realHand.contains(mockDrawnCard), "The hand should contain the newly drawn card");
+        assertTrue(realHand.contains(mockDrawnCard),
+                "The hand should contain the newly drawn card");
         assertTrue(!realHand.contains(mockDrawBottomCard), "The played card should be removed");
 
         verify(mockGame, mockPlayer, mockDeck, mockCardController, mockControllerView,
@@ -1295,7 +1322,9 @@ public class GameControllerTests {
 
         expect(mockControllerView.getCardChoiceOrDraw()).andReturn(mockUserChoice);
 
-        expect(mockControllerView.getTargetPlayerIndex(anyObject(ArrayList.class), eq(mockPlayer))).andReturn(mockTargetChoice);
+        expect(mockControllerView.getTargetPlayerIndex(anyObject(ArrayList.class),
+                eq(mockPlayer)))
+                .andReturn(mockTargetChoice);
 
         expect(mockPlayer.getHand()).andReturn(realHand).anyTimes();
 
@@ -1305,7 +1334,8 @@ public class GameControllerTests {
         mockControllerView.displayInvalidMove(anyObject());
         expectLastCall();
 
-        replay(mockGame, mockPlayer, mockTargetPlayer, mockControllerView, mockSkipCard, mockCatCard);
+        replay(mockGame, mockPlayer, mockTargetPlayer, mockControllerView,
+                mockSkipCard, mockCatCard);
 
         GameController controller = new GameController(mockGame);
         controller.setCurrentPlayerIndex(currentPlayerIndex);
@@ -1313,8 +1343,10 @@ public class GameControllerTests {
 
         controller.takeTurn(mockControllerView);
 
-        assertEquals(1, controller.getCurrentPlayerTurnsLeft(), "Turns should not decrease on an invalid move");
-        verify(mockGame, mockPlayer, mockTargetPlayer, mockControllerView, mockSkipCard, mockCatCard);
+        assertEquals(1, controller.getCurrentPlayerTurnsLeft(),
+                "Turns should not decrease on an invalid move");
+        verify(mockGame, mockPlayer, mockTargetPlayer, mockControllerView,
+                mockSkipCard, mockCatCard);
     }
 
     @Test
@@ -1392,7 +1424,9 @@ public class GameControllerTests {
 
         expect(mockControllerView.getCardChoiceOrDraw()).andReturn(mockUserChoice);
 
-        expect(mockControllerView.getTargetPlayerIndex(eq(realAlivePlayers), eq(mockPlayer))).andReturn(mockTargetChoice);
+        expect(mockControllerView.getTargetPlayerIndex(eq(realAlivePlayers),
+                eq(mockPlayer)))
+                .andReturn(mockTargetChoice);
 
         expect(mockPlayer.getHand()).andReturn(realHand).anyTimes();
 
@@ -1402,7 +1436,8 @@ public class GameControllerTests {
         mockControllerView.displayInvalidMove(anyObject());
         expectLastCall();
 
-        replay(mockGame, mockPlayer, mockTargetPlayer, mockControllerView, mockSkipCard, mockCatCard);
+        replay(mockGame, mockPlayer, mockTargetPlayer, mockControllerView,
+                mockSkipCard, mockCatCard);
 
         GameController controller = new GameController(mockGame);
         controller.setCurrentPlayerIndex(currentPlayerIndex);
@@ -1410,8 +1445,10 @@ public class GameControllerTests {
 
         controller.takeTurn(mockControllerView);
 
-        assertEquals(1, controller.getCurrentPlayerTurnsLeft(), "Turns should not decrease on an invalid move");
-        verify(mockGame, mockPlayer, mockTargetPlayer, mockControllerView, mockSkipCard, mockCatCard);
+        assertEquals(1, controller.getCurrentPlayerTurnsLeft(),
+                "Turns should not decrease on an invalid move");
+        verify(mockGame, mockPlayer, mockTargetPlayer, mockControllerView,
+                mockSkipCard, mockCatCard);
     }
 
     @Test
@@ -1459,7 +1496,9 @@ public class GameControllerTests {
 
         expect(mockControllerView.getCardChoiceOrDraw()).andReturn(mockUserChoice);
 
-        expect(mockControllerView.getTargetPlayerIndex(eq(realAlivePlayers), eq(mockPlayer))).andReturn(mockTargetChoice);
+        expect(mockControllerView.getTargetPlayerIndex(eq(realAlivePlayers),
+                eq(mockPlayer)))
+                .andReturn(mockTargetChoice);
 
         expect(mockPlayer.getHand()).andReturn(realHand).anyTimes();
 
@@ -1492,9 +1531,11 @@ public class GameControllerTests {
 
         controller.takeTurn(mockControllerView);
 
-        assertEquals(2, controller.getCurrentPlayerTurnsLeft(), "Turns left should remain 2");
+        assertEquals(2, controller.getCurrentPlayerTurnsLeft(),
+                "Turns left should remain 2");
 
-        assertEquals(3, realHand.size(), "Hand size should be 3 after playing a triple and stealing one");
+        assertEquals(3, realHand.size(),
+                "Hand size should be 3 after playing a triple and stealing one");
         assertFalse(realHand.contains(mockCatCard1), "First cat card should be removed");
         assertFalse(realHand.contains(mockCatCard2), "Second cat card should be removed");
         assertFalse(realHand.contains(mockCatCard3), "Third cat card should be removed");

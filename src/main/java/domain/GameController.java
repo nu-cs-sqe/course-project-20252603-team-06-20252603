@@ -94,6 +94,8 @@ public class GameController {
     public void advanceTurn() {
         this.currentPlayerIndex = this.nextPlayerIndex;
         this.nextPlayerIndex = (this.currentPlayerIndex + 1) % this.game.getAlivePlayerCount();
+        this.currentPlayerTurnsLeft = this.nextPlayerTurnsLeft;
+        this.nextPlayerTurnsLeft = 1;
     }
 
     public boolean isTargetValid(CardType type, Player initiator, Player target) {
@@ -178,7 +180,10 @@ public class GameController {
                 } else {
                     Optional<Player> target = Optional.empty();
                     if (cardsPlayed.size() >= 2) {
-                        String targetChoice = controllerView.getTargetPlayerIndex(new ArrayList<Player>(game.getAlivePlayers()), currentPlayer);
+                        ArrayList<Player> arrayListAlivePlayers =
+                                new ArrayList<Player>(game.getAlivePlayers());
+                        String targetChoice = controllerView
+                                .getTargetPlayerIndex(arrayListAlivePlayers, currentPlayer);
                         int targetIdx = Integer.parseInt(targetChoice.trim());
                         target = Optional.of(game.getAlivePlayers().get(targetIdx));
                     }
