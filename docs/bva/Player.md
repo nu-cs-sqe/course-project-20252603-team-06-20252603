@@ -3,12 +3,12 @@
 You are encouraged to document your intermediate analysis results for Steps 1-3.
 However, you are only required to document Step 4.
 
-### Method under test: constructor
-- **TC1: Constructor_EmptyName_IllegalArgumentException** ( :white_check_mark: )
+### Method under test: createPlayer
+- **TC1: createPlayer_EmptyName_IllegalArgumentException** ( :white_check_mark: )
     - **State of the system**: ""
     - **Expected output**: IllegalArgumentException
 
-- **TC2: Constructor_ValidName_success** ( :white_check_mark: )
+- **TC2: createPlayer_ValidName_success** ( :white_check_mark: )
     - **State of the system**: "lily"
     - **Expected output**: N/A, player successfully created
 
