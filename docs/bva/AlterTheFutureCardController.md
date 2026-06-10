@@ -46,7 +46,7 @@
     - **State of the system**: deck has 1 card (fewer than MAX_PEEK), original and reordered both have that 1 card
     - **Expected output**: deck unchanged
 
-- **TC12: reorder 2 cards** ( :x: )
+- **TC12: reorder 2 cards** ( :white-check-mark: )
     - **State of the system**: deck has 4 cards, original and reordered both have 2 cards in different order
     - **Expected output**: top 2 cards of deck replaced in new order, rest of deck unchanged
 

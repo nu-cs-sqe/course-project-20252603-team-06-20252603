@@ -219,5 +219,32 @@ public class AlterTheFutureCardControllerTests {
         controller.applyReorder(deck, original, reordered);
 
         EasyMock.verify(deck);
-    }}
+    }
+
+    @Test
+    public void applyReorder_ThreeCardsReordered_TopThreeReordered() {
+        AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
+        Deck deck = EasyMock.createMock(Deck.class);
+        Card cardA = new Card(CardType.CAT_CARD_1);
+        Card cardB = new Card(CardType.CAT_CARD_2);
+        Card cardC = new Card(CardType.CAT_CARD_3);
+
+        deck.discard(cardA);
+        deck.discard(cardB);
+        deck.discard(cardC);
+        deck.insert(cardC, 0);
+        deck.insert(cardB, 1);
+        deck.insert(cardA, 2);
+
+        EasyMock.replay(deck);
+
+        List<Card> original = new ArrayList<>(List.of(cardA, cardB, cardC));
+        List<Card> reordered = new ArrayList<>(List.of(cardC, cardB, cardA));
+
+        controller.applyReorder(deck, original, reordered);
+
+        EasyMock.verify(deck);
+    }
+
+}
 
