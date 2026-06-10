@@ -125,4 +125,17 @@ public class AlterTheFutureCardControllerTests {
         );
         assertEquals("Reordered list contains cards not in the original", e.getMessage());
     }
+
+    @Test
+    public void validateReorder_ValidRearrangement_NoExceptionThrown() {
+        AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
+        Card card1 = new Card(CardType.CAT_CARD_1);
+        Card card2 = new Card(CardType.CAT_CARD_2);
+        Card card3 = new Card(CardType.CAT_CARD_3);
+
+        List<Card> original = new ArrayList<>(List.of(card1, card2, card3));
+        List<Card> reordered = new ArrayList<>(List.of(card3, card1, card2));
+
+        assertDoesNotThrow(() -> controller.validateReorder(original, reordered));
+    }
 }

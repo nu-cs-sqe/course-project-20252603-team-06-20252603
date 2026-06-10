@@ -28,11 +28,11 @@
     - **State of the system**: original has 3 cards, reordered has 4 cards
     - **Expected output**: IllegalArgumentException thrown
 
-- **TC8: reordered list has same count but contains a card not in original** ( :x: )
+- **TC8: reordered list has same count but contains a card not in original** ( :white-check-mark: )
     - **State of the system**: original has 3 cards, reordered has 3 cards but one is different
     - **Expected output**: IllegalArgumentException thrown
 
-- **TC9: reordered list is a valid rearrangement** ( :x: )
+- **TC9: reordered list is a valid rearrangement** ( :white-check-mark: )
     - **State of the system**: original has 3 cards, reordered has the same 3 cards in a different order
     - **Expected output**: no exception thrown
 
