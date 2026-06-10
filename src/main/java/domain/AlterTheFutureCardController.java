@@ -18,7 +18,7 @@ public class AlterTheFutureCardController implements CardController {
     }
 
     List<Card> getTopCards(Deck deck) {
-        return new ArrayList<>();
+        return new ArrayList<>(deck.getCards());
     }
 
     void validateReorder(List<Card> original, List<Card> reordered) {

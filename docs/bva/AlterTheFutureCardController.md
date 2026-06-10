@@ -1,9 +1,9 @@
 ### Method under test: `getTopCards()`
-- **TC1: deck has 0 cards** ( :x: )
+- **TC1: deck has 0 cards** ( :white-check-mark: )
     - **State of the system**: deck is empty
     - **Expected output**: empty list returned
 
-- **TC2: deck has 1 card** ( :x: )
+- **TC2: deck has 1 card** ( :white-check-mark: )
     - **State of the system**: deck has 1 card
     - **Expected output**: list with that 1 card returned
 
