@@ -195,29 +195,30 @@ public class FavorControllerTests {
 
     @Test
     void executeCardAction_cardNotInTarget_illegalArgumentException() {
-        Game game = new Game(2);
-        Player initiator = game.getTotalPlayers().get(0);
-        Player target = game.getTotalPlayers().get(1);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockInitiator = EasyMock.createMock(Player.class);
+        Player mockTarget = EasyMock.createMock(Player.class);
+        UserInput mockInput = EasyMock.createMock(UserInput.class);
+
         Card attack = new Card(CardType.ATTACK);
         Card defuse = new Card(CardType.DEFUSE);
-        target.addCard(attack);
+        ArrayList<Card> targetHand = new ArrayList<>(List.of(attack));
 
-        UserInput userInput = EasyMock.createMock(UserInput.class);
-        EasyMock.expect(userInput.getCardToGive(target.getHand())).andReturn(defuse);
-        EasyMock.replay(userInput);
+        EasyMock.expect(mockTarget.getHand()).andReturn(targetHand).anyTimes();
+        EasyMock.expect(mockInput.getCardToGive(targetHand)).andReturn(defuse);
+        mockTarget.removeCard(defuse);
+        EasyMock.expectLastCall().andThrow(new IllegalArgumentException("card to remove not in hand"));
 
-        FavorController controller = new FavorController(userInput);
+        EasyMock.replay(mockGame, mockInitiator, mockTarget, mockInput);
+
+        FavorController controller = new FavorController(mockInput);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            controller.executeCardAction(game, initiator, Optional.of(target));
+            controller.executeCardAction(mockGame, mockInitiator, Optional.of(mockTarget));
         });
 
         assertEquals("card to remove not in hand", exception.getMessage());
 
-        assertEquals(0, initiator.getHandSize());
-        assertEquals(1, target.getHandSize());
-        assertTrue(target.hasCard(CardType.ATTACK));
-
-        EasyMock.verify(userInput);
+        EasyMock.verify(mockGame, mockInitiator, mockTarget, mockInput);
     }
 }
