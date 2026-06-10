@@ -13,6 +13,8 @@ public class GameController {
     private Game game;
     private int currentPlayerIndex;
     private int nextPlayerIndex;
+    private int currentPlayerTurnsLeft;
+    private int nextPlayerTurnsLeft;
 
     GameController(Game game) {
         this.game = game;
@@ -48,6 +50,14 @@ public class GameController {
 
     public void setPlayerOrder(List<Player> playerOrder) {
         throw new IllegalArgumentException("list size doesn’t match alivePlayer");
+    }
+
+    public int getCurrentPlayerTurnsLeft() {
+        return this.currentPlayerTurnsLeft;
+    }
+
+    public int getNextPlayerTurnsLeft() {
+        return this.nextPlayerTurnsLeft;
     }
 
     public CardController getControllerType(Card card) {
