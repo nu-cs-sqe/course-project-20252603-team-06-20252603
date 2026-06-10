@@ -32,7 +32,7 @@ public class GameController {
         this.currentPlayerIndex = currentPlayerIndex;
     }
 
-    public int getCurrentPlayerIndex() { 
+    public int getCurrentPlayerIndex() {
         return this.currentPlayerIndex;
     }
 
@@ -53,7 +53,10 @@ public class GameController {
     }
 
     public void setCurrentPlayerTurnsLeft(int currentPlayerTurnsLeft) {
-        throw new IllegalArgumentException("invalid turn count");
+        if (currentPlayerTurnsLeft < 0) {
+            throw new IllegalArgumentException("invalid turn count");
+        }
+        this.currentPlayerTurnsLeft = currentPlayerTurnsLeft;
     }
 
     public int getCurrentPlayerTurnsLeft() {
@@ -90,11 +93,11 @@ public class GameController {
         this.nextPlayerIndex = (this.currentPlayerIndex + 1) % this.game.getAlivePlayerCount();
     }
 
-    public boolean isTargetValid(CardType type, Player initiator, Player target){
+    public boolean isTargetValid(CardType type, Player initiator, Player target) {
         return type.canHaveTarget() && target != initiator;
     }
 
-    public boolean cardsAllMatchingCatCards(ArrayList<Card> cards){
+    public boolean cardsAllMatchingCatCards(ArrayList<Card> cards) {
         CardType firstType = cards.get(0).getType();
         if (!firstType.canHaveTarget()) return false;
         for (Card card : cards) {
