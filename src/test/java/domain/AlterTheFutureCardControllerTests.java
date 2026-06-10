@@ -178,4 +178,20 @@ public class AlterTheFutureCardControllerTests {
 
         assertDoesNotThrow(() -> controller.validateReorder(original, reordered));
     }
+    
+    @Test
+    public void applyReorder_OneDeckCard_DeckUnchanged() {
+        AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
+        Deck deck = EasyMock.createMock(Deck.class);
+        Card cardA = new Card(CardType.CAT_CARD_1);
+
+        EasyMock.replay(deck);
+
+        List<Card> original = new ArrayList<>(List.of(cardA));
+        List<Card> reordered = new ArrayList<>(List.of(cardA));
+
+        controller.applyReorder(deck, original, reordered);
+
+        EasyMock.verify(deck);
+    }
 }
