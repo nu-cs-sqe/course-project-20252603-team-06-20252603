@@ -93,7 +93,6 @@ public class DrawTwoControllerTests {
 
         Card skip1 = new Card(CardType.SKIP);
         Card skip2 = new Card(CardType.SKIP);
-        Card attack = new Card(CardType.ATTACK);
 
         EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
         EasyMock.expect(mockDeck.count()).andReturn(3);
@@ -122,7 +121,6 @@ public class DrawTwoControllerTests {
         Player mockInitiator = EasyMock.createMock(Player.class);
         Deck mockDeck = EasyMock.createMock(Deck.class);
 
-        Card defuse = new Card(CardType.DEFUSE);
         Card skip = new Card(CardType.SKIP);
         Card explodingKitten = new Card(CardType.EXPLODING_KITTEN);
 
@@ -153,8 +151,6 @@ public class DrawTwoControllerTests {
         Player mockInitiator = EasyMock.createMock(Player.class);
         Deck mockDeck = EasyMock.createMock(Deck.class);
 
-        Card defuse1 = new Card(CardType.DEFUSE);
-        Card defuse2 = new Card(CardType.DEFUSE);
         Card skip = new Card(CardType.SKIP);
         Card explodingKitten = new Card(CardType.EXPLODING_KITTEN);
 
