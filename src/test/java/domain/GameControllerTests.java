@@ -1262,4 +1262,50 @@ public class GameControllerTests {
         verify(mockGame, mockPlayer, mockCardController, mockControllerView,
                 mockCatCard, mockDrawBottomCard, mockSkipCard);
     }
+
+    @Test
+    void takeTurn_InputIsCatAndNonCatCard_CallsDisplayInvalidMove() {
+        int currentPlayerIndex = 0;
+        String mockUserChoice = "0,1";
+
+        Game mockGame = mock(Game.class);
+        Player mockPlayer = mock(Player.class);
+        GameControllerView mockControllerView = mock(GameControllerView.class);
+
+        Card mockSkipCard = mock(Card.class);
+        Card mockCatCard = mock(Card.class);
+
+        ArrayList<Player> realAlivePlayers = new ArrayList<>();
+        realAlivePlayers.add(mockPlayer);
+
+        ArrayList<Card> realHand = new ArrayList<>();
+        realHand.add(mockSkipCard);
+        realHand.add(mockCatCard);
+
+        expect(mockGame.getAlivePlayerCount()).andReturn(2).anyTimes();
+        expect(mockGame.getAlivePlayers()).andReturn(realAlivePlayers).anyTimes();
+
+        mockControllerView.displayCurrentPlayerAndCardsInHand(mockPlayer);
+        expectLastCall();
+
+        expect(mockControllerView.getCardChoiceOrDraw()).andReturn(mockUserChoice);
+        expect(mockPlayer.getHand()).andReturn(realHand).anyTimes();
+
+        expect(mockSkipCard.getType()).andReturn(CardType.SKIP).anyTimes();
+        expect(mockCatCard.getType()).andReturn(CardType.CAT_CARD_1).anyTimes();
+
+        mockControllerView.displayInvalidMove(anyObject());
+        expectLastCall();
+
+        replay(mockGame, mockPlayer, mockControllerView, mockSkipCard, mockCatCard);
+
+        GameController controller = new GameController(mockGame);
+        controller.setCurrentPlayerIndex(currentPlayerIndex);
+        controller.setCurrentPlayerTurnsLeft(1);
+
+        controller.takeTurn(mockControllerView);
+
+        assertEquals(1, controller.getCurrentPlayerTurnsLeft(), "Turns should not decrease on an invalid move");
+        verify(mockGame, mockPlayer, mockControllerView, mockSkipCard, mockCatCard);
+    }
 }

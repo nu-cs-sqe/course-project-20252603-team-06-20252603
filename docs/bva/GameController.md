@@ -337,7 +337,7 @@
   - **State of the System**: `currentPlayer`'s hand: `[CAT_CARD_1, DRAW_FROM_BOTTOM, SKIP]`, `userChoice` = "2", `currentPlayerTurnsLeft` = 2
   - **Expected output**: `currentPlayer`'s hand size: 2, `currentPlayerTurnsLeft` = 1
 
-- **TC: input is cat card and a non-cat card, invalid move**
+- **TC: input is cat card and a non-cat card, invalid move** ( :white-check-mark: )
   - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "0,1", `currentPlayerTurnsLeft` = 1
   - **Expected output**: function to output invalid move is called
 

@@ -164,9 +164,13 @@ public class GameController {
             this.currentPlayerTurnsLeft--;
         } else {
             try {
-                int cardIndex = Integer.parseInt(userChoice);
+                String[] inputIndices = userChoice.split(",");
                 ArrayList<Card> cardsPlayed = new ArrayList<>();
-                cardsPlayed.add(currentPlayer.getHand().get(cardIndex));
+
+                for (String input : inputIndices) {
+                    int cardIndex = Integer.parseInt(input.trim());
+                    cardsPlayed.add(currentPlayer.getHand().get(cardIndex));
+                }
 
                 if (isValidMove(cardsPlayed, currentPlayer, Optional.empty())) {
                     CardController cardController = getControllerType(cardsPlayed.get(0));
