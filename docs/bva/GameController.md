@@ -277,3 +277,47 @@
 - **TC: Absolute Maximum Boundary** ( :white-check-mark: )
   - **State of the system**: `alivePlayers` size = `MAX_PLAYERS`. `current` = `MAX_PLAYERS - 1`, `next` = 0.
   - **Expected output**: `current` becomes index 0, `next` becomes index 1.
+
+### Method under test: `takeTurn()`
+- **TC: input is empty, invalid choice**
+  - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "", `currentPlayerTurnsLeft` = 1
+  - **Expected output**: function to output invalid choice is called
+
+- **TC: input is not d or a choice of cards, invalid choice**
+  - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "skip", `currentPlayerTurnsLeft` = 1
+  - **Expected output**: function to output invalid choice is called
+
+- **TC: input is d, draw card and reduce currentPlayerTurnsLeft**
+  - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "d", `currentPlayerTurnsLeft` = 1
+  - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 0
+
+- **TC: input is just a cat card, invalid move**
+  - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "2", `currentPlayerTurnsLeft` = 1
+  - **Expected output**: function to output invalid move is called
+
+- **TC: input is cat card and a non-cat card, invalid move**
+  - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "1,2", `currentPlayerTurnsLeft` = 1
+  - **Expected output**: function to output invalid move is called
+
+- **TC: input is a non-cat card that doesn't alter game state, play card and currentPlayerTurnsLeft isn't reduced, card removed from hand**
+  - **State of the System**: `currentPlayer`'s hand: `[SEE_THE_FUTURE, CAT_CARD_1]`, `userChoice` = "1", `currentPlayerTurnsLeft` = 1
+  - **Expected output**: `currentPlayer`'s hand: `[CAT_CARD_1]`, `currentPlayerTurnsLeft` = 1
+
+- **TC: input is a non-cat card that alters game state, play card and currentPlayerTurnsLeft isn't reduced, card removed from hand, verify game state changed**
+  - **State of the System**: `currentPlayer`'s hand: `[CAT_CARD_1, DRAW_FROM_BOTTOM, SKIP]`, `userChoice` = "2", `currentPlayerTurnsLeft` = 1
+  - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 1, `deck` size reduced by 1 (the bottom card is now in the player's hand)
+
+- **TC: input is a non-cat card that immediately ends turn, play card and currentPlayerTurnsLeft is reduced, card removed from hand**
+  - **State of the System**: `currentPlayer`'s hand: `[CAT_CARD_1, DRAW_FROM_BOTTOM, SKIP]`, `userChoice` = "3", `currentPlayerTurnsLeft` = 2
+  - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 1
+
+- **TC: input is a pair of cat cards, play cards, currentPlayerTurnsLeft is not reduced, cards removed from hand, game state changed**
+  - **State of the System**: `currentPlayer`'s hand: `[CAT_CARD_1, DRAW_FROM_BOTTOM, CAT_CARD_1, SKIP]`, `userChoice` = "1,3", `currentPlayerTurnsLeft` = 2
+  - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 1
+
+- **TC: input is a triple of cat cards, play cards, currentPlayerTurnsLeft is not reduced, cards removed from hand, game state changed**
+  - **State of the System**: `currentPlayer`'s hand: `[CAT_CARD_3, DRAW_FROM_BOTTOM, SKIP, CAT_CARD_3, CAT_CARD_3]`, `userChoice` = "3", `currentPlayerTurnsLeft` = 2
+  - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 1
+
+
+
