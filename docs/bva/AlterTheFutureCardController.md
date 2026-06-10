@@ -11,7 +11,7 @@
     - **State of the system**: deck has 2 cards
     - **Expected output**: list with those 2 cards returned
 
-- **TC4: deck has exactly 3 cards (at MAX_PEEK boundary)** ( :x: )
+- **TC4: deck has exactly 3 cards (at MAX_PEEK boundary)** ( :white-check-mark: )
     - **State of the system**: deck has 3 cards
     - **Expected output**: list with all 3 cards returned
 
