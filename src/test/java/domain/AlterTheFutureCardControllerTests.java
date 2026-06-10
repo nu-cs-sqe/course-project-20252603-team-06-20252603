@@ -65,17 +65,22 @@ public class AlterTheFutureCardControllerTests {
     @Test
     public void getTopCards_DeckHasThreeCards_ReturnsListWithThreeCards() {
         AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
-        Deck deck = new Deck(3);
-        Card expectedFirst = deck.getCards().get(0);
-        Card expectedSecond = deck.getCards().get(1);
-        Card expectedThird = deck.getCards().get(2);
+        Deck deck = EasyMock.createMock(Deck.class);
+        Card cardA = new Card(CardType.CAT_CARD_1);
+        Card cardB = new Card(CardType.CAT_CARD_2);
+        Card cardC = new Card(CardType.CAT_CARD_3);
+
+        EasyMock.expect(deck.getCards()).andReturn(new ArrayList<>(List.of(cardA, cardB, cardC)));
+
+        EasyMock.replay(deck);
 
         List<Card> result = controller.getTopCards(deck);
 
         assertEquals(3, result.size());
-        assertEquals(expectedFirst, result.get(0));
-        assertEquals(expectedSecond, result.get(1));
-        assertEquals(expectedThird, result.get(2));
+        assertEquals(cardA, result.get(0));
+        assertEquals(cardB, result.get(1));
+        assertEquals(cardC, result.get(2));
+        EasyMock.verify(deck);
     }
 
     @Test
