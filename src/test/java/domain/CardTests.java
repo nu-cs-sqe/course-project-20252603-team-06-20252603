@@ -11,7 +11,7 @@ public class CardTests {
         CardType type = null;
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Card(type);
+            Card.createCard(type);
         });
 
         assertEquals("need a card type!", exception.getMessage());
@@ -22,7 +22,7 @@ public class CardTests {
     void constructor_ValidType_CreatesCard() {
         CardType type = CardType.TEST_TYPE;
 
-        Card card = new Card(type);
+        Card card = Card.createCard(type);
 
         assertEquals(CardType.TEST_TYPE, card.getType());
     }

@@ -3,18 +3,23 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Player {
+public class Player {
     private final String playerName;
     private final List<Card> hand;
     private boolean isAlive;
 
-    public Player(String playerName) {
-        if (playerName.isEmpty()) {
-            throw new IllegalArgumentException("player name cannot be empty");
-        }
+    Player(String playerName) {
         this.playerName = playerName;
         this.hand = new ArrayList<>();
         this.isAlive = true;
+    }
+
+    public static Player createPlayer(String playerName) {
+        if (playerName.isEmpty()) {
+            throw new IllegalArgumentException("player name cannot be empty");
+        }
+
+        return new Player(playerName);
     }
 
     public String getPlayerName() { return playerName; }
