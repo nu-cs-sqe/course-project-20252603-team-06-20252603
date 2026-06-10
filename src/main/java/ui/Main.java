@@ -3,12 +3,13 @@ package ui;
 import domain.Card;
 import domain.AlterTheFutureCardController;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
-    private static final Scanner SCANNER = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in, StandardCharsets.UTF_8);
 
     public static void main(String[] args) {
     }
