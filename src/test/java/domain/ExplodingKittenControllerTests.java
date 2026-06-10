@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import ui.UserInput;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,24 +35,30 @@ public class ExplodingKittenControllerTests {
 
     @Test
     public void executeCardAction_oneDefuseOneCard_playerLivesEmptyHand() {
-        Game game = new Game(2);
-        Player user = game.getTotalPlayers().get(0);
-        user.addCard(new Card(CardType.DEFUSE));
-        int deckSizeBefore = game.getDeck().count();
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockUser = EasyMock.createMock(Player.class);
+        Deck mockDeck = EasyMock.createMock(Deck.class);
+        UserInput mockInput = EasyMock.createMock(UserInput.class);
 
-        UserInput userInput = EasyMock.createMock(UserInput.class);
-        EasyMock.expect(userInput.getInsertPosition(deckSizeBefore)).andStubReturn(0);
-        EasyMock.replay(userInput);
+        Card defuse = new Card(CardType.DEFUSE);
+        int deckSize = 5;
 
-        ExplodingKittenController controller = new ExplodingKittenController(userInput);
-        controller.executeCardAction(game, user, Optional.empty());
+        EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
+        EasyMock.expect(mockUser.hasDefuse()).andReturn(true).anyTimes();
+        EasyMock.expect(mockUser.getHand()).andReturn(new ArrayList<>(List.of(defuse))).anyTimes();
+        mockUser.removeCard(defuse);
+        EasyMock.expectLastCall().once();
+        EasyMock.expect(mockDeck.count()).andReturn(deckSize).anyTimes();
+        EasyMock.expect(mockInput.getInsertPosition(deckSize)).andReturn(0);
+        mockDeck.insert(EasyMock.isA(Card.class), EasyMock.eq(0));
+        EasyMock.expectLastCall().once();
 
-        assertTrue(user.isAlive());
-        assertEquals(new ArrayList<>(), user.getHand());
-        assertEquals(deckSizeBefore + 1, game.getDeck().count());
-        assertEquals(CardType.EXPLODING_KITTEN, game.getDeck().getCards().get(0).getType());
+        EasyMock.replay(mockGame, mockUser, mockDeck, mockInput);
 
-        EasyMock.verify(userInput);
+        ExplodingKittenController controller = new ExplodingKittenController(mockInput);
+        controller.executeCardAction(mockGame, mockUser, Optional.empty());
+
+        EasyMock.verify(mockGame, mockUser, mockDeck, mockInput);
     }
 
     @Test
