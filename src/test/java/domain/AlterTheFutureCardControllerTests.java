@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AlterTheFutureCardControllerTests {
 
-@Test
+    @Test
     public void getTopCards_EmptyDeck_ReturnsEmptyList() {
         AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
         Deck deck = EasyMock.createMock(Deck.class);
@@ -26,7 +26,7 @@ public class AlterTheFutureCardControllerTests {
         EasyMock.verify(deck);
     }
 
-@Test
+    @Test
     public void getTopCards_DeckHasOneCard_ReturnsListWithOneCard() {
         AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
         Deck deck = EasyMock.createMock(Deck.class);
@@ -46,15 +46,20 @@ public class AlterTheFutureCardControllerTests {
     @Test
     public void getTopCards_DeckHasTwoCards_ReturnsListWithTwoCards() {
         AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
-        Deck deck = new Deck(2);
-        Card expectedFirst = deck.getCards().get(0);
-        Card expectedSecond = deck.getCards().get(1);
+        Deck deck = EasyMock.createMock(Deck.class);
+        Card cardA = new Card(CardType.CAT_CARD_1);
+        Card cardB = new Card(CardType.CAT_CARD_2);
+
+        EasyMock.expect(deck.getCards()).andReturn(new ArrayList<>(List.of(cardA, cardB)));
+
+        EasyMock.replay(deck);
 
         List<Card> result = controller.getTopCards(deck);
 
         assertEquals(2, result.size());
-        assertEquals(expectedFirst, result.get(0));
-        assertEquals(expectedSecond, result.get(1));
+        assertEquals(cardA, result.get(0));
+        assertEquals(cardB, result.get(1));
+        EasyMock.verify(deck);
     }
 
     @Test
