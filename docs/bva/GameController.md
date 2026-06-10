@@ -55,7 +55,7 @@
   - **Expected output**: this.currentPlayerTurnsLeft = 4
 
 ### Method under test: `setNextPlayerTurnsLeft(int newNextPlayerTurnsLeft)`
-- **TC: Invalid negative turn count is passed
+- **TC: Invalid negative turn count is passed ( :white-check-mark: )
   - **State of the system**: alivePlayer list is initialized, newNextPlayerTurnsLeft = -1
   - **Expected output**: IllegalArgumentException, "invalid turns left"
 

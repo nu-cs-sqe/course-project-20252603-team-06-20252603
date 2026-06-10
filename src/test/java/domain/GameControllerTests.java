@@ -167,6 +167,19 @@ public class GameControllerTests {
     }
 
     @Test
+    void setNextPlayerTurnsLeft_NegativeTurnsLeft_IllegalArgumentException() {
+        int newNextPlayerTurnsLeft = -1;
+
+        Game mockGame = mock(Game.class);
+        GameController controller = new GameController(mockGame);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.setNextPlayerTurnsLeft(newNextPlayerTurnsLeft);
+        });
+        assertEquals("invalid turn count", exception.getMessage());
+    }
+
+    @Test
     void setPlayerOrder_IllegallyEmptyList_ThrowsIllegalArgumentException() {
         Game game = new Game(5);
         GameController controller = new GameController(game);

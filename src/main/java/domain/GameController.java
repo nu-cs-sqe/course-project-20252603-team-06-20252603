@@ -63,6 +63,10 @@ public class GameController {
         return this.currentPlayerTurnsLeft;
     }
 
+    public void setNextPlayerTurnsLeft(int nextPlayerTurnsLeft) {
+            throw new IllegalArgumentException("invalid turn count");
+    }
+
     public int getNextPlayerTurnsLeft() {
         return this.nextPlayerTurnsLeft;
     }
