@@ -4,6 +4,7 @@ import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -57,29 +58,30 @@ public class DrawTwoControllerTests {
 
     @Test
     public void executeCardAction_twoCardDeckEmptyHand_cardsDrawn() {
-        Game game = new Game(2);
-        Player initiator = game.getTotalPlayers().get(0);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockInitiator = EasyMock.createMock(Player.class);
+        Deck mockDeck = EasyMock.createMock(Deck.class);
 
-        for (int i = 0; i < 32; i++) {
-            game.getDeck().takeTopCard();
-        }
+        Card skip = new Card(CardType.SKIP);
+        Card explodingKitten = new Card(CardType.EXPLODING_KITTEN);
 
-        assertEquals(2, game.getDeck().getCards().size());
-        assertEquals(new ArrayList<Card>(), initiator.getHand());
+        EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
+        EasyMock.expect(mockDeck.count()).andReturn(2);
+        EasyMock.expect(mockDeck.takeTopCard()).andReturn(skip);
+        EasyMock.expect(mockDeck.takeTopCard()).andReturn(explodingKitten);
+        mockInitiator.addCard(skip);
+        EasyMock.expectLastCall().once();
+        mockInitiator.addCard(explodingKitten);
+        EasyMock.expectLastCall().once();
 
-        ArrayList<Card> deckCardsBefore = game.getDeck().getCards();
-        Card expectedFirst  = deckCardsBefore.get(0);
-        Card expectedSecond = deckCardsBefore.get(1);
+        EasyMock.replay(mockGame, mockInitiator, mockDeck);
 
         DrawTwoController controller = new DrawTwoController();
-        Optional<java.util.List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
-
-        ArrayList<Card> expectedHand = new ArrayList<>();
-        expectedHand.add(expectedFirst);
-        expectedHand.add(expectedSecond);
+        Optional<List<Card>> result = controller.executeCardAction(
+                mockGame, mockInitiator, Optional.empty());
 
         assertTrue(result.isEmpty());
-        assertEquals(expectedHand, initiator.getHand());
-        assertEquals(new ArrayList<Card>(), game.getDeck().getCards());
+
+        EasyMock.verify(mockGame, mockInitiator, mockDeck);
     }
 }
