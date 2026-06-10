@@ -116,30 +116,29 @@ public class FavorControllerTests {
 
     @Test
     void executeCardAction_targetFirstCard_cardGiven() {
-        Game game = new Game(2);
-        Player initiator = game.getTotalPlayers().get(0);
-        Player target = game.getTotalPlayers().get(1);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockInitiator = EasyMock.createMock(Player.class);
+        Player mockTarget = EasyMock.createMock(Player.class);
+        UserInput mockInput = EasyMock.createMock(UserInput.class);
+
         Card skip = new Card(CardType.SKIP);
         Card attack = new Card(CardType.ATTACK);
         Card defuse = new Card(CardType.DEFUSE);
-        target.addCard(skip);
-        target.addCard(attack);
-        target.addCard(defuse);
+        ArrayList<Card> targetHand = new ArrayList<>(List.of(skip, attack, defuse));
 
-        UserInput userInput = EasyMock.createMock(UserInput.class);
-        EasyMock.expect(userInput.getCardToGive(target.getHand())).andReturn(skip);
-        EasyMock.replay(userInput);
+        EasyMock.expect(mockTarget.getHand()).andReturn(targetHand).anyTimes();
+        EasyMock.expect(mockInput.getCardToGive(targetHand)).andReturn(skip);
+        mockTarget.removeCard(skip);
+        EasyMock.expectLastCall().once();
+        mockInitiator.addCard(skip);
+        EasyMock.expectLastCall().once();
 
-        FavorController controller = new FavorController(userInput);
-        controller.executeCardAction(game, initiator, Optional.of(target));
+        EasyMock.replay(mockGame, mockInitiator, mockTarget, mockInput);
 
-        assertEquals(1, initiator.getHandSize());
-        assertTrue(initiator.hasCard(CardType.SKIP));
-        assertEquals(2, target.getHandSize());
-        assertTrue(target.hasCard(CardType.ATTACK));
-        assertTrue(target.hasCard(CardType.DEFUSE));
+        FavorController controller = new FavorController(mockInput);
+        controller.executeCardAction(mockGame, mockInitiator, Optional.of(mockTarget));
 
-        EasyMock.verify(userInput);
+        EasyMock.verify(mockGame, mockInitiator, mockTarget, mockInput);
     }
 
     @Test
