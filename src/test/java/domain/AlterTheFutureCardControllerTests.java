@@ -92,7 +92,8 @@ public class AlterTheFutureCardControllerTests {
         Card cardC = new Card(CardType.CAT_CARD_3);
         Card cardD = new Card(CardType.CAT_CARD_4);
 
-        EasyMock.expect(deck.getCards()).andReturn(new ArrayList<>(List.of(cardA, cardB, cardC, cardD)));
+        EasyMock.expect(deck.getCards())
+                .andReturn(new ArrayList<>(List.of(cardA, cardB, cardC, cardD)));
 
         EasyMock.replay(deck);
 
@@ -137,7 +138,7 @@ public class AlterTheFutureCardControllerTests {
     }
 
     @Test
-    public void validateReorder_ReorderedHasSameCountButDifferentCard_ThrowsIllegalArgumentException() {
+    public void validateReorder_ReorderedHasSameCountButDifferentCard_ThrowsException() {
         AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
         Card card1 = new Card(CardType.CAT_CARD_1);
         Card card2 = new Card(CardType.CAT_CARD_2);
@@ -354,7 +355,8 @@ public class AlterTheFutureCardControllerTests {
         Card cardE = new Card(CardType.SKIP);
 
         EasyMock.expect(game.getDeck()).andReturn(deck);
-        EasyMock.expect(deck.getCards()).andReturn(new ArrayList<>(List.of(cardA, cardB, cardC, cardD, cardE)));
+        EasyMock.expect(deck.getCards())
+                .andReturn(new ArrayList<>(List.of(cardA, cardB, cardC, cardD, cardE)));
         deck.discard(cardA);
         deck.discard(cardB);
         deck.discard(cardC);

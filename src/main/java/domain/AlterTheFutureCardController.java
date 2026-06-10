@@ -35,7 +35,8 @@ public class AlterTheFutureCardController implements CardController {
         List<Card> copy = new ArrayList<>(original);
         for (Card card : reordered) {
             if (!copy.remove(card)) {
-                throw new IllegalArgumentException("Reordered list contains cards not in the original");
+                throw new IllegalArgumentException(
+                        "Reordered list contains cards not in the original");
             }
         }
     }
