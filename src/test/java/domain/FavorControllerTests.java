@@ -96,9 +96,12 @@ public class FavorControllerTests {
         Player mockTarget = EasyMock.createMock(Player.class);
         UserInput mockInput = EasyMock.createMock(UserInput.class);
 
+        Card userAttack = new Card(CardType.ATTACK);
         Card targetAttack = new Card(CardType.ATTACK);
+        ArrayList<Card> userHand = new ArrayList<>(List.of(userAttack));
         ArrayList<Card> targetHand = new ArrayList<>(List.of(targetAttack));
 
+        EasyMock.expect(mockUser.getHand()).andReturn(userHand).anyTimes();
         EasyMock.expect(mockTarget.getHand()).andReturn(targetHand).anyTimes();
         EasyMock.expect(mockInput.getCardToGive(targetHand)).andReturn(targetAttack);
         mockTarget.removeCard(targetAttack);
@@ -175,9 +178,13 @@ public class FavorControllerTests {
         Player mockTarget = EasyMock.createMock(Player.class);
         UserInput mockInput = EasyMock.createMock(UserInput.class);
 
+        Card defuse = new Card(CardType.DEFUSE);
+        Card skip = new Card(CardType.SKIP);
         Card attack = new Card(CardType.ATTACK);
+        ArrayList<Card> userHand = new ArrayList<>(List.of(defuse, skip));
         ArrayList<Card> targetHand = new ArrayList<>(List.of(attack));
 
+        EasyMock.expect(mockInitiator.getHand()).andReturn(userHand).anyTimes();
         EasyMock.expect(mockTarget.getHand()).andReturn(targetHand).anyTimes();
         EasyMock.expect(mockInput.getCardToGive(targetHand)).andReturn(attack);
         mockTarget.removeCard(attack);
