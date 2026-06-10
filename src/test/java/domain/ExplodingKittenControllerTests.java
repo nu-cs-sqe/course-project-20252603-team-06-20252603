@@ -17,6 +17,7 @@ public class ExplodingKittenControllerTests {
         Game mockGame = EasyMock.createMock(Game.class);
         Player mockUser = EasyMock.createMock(Player.class);
         Deck mockDeck = EasyMock.createMock(Deck.class);
+        UserInput mockInput = EasyMock.createMock(UserInput.class);
 
         EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
         EasyMock.expect(mockUser.hasDefuse()).andReturn(false).anyTimes();
@@ -27,7 +28,7 @@ public class ExplodingKittenControllerTests {
 
         EasyMock.replay(mockGame, mockUser, mockDeck);
 
-        ExplodingKittenController controller = new ExplodingKittenController(new UserInput());
+        ExplodingKittenController controller = new ExplodingKittenController(mockInput);
         controller.executeCardAction(mockGame, mockUser, Optional.empty());
 
         EasyMock.verify(mockGame, mockUser, mockDeck);
@@ -154,6 +155,7 @@ public class ExplodingKittenControllerTests {
         Game mockGame = EasyMock.createMock(Game.class);
         Player mockUser = EasyMock.createMock(Player.class);
         Deck mockDeck = EasyMock.createMock(Deck.class);
+        UserInput mockInput = EasyMock.createMock(UserInput.class);
 
         EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
         EasyMock.expect(mockUser.hasDefuse()).andReturn(false).anyTimes();
@@ -164,7 +166,7 @@ public class ExplodingKittenControllerTests {
 
         EasyMock.replay(mockGame, mockUser, mockDeck);
 
-        ExplodingKittenController controller = new ExplodingKittenController(new UserInput());
+        ExplodingKittenController controller = new ExplodingKittenController(mockInput);
         controller.executeCardAction(mockGame, mockUser, Optional.empty());
 
         EasyMock.verify(mockGame, mockUser, mockDeck);
