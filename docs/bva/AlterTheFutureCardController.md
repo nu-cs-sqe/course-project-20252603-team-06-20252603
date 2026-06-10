@@ -50,20 +50,20 @@
     - **State of the system**: deck has 4 cards, original and reordered both have 2 cards in different order
     - **Expected output**: top 2 cards of deck replaced in new order, rest of deck unchanged
 
-- **TC13: reorder 3 cards** ( :x: )
+- **TC13: reorder 3 cards** ( :white-check-mark: )
     - **State of the system**: deck has 4 cards, original and reordered both have 3 cards in different order
     - **Expected output**: top 3 cards of deck replaced in new order, rest of deck unchanged
 
 ### Method under test: `executeCardAction()`
-- **TC14: deck has 0 cards** ( :x: )
+- **TC14: deck has 0 cards** ( :white-check-mark: )
     - **State of the system**: deck is empty, reorderFunction returns empty list
     - **Expected output**: Optional.empty() returned, deck unchanged
 
-- **TC15: deck has 1 card** ( :x: )
+- **TC15: deck has 1 card** ( :white-check-mark: )
     - **State of the system**: deck has 1 card, reorderFunction returns the same card
     - **Expected output**: Optional.empty() returned, deck unchanged
 
-- **TC16: deck has 2 cards** ( :x: )
+- **TC16: deck has 2 cards** ( :white-check-mark:  )
     - **State of the system**: deck has 2 cards, reorderFunction returns them in reverse order
     - **Expected output**: Optional.empty() returned, top 2 cards swapped
 
