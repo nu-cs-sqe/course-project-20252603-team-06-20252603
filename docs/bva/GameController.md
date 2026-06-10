@@ -59,7 +59,7 @@
   - **State of the system**: alivePlayer list is initialized, newNextPlayerTurnsLeft = -1
   - **Expected output**: IllegalArgumentException, "invalid turns left"
 
-- **TC: Turn count at minimum possible boundary, 0
+- **TC: Turn count at minimum possible boundary, 0 ( :white-check-mark: )
   - **State of the system**: alivePlayer list is initialized, newNextPlayerTurnsLeft = 0
   - **Expected output**: this.NextPlayerTurnsLeft = 0
 
