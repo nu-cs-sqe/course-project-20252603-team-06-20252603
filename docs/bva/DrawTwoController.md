@@ -8,7 +8,7 @@ output: Optional.empty() (Optional<List<Card>>)
 - LIST: initiator.getHand()
 - LIST: game.getDeck()
 
-- **TC1: executeCardAction_emptyDeckEmptyHand_IllegalArgumentException ** ( :x: or :white_check_mark: )
+- **TC1: executeCardAction_emptyDeckEmptyHand_IllegalArgumentException ** ( :white_check_mark: )
     - **State of the system**: hand: [], deck: []
     - **Expected output**: IllegalArgumentException
 
