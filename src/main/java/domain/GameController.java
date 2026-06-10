@@ -183,7 +183,10 @@ public class GameController {
                 } else {
                     Optional<Player> target = Optional.empty();
                     if (cardsPlayed.size() >= 2) {
-                        String targetChoice = controllerView.getTargetPlayerIndex(new ArrayList<Player>(game.getAlivePlayers()), currentPlayer);
+                        ArrayList<Player> arrayListAlivePlayers =
+                                new ArrayList<Player>(game.getAlivePlayers());
+                        String targetChoice = controllerView
+                                .getTargetPlayerIndex(arrayListAlivePlayers, currentPlayer);
                         int targetIdx = Integer.parseInt(targetChoice.trim());
                         target = Optional.of(game.getAlivePlayers().get(targetIdx));
                     }

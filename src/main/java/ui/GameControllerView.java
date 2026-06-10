@@ -42,7 +42,7 @@ public class GameControllerView {
     }
 
     public void displayDuplicateCardInMove(String userChoice) {
-        System.out.printf("Cannot play card in position %s twice in one move. Please try again.%n", userChoice);
+        System.out.printf("Cannot card #%s twice in one move. Please try again.%n", userChoice);
     }
 
     public String getCardChoiceOrDraw() {
