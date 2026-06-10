@@ -1189,4 +1189,77 @@ public class GameControllerTests {
         verify(mockGame, mockPlayer, mockDeck, mockCardController, mockControllerView,
                 mockCatCard, mockDrawBottomCard, mockSkipCard, mockDrawnCard);
     }
+
+    @Test
+    void takeTurn_ValidTurnEndingCard_ExecutesActionReducesTurnsAndRemovesCard() {
+        int currentPlayerIndex = 0;
+        String mockUserChoice = "2";
+
+        Game mockGame = mock(Game.class);
+        Player mockPlayer = mock(Player.class);
+        CardController mockCardController = mock(CardController.class);
+        GameControllerView mockControllerView = mock(GameControllerView.class);
+
+        Card mockCatCard = mock(Card.class);
+        Card mockDrawBottomCard = mock(Card.class);
+        Card mockSkipCard = mock(Card.class);
+
+        ArrayList<Player> realAlivePlayers = new ArrayList<>();
+        realAlivePlayers.add(mockPlayer);
+
+        ArrayList<Card> realHand = new ArrayList<>();
+        realHand.add(mockCatCard);
+        realHand.add(mockDrawBottomCard);
+        realHand.add(mockSkipCard);
+
+        GameController controller = new GameController(mockGame) {
+            @Override
+            public CardController getControllerType(Card card) {
+                return mockCardController;
+            }
+        };
+
+        expect(mockGame.getAlivePlayerCount()).andReturn(2).anyTimes();
+        expect(mockGame.getAlivePlayers()).andReturn(realAlivePlayers).anyTimes();
+
+        mockControllerView.displayCurrentPlayerAndCardsInHand(mockPlayer);
+        expectLastCall();
+
+        expect(mockControllerView.getCardChoiceOrDraw()).andReturn(mockUserChoice);
+        expect(mockPlayer.getHand()).andReturn(realHand).anyTimes();
+
+        expect(mockCatCard.getType()).andReturn(CardType.CAT_CARD_1).anyTimes();
+        expect(mockDrawBottomCard.getType()).andReturn(CardType.DRAW_FROM_BOTTOM).anyTimes();
+        expect(mockSkipCard.getType()).andReturn(CardType.SKIP).anyTimes();
+
+        expect(mockCardController.executeCardAction(eq(mockGame), eq(mockPlayer), eq(Optional.empty())))
+                .andAnswer(() -> {
+                    int currentTurns = controller.getCurrentPlayerTurnsLeft();
+                    controller.setCurrentPlayerTurnsLeft(currentTurns - 1);
+
+                    return Optional.empty();
+                });
+
+        mockPlayer.removeCard(mockSkipCard);
+        expectLastCall().andAnswer(() -> {
+            realHand.remove(mockSkipCard);
+            return null;
+        });
+
+        replay(mockGame, mockPlayer, mockCardController, mockControllerView,
+                mockCatCard, mockDrawBottomCard, mockSkipCard);
+
+        controller.setCurrentPlayerIndex(currentPlayerIndex);
+        controller.setCurrentPlayerTurnsLeft(2);
+
+        controller.takeTurn(mockControllerView);
+
+        assertEquals(1, controller.getCurrentPlayerTurnsLeft());
+
+        assertEquals(2, realHand.size());
+        assertFalse(realHand.contains(mockSkipCard));
+
+        verify(mockGame, mockPlayer, mockCardController, mockControllerView,
+                mockCatCard, mockDrawBottomCard, mockSkipCard);
+    }
 }

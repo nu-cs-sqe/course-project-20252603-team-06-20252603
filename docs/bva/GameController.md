@@ -333,9 +333,9 @@
   - **State of the System**: `currentPlayer`'s hand: `[CAT_CARD_1, DRAW_FROM_BOTTOM, SKIP]`, `userChoice` = "1", `currentPlayerTurnsLeft` = 1
   - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 1, `deck` size reduced by 1 (the bottom card is now in the player's hand)
 
-- **TC: input is a non-cat card that immediately ends turn, play card and currentPlayerTurnsLeft is reduced, card removed from hand**
+- **TC: input is a non-cat card that immediately ends turn, play card and currentPlayerTurnsLeft is reduced, card removed from hand** ( :white-check-mark: )
   - **State of the System**: `currentPlayer`'s hand: `[CAT_CARD_1, DRAW_FROM_BOTTOM, SKIP]`, `userChoice` = "2", `currentPlayerTurnsLeft` = 2
-  - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 1
+  - **Expected output**: `currentPlayer`'s hand size: 2, `currentPlayerTurnsLeft` = 1
 
 - **TC: input is cat card and a non-cat card, invalid move**
   - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "0,1", `currentPlayerTurnsLeft` = 1
