@@ -42,9 +42,9 @@
   - **Expected output**: `IllegalArgumentException` ("invalid next index")
 
 ### Method under test: `setCurrentPlayerTurnsLeft(int newCurrentPlayerTurnsLeft)`
-- **TC: Invalid negative turn count is passed 
+- **TC: Invalid negative turn count is passed ( :white-check-mark: )
   - **State of the system**: alivePlayer list is initialized, newCurrentPlayerTurnsLeft = -1
-  - **Expected output**: IllegalArgumentException
+  - **Expected output**: IllegalArgumentException, "invalid turn count"
 
 - **TC: Turn count at minimum possible boundary, 0 
   - **State of the system**: alivePlayer list is initialized, newCurrentPlayerTurnsLeft = 0
@@ -57,7 +57,7 @@
 ### Method under test: `setNextPlayerTurnsLeft(int newNextPlayerTurnsLeft)`
 - **TC: Invalid negative turn count is passed
   - **State of the system**: alivePlayer list is initialized, newNextPlayerTurnsLeft = -1
-  - **Expected output**: IllegalArgumentException
+  - **Expected output**: IllegalArgumentException, "invalid turns left"
 
 - **TC: Turn count at minimum possible boundary, 0
   - **State of the system**: alivePlayer list is initialized, newNextPlayerTurnsLeft = 0

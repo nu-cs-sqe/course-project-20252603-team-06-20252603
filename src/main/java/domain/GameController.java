@@ -52,6 +52,10 @@ public class GameController {
         throw new IllegalArgumentException("list size doesn’t match alivePlayer");
     }
 
+    public void setCurrentPlayerTurnsLeft(int currentPlayerTurnsLeft) {
+        throw new IllegalArgumentException("invalid turn count");
+    }
+
     public int getCurrentPlayerTurnsLeft() {
         return this.currentPlayerTurnsLeft;
     }
