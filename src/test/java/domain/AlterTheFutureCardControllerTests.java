@@ -138,4 +138,17 @@ public class AlterTheFutureCardControllerTests {
 
         assertDoesNotThrow(() -> controller.validateReorder(original, reordered));
     }
+
+    @Test
+    public void validateReorder_IdenticalToOriginal_NoExceptionThrown() {
+        AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
+        Card card1 = new Card(CardType.CAT_CARD_1);
+        Card card2 = new Card(CardType.CAT_CARD_2);
+        Card card3 = new Card(CardType.CAT_CARD_3);
+
+        List<Card> original = new ArrayList<>(List.of(card1, card2, card3));
+        List<Card> reordered = new ArrayList<>(List.of(card1, card2, card3));
+
+        assertDoesNotThrow(() -> controller.validateReorder(original, reordered));
+    }
 }
