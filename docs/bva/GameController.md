@@ -341,6 +341,10 @@
   - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "0,1", `currentPlayerTurnsLeft` = 1
   - **Expected output**: function to output invalid move is called
 
+- **TC: input tries to play the same card twice, duplicate card in move** ( :white-check-mark: )
+  - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "1,1", `currentPlayerTurnsLeft` = 1
+  - **Expected output**: function to output duplicate card in move is called
+
 - **TC: input is a pair of cat cards, play cards, currentPlayerTurnsLeft is not reduced, cards removed from hand, game state changed**
   - **State of the System**: `currentPlayer`'s hand: `[CAT_CARD_1, DRAW_FROM_BOTTOM, CAT_CARD_1, SKIP]`, `userChoice` = "0,2", `currentPlayerTurnsLeft` = 2
   - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 1

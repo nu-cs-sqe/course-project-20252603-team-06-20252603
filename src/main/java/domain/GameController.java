@@ -1,11 +1,7 @@
 package domain;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.EnumMap;
-import java.util.Optional;
+import java.util.*;
 
 import ui.GameControllerView;
 
@@ -167,12 +163,22 @@ public class GameController {
                 String[] inputIndices = userChoice.split(",");
                 ArrayList<Card> cardsPlayed = new ArrayList<>();
 
+                Set<Integer> uniqueIndices = new HashSet<>();
+                boolean hasDuplicateIndex = false;
+
                 for (String input : inputIndices) {
                     int cardIndex = Integer.parseInt(input.trim());
+
+                    if (!uniqueIndices.add(cardIndex)) {
+                        hasDuplicateIndex = true;
+                        break;
+                    }
                     cardsPlayed.add(currentPlayer.getHand().get(cardIndex));
                 }
 
-                if (isValidMove(cardsPlayed, currentPlayer, Optional.empty())) {
+                if (hasDuplicateIndex) {
+                    controllerView.displayDuplicateCardInMove(userChoice);
+                } else if (isValidMove(cardsPlayed, currentPlayer, Optional.empty())) {
                     CardController cardController = getControllerType(cardsPlayed.get(0));
                     cardController.executeCardAction(this.game, currentPlayer, Optional.empty());
 

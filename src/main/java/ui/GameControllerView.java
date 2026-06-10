@@ -41,6 +41,10 @@ public class GameControllerView {
         System.out.printf("%s is not a valid card position. Please try again.%n", userChoice);
     }
 
+    public void displayDuplicateCardInMove(String userChoice) {
+        System.out.printf("Cannot play card in position %s twice in one move. Please try again.%n", userChoice);
+    }
+
     public String getCardChoiceOrDraw() {
         System.out.println("Enter the number before the card to play the card;");
         System.out.println("numbers separated by commas to play multiple cards (e.g. 0,2,5);");
