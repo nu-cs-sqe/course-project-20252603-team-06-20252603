@@ -1,5 +1,6 @@
 package domain;
 
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -10,14 +11,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AlterTheFutureCardControllerTests {
 
-    @Test
+@Test
     public void getTopCards_EmptyDeck_ReturnsEmptyList() {
         AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
-        Deck deck = new Deck(0);
+        Deck deck = EasyMock.createMock(Deck.class);
+
+        EasyMock.expect(deck.getCards()).andReturn(new ArrayList<>());
+
+        EasyMock.replay(deck);
 
         List<Card> result = controller.getTopCards(deck);
 
         assertTrue(result.isEmpty());
+        EasyMock.verify(deck);
     }
 
     @Test

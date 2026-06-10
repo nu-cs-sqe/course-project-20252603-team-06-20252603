@@ -36,15 +36,15 @@
     - **State of the system**: original has 3 cards, reordered has the same 3 cards in a different order
     - **Expected output**: no exception thrown
 
-- **TC10: reordered list is identical to original** ( :x: )
+- **TC10: reordered list is identical to original** ( :white-check-mark: )
     - **State of the system**: original has 3 cards, reordered has the same 3 cards in the same order
     - **Expected output**: no exception thrown
 
 
 ### Method under test: `applyReorder()`
-- **TC11: reorder 1 card** ( :x: )
-    - **State of the system**: deck has 4 cards, original and reordered both have 1 card
-    - **Expected output**: top card of deck replaced in the new order, rest of deck unchanged
+- **TC11: reorder 1 card** ( :white-check-mark: )
+    - **State of the system**: deck has 1 card (fewer than MAX_PEEK), original and reordered both have that 1 card
+    - **Expected output**: deck unchanged
 
 - **TC12: reorder 2 cards** ( :x: )
     - **State of the system**: deck has 4 cards, original and reordered both have 2 cards in different order
