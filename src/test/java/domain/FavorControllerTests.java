@@ -4,6 +4,8 @@ import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 import ui.UserInput;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,24 +14,27 @@ public class FavorControllerTests {
 
     @Test
     void executeCardAction_targetOneCard_cardGiven() {
-        Game game = new Game(2);
-        Player user = game.getTotalPlayers().get(0);
-        Player target = game.getTotalPlayers().get(1);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockUser = EasyMock.createMock(Player.class);
+        Player mockTarget = EasyMock.createMock(Player.class);
+        UserInput mockInput = EasyMock.createMock(UserInput.class);
+
         Card attack = new Card(CardType.ATTACK);
-        target.addCard(attack);
+        ArrayList<Card> targetHand = new ArrayList<>(List.of(attack));
 
-        UserInput userInput = EasyMock.createMock(UserInput.class);
-        EasyMock.expect(userInput.getCardToGive(target.getHand())).andReturn(attack);
-        EasyMock.replay(userInput);
+        EasyMock.expect(mockTarget.getHand()).andReturn(targetHand).anyTimes();
+        EasyMock.expect(mockInput.getCardToGive(targetHand)).andReturn(attack);
+        mockTarget.removeCard(attack);
+        EasyMock.expectLastCall().once();
+        mockUser.addCard(attack);
+        EasyMock.expectLastCall().once();
 
-        FavorController controller = new FavorController(userInput);
-        controller.executeCardAction(game, user, Optional.of(target));
+        EasyMock.replay(mockGame, mockUser, mockTarget, mockInput);
 
-        assertEquals(1, user.getHandSize());
-        assertTrue(user.hasCard(CardType.ATTACK));
-        assertEquals(0, target.getHandSize());
+        FavorController controller = new FavorController(mockInput);
+        controller.executeCardAction(mockGame, mockUser, Optional.of(mockTarget));
 
-        EasyMock.verify(userInput);
+        EasyMock.verify(mockGame, mockUser, mockTarget, mockInput);
     }
 
     @Test
