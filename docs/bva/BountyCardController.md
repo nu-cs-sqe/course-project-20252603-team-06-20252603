@@ -3,11 +3,11 @@
     - **State of the system**: game has 2 players, user has 0 cards, other player has 0 cards
     - **Expected output**: `Optional.empty()`, user hand unchanged
 
-- **TC2: one other player with 1 card** (:x:)
+- **TC2: one other player with 1 card** (☑️)
     - **State of the system**: game has 2 players, user has 0 cards, other player has 1 card
     - **Expected output**: user has 1 card, other player has 0 cards
 
-- **TC3: one other player with many cards** (:x:)
+- **TC3: one other player with many cards** (☑️)
     - **State of the system**: game has 2 players, user has 0 cards, other player has 4 cards
     - **Expected output**: user has 1 card, other player has 3 cards
 
