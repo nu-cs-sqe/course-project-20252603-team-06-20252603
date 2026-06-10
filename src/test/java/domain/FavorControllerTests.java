@@ -214,7 +214,8 @@ public class FavorControllerTests {
         EasyMock.expect(mockTarget.getHand()).andReturn(targetHand).anyTimes();
         EasyMock.expect(mockInput.getCardToGive(targetHand)).andReturn(defuse);
         mockTarget.removeCard(defuse);
-        EasyMock.expectLastCall().andThrow(new IllegalArgumentException("card to remove not in hand"));
+        IllegalArgumentException exception_msg = new IllegalArgumentException("card to remove not in hand");
+        EasyMock.expectLastCall().andThrow(exception_msg);
 
         EasyMock.replay(mockGame, mockInitiator, mockTarget, mockInput);
 
