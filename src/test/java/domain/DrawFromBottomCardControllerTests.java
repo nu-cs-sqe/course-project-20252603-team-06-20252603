@@ -11,7 +11,7 @@ public class DrawFromBottomCardControllerTests {
 
     @Test
     public void executeCardAction_DrawFromEmptyDeck_IllegalStateException() {
-        Game game = new Game(2);
+        Game game = Game.createGame(2);
         Player player1 = game.getTotalPlayers().get(0);
 
 
@@ -32,7 +32,7 @@ public class DrawFromBottomCardControllerTests {
 
     @Test
     public void executeCardAction_DrawFromDeckOneCard_CardMovedToPlayer() {
-        Game game = new Game(2);
+        Game game = Game.createGame(2);
         Player player1 = game.getTotalPlayers().get(0);
 
         assertEquals(new ArrayList<Card>(), player1.getHand());
@@ -59,7 +59,7 @@ public class DrawFromBottomCardControllerTests {
 
     @Test
     public void executeCardAction_DrawFromDeckFifteenCards_CardMovedToPlayer() {
-        Game game = new Game(2);
+        Game game = Game.createGame(2);
         Player player1 = game.getTotalPlayers().get(0);
 
         assertEquals(new ArrayList<Card>(), player1.getHand());
