@@ -92,4 +92,20 @@ public class AlterTheFutureCardControllerTests {
             controller.validateReorder(original, reordered)
         );
     }
+
+    @Test
+    public void validateReorder_ReorderedHasMoreCards_ThrowsIllegalArgumentException() {
+        AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
+        Card card1 = new Card(CardType.CAT_CARD_1);
+        Card card2 = new Card(CardType.CAT_CARD_2);
+        Card card3 = new Card(CardType.CAT_CARD_3);
+        Card card4 = new Card(CardType.CAT_CARD_4);
+
+        List<Card> original = new ArrayList<>(List.of(card1, card2, card3));
+        List<Card> reordered = new ArrayList<>(List.of(card1, card2, card3, card4));
+
+        assertThrows(IllegalArgumentException.class, () ->
+            controller.validateReorder(original, reordered)
+        );
+    }
 }

@@ -24,7 +24,7 @@
     - **State of the system**: original has 3 cards, reordered has 2 cards
     - **Expected output**: IllegalArgumentException thrown
 
-- **TC7: reordered list has more cards than original** ( :x: )
+- **TC7: reordered list has more cards than original** ( :white-check-mark: )
     - **State of the system**: original has 3 cards, reordered has 4 cards
     - **Expected output**: IllegalArgumentException thrown
 
