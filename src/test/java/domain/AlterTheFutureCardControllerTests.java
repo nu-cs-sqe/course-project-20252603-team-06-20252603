@@ -26,16 +26,21 @@ public class AlterTheFutureCardControllerTests {
         EasyMock.verify(deck);
     }
 
-    @Test
+@Test
     public void getTopCards_DeckHasOneCard_ReturnsListWithOneCard() {
         AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
-        Deck deck = new Deck(1);
-        Card expectedCard = deck.getCards().get(0);
+        Deck deck = EasyMock.createMock(Deck.class);
+        Card cardA = new Card(CardType.CAT_CARD_1);
+
+        EasyMock.expect(deck.getCards()).andReturn(new ArrayList<>(List.of(cardA)));
+
+        EasyMock.replay(deck);
 
         List<Card> result = controller.getTopCards(deck);
 
         assertEquals(1, result.size());
-        assertEquals(expectedCard, result.get(0));
+        assertEquals(cardA, result.get(0));
+        EasyMock.verify(deck);
     }
 
     @Test
