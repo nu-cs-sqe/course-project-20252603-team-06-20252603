@@ -1267,9 +1267,11 @@ public class GameControllerTests {
     void takeTurn_InputIsCatAndNonCatCard_CallsDisplayInvalidMove() {
         int currentPlayerIndex = 0;
         String mockUserChoice = "0,1";
+        String mockTargetChoice = "1";
 
         Game mockGame = mock(Game.class);
         Player mockPlayer = mock(Player.class);
+        Player mockTargetPlayer = mock(Player.class);
         GameControllerView mockControllerView = mock(GameControllerView.class);
 
         Card mockSkipCard = mock(Card.class);
@@ -1277,6 +1279,7 @@ public class GameControllerTests {
 
         ArrayList<Player> realAlivePlayers = new ArrayList<>();
         realAlivePlayers.add(mockPlayer);
+        realAlivePlayers.add(mockTargetPlayer);
 
         ArrayList<Card> realHand = new ArrayList<>();
         realHand.add(mockSkipCard);
@@ -1289,6 +1292,9 @@ public class GameControllerTests {
         expectLastCall();
 
         expect(mockControllerView.getCardChoiceOrDraw()).andReturn(mockUserChoice);
+
+        expect(mockControllerView.getTargetPlayerIndex(anyObject(ArrayList.class), eq(mockPlayer))).andReturn(mockTargetChoice);
+
         expect(mockPlayer.getHand()).andReturn(realHand).anyTimes();
 
         expect(mockSkipCard.getType()).andReturn(CardType.SKIP).anyTimes();
@@ -1297,7 +1303,7 @@ public class GameControllerTests {
         mockControllerView.displayInvalidMove(anyObject());
         expectLastCall();
 
-        replay(mockGame, mockPlayer, mockControllerView, mockSkipCard, mockCatCard);
+        replay(mockGame, mockPlayer, mockTargetPlayer, mockControllerView, mockSkipCard, mockCatCard);
 
         GameController controller = new GameController(mockGame);
         controller.setCurrentPlayerIndex(currentPlayerIndex);
@@ -1306,7 +1312,7 @@ public class GameControllerTests {
         controller.takeTurn(mockControllerView);
 
         assertEquals(1, controller.getCurrentPlayerTurnsLeft(), "Turns should not decrease on an invalid move");
-        verify(mockGame, mockPlayer, mockControllerView, mockSkipCard, mockCatCard);
+        verify(mockGame, mockPlayer, mockTargetPlayer, mockControllerView, mockSkipCard, mockCatCard);
     }
 
     @Test
@@ -1351,5 +1357,58 @@ public class GameControllerTests {
 
         assertEquals(1, controller.getCurrentPlayerTurnsLeft());
         verify(mockGame, mockPlayer, mockControllerView, mockSkipCard, mockCatCard);
+    }
+
+    @Test
+    void takeTurn_ValidCatCardPair_ExecutesActionRemovesCardsAndDoesNotReduceTurns() {
+        int currentPlayerIndex = 0;
+        String mockUserChoice = "0,1";
+        String mockTargetChoice = "1";
+
+        Game mockGame = mock(Game.class);
+        Player mockPlayer = mock(Player.class);
+        Player mockTargetPlayer = mock(Player.class);
+        GameControllerView mockControllerView = mock(GameControllerView.class);
+
+        Card mockSkipCard = mock(Card.class);
+        Card mockCatCard = mock(Card.class);
+
+
+        ArrayList<Player> realAlivePlayers = new ArrayList<>();
+        realAlivePlayers.add(mockPlayer);
+        realAlivePlayers.add(mockTargetPlayer);
+
+        ArrayList<Card> realHand = new ArrayList<>();
+        realHand.add(mockSkipCard);
+        realHand.add(mockCatCard);
+
+        expect(mockGame.getAlivePlayerCount()).andReturn(2).anyTimes();
+        expect(mockGame.getAlivePlayers()).andReturn(realAlivePlayers).anyTimes();
+
+        mockControllerView.displayCurrentPlayerAndCardsInHand(mockPlayer);
+        expectLastCall();
+
+        expect(mockControllerView.getCardChoiceOrDraw()).andReturn(mockUserChoice);
+
+        expect(mockControllerView.getTargetPlayerIndex(eq(realAlivePlayers), eq(mockPlayer))).andReturn(mockTargetChoice);
+
+        expect(mockPlayer.getHand()).andReturn(realHand).anyTimes();
+
+        expect(mockSkipCard.getType()).andReturn(CardType.SKIP).anyTimes();
+        expect(mockCatCard.getType()).andReturn(CardType.CAT_CARD_1).anyTimes();
+
+        mockControllerView.displayInvalidMove(anyObject());
+        expectLastCall();
+
+        replay(mockGame, mockPlayer, mockTargetPlayer, mockControllerView, mockSkipCard, mockCatCard);
+
+        GameController controller = new GameController(mockGame);
+        controller.setCurrentPlayerIndex(currentPlayerIndex);
+        controller.setCurrentPlayerTurnsLeft(1);
+
+        controller.takeTurn(mockControllerView);
+
+        assertEquals(1, controller.getCurrentPlayerTurnsLeft(), "Turns should not decrease on an invalid move");
+        verify(mockGame, mockPlayer, mockTargetPlayer, mockControllerView, mockSkipCard, mockCatCard);
     }
 }

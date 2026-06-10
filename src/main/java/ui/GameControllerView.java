@@ -48,7 +48,19 @@ public class GameControllerView {
     public String getCardChoiceOrDraw() {
         System.out.println("Enter the number before the card to play the card;");
         System.out.println("numbers separated by commas to play multiple cards (e.g. 0,2,5);");
-        System.out.println("or d to draw a card and end turn");
+        System.out.print("or d to draw a card and end turn: ");
+        return scanner.nextLine();
+    }
+
+    public String getTargetPlayerIndex(ArrayList<Player> alivePlayers, Player currentPlayer) {
+        System.out.println("You may target these players:");
+        for (int i = 0; i < alivePlayers.size();  i++) {
+            Player player = alivePlayers.get(i);
+            if (!currentPlayer.equals(player)) {
+                System.out.printf("%d | %s%n", i, player.getPlayerName());
+            }
+        }
+        System.out.print("Enter the number before the player you want to target: ");
         return scanner.nextLine();
     }
 }

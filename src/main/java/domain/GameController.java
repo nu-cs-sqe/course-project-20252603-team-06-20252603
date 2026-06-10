@@ -178,15 +178,24 @@ public class GameController {
 
                 if (hasDuplicateIndex) {
                     controllerView.displayDuplicateCardInMove(userChoice);
-                } else if (isValidMove(cardsPlayed, currentPlayer, Optional.empty())) {
-                    CardController cardController = getControllerType(cardsPlayed.get(0));
-                    cardController.executeCardAction(this.game, currentPlayer, Optional.empty());
-
-                    for (Card card : cardsPlayed) {
-                        currentPlayer.removeCard(card);
-                    }
                 } else {
-                    controllerView.displayInvalidMove(cardsPlayed);
+                    Optional<Player> target = Optional.empty();
+                    if (cardsPlayed.size() >= 2) {
+                        String targetChoice = controllerView.getTargetPlayerIndex(new ArrayList<Player>(game.getAlivePlayers()), currentPlayer);
+                        int targetIdx = Integer.parseInt(targetChoice.trim());
+                        target = Optional.of(game.getAlivePlayers().get(targetIdx));
+                    }
+
+                    if (isValidMove(cardsPlayed, currentPlayer, target)) {
+                        CardController cardController = getControllerType(cardsPlayed.get(0));
+                        cardController.executeCardAction(this.game, currentPlayer, target);
+
+                        for (Card card : cardsPlayed) {
+                            currentPlayer.removeCard(card);
+                        }
+                    } else {
+                        controllerView.displayInvalidMove(cardsPlayed);
+                    }
                 }
             } catch (NumberFormatException e) {
                 controllerView.displayInvalidChoice(userChoice);
