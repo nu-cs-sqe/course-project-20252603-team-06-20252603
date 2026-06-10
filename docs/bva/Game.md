@@ -126,3 +126,26 @@
 - **TC27: Add Player Already Alive** ( ☑️ )
   - **State of the system**: game created with 2 players; no eliminations; target player is already in `alivePlayers`
   - **Expected output**: throws `IllegalArgumentException`
+
+### Method under test: `setAlivePlayersOrder(List<Player> newOrder)`
+#### Suite A: Valid Order Updates (Boundary Checks)
+- **TC28: Valid List Lower Bound** ( x  )
+  - **State of the system**: game created with 2 players; new list provided containing the same 2 players in a reversed order
+  - **Expected output**: `alivePlayers` successfully updates to match the new order
+
+- **TC29: Valid List Upper Bound** ( x️ )
+  - **State of the system**: game created with 5 players; new list provided containing the same 5 players in a reversed order
+  - **Expected output**: `alivePlayers` successfully updates to match the new order
+
+#### Suite B: Invalid Order Updates (Expected: `IllegalArgumentException`)
+- **TC30: List is Null** ( x️ )
+  - **State of the system**: game created with 4 players; `newOrder` is `null`
+  - **Expected output**: throws `IllegalArgumentException`
+
+- **TC31: List is Smaller Than Alive Players** ( x️ )
+  - **State of the system**: game created with 4 players; `newOrder` contains 3 players
+  - **Expected output**: throws `IllegalArgumentException`
+
+- **TC32: List is Larger Than Alive Players** ( x️ )
+  - **State of the system**: game created with 4 players; `newOrder` contains 5 players
+  - **Expected output**: throws `IllegalArgumentException`
