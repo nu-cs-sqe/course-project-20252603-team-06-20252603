@@ -67,7 +67,7 @@
     - **State of the system**: deck has 2 cards, reorderFunction returns them in reverse order
     - **Expected output**: Optional.empty() returned, top 2 cards swapped
 
-- **TC17: deck has exactly 3 cards** ( :x: )
+- **TC17: deck has exactly 3 cards** ( :white-check-mark: )
     - **State of the system**: deck has 3 cards, reorderFunction returns them in reverse order
     - **Expected output**: Optional.empty() returned, all 3 cards reordered
 
