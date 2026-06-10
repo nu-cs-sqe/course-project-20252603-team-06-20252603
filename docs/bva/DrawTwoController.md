@@ -20,7 +20,7 @@ output: Optional.empty() (Optional<List<Card>>)
     - **State of the system**: hand: [], deck: [SKIP, EXPLODING_KITTEN]
     - **Expected output**: hand: [SKIP, EXPLODING_KITTEN], deck: []
 
-- **TC4: executeCardAction_duplicateCardsDeckEmptyHand_cardsDrawn ** ( :x: or :white_check_mark: )
+- **TC4: executeCardAction_duplicateCardsDeckEmptyHand_cardsDrawn ** ( :white_check_mark: )
     - **State of the system**: hand: [], deck: [SKIP, SKIP, ATTACK]
     - **Expected output**: hand: [SKIP, SKIP], deck: [ATTACK]
 
