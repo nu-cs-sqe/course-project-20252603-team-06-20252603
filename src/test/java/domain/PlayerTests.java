@@ -10,17 +10,17 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PlayerTests {
 
     @Test
-    void Constructor_EmptyName_IllegalArgumentException() {
+    void createPlayer_EmptyName_IllegalArgumentException() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Player("");
+            Player.createPlayer("");
         });
 
         assertEquals("player name cannot be empty", exception.getMessage());
     }
 
     @Test
-    void Constructor_ValidName_success() {
-        Player player = new Player("lily");
+    void createPlayer_ValidName_success() {
+        Player player = Player.createPlayer("lily");
 
         assertEquals("lily", player.getPlayerName());
         assertEquals(0, player.getHandSize());
@@ -29,16 +29,16 @@ public class PlayerTests {
 
     @Test
     void hasDefuse_EmptyHand_False() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
         assertFalse(player.hasDefuse());
     }
 
     @Test
     void hasDefuse_OneCardwithDefuse_True() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card = new Card(CardType.DEFUSE);
+        Card card = Card.createCard(CardType.DEFUSE);
 
         player.addCard(card);
 
@@ -47,10 +47,10 @@ public class PlayerTests {
 
     @Test
     void hasDefuse_TwoCardswithoutDefuse_False() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card1 = new Card(CardType.TEST_TYPE);
-        Card card2 = new Card(CardType.TEST_TYPE);
+        Card card1 = Card.createCard(CardType.TEST_TYPE);
+        Card card2 = Card.createCard(CardType.TEST_TYPE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -60,10 +60,10 @@ public class PlayerTests {
 
     @Test
     void hasDefuse_duplicateDefuse_True() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card1 = new Card(CardType.DEFUSE);
-        Card card2 = new Card(CardType.DEFUSE);
+        Card card1 = Card.createCard(CardType.DEFUSE);
+        Card card2 = Card.createCard(CardType.DEFUSE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -73,9 +73,9 @@ public class PlayerTests {
 
     @Test
     void addCard_noCards_success() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card = new Card(CardType.TEST_TYPE);
+        Card card = Card.createCard(CardType.TEST_TYPE);
 
         player.addCard(card);
         assertEquals(1, player.getHandSize());
@@ -84,10 +84,10 @@ public class PlayerTests {
 
     @Test
     void addCard_onecardAddNewCard_success() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card1 = new Card(CardType.TEST_TYPE);
-        Card card2 = new Card(CardType.DEFUSE);
+        Card card1 = Card.createCard(CardType.TEST_TYPE);
+        Card card2 = Card.createCard(CardType.DEFUSE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -99,10 +99,10 @@ public class PlayerTests {
 
     @Test
     void addCard_twocardsDuplicateCards_success() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card1 = new Card(CardType.TEST_TYPE);
-        Card card2 = new Card(CardType.DEFUSE);
+        Card card1 = Card.createCard(CardType.TEST_TYPE);
+        Card card2 = Card.createCard(CardType.DEFUSE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -115,7 +115,7 @@ public class PlayerTests {
 
     @Test
     void kill_Success() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
         player.kill();
         assertFalse(player.isAlive());
@@ -123,7 +123,7 @@ public class PlayerTests {
 
     @Test
     void kill_IllegalStateException() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
         player.kill();
 
@@ -136,7 +136,7 @@ public class PlayerTests {
 
     @Test
     void revive_Success() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
         player.kill();
 
         player.revive();
@@ -145,7 +145,7 @@ public class PlayerTests {
 
     @Test
     void revive_IllegalStateException() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
             player.revive();
@@ -156,9 +156,9 @@ public class PlayerTests {
 
     @Test
     void removeCard_NormalCardOneCard_CardRemoved() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card = new Card(CardType.TEST_TYPE);
+        Card card = Card.createCard(CardType.TEST_TYPE);
 
         player.addCard(card);
         player.removeCard(card);
@@ -168,10 +168,10 @@ public class PlayerTests {
 
     @Test
     void removeCard_NormalCardTwoCards_CardRemoved() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card1 = new Card(CardType.TEST_TYPE);
-        Card card2 = new Card(CardType.TEST_TYPE);
+        Card card1 = Card.createCard(CardType.TEST_TYPE);
+        Card card2 = Card.createCard(CardType.TEST_TYPE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -183,9 +183,9 @@ public class PlayerTests {
 
     @Test
     void removeCard_noCards_IllegalStateException() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card = new Card(CardType.TEST_TYPE);
+        Card card = Card.createCard(CardType.TEST_TYPE);
 
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
             player.removeCard(card);
@@ -196,10 +196,10 @@ public class PlayerTests {
 
     @Test
     void removeCard_cardNotInHand_IllegalArgumentException() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card testCard = new Card(CardType.TEST_TYPE);
-        Card defuseCard = new Card(CardType.DEFUSE);
+        Card testCard = Card.createCard(CardType.TEST_TYPE);
+        Card defuseCard = Card.createCard(CardType.DEFUSE);
 
         player.addCard(testCard);
 
@@ -212,9 +212,9 @@ public class PlayerTests {
 
     @Test
     void takeTurn_NormalCardNoCardsInHand_CardAddedtoHand() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card = new Card(CardType.TEST_TYPE);
+        Card card = Card.createCard(CardType.TEST_TYPE);
         player.takeTurn(card);
 
         assertEquals(1, player.getHandSize());
@@ -224,10 +224,10 @@ public class PlayerTests {
 
     @Test
     void takeTurn_NormalCardOneCardInHand_CardAddedtoHand() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card1 = new Card(CardType.TEST_TYPE);
-        Card card2 = new Card(CardType.TEST_TYPE);
+        Card card1 = Card.createCard(CardType.TEST_TYPE);
+        Card card2 = Card.createCard(CardType.TEST_TYPE);
 
         player.addCard(card1);
 
@@ -240,7 +240,7 @@ public class PlayerTests {
 
     @Test
     void getHand_EmptyHand_EmptyList() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
         List<Card> expected = new ArrayList<Card>();
         assertEquals(expected, player.getHand());
@@ -248,10 +248,10 @@ public class PlayerTests {
 
     @Test
     void getHand_OneCard_ListWithOneCard() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
         List<Card> expected = new ArrayList<Card>();
-        Card card = new Card(CardType.TEST_TYPE);
+        Card card = Card.createCard(CardType.TEST_TYPE);
 
         player.addCard(card);
         expected.add(card);
@@ -260,11 +260,11 @@ public class PlayerTests {
     }
     @Test
     void getHand_TwoCardsSameType_ListWithTwoCadsSameType() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
         List<Card> expected = new ArrayList<Card>();
-        Card card1 = new Card(CardType.TEST_TYPE);
-        Card card2 = new Card(CardType.TEST_TYPE);
+        Card card1 = Card.createCard(CardType.TEST_TYPE);
+        Card card2 = Card.createCard(CardType.TEST_TYPE);
 
 
         player.addCard(card1);
@@ -278,16 +278,16 @@ public class PlayerTests {
 
     @Test
     void getHand_SevenCardsManyTypes_ListWithSevenCardsSameOrder() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
         List<Card> expected = new ArrayList<Card>();
-        Card seeTheFuture = new Card(CardType.SEE_THE_FUTURE);
-        Card defuse = new Card(CardType.DEFUSE);
-        Card shuffle1 = new Card(CardType.SHUFFLE);
-        Card nope1 = new Card(CardType.NOPE);
-        Card nope2 = new Card(CardType.NOPE);
-        Card skip = new Card(CardType.SKIP);
-        Card shuffle2 = new Card(CardType.SHUFFLE);
+        Card seeTheFuture = Card.createCard(CardType.SEE_THE_FUTURE);
+        Card defuse = Card.createCard(CardType.DEFUSE);
+        Card shuffle1 = Card.createCard(CardType.SHUFFLE);
+        Card nope1 = Card.createCard(CardType.NOPE);
+        Card nope2 = Card.createCard(CardType.NOPE);
+        Card skip = Card.createCard(CardType.SKIP);
+        Card shuffle2 = Card.createCard(CardType.SHUFFLE);
 
         player.addCard(seeTheFuture);
         player.addCard(defuse);
@@ -311,16 +311,16 @@ public class PlayerTests {
 
     @Test
     void getHandSize_EmptyHand_Zero() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
         assertEquals(0, player.getHandSize());
     }
 
     @Test
     void getHandSize_OneCard_One() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card = new Card(CardType.TEST_TYPE);
+        Card card = Card.createCard(CardType.TEST_TYPE);
 
         player.addCard(card);
         assertEquals(1, player.getHandSize());
@@ -328,10 +328,10 @@ public class PlayerTests {
 
     @Test
     void getHandSize_TwoCards_Two() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card1 = new Card(CardType.TEST_TYPE);
-        Card card2 = new Card(CardType.TEST_TYPE);
+        Card card1 = Card.createCard(CardType.TEST_TYPE);
+        Card card2 = Card.createCard(CardType.TEST_TYPE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -340,9 +340,9 @@ public class PlayerTests {
 
     @Test
     void getHandSize_DuplicateCards_Two() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card = new Card(CardType.TEST_TYPE);
+        Card card = Card.createCard(CardType.TEST_TYPE);
 
         player.addCard(card);
         player.addCard(card);
@@ -351,16 +351,16 @@ public class PlayerTests {
 
     @Test
     void hasCard_EmptyHand_False() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
         assertFalse(player.hasCard(CardType.DEFUSE));
     }
 
     @Test
     void hasCard_OneCardMatch_True() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card = new Card(CardType.DEFUSE);
+        Card card = Card.createCard(CardType.DEFUSE);
 
         player.addCard(card);
         assertTrue(player.hasCard(CardType.DEFUSE));
@@ -368,9 +368,9 @@ public class PlayerTests {
 
     @Test
     void hasCard_OneCardNoMatch_False() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card = new Card(CardType.TEST_TYPE);
+        Card card = Card.createCard(CardType.TEST_TYPE);
 
         player.addCard(card);
         assertFalse(player.hasCard(CardType.DEFUSE));
@@ -378,10 +378,10 @@ public class PlayerTests {
 
     @Test
     void hasCard_TwoCardsOneMatch_True() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card1 = new Card(CardType.TEST_TYPE);
-        Card card2 = new Card(CardType.DEFUSE);
+        Card card1 = Card.createCard(CardType.TEST_TYPE);
+        Card card2 = Card.createCard(CardType.DEFUSE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -390,10 +390,10 @@ public class PlayerTests {
 
     @Test
     void hasCard_DuplicateCardsMatch_True() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card1 = new Card(CardType.DEFUSE);
-        Card card2 = new Card(CardType.DEFUSE);
+        Card card1 = Card.createCard(CardType.DEFUSE);
+        Card card2 = Card.createCard(CardType.DEFUSE);
 
         player.addCard(card1);
         player.addCard(card2);
@@ -402,10 +402,10 @@ public class PlayerTests {
 
     @Test
     void hasCard_DuplicateCardsNoMatch_False() {
-        Player player = new Player("lily");
+        Player player = Player.createPlayer("lily");
 
-        Card card1 = new Card(CardType.TEST_TYPE);
-        Card card2 = new Card(CardType.TEST_TYPE);
+        Card card1 = Card.createCard(CardType.TEST_TYPE);
+        Card card2 = Card.createCard(CardType.TEST_TYPE);
 
         player.addCard(card1);
         player.addCard(card2);
