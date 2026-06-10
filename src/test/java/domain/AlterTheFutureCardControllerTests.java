@@ -246,5 +246,19 @@ public class AlterTheFutureCardControllerTests {
         EasyMock.verify(deck);
     }
 
+    @Test
+    public void executeCardAction_EmptyDeck_ReturnsEmpty() {
+        AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
+        Game game = EasyMock.createMock(Game.class);
+        Player user = EasyMock.createMock(Player.class);
+
+        EasyMock.replay(game, user);
+
+        Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
+
+        assertTrue(result.isEmpty());
+        EasyMock.verify(game, user);
+    }
+
 }
 
