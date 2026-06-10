@@ -41,6 +41,32 @@
   - **State of the system**: `game.alivePlayers.size() = 5`, `this.nextPlayerIndex = 4`, `newNextPlayerIndex = 5`
   - **Expected output**: `IllegalArgumentException` ("invalid next index")
 
+### Method under test: `setCurrentPlayerTurnsLeft(int newCurrentPlayerTurnsLeft)`
+- **TC: Invalid negative turn count is passed 
+  - **State of the system**: alivePlayer list is initialized, newCurrentPlayerTurnsLeft = -1
+  - **Expected output**: IllegalArgumentException
+
+- **TC: Turn count at minimum possible boundary, 0 
+  - **State of the system**: alivePlayer list is initialized, newCurrentPlayerTurnsLeft = 0
+  - **Expected output**: this.currentPlayerTurnsLeft = 0
+
+- **TC: Turn count at amount above minimum possible boundary
+  - **State of the system**: alivePlayer list is initialized, newCurrentPlayerTurnsLeft = 4
+  - **Expected output**: this.currentPlayerTurnsLeft = 4
+
+### Method under test: `setNextPlayerTurnsLeft(int newNextPlayerTurnsLeft)`
+- **TC: Invalid negative turn count is passed
+  - **State of the system**: alivePlayer list is initialized, newNextPlayerTurnsLeft = -1
+  - **Expected output**: IllegalArgumentException
+
+- **TC: Turn count at minimum possible boundary, 0
+  - **State of the system**: alivePlayer list is initialized, newNextPlayerTurnsLeft = 0
+  - **Expected output**: this.NextPlayerTurnsLeft = 0
+
+- **TC: Turn count at amount above minimum possible boundary
+  - **State of the system**: alivePlayer list is initialized, newNextPlayerTurnsLeft = 4
+  - **Expected output**: this.NextPlayerTurnsLeft = 4
+
 ### Method under test: `setPlayerOrder(List<Player> playerOrder)`
 - **TC11: set order to an illegally empty list** ( :white-check-mark: )
   - **State of the system**: `game.alivePlayers.size() = 5`, `playerOrder.size() = 0`
