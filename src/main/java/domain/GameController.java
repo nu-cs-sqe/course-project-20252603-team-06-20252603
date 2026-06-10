@@ -1,11 +1,8 @@
 package domain;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 import ui.GameControllerView;
-
-import javax.swing.text.html.Option;
 
 public class GameController {
     private Game game;
@@ -188,7 +185,7 @@ public class GameController {
 
                     if (isValidMove(cardsPlayed, currentPlayer, target)) {
                         CardController cardController = getControllerType(cardsPlayed.get(0));
-                        cardController.executeCardAction(this.game, currentPlayer, target);
+                        cardController.executeCardAction(this, currentPlayer, target);
 
                         for (Card card : cardsPlayed) {
                             currentPlayer.removeCard(card);
