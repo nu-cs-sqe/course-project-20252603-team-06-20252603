@@ -1411,4 +1411,94 @@ public class GameControllerTests {
         assertEquals(1, controller.getCurrentPlayerTurnsLeft(), "Turns should not decrease on an invalid move");
         verify(mockGame, mockPlayer, mockTargetPlayer, mockControllerView, mockSkipCard, mockCatCard);
     }
+
+    @Test
+    void takeTurn_ValidCatCardTriple_ExecutesActionAndStealsCardWithoutReducingTurns() {
+        int currentPlayerIndex = 0;
+        String mockUserChoice = "0,3,4";
+        String mockTargetChoice = "1";
+
+        Game mockGame = mock(Game.class);
+        Player mockPlayer = mock(Player.class);
+        Player mockTargetPlayer = mock(Player.class);
+        CardController mockCardController = mock(CardController.class);
+        GameControllerView mockControllerView = mock(GameControllerView.class);
+
+        Card mockCatCard1 = mock(Card.class);
+        Card mockDrawBottomCard = mock(Card.class);
+        Card mockSkipCard = mock(Card.class);
+        Card mockCatCard2 = mock(Card.class);
+        Card mockCatCard3 = mock(Card.class);
+        Card mockStolenCard = mock(Card.class);
+
+        ArrayList<Player> realAlivePlayers = new ArrayList<>();
+        realAlivePlayers.add(mockPlayer);
+        realAlivePlayers.add(mockTargetPlayer);
+
+        ArrayList<Card> realHand = new ArrayList<>();
+        realHand.add(mockCatCard1);
+        realHand.add(mockDrawBottomCard);
+        realHand.add(mockSkipCard);
+        realHand.add(mockCatCard2);
+        realHand.add(mockCatCard3);
+
+        GameController controller = new GameController(mockGame) {
+            @Override
+            public CardController getControllerType(Card card) {
+                return mockCardController;
+            }
+        };
+
+        expect(mockGame.getAlivePlayerCount()).andReturn(2).anyTimes();
+        expect(mockGame.getAlivePlayers()).andReturn(realAlivePlayers).anyTimes();
+
+        mockControllerView.displayCurrentPlayerAndCardsInHand(mockPlayer);
+        expectLastCall();
+
+        expect(mockControllerView.getCardChoiceOrDraw()).andReturn(mockUserChoice);
+
+        expect(mockControllerView.getTargetPlayerIndex(eq(realAlivePlayers), eq(mockPlayer))).andReturn(mockTargetChoice);
+
+        expect(mockPlayer.getHand()).andReturn(realHand).anyTimes();
+
+        expect(mockCatCard1.getType()).andReturn(CardType.CAT_CARD_3).anyTimes();
+        expect(mockDrawBottomCard.getType()).andReturn(CardType.DRAW_FROM_BOTTOM).anyTimes();
+        expect(mockSkipCard.getType()).andReturn(CardType.SKIP).anyTimes();
+        expect(mockCatCard2.getType()).andReturn(CardType.CAT_CARD_3).anyTimes();
+        expect(mockCatCard3.getType()).andReturn(CardType.CAT_CARD_3).anyTimes();
+
+        expect(mockCardController.executeCardAction(eq(mockGame), eq(mockPlayer), eq(Optional.of(mockTargetPlayer))))
+                .andAnswer(() -> {
+                    realHand.add(mockStolenCard);
+                    return Optional.empty();
+                });
+
+        mockPlayer.removeCard(mockCatCard1);
+        expectLastCall().andAnswer(() -> { realHand.remove(mockCatCard1); return null; });
+
+        mockPlayer.removeCard(mockCatCard2);
+        expectLastCall().andAnswer(() -> { realHand.remove(mockCatCard2); return null; });
+
+        mockPlayer.removeCard(mockCatCard3);
+        expectLastCall().andAnswer(() -> { realHand.remove(mockCatCard3); return null; });
+
+        replay(mockGame, mockPlayer, mockTargetPlayer, mockCardController, mockControllerView,
+                mockCatCard1, mockDrawBottomCard, mockSkipCard, mockCatCard2, mockCatCard3);
+
+        controller.setCurrentPlayerIndex(currentPlayerIndex);
+        controller.setCurrentPlayerTurnsLeft(2);
+
+        controller.takeTurn(mockControllerView);
+
+        assertEquals(2, controller.getCurrentPlayerTurnsLeft(), "Turns left should remain 2");
+
+        assertEquals(3, realHand.size(), "Hand size should be 3 after playing a triple and stealing one");
+        assertFalse(realHand.contains(mockCatCard1), "First cat card should be removed");
+        assertFalse(realHand.contains(mockCatCard2), "Second cat card should be removed");
+        assertFalse(realHand.contains(mockCatCard3), "Third cat card should be removed");
+        assertTrue(realHand.contains(mockStolenCard), "Hand should contain the stolen card");
+
+        verify(mockGame, mockPlayer, mockTargetPlayer, mockCardController, mockControllerView,
+                mockCatCard1, mockDrawBottomCard, mockSkipCard, mockCatCard2, mockCatCard3);
+    }
 }

@@ -349,9 +349,9 @@
   - **State of the System**: `currentPlayer`'s hand: `[CAT_CARD_1, DRAW_FROM_BOTTOM, CAT_CARD_1, SKIP]`, `userChoice` = "0,2", `currentPlayerTurnsLeft` = 2, target = player2
   - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 2
 
-- **TC: input is a triple of cat cards, play cards, currentPlayerTurnsLeft is not reduced, cards removed from hand, game state changed**
+- **TC: input is a triple of cat cards, play cards, currentPlayerTurnsLeft is not reduced, cards removed from hand, game state changed** ( :white-check-mark: )
   - **State of the System**: `currentPlayer`'s hand: `[CAT_CARD_3, DRAW_FROM_BOTTOM, SKIP, CAT_CARD_3, CAT_CARD_3]`, `userChoice` = "0,3,4", `currentPlayerTurnsLeft` = 2
-  - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 3
+  - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 2
 
 
 
