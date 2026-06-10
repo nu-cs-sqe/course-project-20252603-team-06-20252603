@@ -46,7 +46,8 @@ public class ExplodingKittenControllerTests {
 
         EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
         EasyMock.expect(mockUser.hasDefuse()).andReturn(true).anyTimes();
-        EasyMock.expect(mockUser.getHand()).andReturn(new ArrayList<>(List.of(defuse))).anyTimes();
+        ArrayList<Card> hand = new ArrayList<>(List.of(defuse));
+        EasyMock.expect(mockUser.getHand()).andReturn(hand).anyTimes();
         mockUser.removeCard(defuse);
         EasyMock.expectLastCall().once();
         EasyMock.expect(mockDeck.count()).andReturn(deckSize).anyTimes();
@@ -75,7 +76,8 @@ public class ExplodingKittenControllerTests {
 
         EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
         EasyMock.expect(mockUser.hasDefuse()).andReturn(true).anyTimes();
-        EasyMock.expect(mockUser.getHand()).andReturn(new ArrayList<>(List.of(defuse1, defuse2))).anyTimes();
+        ArrayList<Card> hand = new ArrayList<>(List.of(defuse1, defuse2));
+        EasyMock.expect(mockUser.getHand()).andReturn(hand).anyTimes();
         mockUser.removeCard(defuse1);
         EasyMock.expectLastCall().once();
         EasyMock.expect(mockDeck.count()).andReturn(deckSize).anyTimes();
@@ -104,7 +106,8 @@ public class ExplodingKittenControllerTests {
 
         EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
         EasyMock.expect(mockUser.hasDefuse()).andReturn(true).anyTimes();
-        EasyMock.expect(mockUser.getHand()).andReturn(new ArrayList<>(List.of(attack, defuse))).anyTimes();
+        ArrayList<Card> hand = new ArrayList<>(List.of(attack, defuse));
+        EasyMock.expect(mockUser.getHand()).andReturn(hand).anyTimes();
         mockUser.removeCard(defuse);
         EasyMock.expectLastCall().once();
         EasyMock.expect(mockDeck.count()).andReturn(deckSize).anyTimes();
@@ -134,7 +137,8 @@ public class ExplodingKittenControllerTests {
 
         EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
         EasyMock.expect(mockUser.hasDefuse()).andReturn(true).anyTimes();
-        EasyMock.expect(mockUser.getHand()).andReturn(new ArrayList<>(List.of(defuse, attack, skip))).anyTimes();
+        ArrayList<Card> hand = new ArrayList<>(List.of(defuse, attack, skip));
+        EasyMock.expect(mockUser.getHand()).andReturn(hand).anyTimes();
         mockUser.removeCard(defuse);
         EasyMock.expectLastCall().once();
         EasyMock.expect(mockDeck.count()).andReturn(deckSize).anyTimes();
