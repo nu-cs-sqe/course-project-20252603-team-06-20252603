@@ -108,4 +108,21 @@ public class AlterTheFutureCardControllerTests {
             controller.validateReorder(original, reordered)
         );
     }
+
+    @Test
+    public void validateReorder_ReorderedHasSameCountButDifferentCard_ThrowsIllegalArgumentException() {
+        AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
+        Card card1 = new Card(CardType.CAT_CARD_1);
+        Card card2 = new Card(CardType.CAT_CARD_2);
+        Card card3 = new Card(CardType.CAT_CARD_3);
+        Card foreignCard = new Card(CardType.CAT_CARD_4);
+
+        List<Card> original = new ArrayList<>(List.of(card1, card2, card3));
+        List<Card> reordered = new ArrayList<>(List.of(card1, card2, foreignCard));
+
+        Exception e = assertThrows(IllegalArgumentException.class, () ->
+            controller.validateReorder(original, reordered)
+        );
+        assertEquals("Reordered list contains cards not in the original", e.getMessage());
+    }
 }

@@ -24,7 +24,15 @@ public class AlterTheFutureCardController implements CardController {
     }
 
     void validateReorder(List<Card> original, List<Card> reordered) {
-        throw new IllegalArgumentException("Reordered list must have the same number of cards");
+        if (reordered.size() != original.size()) {
+            throw new IllegalArgumentException("Reordered list must have the same number of cards");
+        }
+        List<Card> copy = new ArrayList<>(original);
+        for (Card card : reordered) {
+            if (!copy.remove(card)) {
+                throw new IllegalArgumentException("Reordered list contains cards not in the original");
+            }
+        }
     }
 
     void applyReorder(Deck deck, List<Card> original, List<Card> reordered) {
