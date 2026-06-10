@@ -60,4 +60,20 @@ public class AlterTheFutureCardControllerTests {
         assertEquals(expectedSecond, result.get(1));
         assertEquals(expectedThird, result.get(2));
     }
+
+    @Test
+    public void getTopCards_DeckHasMoreThanThreeCards_ReturnsOnlyTopThree() {
+        AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
+        Deck deck = new Deck(4);
+        Card expectedFirst = deck.getCards().get(0);
+        Card expectedSecond = deck.getCards().get(1);
+        Card expectedThird = deck.getCards().get(2);
+
+        List<Card> result = controller.getTopCards(deck);
+
+        assertEquals(3, result.size());
+        assertEquals(expectedFirst, result.get(0));
+        assertEquals(expectedSecond, result.get(1));
+        assertEquals(expectedThird, result.get(2));
+    }
 }

@@ -15,7 +15,7 @@
     - **State of the system**: deck has 3 cards
     - **Expected output**: list with all 3 cards returned
 
-- **TC5: deck has more than 3 cards** ( :x: )
+- **TC5: deck has more than 3 cards** ( :white-check-mark: )
     - **State of the system**: deck has 4 cards
     - **Expected output**: list with only the top 3 cards returned
 
