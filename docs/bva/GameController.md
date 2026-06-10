@@ -329,7 +329,7 @@
   - **State of the System**: `currentPlayer`'s hand: `[SEE_THE_FUTURE, CAT_CARD_1]`, `userChoice` = "0", `currentPlayerTurnsLeft` = 1
   - **Expected output**: `currentPlayer`'s hand: `[CAT_CARD_1]`, `currentPlayerTurnsLeft` = 1
 
-- **TC: input is a non-cat card that alters game state, play card and currentPlayerTurnsLeft isn't reduced, card removed from hand, verify game state changed**
+- **TC: input is a non-cat card that alters game state, play card and currentPlayerTurnsLeft isn't reduced, card removed from hand, verify game state changed** ( :white-check-mark: )
   - **State of the System**: `currentPlayer`'s hand: `[CAT_CARD_1, DRAW_FROM_BOTTOM, SKIP]`, `userChoice` = "1", `currentPlayerTurnsLeft` = 1
   - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 1, `deck` size reduced by 1 (the bottom card is now in the player's hand)
 
