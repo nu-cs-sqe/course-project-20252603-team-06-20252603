@@ -22,7 +22,9 @@ public class ShuffleCardControllerTests {
         EasyMock.replay(game, deck, initiator);
 
         ShuffleCardController controller = new ShuffleCardController();
-        Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(
+                game, initiator, Optional.empty()
+        );
 
         assertTrue(result.isEmpty());
 
@@ -42,7 +44,9 @@ public class ShuffleCardControllerTests {
         EasyMock.replay(game, deck, initiator);
 
         ShuffleCardController controller = new ShuffleCardController();
-        Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(
+                game, initiator, Optional.empty()
+        );
 
         assertTrue(result.isEmpty());
 
@@ -62,7 +66,9 @@ public class ShuffleCardControllerTests {
         EasyMock.replay(game, deck, initiator);
 
         ShuffleCardController controller = new ShuffleCardController();
-        Optional<List<Card>> result = controller.executeCardAction(game, initiator, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(
+                game, initiator, Optional.empty()
+        );
 
         assertTrue(result.isEmpty());
 
