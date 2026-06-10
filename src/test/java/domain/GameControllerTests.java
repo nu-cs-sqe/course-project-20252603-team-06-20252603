@@ -804,9 +804,39 @@ public class GameControllerTests {
     }
 
     @Test
-    void takeTurn_emptyInput_invalidOutputFunction() {
+    void takeTurn_emptyInput_InvalidOutputFunction() {
         int currentPlayerIndex = 0;
         String mockUserChoice = "";
+
+        Game mockGame = mock(Game.class);
+        Player mockPlayer1 = mock(Player.class);
+        ArrayList<Player> mockAlivePlayers = mock(ArrayList.class);
+        GameControllerView mockControllerView = EasyMock.createMock(GameControllerView.class);
+
+        expect(mockGame.getAlivePlayerCount()).andReturn(2);
+        expect(mockGame.getAlivePlayers()).andReturn(mockAlivePlayers);
+        expect(mockAlivePlayers.get(currentPlayerIndex)).andReturn(mockPlayer1);
+        mockControllerView.displayCurrentPlayerAndCardsInHand(mockPlayer1);
+        expectLastCall();
+        expect(mockControllerView.getCardChoiceOrDraw()).andReturn(mockUserChoice);
+        mockControllerView.displayInvalidChoice(mockUserChoice);
+        expectLastCall();
+
+        replay(mockGame, mockAlivePlayers, mockControllerView, mockPlayer1);
+
+        GameController controller = new GameController(mockGame);
+        controller.setCurrentPlayerIndex(currentPlayerIndex);
+        controller.takeTurn(mockControllerView);
+
+        verify(mockGame, mockAlivePlayers, mockControllerView, mockPlayer1);
+
+
+    }
+
+    @Test
+    void takeTurn_NonemptyInvalidInput_InvalidOutputFunction() {
+        int currentPlayerIndex = 0;
+        String mockUserChoice = "skip";
 
         Game mockGame = mock(Game.class);
         Player mockPlayer1 = mock(Player.class);

@@ -283,7 +283,7 @@
   - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "", `currentPlayerTurnsLeft` = 1
   - **Expected output**: function to output invalid choice is called
 
-- **TC: input is not d or a choice of cards, invalid choice**
+- **TC: input is not d or a choice of cards, invalid choice** ( :white-check-mark: )
   - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "skip", `currentPlayerTurnsLeft` = 1
   - **Expected output**: function to output invalid choice is called
 
