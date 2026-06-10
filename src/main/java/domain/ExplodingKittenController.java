@@ -14,6 +14,7 @@ public class ExplodingKittenController implements CardController {
 
     public Optional<List<Card>> executeCardAction(Game game, Player user, Optional<Player> target) {
         if (!user.hasDefuse()) {
+            user.kill();
             game.removeAlivePlayer(user);
             return Optional.empty();
         }

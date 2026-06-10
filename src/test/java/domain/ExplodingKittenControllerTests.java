@@ -13,18 +13,23 @@ public class ExplodingKittenControllerTests {
 
     @Test
     void executeCardAction_noDefuseEmptyHand_playerKilled() {
-        Game game = new Game(2);
-        Player user = game.getTotalPlayers().get(0);
-        int deckSizeBefore = game.getDeck().count();
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockUser = EasyMock.createMock(Player.class);
+        Deck mockDeck = EasyMock.createMock(Deck.class);
 
-        UserInput userInput = new UserInput();
+        EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
+        EasyMock.expect(mockUser.hasDefuse()).andReturn(false).anyTimes();
+        mockUser.kill();
+        EasyMock.expectLastCall().once();
+        mockGame.removeAlivePlayer(mockUser);
+        EasyMock.expectLastCall().once();
 
-        ExplodingKittenController controller = new ExplodingKittenController(userInput);
-        controller.executeCardAction(game, user, Optional.empty());
+        EasyMock.replay(mockGame, mockUser, mockDeck);
 
-        assertFalse(user.isAlive());
-        assertEquals(new ArrayList<>(), user.getHand());
-        assertEquals(deckSizeBefore, game.getDeck().count());
+        ExplodingKittenController controller = new ExplodingKittenController(new UserInput());
+        controller.executeCardAction(mockGame, mockUser, Optional.empty());
+
+        EasyMock.verify(mockGame, mockUser, mockDeck);
     }
 
     @Test
