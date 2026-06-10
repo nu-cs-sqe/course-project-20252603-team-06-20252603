@@ -936,4 +936,41 @@ public class GameControllerTests {
 
 
     }
+
+    @Test
+    void takeTurn_InputIsD_DrawCardAndReduceTurnsLeft() {
+        int currentPlayerIndex = 0;
+        String mockUserChoice = "d";
+
+        Game mockGame = mock(Game.class);
+        Player mockPlayer = mock(Player.class);
+        ArrayList<Player> mockAlivePlayers = mock(ArrayList.class);
+        Deck mockDeck = mock(Deck.class);
+        GameControllerView mockControllerView = mock(GameControllerView.class);
+
+        expect(mockGame.getAlivePlayerCount()).andReturn(2).anyTimes();
+        expect(mockGame.getAlivePlayers()).andReturn(mockAlivePlayers);
+        expect(mockAlivePlayers.get(currentPlayerIndex)).andReturn(mockPlayer);
+
+        mockControllerView.displayCurrentPlayerAndCardsInHand(mockPlayer);
+        expectLastCall();
+
+        expect(mockControllerView.getCardChoiceOrDraw()).andReturn(mockUserChoice);
+
+        expect(mockGame.getDeck()).andReturn(mockDeck);
+        mockGame.draw(mockPlayer, mockDeck);
+        expectLastCall();
+
+        replay(mockGame, mockPlayer, mockAlivePlayers, mockDeck, mockControllerView);
+
+        GameController controller = new GameController(mockGame);
+        controller.setCurrentPlayerIndex(currentPlayerIndex);
+        controller.setCurrentPlayerTurnsLeft(1);
+
+        controller.takeTurn(mockControllerView);
+
+        assertEquals(0, controller.getCurrentPlayerTurnsLeft(), "currentPlayerTurnsLeft should decrease by 1");
+
+        verify(mockGame, mockPlayer, mockAlivePlayers, mockDeck, mockControllerView);
+    }
 }

@@ -156,7 +156,13 @@ public class GameController {
 
         controllerView.displayCurrentPlayerAndCardsInHand(currentPlayer);
         String userChoice = controllerView.getCardChoiceOrDraw();
-        controllerView.displayInvalidChoice(userChoice);
+
+        if (userChoice.equalsIgnoreCase("d")) {
+            game.draw(currentPlayer, game.getDeck());
+            this.currentPlayerTurnsLeft--;
+        } else {
+            controllerView.displayInvalidChoice(userChoice);
+        }
     }
 
 }

@@ -313,7 +313,7 @@
   - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "skip", `currentPlayerTurnsLeft` = 1
   - **Expected output**: function to output invalid choice is called
 
-- **TC: input is d, draw card and reduce currentPlayerTurnsLeft**
+- **TC: input is d, draw card and reduce currentPlayerTurnsLeft** ( :white-check-mark: )
   - **State of the System**: `currentPlayer`'s hand: `[SKIP, CAT_CARD_1]`, `userChoice` = "d", `currentPlayerTurnsLeft` = 1
   - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 0
 
