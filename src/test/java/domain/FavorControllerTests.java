@@ -91,28 +91,27 @@ public class FavorControllerTests {
 
     @Test
     void executeCardAction_userDuplicateCards_cardGiven() {
-        Game game = new Game(2);
-        Player user = game.getTotalPlayers().get(0);
-        Player target = game.getTotalPlayers().get(1);
-        Card userAttack = new Card(CardType.ATTACK);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockUser = EasyMock.createMock(Player.class);
+        Player mockTarget = EasyMock.createMock(Player.class);
+        UserInput mockInput = EasyMock.createMock(UserInput.class);
+
         Card targetAttack = new Card(CardType.ATTACK);
-        user.addCard(userAttack);
-        target.addCard(targetAttack);
+        ArrayList<Card> targetHand = new ArrayList<>(List.of(targetAttack));
 
-        UserInput userInput = EasyMock.createMock(UserInput.class);
-        EasyMock.expect(userInput.getCardToGive(target.getHand())).andReturn(targetAttack);
-        EasyMock.replay(userInput);
+        EasyMock.expect(mockTarget.getHand()).andReturn(targetHand).anyTimes();
+        EasyMock.expect(mockInput.getCardToGive(targetHand)).andReturn(targetAttack);
+        mockTarget.removeCard(targetAttack);
+        EasyMock.expectLastCall().once();
+        mockUser.addCard(targetAttack);
+        EasyMock.expectLastCall().once();
 
-        FavorController controller = new FavorController(userInput);
-        controller.executeCardAction(game, user, Optional.of(target));
+        EasyMock.replay(mockGame, mockUser, mockTarget, mockInput);
 
-        assertEquals(2, user.getHandSize());
-        for (Card card : user.getHand()) {
-            assertEquals(CardType.ATTACK, card.getType());
-        }
-        assertEquals(0, target.getHandSize());
+        FavorController controller = new FavorController(mockInput);
+        controller.executeCardAction(mockGame, mockUser, Optional.of(mockTarget));
 
-        EasyMock.verify(userInput);
+        EasyMock.verify(mockGame, mockUser, mockTarget, mockInput);
     }
 
     @Test
