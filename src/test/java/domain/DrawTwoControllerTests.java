@@ -1,5 +1,6 @@
 package domain;
 
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -10,23 +11,25 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DrawTwoControllerTests {
     @Test
     public void executeCardAction_emptyDeckEmptyHand_IllegalArgumentException() {
-        Game game = new Game(2);
-        Player initiator = game.getTotalPlayers().get(0);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockUser = EasyMock.createMock(Player.class);
+        Deck mockDeck = EasyMock.createMock(Deck.class);
 
-        for (int i = 0; i < 34; i++) {
-            game.getDeck().takeTopCard();
-        }
+        EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck);
+        EasyMock.expect(mockDeck.count()).andReturn(0);
 
-        assertEquals(0, game.getDeck().getCards().size());
-        assertEquals(new ArrayList<Card>(), initiator.getHand());
+        EasyMock.replay(mockGame, mockUser, mockDeck);
 
         DrawTwoController controller = new DrawTwoController();
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            controller.executeCardAction(game, initiator, Optional.empty());
-        });
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+                controller.executeCardAction(mockGame, mockUser, Optional.empty())
+        );
 
-        assertEquals("deck needs at least two cards to play draw two card", exception.getMessage());
+        assertEquals("deck needs at least two cards to play draw two card",
+                exception.getMessage());
+
+        EasyMock.verify(mockGame, mockUser, mockDeck);
     }
 
     @Test
