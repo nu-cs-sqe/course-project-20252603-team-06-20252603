@@ -238,4 +238,18 @@ public class GameTests {
             game.setAlivePlayersOrder(shortList);
         });
     }
+
+    @Test
+    void setAlivePlayersOrder_LongerList_ThrowsException() {
+        Game game = new Game(4);
+        List<Player> original = game.getAlivePlayers();
+
+        List<Player> longList = List.of(original.get(0), original.get(1),
+                original.get(2), original.get(3), new Player("Extra")
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            game.setAlivePlayersOrder(longList);
+        });
+    }
 }

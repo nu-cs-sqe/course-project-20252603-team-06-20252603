@@ -146,6 +146,6 @@
   - **State of the system**: game created with 4 players; `newOrder` contains 3 players
   - **Expected output**: throws `IllegalArgumentException`
 
-- **TC32: List is Larger Than Alive Players** ( x️ )
+- **TC32: List is Larger Than Alive Players** ( ☑️ )
   - **State of the system**: game created with 4 players; `newOrder` contains 5 players
   - **Expected output**: throws `IllegalArgumentException`
