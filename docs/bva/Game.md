@@ -142,7 +142,7 @@
   - **State of the system**: game created with 4 players; `newOrder` is `null`
   - **Expected output**: throws `IllegalArgumentException`
 
-- **TC31: List is Smaller Than Alive Players** ( x️ )
+- **TC31: List is Smaller Than Alive Players** ( ☑️ )
   - **State of the system**: game created with 4 players; `newOrder` contains 3 players
   - **Expected output**: throws `IllegalArgumentException`
 
