@@ -97,6 +97,11 @@ public class Game {
     }
 
     void setAlivePlayersOrder(List<Player> newOrder) {
+        if (newOrder == null) {
+            throw new IllegalArgumentException(
+                    "New order must contain exact number of alive players");
+        }
+
         this.alivePlayers.clear();
         this.alivePlayers.addAll(newOrder);
     }

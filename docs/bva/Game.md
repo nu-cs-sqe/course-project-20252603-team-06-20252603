@@ -138,7 +138,7 @@
   - **Expected output**: `alivePlayers` successfully updates to match the new order
 
 #### Suite B: Invalid Order Updates (Expected: `IllegalArgumentException`)
-- **TC30: List is Null** ( x️ )
+- **TC30: List is Null** ( ☑️ )
   - **State of the system**: game created with 4 players; `newOrder` is `null`
   - **Expected output**: throws `IllegalArgumentException`
 

@@ -216,4 +216,12 @@ public class GameTests {
         game.setAlivePlayersOrder(newOrder);
         assertEquals(newOrder, game.getAlivePlayers());
     }
+
+    @Test
+    void setAlivePlayersOrder_NullList_ThrowsException() {
+        Game game = new Game(4);
+        assertThrows(IllegalArgumentException.class, () -> {
+            game.setAlivePlayersOrder(null);
+        });
+    }
 }
