@@ -204,4 +204,16 @@ public class GameTests {
             game.addAlivePlayer(alivePlayer);
         });
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {2, 5})
+    void setAlivePlayersOrder_ValidBounds_UpdatesOrder(int playerCount) {
+        Game game = new Game(playerCount);
+
+        List<Player> newOrder = new ArrayList<>(game.getAlivePlayers());
+        java.util.Collections.reverse(newOrder);
+
+        game.setAlivePlayersOrder(newOrder);
+        assertEquals(newOrder, game.getAlivePlayers());
+    }
 }

@@ -96,6 +96,11 @@ public class Game {
         return alivePlayers.size();
     }
 
+    void setAlivePlayersOrder(List<Player> newOrder) {
+        this.alivePlayers.clear();
+        this.alivePlayers.addAll(newOrder);
+    }
+
     @Override
     protected final void finalize() {
     }

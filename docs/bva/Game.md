@@ -129,11 +129,11 @@
 
 ### Method under test: `setAlivePlayersOrder(List<Player> newOrder)`
 #### Suite A: Valid Order Updates (Boundary Checks)
-- **TC28: Valid List Lower Bound** ( x  )
+- **TC28: Valid List Lower Bound** ( ☑️ )
   - **State of the system**: game created with 2 players; new list provided containing the same 2 players in a reversed order
   - **Expected output**: `alivePlayers` successfully updates to match the new order
 
-- **TC29: Valid List Upper Bound** ( x️ )
+- **TC29: Valid List Upper Bound** ( ☑️ )
   - **State of the system**: game created with 5 players; new list provided containing the same 5 players in a reversed order
   - **Expected output**: `alivePlayers` successfully updates to match the new order
 
