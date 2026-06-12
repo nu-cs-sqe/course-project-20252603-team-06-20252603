@@ -7,6 +7,7 @@ public enum CardType {
     ATTACK,
     SKIP,
     SEE_THE_FUTURE,
+    ALTER_THE_FUTURE,
     SHUFFLE,
     NOPE,
     DRAW_FROM_BOTTOM,
