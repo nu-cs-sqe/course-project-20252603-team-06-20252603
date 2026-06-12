@@ -353,5 +353,38 @@
   - **State of the System**: `currentPlayer`'s hand: `[CAT_CARD_3, DRAW_FROM_BOTTOM, SKIP, CAT_CARD_3, CAT_CARD_3]`, `userChoice` = "0,3,4", `currentPlayerTurnsLeft` = 2
   - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 2
 
+### Method under test: `runGame(GameControllerView view)`
 
+Structure: outer loop `while (alivePlayerCount > 1)` containing inner loop `while (currentPlayerTurnsLeft > 0)` which calls `takeTurn()`. After the inner loop, `advanceTurn()` is called if the game is not over.
 
+- **TC: 2 players, player 0 draws exploding kitten on first turn, no defuse** ( x )
+  - **State of the system**: `alivePlayerCount = 2`, `currentPlayerTurnsLeft = 1`, deck = `[EXPLODING_KITTEN]`, player 0 hand = `[]`
+  - **Expected output**: player 0 is eliminated, `alivePlayerCount = 1`, player 1 is the sole survivor, outer loop exits
+
+- **TC: 2 players, player 0 completes a normal turn, player 1 draws exploding kitten, no defuse** ( x )
+  - **State of the system**: `alivePlayerCount = 2`, `currentPlayerTurnsLeft = 1`, deck = `[normal_card, EXPLODING_KITTEN]`, neither player has defuse
+  - **Expected output**: player 0 completes turn, `advanceTurn()` is called, player 1 draws kitten, player 1 is eliminated, player 0 is the sole survivor
+
+- **TC: 2 players, player 0 draws exploding kitten but has a defuse card** ( x )
+  - **State of the system**: `alivePlayerCount = 2`, `currentPlayerTurnsLeft = 1`, deck = `[EXPLODING_KITTEN]`, player 0 hand = `[DEFUSE]`
+  - **Expected output**: player 0 is NOT eliminated, game continues
+
+- **TC: 2 players, player 0 has 2 turns (attack), draws kitten on first sub-turn, no defuse** ( x )
+  - **State of the system**: `alivePlayerCount = 2`, `currentPlayerTurnsLeft = 2`, deck = `[EXPLODING_KITTEN]`, player 0 hand = `[]`
+  - **Expected output**: player 0 is eliminated after first sub-turn (before using second turn), `alivePlayerCount = 1`, player 1 wins
+
+- **TC: 5 players (maximum), player 0 draws exploding kitten, no defuse** ( x )
+  - **State of the system**: `alivePlayerCount = 5`, `currentPlayerTurnsLeft = 1`, deck = `[EXPLODING_KITTEN]`, player 0 hand = `[]`
+  - **Expected output**: player 0 is eliminated, `alivePlayerCount = 4`, outer loop continues (game not over)
+
+- **TC: player plays a non-draw card before drawing on their turn (inner loop calls takeTurn() multiple times)** ( x )
+  - **State of the system**: `alivePlayerCount = 2`, `currentPlayerTurnsLeft = 1`, player 0 hand = `[SEE_THE_FUTURE]`, deck = `[normal_card, normal_card]`; player plays SEE_THE_FUTURE (turns stay at 1), then draws on next call (turns decrement to 0)
+  - **Expected output**: inner loop calls `takeTurn()` twice, `currentPlayerTurnsLeft` = 0 after the draw, `advanceTurn()` is called, game continues
+
+- **TC: 3 players, sequential eliminations until 1 player remains** ( x )
+  - **State of the system**: `alivePlayerCount = 3`, each player draws kitten with no defuse on their first turn; deck = `[EXPLODING_KITTEN, EXPLODING_KITTEN]`
+  - **Expected output**: outer loop runs twice (3→2→1), `alivePlayerCount = 1` at termination, correct sole survivor
+
+- **TC: last-index player is eliminated, next turn wraps correctly to index 0** ( x )
+  - **State of the system**: `alivePlayerCount = 3`, `currentPlayerIndex = 2`, `nextPlayerIndex = 0`, deck = `[EXPLODING_KITTEN]`, player at index 2 has no defuse
+  - **Expected output**: player at index 2 is eliminated, `alivePlayerCount = 2`, next turn correctly starts at index 0 (wrap-around)
