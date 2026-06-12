@@ -99,6 +99,16 @@ public class Game {
         return alivePlayers.size();
     }
 
+    void setAlivePlayersOrder(List<Player> newOrder) {
+        if (newOrder.size() != this.alivePlayers.size()) {
+            throw new IllegalArgumentException(
+                    "New order must contain exact number of alive players");
+        }
+
+        this.alivePlayers.clear();
+        this.alivePlayers.addAll(newOrder);
+    }
+
     @Override
     protected final void finalize() {
     }

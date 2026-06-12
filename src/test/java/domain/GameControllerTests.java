@@ -1124,7 +1124,9 @@ public class GameControllerTests {
         expect(mockSeeTheFutureCard.getType()).andReturn(CardType.SEE_THE_FUTURE).anyTimes();
         expect(mockCatCard.getType()).andReturn(CardType.CAT_CARD_1).anyTimes();
 
-        expect(mockCardController.executeCardAction(eq(controller), eq(mockPlayer), eq(Optional.empty())))
+        expect(mockCardController.executeCardAction(eq(controller),
+                eq(mockPlayer),
+                eq(Optional.empty())))
                 .andReturn(Optional.empty());
 
         mockPlayer.removeCard(mockSeeTheFutureCard);
@@ -1188,7 +1190,9 @@ public class GameControllerTests {
         expect(mockDrawBottomCard.getType()).andReturn(CardType.DRAW_FROM_BOTTOM).anyTimes();
         expect(mockSkipCard.getType()).andReturn(CardType.SKIP).anyTimes();
 
-        expect(mockCardController.executeCardAction(eq(controller), eq(mockPlayer), eq(Optional.empty())))
+        expect(mockCardController.executeCardAction(eq(controller),
+                eq(mockPlayer),
+                eq(Optional.empty())))
                 .andAnswer(() -> {
                     realHand.add(mockDrawnCard);
                     return Optional.empty();
@@ -1261,7 +1265,9 @@ public class GameControllerTests {
         expect(mockDrawBottomCard.getType()).andReturn(CardType.DRAW_FROM_BOTTOM).anyTimes();
         expect(mockSkipCard.getType()).andReturn(CardType.SKIP).anyTimes();
 
-        expect(mockCardController.executeCardAction(eq(controller), eq(mockPlayer), eq(Optional.empty())))
+        expect(mockCardController.executeCardAction(eq(controller),
+                eq(mockPlayer),
+                eq(Optional.empty())))
                 .andAnswer(() -> {
                     int currentTurns = controller.getCurrentPlayerTurnsLeft();
                     controller.setCurrentPlayerTurnsLeft(currentTurns - 1);
@@ -1508,7 +1514,9 @@ public class GameControllerTests {
         expect(mockCatCard2.getType()).andReturn(CardType.CAT_CARD_3).anyTimes();
         expect(mockCatCard3.getType()).andReturn(CardType.CAT_CARD_3).anyTimes();
 
-        expect(mockCardController.executeCardAction(eq(controller), eq(mockPlayer), eq(Optional.of(mockTargetPlayer))))
+        expect(mockCardController.executeCardAction(eq(controller),
+                eq(mockPlayer),
+                eq(Optional.of(mockTargetPlayer))))
                 .andAnswer(() -> {
                     realHand.add(mockStolenCard);
                     return Optional.empty();
