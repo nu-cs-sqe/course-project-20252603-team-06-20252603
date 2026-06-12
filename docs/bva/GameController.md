@@ -371,7 +371,7 @@
   - **State of the system**: `player.hand = [SKIP, DEFUSE, CAT_CARD_1]`, `type = EXPLODING_KITTEN`
   - **Expected output**: `false`
 
-- **TC: player has multiple cards, at least one matches the queried type** ( x )
+- **TC: player has multiple cards, at least one matches the queried type** ( :white-check-mark: )
   - **State of the system**: `player.hand = [SKIP, EXPLODING_KITTEN, CAT_CARD_1]`, `type = EXPLODING_KITTEN`
   - **Expected output**: `true`
 
