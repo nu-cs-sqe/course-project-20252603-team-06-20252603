@@ -9,26 +9,29 @@ public class Game {
     private final List<Player> totalPlayers;
     private final List<Player> alivePlayers;
 
-    private static final int MIN_PLAYERS    = 2;
-    private static final int MAX_PLAYERS    = 5;
+    private static final int MIN_PLAYERS = 2;
+    private static final int MAX_PLAYERS = 5;
     private static final int NORMAL_CARDS_PER_PLAYER = 6; // + 1 DEFUSE
 
     Game(int playerCount) {
+        this.deck = new Deck();
+
+        ArrayList<Player> players = new ArrayList<>();
+        for (int i = 1; i <= playerCount; i++) {
+            players.add(Player.createPlayer("Player " + i));
+        }
+        this.alivePlayers = new ArrayList<>(players);
+        this.totalPlayers = new ArrayList<>(players);
+    }
+
+    public static Game createGame(int playerCount) {
         if (playerCount < MIN_PLAYERS) {
             throw new IllegalArgumentException("Cannot initiate game with less than 2 players");
         }
         if (playerCount > MAX_PLAYERS) {
             throw new IllegalArgumentException("Cannot initiate game with more than 5 players");
         }
-
-        this.deck = new Deck();
-
-        ArrayList<Player> players = new ArrayList<>();
-        for (int i = 1; i <= playerCount; i++) {
-            players.add(new Player("Player " + i));
-        }
-        this.alivePlayers = new ArrayList<>(players);
-        this.totalPlayers = new ArrayList<>(players);
+        return new Game(playerCount);
     }
 
     public void setup() {
@@ -39,7 +42,7 @@ public class Game {
 
         deck.shuffle();
         for (Player player : totalPlayers) {
-            player.addCard(new Card(CardType.DEFUSE));
+            player.addCard(Card.createCard(CardType.DEFUSE));
             for (int i = 0; i < NORMAL_CARDS_PER_PLAYER; i++) {
                 this.draw(player, this.deck);
             }
@@ -47,12 +50,12 @@ public class Game {
 
         int kittensNeeded = totalPlayers.size() - 1;
         for (int i = 0; i < kittensNeeded; i++) {
-            deck.insert(new Card(CardType.EXPLODING_KITTEN), 0);
+            deck.insert(Card.createCard(CardType.EXPLODING_KITTEN), 0);
         }
         deck.shuffle();
     }
 
-    public void draw(Player player, Deck deck){
+    public void draw(Player player, Deck deck) {
         Card cardToDraw = deck.takeTopCard();
         player.addCard(cardToDraw);
     }
@@ -65,18 +68,18 @@ public class Game {
         alivePlayers.remove(player);
     }
 
-    public void addAlivePlayer(Player player){
+    public void addAlivePlayer(Player player) {
         if (!totalPlayers.contains(player)) {
             throw new IllegalArgumentException("Player not in game");
         }
-        if (alivePlayers.contains(player)){
+        if (alivePlayers.contains(player)) {
             throw new IllegalArgumentException("Player already alive");
         }
         player.revive();
         alivePlayers.add(player);
     }
 
-    Deck getDeck(){
+    Deck getDeck() {
         return this.deck;
     }
 

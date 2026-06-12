@@ -25,7 +25,7 @@ public class Deck {
 
         for (Map.Entry<CardType, Integer> entry : card_counts.entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
-                cards.add(new Card(entry.getKey()));
+                cards.add(Card.createCard(entry.getKey()));
             }
         }
     }
@@ -34,7 +34,7 @@ public class Deck {
         this.cards = new ArrayList<>();
 
         for (int i = 0; i < num_cards; i++){
-            cards.add(new Card(CardType.CAT_CARD_1));
+            cards.add(Card.createCard(CardType.CAT_CARD_1));
         }
     }
 

@@ -1,6 +1,6 @@
 # BVA analysis for Game
 
-### Method under test: `Game(int playerCount)`
+### Method under test: `createGame(int playerCount)`
 #### Suite A: Invalid Boundaries (Expected: `IllegalArgumentException`)
 - **TC1: One Below Minimum Players** ( ☑️ )
   - **State of the system**: `playerCount = 1`
