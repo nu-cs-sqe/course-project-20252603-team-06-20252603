@@ -249,6 +249,25 @@ public class GameControllerTests {
     }
 
     @Test
+    void setPlayerOrder_LongerList_ThrowsException() {
+        Game game = Game.createGame(2);
+        GameController controller = new GameController(game);
+        List<Player> original = game.getAlivePlayers();
+
+        List<Player> longList = List.of(
+                original.get(0),
+                original.get(1),
+                Player.createPlayer("Extra 1"),
+                Player.createPlayer("Extra 2")
+        );
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            controller.setPlayerOrder(longList);
+        });
+        assertEquals("list size doesn’t match alivePlayer", exception.getMessage());
+    }
+
+    @Test
     void getControllerType_InvalidTestType_IllegalArgumentException() {
         Game game = new Game(2);
         GameController controller = new GameController(game);

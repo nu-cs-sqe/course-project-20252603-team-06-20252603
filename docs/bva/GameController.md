@@ -84,7 +84,7 @@
   - **State of the system**: `game.alivePlayers.size() = 4`, `playerOrder.size() = 3`
   - **Expected output**: `IllegalArgumentException` ("list size doesn’t match alivePlayer")
 
-- **TC15: set order to a list longer than alivePlayers** ( x )
+- **TC15: set order to a list longer than alivePlayers** ( :white-check-mark: )
   - **State of the system**: `game.alivePlayers.size() = 2`, `playerOrder.size() = 4`
   - **Expected output**: `IllegalArgumentException` ("list size doesn’t match alivePlayer")
 
