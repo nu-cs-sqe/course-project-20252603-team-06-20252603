@@ -3,10 +3,10 @@ package ui;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class UserInput {
+public class ExplodingKittenCardControllerView {
     private final Scanner scanner;
 
-    public UserInput() {
+    public ExplodingKittenCardControllerView() {
         this.scanner = new Scanner(System.in, StandardCharsets.UTF_8);
     }
 

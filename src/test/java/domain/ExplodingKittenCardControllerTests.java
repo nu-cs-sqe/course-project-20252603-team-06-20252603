@@ -2,22 +2,20 @@ package domain;
 
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
-import ui.UserInput;
+import ui.ExplodingKittenCardControllerView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-public class ExplodingKittenControllerTests {
+public class ExplodingKittenCardControllerTests {
 
     @Test
     void executeCardAction_noDefuseEmptyHand_playerKilled() {
         Game mockGame = EasyMock.createMock(Game.class);
         Player mockUser = EasyMock.createMock(Player.class);
         Deck mockDeck = EasyMock.createMock(Deck.class);
-        UserInput mockInput = EasyMock.createMock(UserInput.class);
+        ExplodingKittenCardControllerView mockInput = EasyMock.createMock(ExplodingKittenCardControllerView.class);
 
         EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
         EasyMock.expect(mockUser.hasDefuse()).andReturn(false).anyTimes();
@@ -28,7 +26,7 @@ public class ExplodingKittenControllerTests {
 
         EasyMock.replay(mockGame, mockUser, mockDeck);
 
-        ExplodingKittenController controller = new ExplodingKittenController(mockInput);
+        ExplodingKittenCardController controller = new ExplodingKittenCardController(mockInput);
         controller.executeCardAction(mockGame, mockUser, Optional.empty());
 
         EasyMock.verify(mockGame, mockUser, mockDeck);
@@ -39,7 +37,7 @@ public class ExplodingKittenControllerTests {
         Game mockGame = EasyMock.createMock(Game.class);
         Player mockUser = EasyMock.createMock(Player.class);
         Deck mockDeck = EasyMock.createMock(Deck.class);
-        UserInput mockInput = EasyMock.createMock(UserInput.class);
+        ExplodingKittenCardControllerView mockInput = EasyMock.createMock(ExplodingKittenCardControllerView.class);
 
         Card defuse = new Card(CardType.DEFUSE);
         int deckSize = 5;
@@ -57,7 +55,7 @@ public class ExplodingKittenControllerTests {
 
         EasyMock.replay(mockGame, mockUser, mockDeck, mockInput);
 
-        ExplodingKittenController controller = new ExplodingKittenController(mockInput);
+        ExplodingKittenCardController controller = new ExplodingKittenCardController(mockInput);
         controller.executeCardAction(mockGame, mockUser, Optional.empty());
 
         EasyMock.verify(mockGame, mockUser, mockDeck, mockInput);
@@ -68,7 +66,7 @@ public class ExplodingKittenControllerTests {
         Game mockGame = EasyMock.createMock(Game.class);
         Player mockUser = EasyMock.createMock(Player.class);
         Deck mockDeck = EasyMock.createMock(Deck.class);
-        UserInput mockInput = EasyMock.createMock(UserInput.class);
+        ExplodingKittenCardControllerView mockInput = EasyMock.createMock(ExplodingKittenCardControllerView.class);
 
         Card defuse1 = new Card(CardType.DEFUSE);
         Card defuse2 = new Card(CardType.DEFUSE);
@@ -87,7 +85,7 @@ public class ExplodingKittenControllerTests {
 
         EasyMock.replay(mockGame, mockUser, mockDeck, mockInput);
 
-        ExplodingKittenController controller = new ExplodingKittenController(mockInput);
+        ExplodingKittenCardController controller = new ExplodingKittenCardController(mockInput);
         controller.executeCardAction(mockGame, mockUser, Optional.empty());
 
         EasyMock.verify(mockGame, mockUser, mockDeck, mockInput);
@@ -98,7 +96,7 @@ public class ExplodingKittenControllerTests {
         Game mockGame = EasyMock.createMock(Game.class);
         Player mockUser = EasyMock.createMock(Player.class);
         Deck mockDeck = EasyMock.createMock(Deck.class);
-        UserInput mockInput = EasyMock.createMock(UserInput.class);
+        ExplodingKittenCardControllerView mockInput = EasyMock.createMock(ExplodingKittenCardControllerView.class);
 
         Card attack = new Card(CardType.ATTACK);
         Card defuse = new Card(CardType.DEFUSE);
@@ -117,7 +115,7 @@ public class ExplodingKittenControllerTests {
 
         EasyMock.replay(mockGame, mockUser, mockDeck, mockInput);
 
-        ExplodingKittenController controller = new ExplodingKittenController(mockInput);
+        ExplodingKittenCardController controller = new ExplodingKittenCardController(mockInput);
         controller.executeCardAction(mockGame, mockUser, Optional.empty());
 
         EasyMock.verify(mockGame, mockUser, mockDeck, mockInput);
@@ -128,7 +126,7 @@ public class ExplodingKittenControllerTests {
         Game mockGame = EasyMock.createMock(Game.class);
         Player mockUser = EasyMock.createMock(Player.class);
         Deck mockDeck = EasyMock.createMock(Deck.class);
-        UserInput mockInput = EasyMock.createMock(UserInput.class);
+        ExplodingKittenCardControllerView mockInput = EasyMock.createMock(ExplodingKittenCardControllerView.class);
 
         Card defuse = new Card(CardType.DEFUSE);
         Card attack = new Card(CardType.ATTACK);
@@ -148,7 +146,7 @@ public class ExplodingKittenControllerTests {
 
         EasyMock.replay(mockGame, mockUser, mockDeck, mockInput);
 
-        ExplodingKittenController controller = new ExplodingKittenController(mockInput);
+        ExplodingKittenCardController controller = new ExplodingKittenCardController(mockInput);
         controller.executeCardAction(mockGame, mockUser, Optional.empty());
 
         EasyMock.verify(mockGame, mockUser, mockDeck, mockInput);
