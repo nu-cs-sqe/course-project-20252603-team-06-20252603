@@ -167,4 +167,3 @@ public class ExplodingKittenCardControllerTests {
         EasyMock.verify(mockGameController, mockGame, mockUser, mockDeck, mockInput);
     }
 }
-
