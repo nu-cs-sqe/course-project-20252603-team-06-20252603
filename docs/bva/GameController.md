@@ -353,6 +353,29 @@
   - **State of the System**: `currentPlayer`'s hand: `[CAT_CARD_3, DRAW_FROM_BOTTOM, SKIP, CAT_CARD_3, CAT_CARD_3]`, `userChoice` = "0,3,4", `currentPlayerTurnsLeft` = 2
   - **Expected output**: `currentPlayer`'s hand size: 3, `currentPlayerTurnsLeft` = 2
 
+### Method under test: `playerHasCardOfType(Player player, CardType type)`
+
+- **TC: player has empty hand** ( x )
+  - **State of the system**: `player.hand = []`, `type = EXPLODING_KITTEN`
+  - **Expected output**: `false`
+
+- **TC: player has 1 card matching the queried type** ( x )
+  - **State of the system**: `player.hand = [EXPLODING_KITTEN]`, `type = EXPLODING_KITTEN`
+  - **Expected output**: `true`
+
+- **TC: player has 1 card, does not match the queried type** ( x )
+  - **State of the system**: `player.hand = [DEFUSE]`, `type = EXPLODING_KITTEN`
+  - **Expected output**: `false`
+
+- **TC: player has multiple cards, none match the queried type** ( x )
+  - **State of the system**: `player.hand = [SKIP, DEFUSE, CAT_CARD_1]`, `type = EXPLODING_KITTEN`
+  - **Expected output**: `false`
+
+- **TC: player has multiple cards, at least one matches the queried type** ( x )
+  - **State of the system**: `player.hand = [SKIP, EXPLODING_KITTEN, CAT_CARD_1]`, `type = EXPLODING_KITTEN`
+  - **Expected output**: `true`
+
+
 ### Method under test: `runGame(GameControllerView view)`
 
 Structure: outer loop `while (alivePlayerCount > 1)` containing inner loop `while (currentPlayerTurnsLeft > 0)` which calls `takeTurn()`. After the inner loop, `advanceTurn()` is called if the game is not over.
