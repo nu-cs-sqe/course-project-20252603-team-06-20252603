@@ -1504,10 +1504,13 @@ public class GameControllerTests {
 
     @Test
     void playerHasCardOfType_EmptyHand_ReturnsFalse() {
-        Game game = new Game(2);
-        GameController controller = new GameController(game);
-        Player player = game.getAlivePlayers().get(0);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockPlayer = EasyMock.createMock(Player.class);
+        GameController controller = new GameController(mockGame);
 
-        assertFalse(controller.playerHasCardOfType(player, CardType.EXPLODING_KITTEN));
+        EasyMock.replay(mockGame, mockPlayer);
+
+        assertFalse(controller.playerHasCardOfType(mockPlayer, CardType.EXPLODING_KITTEN));
+        EasyMock.verify(mockGame, mockPlayer);
     }
 }
