@@ -13,8 +13,10 @@ public class AlterTheFutureCardController implements CardController {
         this.reorderFunction = reorderFunction;
     }
 
-    public Optional<List<Card>> executeCardAction(Game game, Player user, Optional<Player> target) {
-        Deck deck = game.getDeck();
+    public Optional<List<Card>> executeCardAction(GameController gameController,
+                                                  Player user,
+                                                  Optional<Player> target) {
+        Deck deck = gameController.getGame().getDeck();
         List<Card> top = getTopCards(deck);
         List<Card> reordered = reorderFunction.apply(top);
         validateReorder(top, reordered);

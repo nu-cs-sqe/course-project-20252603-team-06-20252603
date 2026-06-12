@@ -250,40 +250,44 @@ public class AlterTheFutureCardControllerTests {
     @Test
     public void executeCardAction_EmptyDeck_ReturnsEmpty() {
         AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
+        GameController gameController = EasyMock.createMock(GameController.class);
         Game game = EasyMock.createMock(Game.class);
         Player user = EasyMock.createMock(Player.class);
         Deck deck = EasyMock.createMock(Deck.class);
 
+        EasyMock.expect(gameController.getGame()).andReturn(game);
         EasyMock.expect(game.getDeck()).andReturn(deck);
         EasyMock.expect(deck.getCards()).andReturn(new ArrayList<>());
 
-        EasyMock.replay(game, user, deck);
+        EasyMock.replay(gameController, game, user, deck);
 
-        Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(gameController, user, Optional.empty());
 
         assertTrue(result.isEmpty());
-        EasyMock.verify(game, user, deck);
+        EasyMock.verify(gameController, game, user, deck);
     }
 
     @Test
     public void executeCardAction_OneDeckCard_ReturnsEmpty() {
         AlterTheFutureCardController controller = new AlterTheFutureCardController(cards -> cards);
+        GameController gameController = EasyMock.createMock(GameController.class);
         Game game = EasyMock.createMock(Game.class);
         Player user = EasyMock.createMock(Player.class);
         Deck deck = EasyMock.createMock(Deck.class);
         Card cardA = new Card(CardType.CAT_CARD_1);
 
+        EasyMock.expect(gameController.getGame()).andReturn(game);
         EasyMock.expect(game.getDeck()).andReturn(deck);
         EasyMock.expect(deck.getCards()).andReturn(new ArrayList<>(List.of(cardA)));
         deck.discard(cardA);
         deck.insert(cardA, 0);
 
-        EasyMock.replay(game, user, deck);
+        EasyMock.replay(gameController, game, user, deck);
 
-        Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(gameController, user, Optional.empty());
 
         assertTrue(result.isEmpty());
-        EasyMock.verify(game, user, deck);
+        EasyMock.verify(gameController, game, user, deck);
     }
 
     @Test
@@ -291,12 +295,14 @@ public class AlterTheFutureCardControllerTests {
         AlterTheFutureCardController controller = new AlterTheFutureCardController(
             cards -> new ArrayList<>(List.of(cards.get(1), cards.get(0)))
         );
+        GameController gameController = EasyMock.createMock(GameController.class);
         Game game = EasyMock.createMock(Game.class);
         Player user = EasyMock.createMock(Player.class);
         Deck deck = EasyMock.createMock(Deck.class);
         Card cardA = new Card(CardType.CAT_CARD_1);
         Card cardB = new Card(CardType.CAT_CARD_2);
 
+        EasyMock.expect(gameController.getGame()).andReturn(game);
         EasyMock.expect(game.getDeck()).andReturn(deck);
         EasyMock.expect(deck.getCards()).andReturn(new ArrayList<>(List.of(cardA, cardB)));
         deck.discard(cardA);
@@ -304,12 +310,12 @@ public class AlterTheFutureCardControllerTests {
         deck.insert(cardB, 0);
         deck.insert(cardA, 1);
 
-        EasyMock.replay(game, user, deck);
+        EasyMock.replay(gameController, game, user, deck);
 
-        Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(gameController, user, Optional.empty());
 
         assertTrue(result.isEmpty());
-        EasyMock.verify(game, user, deck);
+        EasyMock.verify(gameController, game, user, deck);
     }
 
     @Test
@@ -317,6 +323,7 @@ public class AlterTheFutureCardControllerTests {
         AlterTheFutureCardController controller = new AlterTheFutureCardController(
             cards -> new ArrayList<>(List.of(cards.get(2), cards.get(1), cards.get(0)))
         );
+        GameController gameController = EasyMock.createMock(GameController.class);
         Game game = EasyMock.createMock(Game.class);
         Player user = EasyMock.createMock(Player.class);
         Deck deck = EasyMock.createMock(Deck.class);
@@ -324,6 +331,7 @@ public class AlterTheFutureCardControllerTests {
         Card cardB = new Card(CardType.CAT_CARD_2);
         Card cardC = new Card(CardType.CAT_CARD_3);
 
+        EasyMock.expect(gameController.getGame()).andReturn(game);
         EasyMock.expect(game.getDeck()).andReturn(deck);
         EasyMock.expect(deck.getCards()).andReturn(new ArrayList<>(List.of(cardA, cardB, cardC)));
         deck.discard(cardA);
@@ -333,18 +341,19 @@ public class AlterTheFutureCardControllerTests {
         deck.insert(cardB, 1);
         deck.insert(cardA, 2);
 
-        EasyMock.replay(game, user, deck);
+        EasyMock.replay(gameController, game, user, deck);
 
-        Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(gameController, user, Optional.empty());
 
         assertTrue(result.isEmpty());
-        EasyMock.verify(game, user, deck);
+        EasyMock.verify(gameController, game, user, deck);
     }
     @Test
     public void executeCardAction_MoreThanThreeDeckCards_OnlyTopThreeReordered() {
         AlterTheFutureCardController controller = new AlterTheFutureCardController(
             cards -> new ArrayList<>(List.of(cards.get(2), cards.get(1), cards.get(0)))
         );
+        GameController gameController = EasyMock.createMock(GameController.class);
         Game game = EasyMock.createMock(Game.class);
         Player user = EasyMock.createMock(Player.class);
         Deck deck = EasyMock.createMock(Deck.class);
@@ -354,6 +363,7 @@ public class AlterTheFutureCardControllerTests {
         Card cardD = new Card(CardType.CAT_CARD_4);
         Card cardE = new Card(CardType.SKIP);
 
+        EasyMock.expect(gameController.getGame()).andReturn(game);
         EasyMock.expect(game.getDeck()).andReturn(deck);
         EasyMock.expect(deck.getCards())
                 .andReturn(new ArrayList<>(List.of(cardA, cardB, cardC, cardD, cardE)));
@@ -364,12 +374,12 @@ public class AlterTheFutureCardControllerTests {
         deck.insert(cardB, 1);
         deck.insert(cardA, 2);
 
-        EasyMock.replay(game, user, deck);
+        EasyMock.replay(gameController, game, user, deck);
 
-        Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(gameController, user, Optional.empty());
 
         assertTrue(result.isEmpty());
-        EasyMock.verify(game, user, deck);
+        EasyMock.verify(gameController, game, user, deck);
     }
 
     @Test
@@ -378,6 +388,7 @@ public class AlterTheFutureCardControllerTests {
         AlterTheFutureCardController controller = new AlterTheFutureCardController(
             cards -> new ArrayList<>(List.of(cards.get(0), cards.get(1), foreignCard))
         );
+        GameController gameController = EasyMock.createMock(GameController.class);
         Game game = EasyMock.createMock(Game.class);
         Player user = EasyMock.createMock(Player.class);
         Deck deck = EasyMock.createMock(Deck.class);
@@ -385,16 +396,17 @@ public class AlterTheFutureCardControllerTests {
         Card cardB = new Card(CardType.CAT_CARD_2);
         Card cardC = new Card(CardType.CAT_CARD_3);
 
+        EasyMock.expect(gameController.getGame()).andReturn(game);
         EasyMock.expect(game.getDeck()).andReturn(deck);
         EasyMock.expect(deck.getCards()).andReturn(new ArrayList<>(List.of(cardA, cardB, cardC)));
 
-        EasyMock.replay(game, user, deck);
+        EasyMock.replay(gameController, game, user, deck);
 
         assertThrows(IllegalArgumentException.class, () ->
-            controller.executeCardAction(game, user, Optional.empty())
+            controller.executeCardAction(gameController, user, Optional.empty())
         );
 
-        EasyMock.verify(game, user, deck);
+        EasyMock.verify(gameController, game, user, deck);
     }
 }
 
