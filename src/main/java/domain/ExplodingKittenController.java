@@ -12,10 +12,12 @@ public class ExplodingKittenController implements CardController {
         this.userInput = userInput;
     }
 
-    public Optional<List<Card>> executeCardAction(Game game, Player user, Optional<Player> target) {
+    public Optional<List<Card>> executeCardAction(GameController gameController,
+                                                  Player user,
+                                                  Optional<Player> target) {
         if (!user.hasDefuse()) {
             user.kill();
-            game.removeAlivePlayer(user);
+            gameController.getGame().removeAlivePlayer(user);
             return Optional.empty();
         }
 
@@ -26,8 +28,8 @@ public class ExplodingKittenController implements CardController {
             }
         }
 
-        int position = userInput.getInsertPosition(game.getDeck().count());
-        game.getDeck().insert(new Card(CardType.EXPLODING_KITTEN), position);
+        int position = userInput.getInsertPosition(gameController.getGame().getDeck().count());
+        gameController.getGame().getDeck().insert(new Card(CardType.EXPLODING_KITTEN), position);
 
         return Optional.empty();
     }
