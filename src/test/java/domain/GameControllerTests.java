@@ -1508,9 +1508,24 @@ public class GameControllerTests {
         Player mockPlayer = EasyMock.createMock(Player.class);
         GameController controller = new GameController(mockGame);
 
+        EasyMock.expect(mockPlayer.getHand()).andReturn(new ArrayList<>());
         EasyMock.replay(mockGame, mockPlayer);
 
         assertFalse(controller.playerHasCardOfType(mockPlayer, CardType.EXPLODING_KITTEN));
+        EasyMock.verify(mockGame, mockPlayer);
+    }
+    @Test
+    void playerHasCardOfType_OneCardMatchingType_ReturnsTrue() {
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockPlayer = EasyMock.createMock(Player.class);
+        GameController controller = new GameController(mockGame);
+
+        ArrayList<Card> hand = new ArrayList<>();
+        hand.add(Card.createCard(CardType.EXPLODING_KITTEN));
+        EasyMock.expect(mockPlayer.getHand()).andReturn(hand);
+        EasyMock.replay(mockGame, mockPlayer);
+
+        assertTrue(controller.playerHasCardOfType(mockPlayer, CardType.EXPLODING_KITTEN));
         EasyMock.verify(mockGame, mockPlayer);
     }
 }

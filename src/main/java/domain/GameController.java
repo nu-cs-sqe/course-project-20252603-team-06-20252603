@@ -207,7 +207,8 @@ public class GameController {
 
 
     boolean playerHasCardOfType(Player player, CardType type) {
-    return false;
+        return player.getHand().stream()
+                .anyMatch(c -> c.getType() == type);
     }
 
 }

@@ -355,11 +355,11 @@
 
 ### Method under test: `playerHasCardOfType(Player player, CardType type)`
 
-- **TC: player has empty hand** ( x )
+- **TC: player has empty hand** ( :white-check-mark: )
   - **State of the system**: `player.hand = []`, `type = EXPLODING_KITTEN`
   - **Expected output**: `false`
 
-- **TC: player has 1 card matching the queried type** ( x )
+- **TC: player has 1 card matching the queried type** ( :white-check-mark: )
   - **State of the system**: `player.hand = [EXPLODING_KITTEN]`, `type = EXPLODING_KITTEN`
   - **Expected output**: `true`
 
