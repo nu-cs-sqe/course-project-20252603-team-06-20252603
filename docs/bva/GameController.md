@@ -363,7 +363,7 @@
   - **State of the system**: `player.hand = [EXPLODING_KITTEN]`, `type = EXPLODING_KITTEN`
   - **Expected output**: `true`
 
-- **TC: player has 1 card, does not match the queried type** ( x )
+- **TC: player has 1 card, does not match the queried type** ( :white-check-mark: )
   - **State of the system**: `player.hand = [DEFUSE]`, `type = EXPLODING_KITTEN`
   - **Expected output**: `false`
 
