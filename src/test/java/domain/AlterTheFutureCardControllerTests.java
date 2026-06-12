@@ -261,7 +261,9 @@ public class AlterTheFutureCardControllerTests {
 
         EasyMock.replay(gameController, game, user, deck);
 
-        Optional<List<Card>> result = controller.executeCardAction(gameController, user, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(gameController,
+                user,
+                Optional.empty());
 
         assertTrue(result.isEmpty());
         EasyMock.verify(gameController, game, user, deck);
@@ -284,7 +286,9 @@ public class AlterTheFutureCardControllerTests {
 
         EasyMock.replay(gameController, game, user, deck);
 
-        Optional<List<Card>> result = controller.executeCardAction(gameController, user, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(gameController,
+                user,
+                Optional.empty());
 
         assertTrue(result.isEmpty());
         EasyMock.verify(gameController, game, user, deck);
@@ -312,7 +316,9 @@ public class AlterTheFutureCardControllerTests {
 
         EasyMock.replay(gameController, game, user, deck);
 
-        Optional<List<Card>> result = controller.executeCardAction(gameController, user, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(gameController,
+                user,
+                Optional.empty());
 
         assertTrue(result.isEmpty());
         EasyMock.verify(gameController, game, user, deck);
@@ -343,7 +349,9 @@ public class AlterTheFutureCardControllerTests {
 
         EasyMock.replay(gameController, game, user, deck);
 
-        Optional<List<Card>> result = controller.executeCardAction(gameController, user, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(gameController,
+                user,
+                Optional.empty());
 
         assertTrue(result.isEmpty());
         EasyMock.verify(gameController, game, user, deck);
@@ -376,7 +384,9 @@ public class AlterTheFutureCardControllerTests {
 
         EasyMock.replay(gameController, game, user, deck);
 
-        Optional<List<Card>> result = controller.executeCardAction(gameController, user, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(gameController,
+                user,
+                Optional.empty());
 
         assertTrue(result.isEmpty());
         EasyMock.verify(gameController, game, user, deck);
