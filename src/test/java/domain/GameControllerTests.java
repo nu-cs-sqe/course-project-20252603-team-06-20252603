@@ -230,6 +230,22 @@ public class GameControllerTests {
     }
 
     @Test
+    void setPlayerOrder_ShorterList_ThrowsException() {
+        Game game = Game.createGame(4);
+        GameController controller = new GameController(game);
+        List<Player> original = game.getAlivePlayers();
+
+        List<Player> shortList = List.of(
+                original.get(0), original.get(1), original.get(2)
+        );
+
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+            controller.setPlayerOrder(shortList);
+        });
+        assertEquals("list size doesn’t match alivePlayer", e.getMessage());
+    }
+
+    @Test
     void getControllerType_InvalidTestType_IllegalArgumentException() {
         Game game = new Game(2);
         GameController controller = new GameController(game);
