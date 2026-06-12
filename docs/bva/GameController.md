@@ -285,24 +285,24 @@
 
 ### Method under test: `advanceTurn()`
 - **TC: Standard Turn Advance** (:white-check-mark:)
-  - **State of the system**: `alivePlayers` size = 4. `current` points to index 1, `next` points to index 2.
-  - **Expected output**: `current` becomes index 2, `next` becomes index 3.
+  - **State of the system**: `alivePlayers` size = 4. `current` points to index 1, `next` points to index 2, currentPlayerTurnsLeft = 0, nextPlayerTurnsLeft = 1.
+  - **Expected output**: `current` becomes index 2, `next` becomes index 3, currentPlayerTurnsLeft = 1, nextPlayerTurnsLeft = 1.
 
 - **TC: Next Player Hits Upper Boundary** (:white-check-mark:)
-  - **State of the system**: `alivePlayers` size = 4. `current` points to index 2, `next` points to index 3.
-  - **Expected output**: `current` becomes index 3. `next` wraps around and becomes index 0.
+  - **State of the system**: `alivePlayers` size = 4. `current` points to index 2, `next` points to index 3, currentPlayerTurnsLeft = 0, nextPlayerTurnsLeft = 2.
+  - **Expected output**: `current` becomes index 3. `next` wraps around and becomes index 0. currentPlayerTurnsLeft = 2, nextPlayerTurnsLeft = 1.
 
 - **TC: Current Player Hits Upper Boundary** ( :white-check-mark:)
-  - **State of the system**: `alivePlayers` size = 4. `current` points to index 3, `next` points to index 0.
-  - **Expected output**: `current` becomes index 0. `next` becomes index 1.
+  - **State of the system**: `alivePlayers` size = 4. `current` points to index 3, `next` points to index 0, currentPlayerTurnsLeft = 0, nextPlayerTurnsLeft = 3.
+  - **Expected output**: `current` becomes index 0. `next` becomes index 1, currentPlayerTurnsLeft = 3, nextPlayerTurnsLeft = 1.
 
 - **TC: Minimum Players Toggle** ( :white-check-mark: )
-  - **State of the system**: `alivePlayers` size = 2. `current` points to index 0, `next` points to index 1.
-  - **Expected output**: `current` becomes index 1. `next` wraps around to index 0.
+  - **State of the system**: `alivePlayers` size = 2. `current` points to index 0, `next` points to index 1,  currentPlayerTurnsLeft = 0, nextPlayerTurnsLeft = 1.
+  - **Expected output**: `current` becomes index 1. `next` wraps around to index 0, currentPlayerTurnsLeft = 1, nextPlayerTurnsLeft = 1.
 
 - **TC: Absolute Maximum Boundary** ( :white-check-mark: )
-  - **State of the system**: `alivePlayers` size = `MAX_PLAYERS`. `current` = `MAX_PLAYERS - 1`, `next` = 0.
-  - **Expected output**: `current` becomes index 0, `next` becomes index 1.
+  - **State of the system**: `alivePlayers` size = `MAX_PLAYERS`. `current` = `MAX_PLAYERS - 1`, `next` = 0,  currentPlayerTurnsLeft = 0, nextPlayerTurnsLeft = 10.
+  - **Expected output**: `current` becomes index 0, `next` becomes index 1 ,  currentPlayerTurnsLeft = 10, nextPlayerTurnsLeft = 1.
 
 ### Method under test: `takeTurn()`
 - **TC: input is empty, invalid choice** ( :white-check-mark: )
