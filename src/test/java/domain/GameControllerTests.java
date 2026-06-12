@@ -1682,4 +1682,33 @@ public class GameControllerTests {
 
         EasyMock.verify(mockView);
     }
+
+    @Test
+    void runGame_TwoPlayersFirstPlayerHasTwoTurnsDrawsKittenOnFirst_SecondPlayerWins() {
+        Game game = new Game(2);
+        game.getDeck().insert(Card.createCard(CardType.EXPLODING_KITTEN), 0);
+
+        GameController controller = new GameController(game);
+        controller.setCurrentPlayerIndex(0);
+        controller.setNextPlayerIndex(1);
+        controller.setCurrentPlayerTurnsLeft(2);
+        controller.setNextPlayerTurnsLeft(1);
+
+        Player player0 = game.getAlivePlayers().get(0);
+        Player player1 = game.getAlivePlayers().get(1);
+
+        GameControllerView mockView = EasyMock.createMock(GameControllerView.class);
+        mockView.displayCurrentPlayerAndCardsInHand(player0);
+        EasyMock.expectLastCall();
+        EasyMock.expect(mockView.getCardChoiceOrDraw()).andReturn("d");
+
+        EasyMock.replay(mockView);
+
+        controller.runGame(mockView);
+
+        assertEquals(1, game.getAlivePlayerCount());
+        assertSame(player1, game.getAlivePlayers().get(0));
+
+        EasyMock.verify(mockView);
+    }
 }

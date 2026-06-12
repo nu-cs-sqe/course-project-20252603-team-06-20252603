@@ -390,7 +390,7 @@
   - **State of the system**: `alivePlayerCount = 2`, `currentPlayerTurnsLeft = 1`, deck = `[EXPLODING_KITTEN]`, player 0 hand = `[DEFUSE]`
   - **Expected output**: player 0 is NOT eliminated, game continues
 
-- **TC: 2 players, player 0 has 2 turns (attack), draws kitten on first sub-turn, no defuse** ( x )
+- **TC: 2 players, player 0 has 2 turns (attack), draws kitten on first sub-turn, no defuse** (:white-check-mark:)
   - **State of the system**: `alivePlayerCount = 2`, `currentPlayerTurnsLeft = 2`, deck = `[EXPLODING_KITTEN]`, player 0 hand = `[]`
   - **Expected output**: player 0 is eliminated after first sub-turn (before using second turn), `alivePlayerCount = 1`, player 1 wins
 
