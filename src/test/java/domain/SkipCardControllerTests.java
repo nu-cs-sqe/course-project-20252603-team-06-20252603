@@ -18,7 +18,9 @@ public class SkipCardControllerTests {
 
         EasyMock.replay(gameController, user);
 
-        Optional<List<Card>> result = controller.executeCardAction(gameController, user, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(gameController,
+                user,
+                Optional.empty());
 
         assertTrue(result.isEmpty());
         EasyMock.verify(gameController, user);
