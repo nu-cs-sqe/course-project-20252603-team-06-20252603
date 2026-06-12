@@ -406,6 +406,6 @@
   - **State of the system**: `alivePlayerCount = 3`, each player draws kitten with no defuse on their first turn; deck = `[EXPLODING_KITTEN, EXPLODING_KITTEN]`
   - **Expected output**: outer loop runs twice (3→2→1), `alivePlayerCount = 1` at termination, correct sole survivor
 
-- **TC: last-index player is eliminated, next turn wraps correctly to index 0** ( x )
+- **TC: last-index player is eliminated, next turn wraps correctly to index 0** (:white-check-mark:)
   - **State of the system**: `alivePlayerCount = 3`, `currentPlayerIndex = 2`, `nextPlayerIndex = 0`, deck = `[EXPLODING_KITTEN]`, player at index 2 has no defuse
   - **Expected output**: player at index 2 is eliminated, `alivePlayerCount = 2`, next turn correctly starts at index 0 (wrap-around)
