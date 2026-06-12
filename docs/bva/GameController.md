@@ -378,13 +378,11 @@
 
 ### Method under test: `runGame(GameControllerView view)`
 
-Structure: outer loop `while (alivePlayerCount > 1)` containing inner loop `while (currentPlayerTurnsLeft > 0)` which calls `takeTurn()`. After the inner loop, `advanceTurn()` is called if the game is not over.
-
 - **TC: 2 players, player 0 draws exploding kitten on first turn, no defuse** (:white-check-mark:)
   - **State of the system**: `alivePlayerCount = 2`, `currentPlayerTurnsLeft = 1`, deck = `[EXPLODING_KITTEN]`, player 0 hand = `[]`
   - **Expected output**: player 0 is eliminated, `alivePlayerCount = 1`, player 1 is the sole survivor, outer loop exits
 
-- **TC: 2 players, player 0 completes a normal turn, player 1 draws exploding kitten, no defuse** ( x )
+- **TC: 2 players, player 0 completes a normal turn, player 1 draws exploding kitten, no defuse** (:white-check-mark:)
   - **State of the system**: `alivePlayerCount = 2`, `currentPlayerTurnsLeft = 1`, deck = `[normal_card, EXPLODING_KITTEN]`, neither player has defuse
   - **Expected output**: player 0 completes turn, `advanceTurn()` is called, player 1 draws kitten, player 1 is eliminated, player 0 is the sole survivor
 
