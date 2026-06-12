@@ -220,7 +220,11 @@ public class GameController {
             takeTurn(view);
             if (playerHasCardOfType(currentPlayer, CardType.EXPLODING_KITTEN)
                     && !playerHasCardOfType(currentPlayer, CardType.DEFUSE)) {
+                int eliminatedIndex = currentPlayerIndex;
                 game.removeAlivePlayer(currentPlayer);
+                if (nextPlayerIndex > eliminatedIndex) {
+                    nextPlayerIndex--;
+                }
                 break;
             }
         }

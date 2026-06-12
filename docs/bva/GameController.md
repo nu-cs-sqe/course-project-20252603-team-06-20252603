@@ -402,7 +402,7 @@
   - **State of the system**: `alivePlayerCount = 2`, `currentPlayerTurnsLeft = 1`, player 0 hand = `[SEE_THE_FUTURE]`, deck = `[normal_card, normal_card]`; player plays SEE_THE_FUTURE (turns stay at 1), then draws on next call (turns decrement to 0)
   - **Expected output**: inner loop calls `takeTurn()` twice, `currentPlayerTurnsLeft` = 0 after the draw, `advanceTurn()` is called, game continues
 
-- **TC: 3 players, sequential eliminations until 1 player remains** ( x )
+- **TC: 3 players, sequential eliminations until 1 player remains** (:white-check-mark:)
   - **State of the system**: `alivePlayerCount = 3`, each player draws kitten with no defuse on their first turn; deck = `[EXPLODING_KITTEN, EXPLODING_KITTEN]`
   - **Expected output**: outer loop runs twice (3→2→1), `alivePlayerCount = 1` at termination, correct sole survivor
 

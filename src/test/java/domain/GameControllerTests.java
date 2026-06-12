@@ -1711,4 +1711,38 @@ public class GameControllerTests {
 
         EasyMock.verify(mockView);
     }
+
+    @Test
+    void runGame_ThreePlayersSequentialEliminations_CorrectSurvivor() {
+        Game game = new Game(3);
+        game.getDeck().insert(Card.createCard(CardType.EXPLODING_KITTEN), 0);
+        game.getDeck().insert(Card.createCard(CardType.EXPLODING_KITTEN), 1);
+
+        GameController controller = new GameController(game);
+        controller.setCurrentPlayerIndex(2);
+        controller.setNextPlayerIndex(0);
+        controller.setCurrentPlayerTurnsLeft(1);
+        controller.setNextPlayerTurnsLeft(1);
+
+        Player player0 = game.getAlivePlayers().get(0);
+        Player player1 = game.getAlivePlayers().get(1);
+        Player player2 = game.getAlivePlayers().get(2);
+
+        GameControllerView mockView = EasyMock.createMock(GameControllerView.class);
+        mockView.displayCurrentPlayerAndCardsInHand(player2);
+        EasyMock.expectLastCall();
+        EasyMock.expect(mockView.getCardChoiceOrDraw()).andReturn("d");
+        mockView.displayCurrentPlayerAndCardsInHand(player0);
+        EasyMock.expectLastCall();
+        EasyMock.expect(mockView.getCardChoiceOrDraw()).andReturn("d");
+
+        EasyMock.replay(mockView);
+
+        controller.runGame(mockView);
+
+        assertEquals(1, game.getAlivePlayerCount());
+        assertSame(player1, game.getAlivePlayers().get(0));
+
+        EasyMock.verify(mockView);
+    }
 }
