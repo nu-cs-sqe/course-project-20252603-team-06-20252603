@@ -100,7 +100,7 @@ public class Game {
     }
 
     void setAlivePlayersOrder(List<Player> newOrder) {
-        if (newOrder == null || newOrder.size() != this.alivePlayers.size()) {
+        if (newOrder.size() != this.alivePlayers.size()) {
             throw new IllegalArgumentException(
                     "New order must contain exact number of alive players");
         }

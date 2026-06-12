@@ -218,14 +218,6 @@ public class GameTests {
     }
 
     @Test
-    void setAlivePlayersOrder_NullList_ThrowsException() {
-        Game game = Game.createGame(4);
-        assertThrows(IllegalArgumentException.class, () -> {
-            game.setAlivePlayersOrder(null);
-        });
-    }
-
-    @Test
     void setAlivePlayersOrder_ShorterList_ThrowsException() {
         Game game = Game.createGame(4);
         List<Player> original = game.getAlivePlayers();

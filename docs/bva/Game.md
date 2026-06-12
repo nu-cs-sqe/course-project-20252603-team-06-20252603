@@ -138,14 +138,11 @@
   - **Expected output**: `alivePlayers` successfully updates to match the new order
 
 #### Suite B: Invalid Order Updates (Expected: `IllegalArgumentException`)
-- **TC30: List is Null** ( ☑️ )
-  - **State of the system**: game created with 4 players; `newOrder` is `null`
-  - **Expected output**: throws `IllegalArgumentException`
 
-- **TC31: List is Smaller Than Alive Players** ( ☑️ )
+- **TC30: List is Smaller Than Alive Players** ( ☑️ )
   - **State of the system**: game created with 4 players; `newOrder` contains 3 players
   - **Expected output**: throws `IllegalArgumentException`
 
-- **TC32: List is Larger Than Alive Players** ( ☑️ )
+- **TC31: List is Larger Than Alive Players** ( ☑️ )
   - **State of the system**: game created with 4 players; `newOrder` contains 5 players
   - **Expected output**: throws `IllegalArgumentException`
