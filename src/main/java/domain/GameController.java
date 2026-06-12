@@ -213,4 +213,14 @@ public class GameController {
                 .anyMatch(c -> c.getType() == type);
     }
 
+    public void runGame(GameControllerView view) {
+    while (game.getAlivePlayerCount() > 1) {
+        Player currentPlayer = game.getAlivePlayers().get(currentPlayerIndex);
+        takeTurn(view);
+        if (playerHasCardOfType(currentPlayer, CardType.EXPLODING_KITTEN)
+                && !playerHasCardOfType(currentPlayer, CardType.DEFUSE)) {
+            game.removeAlivePlayer(currentPlayer);
+        }
+    }
+}
 }
