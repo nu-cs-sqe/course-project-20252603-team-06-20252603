@@ -242,10 +242,10 @@ public class GameControllerTests {
                 original.get(0), original.get(1), original.get(2)
         );
 
-        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             controller.setPlayerOrder(shortList);
         });
-        assertEquals("list size doesn’t match alivePlayer", e.getMessage());
+        assertEquals("list size doesn’t match alivePlayer", exception.getMessage());
     }
 
     @Test
