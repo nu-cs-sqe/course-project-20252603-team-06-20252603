@@ -206,5 +206,8 @@ public class GameController {
     }
 
 
+    boolean playerHasCardOfType(Player player, CardType type) {
+    return false;
+    }
 
 }

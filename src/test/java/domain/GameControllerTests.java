@@ -1501,4 +1501,13 @@ public class GameControllerTests {
         verify(mockGame, mockPlayer, mockTargetPlayer, mockCardController, mockControllerView,
                 mockCatCard1, mockDrawBottomCard, mockSkipCard, mockCatCard2, mockCatCard3);
     }
+
+    @Test
+    void playerHasCardOfType_EmptyHand_ReturnsFalse() {
+        Game game = new Game(2);
+        GameController controller = new GameController(game);
+        Player player = game.getAlivePlayers().get(0);
+
+        assertFalse(controller.playerHasCardOfType(player, CardType.EXPLODING_KITTEN));
+    }
 }
