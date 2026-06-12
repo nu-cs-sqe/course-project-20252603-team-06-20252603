@@ -10,6 +10,8 @@ import java.util.Optional;
 import static org.easymock.EasyMock.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import ui.GameControllerView;
 
 
@@ -216,9 +218,10 @@ public class GameControllerTests {
         assertEquals("list size doesn’t match alivePlayer", exception.getMessage());
     }
 
-    @Test
-    void setPlayerOrder_ValidLowerBound_UpdatesOrder() {
-        Game game = Game.createGame(2);
+    @ParameterizedTest
+    @ValueSource(ints = {2, 5})
+    void setPlayerOrder_ValidBounds_UpdatesOrder(int playerCount) {
+        Game game = Game.createGame(playerCount);
         GameController controller = new GameController(game);
 
         List<Player> newOrder = new ArrayList<>(game.getAlivePlayers());

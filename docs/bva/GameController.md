@@ -76,7 +76,7 @@
   - **State of the system**: `game.alivePlayers.size() = 2`, `playerOrder.size() = 2`
   - **Expected output**: `game.alivePlayers` is updated to match the exact order of `playerOrder`
 
-- **TC13: set order to a list matching size of alivePlayers (Upper Bound Size 5)** ( x )
+- **TC13: set order to a list matching size of alivePlayers (Upper Bound Size 5)** ( :white-check-mark: )
   - **State of the system**: `game.alivePlayers.size() = 5`, `playerOrder.size() = 5`
   - **Expected output**: `game.alivePlayers` is updated to match the exact order of `playerOrder`
 
