@@ -217,6 +217,19 @@ public class GameControllerTests {
     }
 
     @Test
+    void setPlayerOrder_ValidLowerBound_UpdatesOrder() {
+        Game game = Game.createGame(2);
+        GameController controller = new GameController(game);
+
+        List<Player> newOrder = new ArrayList<>(game.getAlivePlayers());
+        java.util.Collections.reverse(newOrder);
+
+        controller.setPlayerOrder(newOrder);
+
+        assertEquals(newOrder, game.getAlivePlayers());
+    }
+
+    @Test
     void getControllerType_InvalidTestType_IllegalArgumentException() {
         Game game = new Game(2);
         GameController controller = new GameController(game);

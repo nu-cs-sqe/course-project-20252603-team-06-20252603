@@ -44,7 +44,11 @@ public class GameController {
     }
 
     public void setPlayerOrder(List<Player> playerOrder) {
-        throw new IllegalArgumentException("list size doesn’t match alivePlayer");
+        if (playerOrder.size() != this.game.getAlivePlayerCount()){
+            throw new IllegalArgumentException("list size doesn’t match alivePlayer");
+        }
+
+        this.game.setAlivePlayersOrder(playerOrder);
     }
 
     public void setCurrentPlayerTurnsLeft(int currentPlayerTurnsLeft) {
