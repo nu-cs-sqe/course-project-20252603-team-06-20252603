@@ -142,24 +142,39 @@ public class SelfishRobinHoodCardControllerTests {
 
     @Test
     void executeCardAction_MultiPlayerInitiatorPoorest_MaximumSteals() {
-        Game game = Game.createGame(5);
-        GameController gc = new GameController(game);
-        Player initiator = game.getAlivePlayers().get(0);
+        GameController mockGc = EasyMock.createMock(GameController.class);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockInitiator = EasyMock.createMock(Player.class);
+        Player p1 = EasyMock.createMock(Player.class);
+        Player p2 = EasyMock.createMock(Player.class);
+        Player p3 = EasyMock.createMock(Player.class);
+        Player p4 = EasyMock.createMock(Player.class);
+        Card mockStolenCard = EasyMock.createMock(Card.class);
 
-        initiator.addCard(Card.createCard(CardType.TEST_TYPE));
+        EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
+        List<Player> board = List.of(mockInitiator, p1, p2, p3, p4);
+        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(board).anyTimes();
 
-        for (int p = 1; p < 5; p++) {
-            for (int i = 0; i < 5; i++) game.getAlivePlayers().get(p).addCard(Card.createCard(CardType.TEST_TYPE));
+        EasyMock.expect(mockInitiator.getHandSize()).andReturn(1).anyTimes();
+
+        for (int i = 1; i <= 4; i++) {
+            Player currentMock = board.get(i);
+            EasyMock.expect(currentMock.getHandSize()).andReturn(5).anyTimes();
+            EasyMock.expect(currentMock.getHand()).andReturn(new ArrayList<>(List.of(mockStolenCard))).anyTimes();
+
+            currentMock.removeCard(mockStolenCard);
+            EasyMock.expectLastCall().once();
+
+            mockInitiator.addCard(mockStolenCard);
+            EasyMock.expectLastCall().once();
         }
 
-        SelfishRobinHoodCardController controller = new SelfishRobinHoodCardController();
-        controller.executeCardAction(gc, initiator, Optional.empty());
+        EasyMock.replay(mockGc, mockGame, mockInitiator, p1, p2, p3, p4, mockStolenCard);
 
-        assertEquals(5, initiator.getHandSize());
-        assertEquals(4, game.getAlivePlayers().get(1).getHandSize());
-        assertEquals(4, game.getAlivePlayers().get(2).getHandSize());
-        assertEquals(4, game.getAlivePlayers().get(3).getHandSize());
-        assertEquals(4, game.getAlivePlayers().get(4).getHandSize());
+        SelfishRobinHoodCardController controller = new SelfishRobinHoodCardController();
+        controller.executeCardAction(mockGc, mockInitiator, Optional.empty());
+
+        EasyMock.verify(mockGc, mockGame, mockInitiator, p1, p2, p3, p4, mockStolenCard);
     }
 
     @Test
