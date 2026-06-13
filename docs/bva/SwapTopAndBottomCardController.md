@@ -5,7 +5,7 @@
     - **State of the system**: Deck contains 0 cards.
     - **Expected output**: Throws `IllegalStateException` ("not enough cards to swap").
 
-- **TC2: Deck With One Card (Lower Bound Invalid)** ( )
+- **TC2: Deck With One Card (Lower Bound Invalid)** ( :white_check_mark: )
     - **State of the system**: Deck contains exactly 1 card.
     - **Expected output**: Throws `IllegalStateException` ("not enough cards to swap").
 
