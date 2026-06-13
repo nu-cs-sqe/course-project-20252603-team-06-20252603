@@ -13,7 +13,7 @@
     - **State of the system**: Game has 5 alive players. Current index is 2.
     - **Expected output**: Turn order is reversed. Current index is updated to 2. Next index is updated to 3.
 
-- **TC4: Five Players, Current Player at Max Index (Upper Boundary)** ( x )
+- **TC4: Five Players, Current Player at Max Index (Upper Boundary)** ( :white_check_mark: )
   - **State of the system**: Game has 5 alive players. Current index is 4 (the last player in the original array).
   - **Expected output**: The player order is completely reversed. Current index is correctly mapped to 0. The `nextPlayerIndex` increments and wraps to 1.
 

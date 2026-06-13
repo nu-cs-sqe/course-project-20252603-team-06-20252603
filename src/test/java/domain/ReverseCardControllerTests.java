@@ -111,4 +111,40 @@ public class ReverseCardControllerTests {
 
         EasyMock.verify(mockGc, mockGame, mockUser, p1, p2, p3, p4, p5);
     }
+
+    @Test
+    void executeCardAction_FivePlayers_MaxIndex_UpdatesIndices() {
+        GameController mockGc = EasyMock.createMock(GameController.class);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockInitiator = EasyMock.createMock(Player.class);
+        Player p0 = EasyMock.createMock(Player.class);
+        Player p1 = EasyMock.createMock(Player.class);
+        Player p2 = EasyMock.createMock(Player.class);
+        Player p3 = EasyMock.createMock(Player.class);
+        Player p4 = EasyMock.createMock(Player.class); // Current player is at the end
+
+        List<Player> originalList = new ArrayList<>(List.of(p0, p1, p2, p3, p4));
+        List<Player> expectedReversedList = new ArrayList<>(List.of(p4, p3, p2, p1, p0));
+
+        EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
+        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(originalList).anyTimes();
+
+        EasyMock.expect(mockGc.getCurrentPlayerIndex()).andReturn(4).anyTimes();
+
+        mockGc.setPlayerOrder(expectedReversedList);
+        EasyMock.expectLastCall().once();
+
+        mockGc.setCurrentPlayerIndex(0);
+        EasyMock.expectLastCall().once();
+
+        mockGc.setNextPlayerIndex(1);
+        EasyMock.expectLastCall().once();
+
+        EasyMock.replay(mockGc, mockGame, mockInitiator, p0, p1, p2, p3, p4);
+
+        ReverseCardController controller = new ReverseCardController();
+        controller.executeCardAction(mockGc, mockInitiator, Optional.empty());
+
+        EasyMock.verify(mockGc, mockGame, mockInitiator, p0, p1, p2, p3, p4);
+    }
 }
