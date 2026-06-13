@@ -1,7 +1,7 @@
 # BVA Analysis for SelfishRobinHoodCardController class
 
 ### Method under test: `executeCardAction()`
-- **TC1: Target has fewer cards than initiator (Lower Bound Invalid)** ( x )
+- **TC1: Target has fewer cards than initiator (Lower Bound Invalid)** ( :white_check_mark: )
     - **State of the system**: Initiator has 3 cards. Target has 2 cards.
     - **Expected output**: No steal occurs. Hand sizes remain exactly the same.
 
