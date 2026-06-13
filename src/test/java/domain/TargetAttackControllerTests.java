@@ -59,4 +59,21 @@ public class TargetAttackControllerTests {
 
         EasyMock.verify(mockController, mockUser);
     }
+
+    @Test
+    public void executeCardAction_DeadTarget_ThrowsException() {
+        GameController mockController = EasyMock.createMock(GameController.class);
+        Player mockUser = EasyMock.createMock(Player.class);
+        Player mockTarget = EasyMock.createMock(Player.class);
+
+        EasyMock.expect(mockTarget.isAlive()).andReturn(false);
+
+        EasyMock.replay(mockController, mockUser, mockTarget);
+
+        TargetAttackController controller = new TargetAttackController();
+        assertThrows(IllegalArgumentException.class, () ->
+                controller.executeCardAction(mockController, mockUser, Optional.of(mockTarget)));
+
+        EasyMock.verify(mockController, mockUser, mockTarget);
+    }
 }

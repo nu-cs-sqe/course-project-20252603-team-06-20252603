@@ -14,6 +14,6 @@
     - **State of the system**: initiator = player1, target = player1
     - **Expected output**: IllegalArgumentException is thrown. Game state is unchanged.
 
-- **TC4: target is a dead player** ( :x: )
+- **TC4: target is a dead player** ( ☑️ )
     - **State of the system**: initiator = player1, target = player2 (dead/eliminated)
     - **Expected output**: IllegalArgumentException is thrown. Game state is unchanged.
