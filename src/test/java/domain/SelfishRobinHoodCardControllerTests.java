@@ -179,28 +179,42 @@ public class SelfishRobinHoodCardControllerTests {
 
     @Test
     void executeCardAction_MultiPlayerMixedWealth_PartialSteals() {
-        Game game = Game.createGame(5);
-        GameController gc = new GameController(game);
-        Player initiator = game.getAlivePlayers().get(0);
-        Player p2_poorer = game.getAlivePlayers().get(1);
-        Player p3_equal = game.getAlivePlayers().get(2);
-        Player p4_richer = game.getAlivePlayers().get(3);
-        Player p5_muchRicher = game.getAlivePlayers().get(4);
+        GameController mockGc = EasyMock.createMock(GameController.class);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockInitiator = EasyMock.createMock(Player.class);
+        Player mockP2Poorer = EasyMock.createMock(Player.class);
+        Player mockP3Equal = EasyMock.createMock(Player.class);
+        Player mockP4Richer = EasyMock.createMock(Player.class);
+        Player mockP5MuchRicher = EasyMock.createMock(Player.class);
+        Card mockStolenCard = EasyMock.createMock(Card.class);
 
-        for (int i = 0; i < 3; i++) initiator.addCard(Card.createCard(CardType.TEST_TYPE));
-        for (int i = 0; i < 1; i++) p2_poorer.addCard(Card.createCard(CardType.TEST_TYPE));
-        for (int i = 0; i < 3; i++) p3_equal.addCard(Card.createCard(CardType.TEST_TYPE));
-        for (int i = 0; i < 4; i++) p4_richer.addCard(Card.createCard(CardType.TEST_TYPE));
-        for (int i = 0; i < 7; i++) p5_muchRicher.addCard(Card.createCard(CardType.TEST_TYPE)); // 7
+        EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
+        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(List.of(mockInitiator, mockP2Poorer, mockP3Equal, mockP4Richer, mockP5MuchRicher)).anyTimes();
+
+        EasyMock.expect(mockInitiator.getHandSize()).andReturn(3).anyTimes();
+
+        EasyMock.expect(mockP2Poorer.getHandSize()).andReturn(1).anyTimes();
+        EasyMock.expect(mockP3Equal.getHandSize()).andReturn(3).anyTimes();
+
+        EasyMock.expect(mockP4Richer.getHandSize()).andReturn(4).anyTimes();
+        EasyMock.expect(mockP4Richer.getHand()).andReturn(new ArrayList<>(List.of(mockStolenCard))).anyTimes();
+        mockP4Richer.removeCard(mockStolenCard);
+        EasyMock.expectLastCall().once();
+        mockInitiator.addCard(mockStolenCard);
+        EasyMock.expectLastCall().once();
+
+        EasyMock.expect(mockP5MuchRicher.getHandSize()).andReturn(7).anyTimes();
+        EasyMock.expect(mockP5MuchRicher.getHand()).andReturn(new ArrayList<>(List.of(mockStolenCard))).anyTimes();
+        mockP5MuchRicher.removeCard(mockStolenCard);
+        EasyMock.expectLastCall().once();
+        mockInitiator.addCard(mockStolenCard);
+        EasyMock.expectLastCall().once();
+
+        EasyMock.replay(mockGc, mockGame, mockInitiator, mockP2Poorer, mockP3Equal, mockP4Richer, mockP5MuchRicher, mockStolenCard);
 
         SelfishRobinHoodCardController controller = new SelfishRobinHoodCardController();
-        controller.executeCardAction(gc, initiator, Optional.empty());
+        controller.executeCardAction(mockGc, mockInitiator, Optional.empty());
 
-        assertEquals(5, initiator.getHandSize());
-
-        assertEquals(1, p2_poorer.getHandSize());
-        assertEquals(3, p3_equal.getHandSize());
-        assertEquals(3, p4_richer.getHandSize());
-        assertEquals(6, p5_muchRicher.getHandSize());
+        EasyMock.verify(mockGc, mockGame, mockInitiator, mockP2Poorer, mockP3Equal, mockP4Richer, mockP5MuchRicher, mockStolenCard);
     }
 }
