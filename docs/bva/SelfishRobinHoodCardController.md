@@ -38,7 +38,7 @@
         - Player 4 finishes with 3 cards.
         - Player 5 finishes with 6 cards.
 
-- **TC8: AOE Multi-Player - Snapshot vs Dynamic Evaluation Boundary** ( x )
+- **TC8: AOE Multi-Player - Snapshot vs Dynamic Evaluation Boundary** ( :white_check_mark: )
     - **State of the system**: 3-player game. Initiator starts with 3 cards. Player 2 has 4 cards. Player 3 has 4 cards.
     - **Expected output**: Initiator steals from *both* Player 2 and Player 3. The evaluation for Player 3 must use the original snapshot size (3).
         - Initiator finishes with 5 cards.

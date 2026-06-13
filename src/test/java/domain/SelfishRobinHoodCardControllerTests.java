@@ -231,4 +231,43 @@ public class SelfishRobinHoodCardControllerTests {
         EasyMock.verify(mockGc, mockGame, mockInitiator,
                 mockP2Poorer, mockP3Equal, mockP4Richer, mockP5MuchRicher, mockStolenCard);
     }
+
+    @Test
+    void executeCardAction_MultiPlayerSnapshotBoundary_StealsFromBoth() {
+        GameController mockGc = EasyMock.createMock(GameController.class);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockInitiator = EasyMock.createMock(Player.class);
+        Player mockPlayer2 = EasyMock.createMock(Player.class);
+        Player mockPlayer3 = EasyMock.createMock(Player.class);
+        Card mockStolenCard = EasyMock.createMock(Card.class);
+
+        EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
+        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(
+                List.of(mockInitiator, mockPlayer2, mockPlayer3)).anyTimes();
+
+        EasyMock.expect(mockInitiator.getHandSize()).andReturn(3).anyTimes();
+
+        EasyMock.expect(mockPlayer2.getHandSize()).andReturn(4).anyTimes();
+        EasyMock.expect(mockPlayer2.getHand()).andReturn(
+                new ArrayList<>(List.of(mockStolenCard))).anyTimes();
+        mockPlayer2.removeCard(mockStolenCard);
+        EasyMock.expectLastCall().once();
+        mockInitiator.addCard(mockStolenCard);
+        EasyMock.expectLastCall().once();
+
+        EasyMock.expect(mockPlayer3.getHandSize()).andReturn(4).anyTimes();
+        EasyMock.expect(mockPlayer3.getHand()).andReturn(
+                new ArrayList<>(List.of(mockStolenCard))).anyTimes();
+        mockPlayer3.removeCard(mockStolenCard);
+        EasyMock.expectLastCall().once();
+        mockInitiator.addCard(mockStolenCard);
+        EasyMock.expectLastCall().once();
+
+        EasyMock.replay(mockGc, mockGame, mockInitiator, mockPlayer2, mockPlayer3, mockStolenCard);
+
+        SelfishRobinHoodCardController controller = new SelfishRobinHoodCardController();
+        controller.executeCardAction(mockGc, mockInitiator, Optional.empty());
+
+        EasyMock.verify(mockGc, mockGame, mockInitiator, mockPlayer2, mockPlayer3, mockStolenCard);
+    }
 }
