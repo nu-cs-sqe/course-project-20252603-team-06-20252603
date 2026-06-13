@@ -5,7 +5,10 @@ import java.util.Optional;
 
 public class TargetAttackController implements CardController {
     @Override
-    public Optional<List<Card>> executeCardAction(GameController gameController, Player initiator, Optional<Player> target){
+    public Optional<List<Card>> executeCardAction(
+            GameController gameController,
+            Player initiator,
+            Optional<Player> target) {
         if (target.isEmpty()){
             throw new IllegalArgumentException("Need to have a target");
         }
