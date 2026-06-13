@@ -2,45 +2,24 @@ package domain;
 
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SwapTopAndBottomCardControllerTests {
-    @Test
-    void executeCardAction_EmptyDeck_ThrowsException() {
-        GameController mockGc = EasyMock.createMock(GameController.class);
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1})
+    void executeCardAction_InvalidDeckSize_ThrowsException(int invalidDeckSize) {        GameController mockGc = EasyMock.createMock(GameController.class);
         Game mockGame = EasyMock.createMock(Game.class);
         Deck mockDeck = EasyMock.createMock(Deck.class);
         Player mockUser = EasyMock.createMock(Player.class);
 
         EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
         EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
-        EasyMock.expect(mockDeck.count()).andReturn(0);
-
-        EasyMock.replay(mockGc, mockGame, mockDeck, mockUser);
-
-        SwapTopAndBottomCardController controller = new SwapTopAndBottomCardController();
-
-        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
-            controller.executeCardAction(mockGc, mockUser, Optional.empty());
-        });
-
-        assertEquals("not enough cards to swap", exception.getMessage());
-        EasyMock.verify(mockGc, mockGame, mockDeck, mockUser);
-    }
-
-    @Test
-    void executeCardAction_OneCardDeck_ThrowsException() {
-        GameController mockGc = EasyMock.createMock(GameController.class);
-        Game mockGame = EasyMock.createMock(Game.class);
-        Deck mockDeck = EasyMock.createMock(Deck.class);
-        Player mockUser = EasyMock.createMock(Player.class);
-
-        EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
-        EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
-        EasyMock.expect(mockDeck.count()).andReturn(1);
+        EasyMock.expect(mockDeck.count()).andReturn(invalidDeckSize);
 
         EasyMock.replay(mockGc, mockGame, mockDeck, mockUser);
 
