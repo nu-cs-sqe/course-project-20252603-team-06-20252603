@@ -17,6 +17,6 @@
     - **State of the system**: Deck contains exactly 3 cards [Card A, Card B, Card C].
     - **Expected output**: Deck is updated to [Card C, Card B, Card A]. Middle card is untouched.
 
-- **TC5: Deck With Many Cards (Standard Valid State)** ( x )
+- **TC5: Deck With Many Cards (Standard Valid State)** ( :white_check_mark: )
     - **State of the system**: Deck contains 5 cards.
     - **Expected output**: Top and bottom swap. All middle cards remain untouched.
