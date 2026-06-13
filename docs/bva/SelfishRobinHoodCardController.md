@@ -9,7 +9,7 @@
     - **State of the system**: Initiator has 3 cards. Target has 3 cards.
     - **Expected output**: No steal occurs. Hand sizes remain exactly the same.
 
-- **TC3: Target has exactly one more card (Minimum Valid Boundary)** ( x )
+- **TC3: Target has exactly one more card (Minimum Valid Boundary)** ( :white_check_mark: )
     - **State of the system**: Initiator has 3 cards. Target has 4 cards.
     - **Expected output**: Initiator steals 1 random card. Initiator hand = 4, Target hand = 3.
 

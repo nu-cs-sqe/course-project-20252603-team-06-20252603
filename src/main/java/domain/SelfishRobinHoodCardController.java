@@ -9,6 +9,22 @@ public class SelfishRobinHoodCardController implements CardController {
     public Optional<List<Card>> executeCardAction(GameController gameController,
                                                   Player initiator,
                                                   Optional<Player> target) {
+        int snapshotHandSize = initiator.getHandSize();
+
+        for (Player currentPlayer : gameController.getGame().getAlivePlayers()) {
+            boolean stealFromTarget = currentPlayer.getHandSize() > snapshotHandSize;
+
+            if (!currentPlayer.equals(initiator) && stealFromTarget) {
+                List<Card> targetHand = currentPlayer.getHand();
+
+                int randomIndex = (int) (Math.random() * targetHand.size());
+                Card stolenCard = targetHand.get(randomIndex);
+
+                currentPlayer.removeCard(stolenCard);
+                initiator.addCard(stolenCard);
+            }
+        }
+
         return Optional.empty();
     }
 }
