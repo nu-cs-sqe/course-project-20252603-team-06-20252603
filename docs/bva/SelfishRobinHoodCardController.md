@@ -5,7 +5,7 @@
     - **State of the system**: Initiator has 3 cards. Target has 2 cards.
     - **Expected output**: No steal occurs. Hand sizes remain exactly the same.
 
-- **TC2: Target has exactly the same number of cards (Minimum Invalid Boundary)** ( x )
+- **TC2: Target has exactly the same number of cards (Minimum Invalid Boundary)** ( :white_check_mark: )
     - **State of the system**: Initiator has 3 cards. Target has 3 cards.
     - **Expected output**: No steal occurs. Hand sizes remain exactly the same.
 
