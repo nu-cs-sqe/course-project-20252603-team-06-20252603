@@ -27,7 +27,3 @@ output: Optional.empty() (Optional<List<Card>>)
 - **TC5: executeCardAction_firstCardDefuseThreeCards_playerLivesOneCard ** ( :white_check_mark: )
     - **State of the system**: hand: [DEFUSE, ATTACK, SKIP]
     - **Expected output**: initiator.isAlive(): true, initiator.getHand(): [ATTACK, SKIP]
-
-- **TC6: executeCardAction_noDefuseTwoCards_playerKilled ** ( :white_check_mark: )
-    - **State of the system**: hand: [ATTACK, SKIP]
-    - **Expected output**: initiator.isAlive(): false, initiator.getHand(): [ATTACK, SKIP]
