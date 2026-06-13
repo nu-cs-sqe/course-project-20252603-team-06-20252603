@@ -79,27 +79,37 @@ public class ReverseCardControllerTests {
 
     @Test
     void executeCardAction_FivePlayers_ReversesOrderAndUpdatesIndices() {
-        Game game = Game.createGame(5);
-        GameController gc = new GameController(game);
-        gc.setCurrentPlayerIndex(2);
-        gc.setNextPlayerIndex(3);
+        GameController mockGc = EasyMock.createMock(GameController.class);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockUser = EasyMock.createMock(Player.class);
+        Player p1 = EasyMock.createMock(Player.class);
+        Player p2 = EasyMock.createMock(Player.class);
+        Player p3 = EasyMock.createMock(Player.class);
+        Player p4 = EasyMock.createMock(Player.class);
+        Player p5 = EasyMock.createMock(Player.class);
 
-        Player p1 = game.getAlivePlayers().get(0);
-        Player p2 = game.getAlivePlayers().get(1);
-        Player p3 = game.getAlivePlayers().get(2);
-        Player p4 = game.getAlivePlayers().get(3);
-        Player p5 = game.getAlivePlayers().get(4);
+        List<Player> originalList = new ArrayList<>(List.of(p1, p2, p3, p4, p5));
+        List<Player> expectedReversedList = new ArrayList<>(List.of(p5, p4, p3, p2, p1));
+
+        EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
+        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(originalList);
+
+        EasyMock.expect(mockGc.getCurrentPlayerIndex()).andReturn(2);
+
+        mockGc.setPlayerOrder(expectedReversedList);
+        EasyMock.expectLastCall().once();
+
+        mockGc.setCurrentPlayerIndex(2);
+        EasyMock.expectLastCall().once();
+
+        mockGc.setNextPlayerIndex(3);
+        EasyMock.expectLastCall().once();
+
+        EasyMock.replay(mockGc, mockGame, mockUser, p1, p2, p3, p4, p5);
 
         ReverseCardController controller = new ReverseCardController();
-        controller.executeCardAction(gc, p3, Optional.empty());
+        controller.executeCardAction(mockGc, mockUser, Optional.empty());
 
-        assertEquals(p5, game.getAlivePlayers().get(0));
-        assertEquals(p4, game.getAlivePlayers().get(1));
-        assertEquals(p3, game.getAlivePlayers().get(2));
-        assertEquals(p2, game.getAlivePlayers().get(3));
-        assertEquals(p1, game.getAlivePlayers().get(4));
-
-        assertEquals(2, gc.getCurrentPlayerIndex());
-        assertEquals(3, gc.getNextPlayerIndex());
+        EasyMock.verify(mockGc, mockGame, mockUser, p1, p2, p3, p4, p5);
     }
 }
