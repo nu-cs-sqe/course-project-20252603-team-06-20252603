@@ -121,7 +121,7 @@ public class ReverseCardControllerTests {
         Player p1 = EasyMock.createMock(Player.class);
         Player p2 = EasyMock.createMock(Player.class);
         Player p3 = EasyMock.createMock(Player.class);
-        Player p4 = EasyMock.createMock(Player.class); // Current player is at the end
+        Player p4 = EasyMock.createMock(Player.class);
 
         List<Player> originalList = new ArrayList<>(List.of(p0, p1, p2, p3, p4));
         List<Player> expectedReversedList = new ArrayList<>(List.of(p4, p3, p2, p1, p0));
