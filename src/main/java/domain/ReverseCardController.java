@@ -7,7 +7,6 @@ import java.util.Optional;
 
 public class ReverseCardController implements CardController {
 
-    @Override
     public Optional<List<Card>> executeCardAction(GameController gameController,
                                                   Player user,
                                                   Optional<Player> target) {
