@@ -57,4 +57,21 @@ public class SelfishRobinHoodCardControllerTests {
         assertEquals(4, initiator.getHandSize());
         assertEquals(3, target.getHandSize());
     }
+
+    @Test
+    void executeCardAction_TargetHasManyMoreCards_StealsOneCard() {
+        Game game = Game.createGame(2);
+        GameController gc = new GameController(game);
+        Player initiator = game.getAlivePlayers().get(0);
+        Player target = game.getAlivePlayers().get(1);
+
+        for (int i = 0; i < 3; i++) initiator.addCard(Card.createCard(CardType.TEST_TYPE));
+        for (int i = 0; i < 7; i++) target.addCard(Card.createCard(CardType.TEST_TYPE));
+
+        SelfishRobinHoodCardController controller = new SelfishRobinHoodCardController();
+        controller.executeCardAction(gc, initiator, Optional.empty());
+
+        assertEquals(4, initiator.getHandSize());
+        assertEquals(6, target.getHandSize());
+    }
 }
