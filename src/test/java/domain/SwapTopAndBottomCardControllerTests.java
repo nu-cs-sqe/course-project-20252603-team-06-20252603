@@ -64,4 +64,31 @@ public class SwapTopAndBottomCardControllerTests {
         assertEquals(originalBottom, deck.getCards().get(0), "New top should be old bottom");
         assertEquals(originalTop, deck.getCards().get(1), "New bottom should be old top");
     }
+
+    @Test
+    void executeCardAction_ThreeCardDeck_SwapsEndsLeavesMiddle() {
+        Game game = Game.createGame(2);
+        GameController gc = new GameController(game);
+        Player user = game.getAlivePlayers().get(0);
+        Deck deck = game.getDeck();
+
+        while (deck.count() > 0) {
+            deck.takeTopCard();
+        }
+
+        Card originalBottom = Card.createCard(CardType.SKIP);
+        Card originalMiddle = Card.createCard(CardType.NOPE);
+        Card originalTop = Card.createCard(CardType.DEFUSE);
+        deck.insert(originalBottom, 0);
+        deck.insert(originalMiddle, 0);
+        deck.insert(originalTop, 0);
+
+        SwapTopAndBottomCardController controller = new SwapTopAndBottomCardController();
+        controller.executeCardAction(gc, user, Optional.empty());
+
+        assertEquals(3, deck.count());
+        assertEquals(originalBottom, deck.getCards().get(0));
+        assertEquals(originalMiddle, deck.getCards().get(1));
+        assertEquals(originalTop, deck.getCards().get(2));
+    }
 }

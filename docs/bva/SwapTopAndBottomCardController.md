@@ -13,7 +13,7 @@
     - **State of the system**: Deck contains exactly 2 cards [Card A, Card B].
     - **Expected output**: Deck is updated to [Card B, Card A].
 
-- **TC4: Deck With Exactly Three Cards (Minimum + 1 Boundary)** ( x )
+- **TC4: Deck With Exactly Three Cards (Minimum + 1 Boundary)** ( :white_check_mark: )
     - **State of the system**: Deck contains exactly 3 cards [Card A, Card B, Card C].
     - **Expected output**: Deck is updated to [Card C, Card B, Card A]. Middle card is untouched.
 
