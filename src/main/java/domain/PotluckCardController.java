@@ -27,10 +27,16 @@ public class PotluckCardController implements CardController {
         int currentIndex = gameController.getCurrentPlayerIndex();
 
         for (int i = 0; i < alivePlayersCount; i++) {
+            Player player = alivePlayers.get((i + currentIndex) % alivePlayersCount);
+
+            int handSize = player.getHandSize();
+            if (handSize == 0) {
+                controllerView.displayNoCardsAvailable(player);
+                continue;
+            }
+
             while (true) {
-                Player player = alivePlayers.get((i + currentIndex) % alivePlayersCount);
                 ArrayList<Card> hand = player.getHand();
-                int handSize = player.getHandSize();
                 controllerView.displayPlayerAndCardsInHand(player);
                 String userChoice = controllerView.getCardChoice();
 
