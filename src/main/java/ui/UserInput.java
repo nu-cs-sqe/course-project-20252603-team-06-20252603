@@ -15,13 +15,4 @@ public class UserInput {
         System.out.println("(0 = top, " + deckSize + " = bottom):");
         return scanner.nextInt();
     }
-
-    public Card getCardToGive(List<Card> hand) {
-        System.out.println("Choose a card to give:");
-        for (int i = 0; i < hand.size(); i++) {
-            System.out.println(i + ": " + hand.get(i).getType());
-        }
-        int choice = scanner.nextInt();
-        return hand.get(choice);
-    }
 }
