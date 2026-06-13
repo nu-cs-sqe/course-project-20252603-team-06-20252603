@@ -198,7 +198,8 @@ public class SelfishRobinHoodCardControllerTests {
 
         EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
         EasyMock.expect(mockGame.getAlivePlayers()).andReturn(
-                List.of(mockInitiator, mockP2Poorer, mockP3Equal, mockP4Richer, mockP5MuchRicher)).anyTimes();
+                List.of(mockInitiator, mockP2Poorer, mockP3Equal, mockP4Richer,
+                        mockP5MuchRicher)).anyTimes();
 
         EasyMock.expect(mockInitiator.getHandSize()).andReturn(3).anyTimes();
 
