@@ -2,6 +2,8 @@ package domain;
 
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,26 +56,41 @@ public class SwapTopAndBottomCardControllerTests {
 
     @Test
     void executeCardAction_TwoCardDeck_SwapsCards() {
-        Game game = Game.createGame(2);
-        GameController gc = new GameController(game);
-        Player user = game.getAlivePlayers().get(0);
-        Deck deck = game.getDeck();
+        GameController mockGc = EasyMock.createMock(GameController.class);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Deck mockDeck = EasyMock.createMock(Deck.class);
+        Player mockUser = EasyMock.createMock(Player.class);
 
-        while (deck.count() > 0) {
-            deck.takeTopCard();
-        }
+        Card mockTopCard = EasyMock.createMock(Card.class);
+        Card mockBottomCard = EasyMock.createMock(Card.class);
 
-        Card originalBottom = Card.createCard(CardType.SKIP);
-        Card originalTop = Card.createCard(CardType.DEFUSE);
-        deck.insert(originalBottom, 0);
-        deck.insert(originalTop, 0);
+        EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
+        EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
+        EasyMock.expect(mockDeck.count()).andReturn(2);
+
+        EasyMock.expect(mockDeck.takeTopCard()).andReturn(mockTopCard);
+
+        EasyMock.expect(mockDeck.count()).andReturn(1);
+        ArrayList<Card> mockCardList = new ArrayList<>();
+        mockCardList.add(mockBottomCard);
+        EasyMock.expect(mockDeck.getCards()).andReturn(mockCardList);
+
+        mockDeck.discard(mockBottomCard);
+        EasyMock.expectLastCall().once();
+
+        mockDeck.insert(mockBottomCard, 0);
+        EasyMock.expectLastCall().once();
+
+        EasyMock.expect(mockDeck.count()).andReturn(0);
+        mockDeck.insert(mockTopCard, 0);
+        EasyMock.expectLastCall().once();
+
+        EasyMock.replay(mockGc, mockGame, mockDeck, mockUser, mockTopCard, mockBottomCard);
 
         SwapTopAndBottomCardController controller = new SwapTopAndBottomCardController();
-        controller.executeCardAction(gc, user, Optional.empty());
+        controller.executeCardAction(mockGc, mockUser, Optional.empty());
 
-        assertEquals(2, deck.count());
-        assertEquals(originalBottom, deck.getCards().get(0), "New top should be old bottom");
-        assertEquals(originalTop, deck.getCards().get(1), "New bottom should be old top");
+        EasyMock.verify(mockGc, mockGame, mockDeck, mockUser, mockTopCard, mockBottomCard);
     }
 
     @Test
