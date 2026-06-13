@@ -1,7 +1,7 @@
 # BVA Analysis for SwapTopAndBottomCardController class
 
 ### Method under test: `executeCardAction()`
-- **TC1: Deck With No Cards (Lower Bound Invalid)** ( )
+- **TC1: Deck With No Cards (Lower Bound Invalid)** ( :white_check_mark: )
     - **State of the system**: Deck contains 0 cards.
     - **Expected output**: Throws `IllegalStateException` ("not enough cards to swap").
 
