@@ -18,7 +18,8 @@ public class SelfishRobinHoodCardControllerTests {
         Player mockTarget = EasyMock.createMock(Player.class);
 
         EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
-        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(List.of(mockInitiator, mockTarget)).anyTimes();
+        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(
+                List.of(mockInitiator, mockTarget)).anyTimes();
 
         EasyMock.expect(mockInitiator.getHandSize()).andReturn(3).anyTimes();
         EasyMock.expect(mockTarget.getHandSize()).andReturn(2).anyTimes();
@@ -39,7 +40,8 @@ public class SelfishRobinHoodCardControllerTests {
         Player mockTarget = EasyMock.createMock(Player.class);
 
         EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
-        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(List.of(mockInitiator, mockTarget)).anyTimes();
+        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(
+                List.of(mockInitiator, mockTarget)).anyTimes();
 
         EasyMock.expect(mockInitiator.getHandSize()).andReturn(3).anyTimes();
         EasyMock.expect(mockTarget.getHandSize()).andReturn(3).anyTimes();
@@ -61,12 +63,14 @@ public class SelfishRobinHoodCardControllerTests {
         Card mockStolenCard = EasyMock.createMock(Card.class);
 
         EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
-        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(List.of(mockInitiator, mockTarget)).anyTimes();
+        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(List.of(
+                mockInitiator, mockTarget)).anyTimes();
 
         EasyMock.expect(mockInitiator.getHandSize()).andReturn(3).anyTimes();
         EasyMock.expect(mockTarget.getHandSize()).andReturn(4).anyTimes();
 
-        EasyMock.expect(mockTarget.getHand()).andReturn(new ArrayList<>(List.of(mockStolenCard))).anyTimes();
+        EasyMock.expect(mockTarget.getHand()).andReturn(
+                new ArrayList<>(List.of(mockStolenCard))).anyTimes();
 
         mockTarget.removeCard(mockStolenCard);
         EasyMock.expectLastCall().once();
@@ -91,12 +95,14 @@ public class SelfishRobinHoodCardControllerTests {
         Card mockStolenCard = EasyMock.createMock(Card.class);
 
         EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
-        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(List.of(mockInitiator, mockTarget)).anyTimes();
+        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(
+                List.of(mockInitiator, mockTarget)).anyTimes();
 
         EasyMock.expect(mockInitiator.getHandSize()).andReturn(3).anyTimes();
         EasyMock.expect(mockTarget.getHandSize()).andReturn(7).anyTimes();
 
-        EasyMock.expect(mockTarget.getHand()).andReturn(new ArrayList<>(List.of(mockStolenCard))).anyTimes();
+        EasyMock.expect(mockTarget.getHand()).andReturn(
+                new ArrayList<>(List.of(mockStolenCard))).anyTimes();
 
         mockTarget.removeCard(mockStolenCard);
         EasyMock.expectLastCall().once();
@@ -123,7 +129,8 @@ public class SelfishRobinHoodCardControllerTests {
         Player p4 = EasyMock.createMock(Player.class);
 
         EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
-        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(List.of(mockInitiator, p1, p2, p3, p4)).anyTimes();
+        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(
+                List.of(mockInitiator, p1, p2, p3, p4)).anyTimes();
 
         EasyMock.expect(mockInitiator.getHandSize()).andReturn(5).anyTimes();
 
@@ -160,7 +167,8 @@ public class SelfishRobinHoodCardControllerTests {
         for (int i = 1; i <= 4; i++) {
             Player currentMock = board.get(i);
             EasyMock.expect(currentMock.getHandSize()).andReturn(5).anyTimes();
-            EasyMock.expect(currentMock.getHand()).andReturn(new ArrayList<>(List.of(mockStolenCard))).anyTimes();
+            EasyMock.expect(currentMock.getHand()).andReturn(
+                    new ArrayList<>(List.of(mockStolenCard))).anyTimes();
 
             currentMock.removeCard(mockStolenCard);
             EasyMock.expectLastCall().once();
@@ -189,7 +197,8 @@ public class SelfishRobinHoodCardControllerTests {
         Card mockStolenCard = EasyMock.createMock(Card.class);
 
         EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
-        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(List.of(mockInitiator, mockP2Poorer, mockP3Equal, mockP4Richer, mockP5MuchRicher)).anyTimes();
+        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(
+                List.of(mockInitiator, mockP2Poorer, mockP3Equal, mockP4Richer, mockP5MuchRicher)).anyTimes();
 
         EasyMock.expect(mockInitiator.getHandSize()).andReturn(3).anyTimes();
 
@@ -197,24 +206,28 @@ public class SelfishRobinHoodCardControllerTests {
         EasyMock.expect(mockP3Equal.getHandSize()).andReturn(3).anyTimes();
 
         EasyMock.expect(mockP4Richer.getHandSize()).andReturn(4).anyTimes();
-        EasyMock.expect(mockP4Richer.getHand()).andReturn(new ArrayList<>(List.of(mockStolenCard))).anyTimes();
+        EasyMock.expect(mockP4Richer.getHand()).andReturn(
+                new ArrayList<>(List.of(mockStolenCard))).anyTimes();
         mockP4Richer.removeCard(mockStolenCard);
         EasyMock.expectLastCall().once();
         mockInitiator.addCard(mockStolenCard);
         EasyMock.expectLastCall().once();
 
         EasyMock.expect(mockP5MuchRicher.getHandSize()).andReturn(7).anyTimes();
-        EasyMock.expect(mockP5MuchRicher.getHand()).andReturn(new ArrayList<>(List.of(mockStolenCard))).anyTimes();
+        EasyMock.expect(mockP5MuchRicher.getHand()).andReturn(
+                new ArrayList<>(List.of(mockStolenCard))).anyTimes();
         mockP5MuchRicher.removeCard(mockStolenCard);
         EasyMock.expectLastCall().once();
         mockInitiator.addCard(mockStolenCard);
         EasyMock.expectLastCall().once();
 
-        EasyMock.replay(mockGc, mockGame, mockInitiator, mockP2Poorer, mockP3Equal, mockP4Richer, mockP5MuchRicher, mockStolenCard);
+        EasyMock.replay(mockGc, mockGame, mockInitiator,
+                mockP2Poorer, mockP3Equal, mockP4Richer, mockP5MuchRicher, mockStolenCard);
 
         SelfishRobinHoodCardController controller = new SelfishRobinHoodCardController();
         controller.executeCardAction(mockGc, mockInitiator, Optional.empty());
 
-        EasyMock.verify(mockGc, mockGame, mockInitiator, mockP2Poorer, mockP3Equal, mockP4Richer, mockP5MuchRicher, mockStolenCard);
+        EasyMock.verify(mockGc, mockGame, mockInitiator,
+                mockP2Poorer, mockP3Equal, mockP4Richer, mockP5MuchRicher, mockStolenCard);
     }
 }
