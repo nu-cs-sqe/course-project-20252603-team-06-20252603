@@ -1838,4 +1838,6 @@ public class GameControllerTests {
 
         EasyMock.verify(mockView);
     }
+
+
 }
