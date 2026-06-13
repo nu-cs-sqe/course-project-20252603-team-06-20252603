@@ -114,26 +114,30 @@ public class SelfishRobinHoodCardControllerTests {
 
     @Test
     void executeCardAction_MultiPlayerInitiatorRichest_NoSteals() {
-        Game game = Game.createGame(5);
-        GameController gc = new GameController(game);
-        Player initiator = game.getAlivePlayers().get(0);
+        GameController mockGc = EasyMock.createMock(GameController.class);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockInitiator = EasyMock.createMock(Player.class);
+        Player p1 = EasyMock.createMock(Player.class);
+        Player p2 = EasyMock.createMock(Player.class);
+        Player p3 = EasyMock.createMock(Player.class);
+        Player p4 = EasyMock.createMock(Player.class);
 
-        for (int i = 0; i < 5; i++) initiator.addCard(Card.createCard(CardType.TEST_TYPE));
+        EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
+        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(List.of(mockInitiator, p1, p2, p3, p4)).anyTimes();
 
-        for (int p = 1; p < 5; p++) {
-            for (int i = 0; i < 2; i++) {
-                game.getAlivePlayers().get(p).addCard(Card.createCard(CardType.TEST_TYPE));
-            }
-        }
+        EasyMock.expect(mockInitiator.getHandSize()).andReturn(5).anyTimes();
+
+        EasyMock.expect(p1.getHandSize()).andReturn(2).anyTimes();
+        EasyMock.expect(p2.getHandSize()).andReturn(2).anyTimes();
+        EasyMock.expect(p3.getHandSize()).andReturn(2).anyTimes();
+        EasyMock.expect(p4.getHandSize()).andReturn(2).anyTimes();
+
+        EasyMock.replay(mockGc, mockGame, mockInitiator, p1, p2, p3, p4);
 
         SelfishRobinHoodCardController controller = new SelfishRobinHoodCardController();
-        controller.executeCardAction(gc, initiator, Optional.empty());
+        controller.executeCardAction(mockGc, mockInitiator, Optional.empty());
 
-        assertEquals(5, initiator.getHandSize());
-        assertEquals(2, game.getAlivePlayers().get(1).getHandSize());
-        assertEquals(2, game.getAlivePlayers().get(2).getHandSize());
-        assertEquals(2, game.getAlivePlayers().get(3).getHandSize());
-        assertEquals(2, game.getAlivePlayers().get(4).getHandSize());
+        EasyMock.verify(mockGc, mockGame, mockInitiator, p1, p2, p3, p4);
     }
 
     @Test
