@@ -1,10 +1,7 @@
+package domain;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
-import domain.Card;
-import domain.Game;
-import domain.Player;
-import domain.SkipCardController;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,15 +12,17 @@ public class SkipCardControllerTests {
 
     @Test
     public void executeCardAction_NoTarget_ReturnsEmpty() {
-        Game game = EasyMock.createMock(Game.class);
+        GameController gameController = EasyMock.createMock(GameController.class);
         Player user = EasyMock.createMock(Player.class);
         SkipCardController controller = new SkipCardController();
 
-        EasyMock.replay(game, user);
+        EasyMock.replay(gameController, user);
 
-        Optional<List<Card>> result = controller.executeCardAction(game, user, Optional.empty());
+        Optional<List<Card>> result = controller.executeCardAction(gameController,
+                user,
+                Optional.empty());
 
         assertTrue(result.isEmpty());
-        EasyMock.verify(game, user);
+        EasyMock.verify(gameController, user);
     }
 }
