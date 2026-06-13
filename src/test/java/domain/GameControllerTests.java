@@ -1035,6 +1035,7 @@ public class GameControllerTests {
 
         expect(mockGame.getDeck()).andReturn(mockDeck);
         mockGame.draw(mockPlayer, mockDeck);
+        expect(mockPlayer.getHand()).andReturn(new ArrayList<>()).anyTimes();
         expectLastCall();
 
         replay(mockGame, mockPlayer, mockDeck, mockControllerView);
@@ -1838,6 +1839,39 @@ public class GameControllerTests {
 
         EasyMock.verify(mockView);
     }
+    @Test
+    void takeTurn_DrawsExplodingKitten_NoDefuse_PlayerKilled() {
+        Game mockGame = mock(Game.class);
+        Player mockPlayer = mock(Player.class);
+        Deck mockDeck = mock(Deck.class);
+        GameControllerView mockView = mock(GameControllerView.class);
 
+        ArrayList<Player> alivePlayers = new ArrayList<>();
+        alivePlayers.add(mockPlayer);
+
+        expect(mockGame.getAlivePlayers()).andReturn(alivePlayers);
+        expect(mockGame.getAlivePlayerCount()).andReturn(2).anyTimes();
+        mockView.displayCurrentPlayerAndCardsInHand(mockPlayer);
+        expectLastCall();
+        expect(mockView.getCardChoiceOrDraw()).andReturn("d");
+        expect(mockGame.getDeck()).andReturn(mockDeck);
+        mockGame.draw(mockPlayer, mockDeck);
+        expectLastCall();
+        expect(mockPlayer.getHand())
+                .andReturn(new ArrayList<>(List.of(new Card(CardType.EXPLODING_KITTEN)))).anyTimes();
+        expect(mockPlayer.hasDefuse()).andReturn(false).anyTimes();
+        mockGame.removeAlivePlayer(mockPlayer);
+        expectLastCall().once();
+
+        replay(mockGame, mockPlayer, mockDeck, mockView);
+
+        GameController controller = new GameController(mockGame);
+        controller.setCurrentPlayerIndex(0);
+        controller.setCurrentPlayerTurnsLeft(1);
+        controller.takeTurn(mockView);
+
+        assertEquals(0, controller.getCurrentPlayerTurnsLeft());
+        verify(mockGame, mockPlayer, mockDeck, mockView);
+    }
 
 }
