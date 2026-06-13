@@ -21,7 +21,7 @@
     - **State of the system**: 5-player game. Initiator has 5 cards. All other 4 players have 2 cards.
     - **Expected output**: Loop completes with no state changes. Initiator finishes with 5 cards.
 
-- **TC6: AOE Multi-Player - Initiator is the poorest (Maximum Steals)** ( x )
+- **TC6: AOE Multi-Player - Initiator is the poorest (Maximum Steals)** ( :white_check_mark: )
     - **State of the system**: 5-player game. Initiator has 1 card. All other 4 players have 5 cards.
     - **Expected output**: Initiator steals exactly 1 card from all 4 players. Initiator finishes with 5 cards. Every other player finishes with 4 cards.
 

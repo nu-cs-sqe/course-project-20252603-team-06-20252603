@@ -98,4 +98,26 @@ public class SelfishRobinHoodCardControllerTests {
         assertEquals(2, game.getAlivePlayers().get(3).getHandSize());
         assertEquals(2, game.getAlivePlayers().get(4).getHandSize());
     }
+
+    @Test
+    void executeCardAction_MultiPlayerInitiatorPoorest_MaximumSteals() {
+        Game game = Game.createGame(5);
+        GameController gc = new GameController(game);
+        Player initiator = game.getAlivePlayers().get(0);
+
+        initiator.addCard(Card.createCard(CardType.TEST_TYPE));
+
+        for (int p = 1; p < 5; p++) {
+            for (int i = 0; i < 5; i++) game.getAlivePlayers().get(p).addCard(Card.createCard(CardType.TEST_TYPE));
+        }
+
+        SelfishRobinHoodCardController controller = new SelfishRobinHoodCardController();
+        controller.executeCardAction(gc, initiator, Optional.empty());
+
+        assertEquals(5, initiator.getHandSize());
+        assertEquals(4, game.getAlivePlayers().get(1).getHandSize());
+        assertEquals(4, game.getAlivePlayers().get(2).getHandSize());
+        assertEquals(4, game.getAlivePlayers().get(3).getHandSize());
+        assertEquals(4, game.getAlivePlayers().get(4).getHandSize());
+    }
 }
