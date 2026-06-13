@@ -40,4 +40,28 @@ public class SwapTopAndBottomCardControllerTests {
         });
         assertEquals("not enough cards to swap", exception.getMessage());
     }
+
+    @Test
+    void executeCardAction_TwoCardDeck_SwapsCards() {
+        Game game = Game.createGame(2);
+        GameController gc = new GameController(game);
+        Player user = game.getAlivePlayers().get(0);
+        Deck deck = game.getDeck();
+
+        while (deck.count() > 0) {
+            deck.takeTopCard();
+        }
+
+        Card originalBottom = Card.createCard(CardType.SKIP);
+        Card originalTop = Card.createCard(CardType.DEFUSE);
+        deck.insert(originalBottom, 0);
+        deck.insert(originalTop, 0);
+
+        SwapTopAndBottomCardController controller = new SwapTopAndBottomCardController();
+        controller.executeCardAction(gc, user, Optional.empty());
+
+        assertEquals(2, deck.count());
+        assertEquals(originalBottom, deck.getCards().get(0), "New top should be old bottom");
+        assertEquals(originalTop, deck.getCards().get(1), "New bottom should be old top");
+    }
 }

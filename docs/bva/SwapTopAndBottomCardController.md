@@ -9,7 +9,7 @@
     - **State of the system**: Deck contains exactly 1 card.
     - **Expected output**: Throws `IllegalStateException` ("not enough cards to swap").
 
-- **TC3: Deck With Exactly Two Cards (Minimum Valid Boundary)** ( x )
+- **TC3: Deck With Exactly Two Cards (Minimum Valid Boundary)** ( :white_check_mark: )
     - **State of the system**: Deck contains exactly 2 cards [Card A, Card B].
     - **Expected output**: Deck is updated to [Card B, Card A].
 
