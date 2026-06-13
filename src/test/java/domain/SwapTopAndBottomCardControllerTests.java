@@ -31,20 +31,25 @@ public class SwapTopAndBottomCardControllerTests {
 
     @Test
     void executeCardAction_OneCardDeck_ThrowsException() {
-        Game game = Game.createGame(2);
-        GameController gc = new GameController(game);
-        Player user = game.getAlivePlayers().get(0);
+        GameController mockGc = EasyMock.createMock(GameController.class);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Deck mockDeck = EasyMock.createMock(Deck.class);
+        Player mockUser = EasyMock.createMock(Player.class);
 
-        while (game.getDeck().count() > 1) {
-            game.getDeck().takeTopCard();
-        }
+        EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
+        EasyMock.expect(mockGame.getDeck()).andReturn(mockDeck).anyTimes();
+        EasyMock.expect(mockDeck.count()).andReturn(1);
+
+        EasyMock.replay(mockGc, mockGame, mockDeck, mockUser);
 
         SwapTopAndBottomCardController controller = new SwapTopAndBottomCardController();
 
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
-            controller.executeCardAction(gc, user, Optional.empty());
+            controller.executeCardAction(mockGc, mockUser, Optional.empty());
         });
+
         assertEquals("not enough cards to swap", exception.getMessage());
+        EasyMock.verify(mockGc, mockGame, mockDeck, mockUser);
     }
 
     @Test
