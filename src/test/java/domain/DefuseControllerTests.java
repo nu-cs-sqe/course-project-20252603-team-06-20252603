@@ -1,5 +1,6 @@
 package domain;
 
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -10,15 +11,19 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class DefuseControllerTests {
     @Test
     public void executeCardAction_defusePlayed_throwIllegalStateException() {
-        Game game = new Game(2);
-        Player user = game.getTotalPlayers().get(0);
+        GameController mockController = EasyMock.createMock(GameController.class);
+        Player mockUser = EasyMock.createMock(Player.class);
 
-        DefuseController controller = new DefuseController();
+        EasyMock.replay(mockController, mockUser);
+
+        DefuseCardController controller = new DefuseCardController();
 
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
-            controller.executeCardAction(game, user, Optional.empty());
+            controller.executeCardAction(mockController, mockUser, Optional.empty());
         });
 
         assertEquals("defuse cards can not be played directly", exception.getMessage());
+
+        EasyMock.verify(mockController, mockUser);
     }
 }
