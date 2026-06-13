@@ -25,7 +25,7 @@
     - **State of the system**: 5-player game. Initiator has 1 card. All other 4 players have 5 cards.
     - **Expected output**: Initiator steals exactly 1 card from all 4 players. Initiator finishes with 5 cards. Every other player finishes with 4 cards.
 
-- **TC7: AOE Multi-Player - Mixed hand sizes (Nominal Board State)** ( x )
+- **TC7: AOE Multi-Player - Mixed hand sizes (Nominal Board State)** ( :white_check_mark: )
     - **State of the system**: 5-player game. Initiator has 3 cards.
         - Player 2 has 1 card (Poorer)
         - Player 3 has 3 cards (Equal)

@@ -120,4 +120,31 @@ public class SelfishRobinHoodCardControllerTests {
         assertEquals(4, game.getAlivePlayers().get(3).getHandSize());
         assertEquals(4, game.getAlivePlayers().get(4).getHandSize());
     }
+
+    @Test
+    void executeCardAction_MultiPlayerMixedWealth_PartialSteals() {
+        Game game = Game.createGame(5);
+        GameController gc = new GameController(game);
+        Player initiator = game.getAlivePlayers().get(0);
+        Player p2_poorer = game.getAlivePlayers().get(1);
+        Player p3_equal = game.getAlivePlayers().get(2);
+        Player p4_richer = game.getAlivePlayers().get(3);
+        Player p5_muchRicher = game.getAlivePlayers().get(4);
+
+        for (int i = 0; i < 3; i++) initiator.addCard(Card.createCard(CardType.TEST_TYPE));
+        for (int i = 0; i < 1; i++) p2_poorer.addCard(Card.createCard(CardType.TEST_TYPE));
+        for (int i = 0; i < 3; i++) p3_equal.addCard(Card.createCard(CardType.TEST_TYPE));
+        for (int i = 0; i < 4; i++) p4_richer.addCard(Card.createCard(CardType.TEST_TYPE));
+        for (int i = 0; i < 7; i++) p5_muchRicher.addCard(Card.createCard(CardType.TEST_TYPE)); // 7
+
+        SelfishRobinHoodCardController controller = new SelfishRobinHoodCardController();
+        controller.executeCardAction(gc, initiator, Optional.empty());
+
+        assertEquals(5, initiator.getHandSize());
+
+        assertEquals(1, p2_poorer.getHandSize());
+        assertEquals(3, p3_equal.getHandSize());
+        assertEquals(3, p4_richer.getHandSize());
+        assertEquals(6, p5_muchRicher.getHandSize());
+    }
 }
