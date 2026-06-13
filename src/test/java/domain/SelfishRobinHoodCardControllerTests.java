@@ -32,19 +32,23 @@ public class SelfishRobinHoodCardControllerTests {
 
     @Test
     void executeCardAction_TargetHasEqualCards_NoSteal() {
-        Game game = Game.createGame(2);
-        GameController gc = new GameController(game);
-        Player initiator = game.getAlivePlayers().get(0);
-        Player target = game.getAlivePlayers().get(1);
+        GameController mockGc = EasyMock.createMock(GameController.class);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockInitiator = EasyMock.createMock(Player.class);
+        Player mockTarget = EasyMock.createMock(Player.class);
 
-        for (int i = 0; i < 3; i++) initiator.addCard(Card.createCard(CardType.TEST_TYPE));
-        for (int i = 0; i < 3; i++) target.addCard(Card.createCard(CardType.TEST_TYPE));
+        EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
+        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(List.of(mockInitiator, mockTarget)).anyTimes();
+
+        EasyMock.expect(mockInitiator.getHandSize()).andReturn(3).anyTimes();
+        EasyMock.expect(mockTarget.getHandSize()).andReturn(3).anyTimes();
+
+        EasyMock.replay(mockGc, mockGame, mockInitiator, mockTarget);
 
         SelfishRobinHoodCardController controller = new SelfishRobinHoodCardController();
-        controller.executeCardAction(gc, initiator, Optional.empty());
+        controller.executeCardAction(mockGc, mockInitiator, Optional.empty());
 
-        assertEquals(3, initiator.getHandSize());
-        assertEquals(3, target.getHandSize());
+        EasyMock.verify(mockGc, mockGame, mockInitiator, mockTarget);
     }
 
     @Test
