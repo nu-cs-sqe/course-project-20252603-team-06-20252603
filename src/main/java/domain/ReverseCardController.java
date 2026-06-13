@@ -17,10 +17,14 @@ public class ReverseCardController implements CardController {
         Collections.reverse(reversedOrder);
         gameController.setPlayerOrder(reversedOrder);
 
-        int newCurrentIndex = playerCount - 1 - gameController.getCurrentPlayerIndex();
+        int newCurrentIndex = mirrorIndex(gameController.getCurrentPlayerIndex(), playerCount);
         gameController.setCurrentPlayerIndex(newCurrentIndex);
         gameController.setNextPlayerIndex((newCurrentIndex + 1) % playerCount);
 
         return Optional.empty();
+    }
+
+    private int mirrorIndex(int currentIndex, int playerCount) {
+        return playerCount - 1 - currentIndex;
     }
 }
