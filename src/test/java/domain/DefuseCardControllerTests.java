@@ -8,7 +8,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class DefuseControllerTests {
+public class DefuseCardControllerTests {
     @Test
     public void executeCardAction_defusePlayed_throwIllegalStateException() {
         GameController mockController = EasyMock.createMock(GameController.class);
