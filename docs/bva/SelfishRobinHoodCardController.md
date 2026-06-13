@@ -13,7 +13,7 @@
     - **State of the system**: Initiator has 3 cards. Target has 4 cards.
     - **Expected output**: Initiator steals 1 random card. Initiator hand = 4, Target hand = 3.
 
-- **TC4: Target has many more cards (Nominal Valid)** ( x )
+- **TC4: Target has many more cards (Nominal Valid)** ( :white_check_mark: )
     - **State of the system**: Initiator has 3 cards. Target has 7 cards.
     - **Expected output**: Initiator steals 1 random card. Initiator hand = 4, Target hand = 6.
 
