@@ -45,24 +45,36 @@ public class ReverseCardControllerTests {
 
     @Test
     void executeCardAction_ThreePlayers_ReversesOrderAndUpdatesIndices() {
-        Game game = Game.createGame(3);
-        GameController gc = new GameController(game);
-        gc.setCurrentPlayerIndex(1);
-        gc.setNextPlayerIndex(2);
+        GameController mockGc = EasyMock.createMock(GameController.class);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockUser = EasyMock.createMock(Player.class);
+        Player p1 = EasyMock.createMock(Player.class);
+        Player p2 = EasyMock.createMock(Player.class);
+        Player p3 = EasyMock.createMock(Player.class);
 
-        Player p1 = game.getAlivePlayers().get(0);
-        Player p2 = game.getAlivePlayers().get(1);
-        Player p3 = game.getAlivePlayers().get(2);
+        List<Player> originalList = new ArrayList<>(List.of(p1, p2, p3));
+        List<Player> expectedReversedList = new ArrayList<>(List.of(p3, p2, p1));
+
+        EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
+        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(originalList);
+
+        EasyMock.expect(mockGc.getCurrentPlayerIndex()).andReturn(1);
+
+        mockGc.setPlayerOrder(expectedReversedList);
+        EasyMock.expectLastCall().once();
+
+        mockGc.setCurrentPlayerIndex(1);
+        EasyMock.expectLastCall().once();
+
+        mockGc.setNextPlayerIndex(2);
+        EasyMock.expectLastCall().once();
+
+        EasyMock.replay(mockGc, mockGame, mockUser, p1, p2, p3);
 
         ReverseCardController controller = new ReverseCardController();
-        controller.executeCardAction(gc, p2, Optional.empty());
+        controller.executeCardAction(mockGc, mockUser, Optional.empty());
 
-        assertEquals(p3, game.getAlivePlayers().get(0));
-        assertEquals(p2, game.getAlivePlayers().get(1));
-        assertEquals(p1, game.getAlivePlayers().get(2));
-
-        assertEquals(1, gc.getCurrentPlayerIndex());
-        assertEquals(2, gc.getNextPlayerIndex());
+        EasyMock.verify(mockGc, mockGame, mockUser, p1, p2, p3);
     }
 
     @Test
