@@ -9,14 +9,14 @@
     - **State of the system**: Deck contains exactly 1 card.
     - **Expected output**: Throws `IllegalStateException` ("not enough cards to swap").
 
-- **TC3: Deck With Exactly Two Cards (Minimum Valid Boundary)** ( )
+- **TC3: Deck With Exactly Two Cards (Minimum Valid Boundary)** ( x )
     - **State of the system**: Deck contains exactly 2 cards [Card A, Card B].
     - **Expected output**: Deck is updated to [Card B, Card A].
 
-- **TC4: Deck With Exactly Three Cards (Minimum + 1 Boundary)** ( )
+- **TC4: Deck With Exactly Three Cards (Minimum + 1 Boundary)** ( x )
     - **State of the system**: Deck contains exactly 3 cards [Card A, Card B, Card C].
     - **Expected output**: Deck is updated to [Card C, Card B, Card A]. Middle card is untouched.
 
-- **TC5: Deck With Many Cards (Standard Valid State)** ( )
+- **TC5: Deck With Many Cards (Standard Valid State)** ( x )
     - **State of the system**: Deck contains 5 cards.
     - **Expected output**: Top and bottom swap. All middle cards remain untouched.
