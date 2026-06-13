@@ -3,6 +3,7 @@ package domain;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,19 +54,32 @@ public class SelfishRobinHoodCardControllerTests {
 
     @Test
     void executeCardAction_TargetHasOneMoreCard_StealsOneCard() {
-        Game game = Game.createGame(2);
-        GameController gc = new GameController(game);
-        Player initiator = game.getAlivePlayers().get(0);
-        Player target = game.getAlivePlayers().get(1);
+        GameController mockGc = EasyMock.createMock(GameController.class);
+        Game mockGame = EasyMock.createMock(Game.class);
+        Player mockInitiator = EasyMock.createMock(Player.class);
+        Player mockTarget = EasyMock.createMock(Player.class);
+        Card mockStolenCard = EasyMock.createMock(Card.class);
 
-        for (int i = 0; i < 3; i++) initiator.addCard(Card.createCard(CardType.TEST_TYPE));
-        for (int i = 0; i < 4; i++) target.addCard(Card.createCard(CardType.TEST_TYPE));
+        EasyMock.expect(mockGc.getGame()).andReturn(mockGame).anyTimes();
+        EasyMock.expect(mockGame.getAlivePlayers()).andReturn(List.of(mockInitiator, mockTarget)).anyTimes();
+
+        EasyMock.expect(mockInitiator.getHandSize()).andReturn(3).anyTimes();
+        EasyMock.expect(mockTarget.getHandSize()).andReturn(4).anyTimes();
+
+        EasyMock.expect(mockTarget.getHand()).andReturn(new ArrayList<>(List.of(mockStolenCard))).anyTimes();
+
+        mockTarget.removeCard(mockStolenCard);
+        EasyMock.expectLastCall().once();
+
+        mockInitiator.addCard(mockStolenCard);
+        EasyMock.expectLastCall().once();
+
+        EasyMock.replay(mockGc, mockGame, mockInitiator, mockTarget, mockStolenCard);
 
         SelfishRobinHoodCardController controller = new SelfishRobinHoodCardController();
-        controller.executeCardAction(gc, initiator, Optional.empty());
+        controller.executeCardAction(mockGc, mockInitiator, Optional.empty());
 
-        assertEquals(4, initiator.getHandSize());
-        assertEquals(3, target.getHandSize());
+        EasyMock.verify(mockGc, mockGame, mockInitiator, mockTarget, mockStolenCard);
     }
 
     @Test
