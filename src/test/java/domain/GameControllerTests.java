@@ -3,6 +3,8 @@ package domain;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -1872,6 +1874,43 @@ public class GameControllerTests {
 
         assertEquals(0, controller.getCurrentPlayerTurnsLeft());
         verify(mockGame, mockPlayer, mockDeck, mockView);
+    }
+
+    @Test
+    void runGame_TwoPlayersFirstPlayerHasDefuse_FirstPlayerSurvivesSecondPlayerDrawsKittenAndLoses() {
+        Game game = new Game(2);
+        Player player0 = game.getAlivePlayers().get(0);
+        Player player1 = game.getAlivePlayers().get(1);
+
+        player0.addCard(Card.createCard(CardType.DEFUSE));
+        game.getDeck().insert(Card.createCard(CardType.EXPLODING_KITTEN), 0);
+
+        GameController controller = new GameController(game);
+        controller.setCurrentPlayerIndex(0);
+        controller.setNextPlayerIndex(1);
+        controller.setCurrentPlayerTurnsLeft(1);
+        controller.setNextPlayerTurnsLeft(1);
+
+        GameControllerView mockView = EasyMock.createMock(GameControllerView.class);
+        mockView.displayCurrentPlayerAndCardsInHand(player0);
+        EasyMock.expectLastCall();
+        EasyMock.expect(mockView.getCardChoiceOrDraw()).andReturn("d");
+        mockView.displayCurrentPlayerAndCardsInHand(player1);
+        EasyMock.expectLastCall();
+        EasyMock.expect(mockView.getCardChoiceOrDraw()).andReturn("d");
+        EasyMock.replay(mockView);
+
+        InputStream originalIn = System.in;
+        System.setIn(new ByteArrayInputStream("0\n".getBytes()));
+        try {
+            controller.runGame(mockView);
+        } finally {
+            System.setIn(originalIn);
+        }
+
+        assertEquals(1, game.getAlivePlayerCount());
+        assertSame(player0, game.getAlivePlayers().get(0));
+        EasyMock.verify(mockView);
     }
 
 }
