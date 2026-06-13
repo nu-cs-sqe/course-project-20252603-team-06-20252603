@@ -1,7 +1,7 @@
 # BVA Analysis for ReverseCardController class
 
 ### Method under test: `executeCardAction()`
-- **TC1: Two Players (Minimum Valid Boundary)** ( x )
+- **TC1: Two Players (Minimum Valid Boundary)** ( :white_check_mark: )
     - **State of the system**: Game has exactly 2 alive players. Current index is 0.
     - **Expected output**: Turn order is reversed. Current index is updated to 1. Next index is updated to 0.
 
