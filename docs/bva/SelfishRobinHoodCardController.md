@@ -17,7 +17,7 @@
     - **State of the system**: Initiator has 3 cards. Target has 7 cards.
     - **Expected output**: Initiator steals 1 random card. Initiator hand = 4, Target hand = 6.
 
-- **TC5: AOE Multi-Player - Initiator is the richest (No Steals)** ( x )
+- **TC5: AOE Multi-Player - Initiator is the richest (No Steals)** ( :white_check_mark: )
     - **State of the system**: 5-player game. Initiator has 5 cards. All other 4 players have 2 cards.
     - **Expected output**: Loop completes with no state changes. Initiator finishes with 5 cards.
 
