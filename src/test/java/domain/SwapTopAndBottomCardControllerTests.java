@@ -12,7 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SwapTopAndBottomCardControllerTests {
     @ParameterizedTest
     @ValueSource(ints = {0, 1})
-    void executeCardAction_InvalidDeckSize_ThrowsException(int invalidDeckSize) {        GameController mockGc = EasyMock.createMock(GameController.class);
+    void executeCardAction_InvalidDeckSize_ThrowsException(int invalidDeckSize) {
+        GameController mockGc = EasyMock.createMock(GameController.class);
         Game mockGame = EasyMock.createMock(Game.class);
         Deck mockDeck = EasyMock.createMock(Deck.class);
         Player mockUser = EasyMock.createMock(Player.class);
