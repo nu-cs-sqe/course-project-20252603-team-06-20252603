@@ -10,7 +10,7 @@
     - **State of the system**: initiator = player1, target = player2 (alive), 2+ players alive
     - **Expected output**: `Optional.empty()` is returned. player2 is assigned 2 turns.
 
-- **TC3: target is the initiator** ( :x: )
+- **TC3: target is the initiator** ( ☑️ )
     - **State of the system**: initiator = player1, target = player1
     - **Expected output**: IllegalArgumentException is thrown. Game state is unchanged.
 

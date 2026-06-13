@@ -14,6 +14,10 @@ public class TargetAttackController implements CardController {
             throw new IllegalArgumentException("Target must be alive");
         }
 
+        if (target.get() == initiator){
+            throw new IllegalArgumentException("Target and initiator must be different players");
+        }
+
         gameController.setNextPlayerTurnsLeft(2);
         return Optional.empty();
     }
