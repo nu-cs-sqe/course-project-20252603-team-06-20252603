@@ -11,22 +11,24 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ShuffleCardControllerTests {
     @Test
     public void executeCardAction_OnEmptyDeck(){
-        Game game = EasyMock.createMock(Game.class);
+        GameController mockController = EasyMock.createMock(GameController.class);
+        Game mockGame = EasyMock.createMock(Game.class);
         Deck deck = EasyMock.createMock(Deck.class);
         Player initiator = EasyMock.createMock(Player.class);
 
-        EasyMock.expect(game.getDeck()).andReturn(deck);
+        EasyMock.expect(mockController.getGame()).andReturn(mockGame).anyTimes();
+        EasyMock.expect(mockGame.getDeck()).andReturn(deck);
         deck.shuffle();
 
-        EasyMock.replay(game, deck, initiator);
+        EasyMock.replay(mockController, mockGame, deck, initiator);
 
         ShuffleCardController controller = new ShuffleCardController();
         Optional<List<Card>> result = controller.executeCardAction(
-                game, initiator, Optional.empty()
+                mockController, initiator, Optional.empty()
         );
 
         assertTrue(result.isEmpty());
 
-        EasyMock.verify(game, deck, initiator);
+        EasyMock.verify(mockController, mockGame, deck, initiator);
     }
 }

@@ -4,17 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class ShuffleCardController implements CardController {
-<<<<<<< HEAD
-    public Optional<List<Card>> executeCardAction(Game game, Player user, Optional<Player> target){
-        Deck deck = game.getDeck();
+    public Optional<List<Card>> executeCardAction(GameController gameController, Player user, Optional<Player> target){
+        Deck deck = gameController.getGame().getDeck();
         deck.shuffle();
 
         return Optional.empty();
-=======
-    public Optional<List<Card>> executeCardAction(GameController gameController,
-                                                  Player user,
-                                                  Optional<Player> target){
-        throw new UnsupportedOperationException("not yet implemented");
->>>>>>> a804a9f04de81103c90ac4f12661ca1ed15d6899
     }
 }
