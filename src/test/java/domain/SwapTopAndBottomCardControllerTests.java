@@ -126,7 +126,8 @@ public class SwapTopAndBottomCardControllerTests {
         mockDeck.insert(mockTopCard, 1);
         EasyMock.expectLastCall().once();
 
-        EasyMock.replay(mockGc, mockGame, mockDeck, mockUser, mockTopCard, mockMiddleCard, mockBottomCard);
+        EasyMock.replay(mockGc, mockGame, mockDeck, mockUser,
+                mockTopCard, mockMiddleCard, mockBottomCard);
 
         SwapTopAndBottomCardController controller = new SwapTopAndBottomCardController();
         controller.executeCardAction(mockGc, mockUser, Optional.empty());
