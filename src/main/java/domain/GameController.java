@@ -161,7 +161,8 @@ public class GameController {
         if (userChoice.equalsIgnoreCase("d")) {
             game.draw(currentPlayer, game.getDeck());
             if (playerHasCardOfType(currentPlayer, CardType.EXPLODING_KITTEN)) {
-                new ExplodingKittenCardController().executeCardAction(this, currentPlayer, Optional.empty());
+                new ExplodingKittenCardController()
+                        .executeCardAction(this, currentPlayer, Optional.empty());
             }
             this.currentPlayerTurnsLeft--;
         } else {

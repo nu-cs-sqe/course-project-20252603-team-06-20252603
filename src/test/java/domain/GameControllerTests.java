@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -1859,8 +1860,8 @@ public class GameControllerTests {
         expect(mockGame.getDeck()).andReturn(mockDeck);
         mockGame.draw(mockPlayer, mockDeck);
         expectLastCall();
-        expect(mockPlayer.getHand())
-                .andReturn(new ArrayList<>(List.of(new Card(CardType.EXPLODING_KITTEN)))).anyTimes();
+        ArrayList<Card> kittenHand = new ArrayList<>(List.of(new Card(CardType.EXPLODING_KITTEN)));
+        expect(mockPlayer.getHand()).andReturn(kittenHand).anyTimes();
         expect(mockPlayer.hasDefuse()).andReturn(false).anyTimes();
         mockGame.removeAlivePlayer(mockPlayer);
         expectLastCall().once();
@@ -1877,7 +1878,7 @@ public class GameControllerTests {
     }
 
     @Test
-    void runGame_TwoPlayersFirstPlayerHasDefuse_FirstPlayerSurvivesSecondPlayerDrawsKittenAndLoses() {
+    void runGame_TwoPlayersFirstPlayerHasDefuse_FirstPlayerSurvives() {
         Game game = new Game(2);
         Player player0 = game.getAlivePlayers().get(0);
         Player player1 = game.getAlivePlayers().get(1);
@@ -1901,7 +1902,7 @@ public class GameControllerTests {
         EasyMock.replay(mockView);
 
         InputStream originalIn = System.in;
-        System.setIn(new ByteArrayInputStream("0\n".getBytes()));
+        System.setIn(new ByteArrayInputStream("0\n".getBytes(StandardCharsets.UTF_8)));
         try {
             controller.runGame(mockView);
         } finally {
