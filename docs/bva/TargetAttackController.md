@@ -2,7 +2,7 @@
 
 ### Method under test: `executeCardAction()`
 
-- **TC1: target is empty** ( :x: )
+- **TC1: target is empty** (  ☑️ )
     - **State of the system**: initiator = player1, target = Optional.empty()
     - **Expected output**: IllegalArgumentException is thrown. Game state is unchanged.
 
